@@ -1,0 +1,69 @@
+.inputWrapper {
+    text-align: left;
+
+    margin-bottom: 10px;
+    min-width: 50%;
+}
+
+.inputWrapper input {
+    min-width: 50%;
+    width: 100%;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.inputWrapper button {
+    width: 100%;
+    text-align:center;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.moviesResult {
+    display: flex;
+    align-items: center;
+}
+.moviesResult img {
+    max-width: 200px; /* Adjust as needed */
+    margin-right: 20px;
+}
+
+.moviesResult > div:first-of-type {
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+
+
+}
+
+.moviesResult > div p {
+    text-align:center;
+}
+
+.description {
+    display: inherit;
+    justify-content: inherit;
+    align-items: inherit;
+    font-size: 0.85rem;
+    max-width: 1500px;
+    width: 100%;
+    z-index: 2;
+    font-family: monospace;
+}
+
+.formResult {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px; /* adjust the value as needed */
+}
+
+.formResult img {
+    width: 200px;
+}
+
+
+
+
