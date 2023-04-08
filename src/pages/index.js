@@ -1,5 +1,7 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
+import ApplicantForm from "../../components/applicant_form/ApplicantForm";
+import mysql from "mysql2";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -118,6 +120,9 @@ export default function Home() {
             Instantly deploy your Next.js site to a shareable URL with Vercel.
           </p>
         </a>
+      </div>
+      <div>
+          {/*<ApplicantForm databaseType="mysql" database="fwccn_applicants" collection="applicants"></ApplicantForm>*/}
       </div>
     </main>
   )
