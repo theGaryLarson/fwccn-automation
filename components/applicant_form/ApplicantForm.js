@@ -1,52 +1,83 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
+import {validateHouseHoldIncome, validateName, validateSSN} from "../../utils/validation";
 import styles from "./ApplicantForm.module.css"
-// TODO: remember the form checks the database type through the api call to api/data on line 13 where the data.js folder
-//  contains two connections. one local mysql connection and another cloud-based mongodb connection
+
+// remember the form checks the database type through the fetch method using the api/data route.
+// where the data.js folder contains two connections. one local mysql connection and another cloud-based
+// mongodb connection
 // TODO: ensure handleSubmit passes the correct information along and method, headers, and body is correct
 function ApplicantForm({ databaseType, database, collection }) {
-    const [result, setResult]
+
+    const [formData, setFormData]
         = useState({
+        // todo: update iteratively as form layout matures
         fName: "",
         lName: "",
         socialSecLastFour: "",
         lastHelpDate: "",
         householdIncome: "",
     });
+    const [errors, setErrors] = useState({});
+    const [isValid, setIsValid] = useState(false);
 
-    // TODO: find way to test and ensure setApplicantInfo is working correctly. (i.e. updating json fields and replacing
+    // TODO: find way to test and ensure handleInputChange is working correctly. (i.e. updating json fields and replacing
     //  setResult correctly
-    function setApplicantInfo(value) {
-        console.log("Updating state with value: ", value);
-        setResult((prevState) => ({ ...prevState, ...value }));
-        console.log("New state is: ", result)
+    function handleInputChange(event) {
+        const {name, value} = event.target;
+        console.log("Updating state with value: " + [name] + ": " + value);
+        setFormData({...formData, [name]: value});
+        setErrors({ ...errors, [name]: null }); // Clear any previous errors for this input
+
     }
+
+    // These methods update changes as soon as they are made rather than on the next render which happens by default
+    // Will be great for validation and the final commit to the database.
+    useEffect(() => {
+        console.log('New state is:', formData);
+    }, [formData]);
+
+    useEffect(() => {
+        // Check if all input fields are valid
+        const formIsValid = Object.values(errors).every(error => error === null);
+        console.log("Errors:", errors);
+        setIsValid(formIsValid);
+    }, [errors]);
+
+    console.log("isValid: ", isValid);
 
     async function handleSubmit(event) {
         event.preventDefault();
+        // todo: validate each input.
+        let fNameError = validateName(formData.fName);
+        let lNameError = validateName(formData.lName);
+        let socialSecLastFourError = validateSSN(formData.socialSecLastFour);
+        let houseHoldIncomeError = validateHouseHoldIncome(formData.householdIncome);
 
-        const response = await fetch("/api/data", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                dbType: databaseType,
-                database,
-                collection,
-                // todo: update iteratively as fields are decided and frontend matures
-                // fixme: do not hardcode here. Need to update from state change
-                data: {
-                    fName: "John",
-                    lName: "Doe",
-                    socialSecLastFour: "1111",
-                    lastHelpDate: "2023-04-09",
-                    householdIncome: "45000",
-                },
-            }),
-        });
+        const newErrors = {
+            fName: fNameError,
+            lName: lNameError,
+            socialSecLastFour: socialSecLastFourError,
+            houseHoldIncome: houseHoldIncomeError,
+            // todo: add similar error objects for each input
+        }
 
-        const result = await response.json();
-        setApplicantInfo(result);
-        const { fName, lName, socialSecLastFour, lastHelpDate, householdIncome } =
-            result;
+        // if there are errors update state and return
+        if (Object.values(newErrors).some((error) => error !== null)) {
+            setErrors(newErrors);
+           //todo: need to implement means to display errors to user
+        } else {
+            const response = await fetch("/api/data", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    dbType: databaseType,
+                    database,
+                    collection,
+                    data: formData,
+                }),
+            });
+            await response.json();
+        }
     }
 
     return (
@@ -59,9 +90,8 @@ function ApplicantForm({ databaseType, database, collection }) {
                         id="f-name-input"
                         name="fName"
                         placeholder="John"
-                        value={result.fName}
-                        onChange={(event) =>
-                            setApplicantInfo({fName: event.target.value})}
+                        value={formData.fName}
+                        onChange={handleInputChange}
                         required
                     />
                 </div>
@@ -72,9 +102,8 @@ function ApplicantForm({ databaseType, database, collection }) {
                         id="l-name-input"
                         name="lName"
                         placeholder="Doe"
-                        value={result.lName}
-                        onChange={(event) =>
-                            setApplicantInfo({lName: event.target.value})}
+                        value={formData.lName}
+                        onChange={handleInputChange}
                         required
                     />
                 </div>
@@ -85,9 +114,8 @@ function ApplicantForm({ databaseType, database, collection }) {
                         id="social-sec-input"
                         name="socialSecLastFour"
                         placeholder="1234"
-                        value={result.socialSecLastFour}
-                        onChange={(event) =>
-                            setApplicantInfo({socialSecLastFour: event.target.value})}
+                        value={formData.socialSecLastFour}
+                        onChange={handleInputChange}
                         required
                     />
                 </div>
@@ -97,9 +125,8 @@ function ApplicantForm({ databaseType, database, collection }) {
                         type="date"
                         id="last-help-date-input"
                         name="lastHelpDate"
-                        value={result.lastHelpDate}
-                        onChange={(event) =>
-                            setApplicantInfo({lastHelpDate: event.target.value})}
+                        value={formData.lastHelpDate}
+                        onChange={handleInputChange}
                         required
                     />
                 </div>
@@ -110,9 +137,8 @@ function ApplicantForm({ databaseType, database, collection }) {
                         id="household-income-input"
                         name="householdIncome"
                         placeholder="100000"
-                        value={result.householdIncome}
-                        onChange={(event) =>
-                            setApplicantInfo({householdIncome: event.target.value})}
+                        value={formData.householdIncome}
+                        onChange={handleInputChange}
                         required
                     />
                 </div>
