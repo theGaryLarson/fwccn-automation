@@ -6,6 +6,7 @@
 }
 
 .inputWrapper input {
+    color: black;
     min-width: 50%;
     width: 100%;
     white-space: pre-wrap;
