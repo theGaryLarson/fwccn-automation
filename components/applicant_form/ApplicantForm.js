@@ -4,7 +4,8 @@ import styles from "./ApplicantForm.module.css"
 //  contains two connections. one local mysql connection and another cloud-based mongodb connection
 // TODO: ensure handleSubmit passes the correct information along and method, headers, and body is correct
 function ApplicantForm({ databaseType, database, collection }) {
-    const [result, setResult] = useState({
+    const [result, setResult]
+        = useState({
         fName: "",
         lName: "",
         socialSecLastFour: "",
@@ -15,10 +16,9 @@ function ApplicantForm({ databaseType, database, collection }) {
     // TODO: find way to test and ensure setApplicantInfo is working correctly. (i.e. updating json fields and replacing
     //  setResult correctly
     function setApplicantInfo(value) {
+        console.log("Updating state with value: ", value);
         setResult((prevState) => ({ ...prevState, ...value }));
-        // Update the contents of the result element
-        const resultElement = document.getElementById("result");
-        resultElement.textContent = JSON.stringify(result);
+        console.log("New state is: ", result)
     }
 
     async function handleSubmit(event) {
@@ -32,18 +32,18 @@ function ApplicantForm({ databaseType, database, collection }) {
                 database,
                 collection,
                 // todo: update iteratively as fields are decided and frontend matures
+                // fixme: do not hardcode here. Need to update from state change
                 data: {
-                    fName,
-                    lName,
-                    socialSecLastFour,
-                    lastHelpDate,
-                    householdIncome,
+                    fName: "John",
+                    lName: "Doe",
+                    socialSecLastFour: "1111",
+                    lastHelpDate: "2023-04-09",
+                    householdIncome: "45000",
                 },
             }),
         });
 
         const result = await response.json();
-        setApplicantInfo(result);
         setApplicantInfo(result);
         const { fName, lName, socialSecLastFour, lastHelpDate, householdIncome } =
             result;
@@ -59,7 +59,7 @@ function ApplicantForm({ databaseType, database, collection }) {
                         id="f-name-input"
                         name="fName"
                         placeholder="John"
-                        value=""
+                        value={result.fName}
                         onChange={(event) =>
                             setApplicantInfo({fName: event.target.value})}
                         required
@@ -72,7 +72,7 @@ function ApplicantForm({ databaseType, database, collection }) {
                         id="l-name-input"
                         name="lName"
                         placeholder="Doe"
-                        value=""
+                        value={result.lName}
                         onChange={(event) =>
                             setApplicantInfo({lName: event.target.value})}
                         required
@@ -85,7 +85,7 @@ function ApplicantForm({ databaseType, database, collection }) {
                         id="social-sec-input"
                         name="socialSecLastFour"
                         placeholder="1234"
-                        value=""
+                        value={result.socialSecLastFour}
                         onChange={(event) =>
                             setApplicantInfo({socialSecLastFour: event.target.value})}
                         required
@@ -97,26 +97,26 @@ function ApplicantForm({ databaseType, database, collection }) {
                         type="date"
                         id="last-help-date-input"
                         name="lastHelpDate"
-                        value=""
+                        value={result.lastHelpDate}
                         onChange={(event) =>
                             setApplicantInfo({lastHelpDate: event.target.value})}
                         required
                     />
                 </div>
                 <div className={styles.inputWrapper}>
-                    <label htmlFor="household-income-input">Household Income:</label>
+                    <label htmlFor="household-income-input">Monthly Household Income:</label>
                     <input
                         type="number"
                         id="household-income-input"
                         name="householdIncome"
                         placeholder="100000"
-                        value=""
+                        value={result.householdIncome}
                         onChange={(event) =>
                             setApplicantInfo({householdIncome: event.target.value})}
                         required
                     />
                 </div>
-                <div className={styles.inputWrapper}>
+                <div>
                     <button type="submit">Submit</button>
                 </div>
             </form>
