@@ -22,38 +22,6 @@
     padding: 10px;
 }
 
-.moviesResult {
-    display: flex;
-    align-items: center;
-}
-.moviesResult img {
-    max-width: 200px; /* Adjust as needed */
-    margin-right: 20px;
-}
-
-.moviesResult > div:first-of-type {
-    font-weight: bold;
-    font-size: 18px;
-    color: white;
-
-
-}
-
-.moviesResult > div p {
-    text-align:center;
-}
-
-.description {
-    display: inherit;
-    justify-content: inherit;
-    align-items: inherit;
-    font-size: 0.85rem;
-    max-width: 1500px;
-    width: 100%;
-    z-index: 2;
-    font-family: monospace;
-}
-
 .formResult {
     display: flex;
     flex-direction: column;
