@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import ApplicantForm from "../../components/applicant_form/ApplicantForm";
-import mysql from "mysql2";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -122,7 +121,7 @@ export default function Home() {
         </a>
       </div>
       <div>
-          {/*<ApplicantForm databaseType="mysql" database="fwccn_applicants" collection="applicants"></ApplicantForm>*/}
+          <ApplicantForm databaseType="mysql" database="fwccn_applicants" collection="applicants"></ApplicantForm>
       </div>
     </main>
   )
