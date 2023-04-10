@@ -11,18 +11,22 @@ export default async function handler(req, res) {
         if (dbType === "mysql") {
             const sql =
                 `INSERT INTO applicants (
-                        f_name, l_name,
+                        timestamp,
+                        f_name,
+                        l_name,
                         social_sec_last_four,
                         last_help_date,
                         household_income)
-                VALUES (?, ?, ?, ?, ?)`;
+                VALUES (?, ?, ?, ?, ?, ?)`;
             const params = [
+                new Date().toISOString().slice(0, 19).replace('T', ' '),
                 req.body.data.fName,
                 req.body.data.lName,
                 req.body.data.socialSecLastFour,
                 req.body.data.lastHelpDate,
                 req.body.data.householdIncome,
             ];
+
             await connection.execute(sql, params);
             connection.commit();
             result = "Successfully inserted data into MySQL database";
