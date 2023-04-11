@@ -27,7 +27,6 @@ function ApplicantForm({ databaseType, database, collection }) {
     //  setResult correctly
     function handleInputChange(event) {
         const {name, value} = event.target;
-        console.log("Updating state with value: " + [name] + ": " + value);
         setFormData({...formData, [name]: value});
         setErrors({ ...errors, [name]: null }); // Clear any previous errors for this input
 
@@ -46,7 +45,6 @@ function ApplicantForm({ databaseType, database, collection }) {
         setIsValid(formIsValid);
     }, [errors]);
 
-    console.log("isValid: ", isValid);
 
     async function handleSubmit(event) {
         event.preventDefault();
