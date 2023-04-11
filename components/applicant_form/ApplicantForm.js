@@ -7,7 +7,6 @@ import styles from "./ApplicantForm.module.css"
 // mongodb connection
 // TODO: ensure handleSubmit passes the correct information along and method, headers, and body is correct
 function ApplicantForm({ databaseType, database, collection }) {
-// github changes demo
     const [formData, setFormData]
         = useState({
         // todo: update iteratively as form layout matures
