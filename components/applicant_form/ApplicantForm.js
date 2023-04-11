@@ -7,9 +7,13 @@ import styles from "./ApplicantForm.module.css"
 // mongodb connection
 // TODO: ensure handleSubmit passes the correct information along and method, headers, and body is correct
 function ApplicantForm({ databaseType, database, collection }) {
+    const pacificTimeDiff = 7 * 60 * 60 * 1000;
     const [formData, setFormData]
         = useState({
         // todo: update iteratively as form layout matures
+
+        timeStamp: new Date(Date.now() - pacificTimeDiff).toISOString().slice(0, 19).replace('T', ' '),
+        status: "PENDING",
         fName: "",
         lName: "",
         socialSecLastFour: "",
@@ -142,7 +146,7 @@ function ApplicantForm({ databaseType, database, collection }) {
                     />
                 </div>
                 <div>
-                    <button type="submit">Submit</button>
+                    <button type="submit" disabled={!isValid}>Submit</button>
                 </div>
             </form>
         </div>
