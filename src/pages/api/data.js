@@ -12,14 +12,16 @@ export default async function handler(req, res) {
             const sql =
                 `INSERT INTO applicants (
                         timestamp,
+                        status,
                         f_name,
                         l_name,
                         social_sec_last_four,
                         last_help_date,
                         household_income)
-                VALUES (?, ?, ?, ?, ?, ?)`;
+                VALUES (?, ?, ?, ?, ?, ?, ?)`;
             const params = [
-                new Date().toISOString().slice(0, 19).replace('T', ' '),
+                req.body.timestamp,
+                req.body.status,
                 req.body.data.fName,
                 req.body.data.lName,
                 req.body.data.socialSecLastFour,
