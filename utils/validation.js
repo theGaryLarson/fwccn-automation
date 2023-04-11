@@ -1,7 +1,12 @@
 
 // Some text fields are marked required.
+
+/*
+Ensures the input only contains alpha characters
+ */
 export const validateName = (name) => {
     const regex = /^[A-Za-z]*$/;
+    //this isn't necessary because the input field is marked required
     if (!name.trim()) {
         return "This field is required.";
     }
@@ -11,6 +16,9 @@ export const validateName = (name) => {
     return null;
 };
 
+/*
+    Ensures only four numbers are entered.
+ */
 export const validateSSN = (lastFour) => {
     const regex = /^[0-9]{4}$/;
     if (!lastFour.trim()) {
@@ -22,6 +30,9 @@ export const validateSSN = (lastFour) => {
     return null;
 }
 
+/*
+makes sure only numbers are entered.
+ */
 export function validateHouseHoldIncome(income) {
     const regex = /^\d+$/;
     if (!regex.test(income)) {
