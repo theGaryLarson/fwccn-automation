@@ -11,6 +11,9 @@ function ApplicantForm({ databaseType, database, collection }) {
     const [formData, setFormData]
         = useState({
         // todo: update iteratively as form layout matures
+
+        timeStamp: "",
+        status: "PENDING",
         fName: "",
         lName: "",
         socialSecLastFour: "",
@@ -19,13 +22,14 @@ function ApplicantForm({ databaseType, database, collection }) {
     });
     const [errors, setErrors] = useState({});
     const [isValid, setIsValid] = useState(false);
-
+    const pacificTimeDiff = 7 * 60 * 60 * 1000;
+    let newTimeStamp = "";
     // TODO: find way to test and ensure handleInputChange is working correctly. (i.e. updating json fields and replacing
     //  setResult correctly
     function handleInputChange(event) {
         const {name, value} = event.target;
-        console.log("Updating state with value: " + [name] + ": " + value);
-        setFormData({...formData, [name]: value});
+        newTimeStamp = new Date(Date.now() - pacificTimeDiff).toISOString().slice(0, 19).replace('T', ' ')
+        setFormData({...formData, timeStamp: newTimeStamp, [name]: value});
         setErrors({ ...errors, [name]: null }); // Clear any previous errors for this input
 
     }
@@ -43,7 +47,6 @@ function ApplicantForm({ databaseType, database, collection }) {
         setIsValid(formIsValid);
     }, [errors]);
 
-    console.log("isValid: ", isValid);
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -76,7 +79,8 @@ function ApplicantForm({ databaseType, database, collection }) {
                     data: formData,
                 }),
             });
-            await response.json();
+            console.log(await response.json())
+            // await response.json();
         }
     }
 
@@ -143,7 +147,7 @@ function ApplicantForm({ databaseType, database, collection }) {
                     />
                 </div>
                 <div>
-                    <button type="submit">Submit</button>
+                    <button type="submit" disabled={!isValid}>Submit</button>
                 </div>
             </form>
         </div>

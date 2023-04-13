@@ -18,12 +18,12 @@ DROP TABLE IF EXISTS `applicants` ;
 CREATE TABLE IF NOT EXISTS `applicants` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `timestamp` DATETIME NOT NULL,
-  `status` VARCHAR(10) NOT NULL DEFAULT "PENDING",
+  `status` VARCHAR(10) NOT NULL DEFAULT 'PENDING',
   `f_name` VARCHAR(45) NOT NULL,
   `l_name` VARCHAR(45) NOT NULL,
   `social_sec_last_four` INT(4) NOT NULL,
   `last_help_date` DATE NULL,
-  `household_income` DECIMAL(7,2) NOT NULL,
+  `household_income` DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
