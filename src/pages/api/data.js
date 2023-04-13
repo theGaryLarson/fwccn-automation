@@ -20,8 +20,8 @@ export default async function handler(req, res) {
                         household_income)
                 VALUES (?, ?, ?, ?, ?, ?, ?)`;
             const params = [
-                req.body.timestamp,
-                req.body.status,
+                new Date().toISOString().slice(0, 19).replace('T', ' '),
+                req.body.data.status,
                 req.body.data.fName,
                 req.body.data.lName,
                 req.body.data.socialSecLastFour,
