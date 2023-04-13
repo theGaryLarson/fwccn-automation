@@ -17,7 +17,8 @@ DROP TABLE IF EXISTS `applicants` ;
 
 CREATE TABLE IF NOT EXISTS `applicants` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `timestamp` DATE NOT NULL,
+  `timestamp` DATETIME NOT NULL,
+  `status` VARCHAR(10) NOT NULL DEFAULT "PENDING",
   `f_name` VARCHAR(45) NOT NULL,
   `l_name` VARCHAR(45) NOT NULL,
   `social_sec_last_four` INT(4) NOT NULL,
