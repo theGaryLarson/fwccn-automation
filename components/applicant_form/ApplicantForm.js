@@ -7,12 +7,12 @@ import styles from "./ApplicantForm.module.css"
 // mongodb connection
 // TODO: ensure handleSubmit passes the correct information along and method, headers, and body is correct
 function ApplicantForm({ databaseType, database, collection }) {
-    const pacificTimeDiff = 7 * 60 * 60 * 1000;
+
     const [formData, setFormData]
         = useState({
         // todo: update iteratively as form layout matures
 
-        timeStamp: new Date(Date.now() - pacificTimeDiff).toISOString().slice(0, 19).replace('T', ' '),
+        timeStamp: "",
         status: "PENDING",
         fName: "",
         lName: "",
@@ -22,12 +22,14 @@ function ApplicantForm({ databaseType, database, collection }) {
     });
     const [errors, setErrors] = useState({});
     const [isValid, setIsValid] = useState(false);
-
+    const pacificTimeDiff = 7 * 60 * 60 * 1000;
+    let newTimeStamp = "";
     // TODO: find way to test and ensure handleInputChange is working correctly. (i.e. updating json fields and replacing
     //  setResult correctly
     function handleInputChange(event) {
         const {name, value} = event.target;
-        setFormData({...formData, [name]: value});
+        newTimeStamp = new Date(Date.now() - pacificTimeDiff).toISOString().slice(0, 19).replace('T', ' ')
+        setFormData({...formData, timeStamp: newTimeStamp, [name]: value});
         setErrors({ ...errors, [name]: null }); // Clear any previous errors for this input
 
     }
@@ -77,7 +79,8 @@ function ApplicantForm({ databaseType, database, collection }) {
                     data: formData,
                 }),
             });
-            await response.json();
+            console.log(await response.json())
+            // await response.json();
         }
     }
 
