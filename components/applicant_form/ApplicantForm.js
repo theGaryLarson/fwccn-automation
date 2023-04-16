@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {validateHouseHoldIncome, validateName, validateSSN} from "../../utils/validation";
 import styles from "./ApplicantForm.module.css"
+import formDataObject from "../../utils/form-data-object";
 
 // remember the form checks the database type through the fetch method using the api/data route.
 // where the data.js folder contains two connections. one local mysql connection and another cloud-based
@@ -8,18 +9,7 @@ import styles from "./ApplicantForm.module.css"
 // TODO: ensure handleSubmit passes the correct information along and method, headers, and body is correct
 function ApplicantForm({ databaseType, database, collection }) {
 
-    const [formData, setFormData]
-        = useState({
-        // todo: update iteratively as form layout matures
-
-        timeStamp: "",
-        status: "PENDING",
-        fName: "",
-        lName: "",
-        socialSecLastFour: "",
-        lastHelpDate: "",
-        householdIncome: "",
-    });
+    const [formData, setFormData] = useState(formDataObject);
     const [errors, setErrors] = useState({});
     const [isValid, setIsValid] = useState(false);
     const pacificTimeDiff = 7 * 60 * 60 * 1000;
@@ -28,8 +18,7 @@ function ApplicantForm({ databaseType, database, collection }) {
     //  setResult correctly
     function handleInputChange(event) {
         const {name, value} = event.target;
-        newTimeStamp = new Date(Date.now() - pacificTimeDiff).toISOString().slice(0, 19).replace('T', ' ')
-        setFormData({...formData, timeStamp: newTimeStamp, [name]: value});
+        setFormData({...formData, [name]: value});
         setErrors({ ...errors, [name]: null }); // Clear any previous errors for this input
 
     }
@@ -69,6 +58,8 @@ function ApplicantForm({ databaseType, database, collection }) {
             setErrors(newErrors);
            //todo: need to implement means to display errors to user
         } else {
+            newTimeStamp = new Date(Date.now() - pacificTimeDiff).toISOString().slice(0, 19).replace('T', ' ')
+            setFormData({...formData, timeStamp: newTimeStamp});
             const response = await fetch("/api/data", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
