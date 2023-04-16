@@ -12,7 +12,6 @@ function ApplicantForm({ databaseType, database, collection }) {
     const [formData, setFormData] = useState(formDataObject);
     const [errors, setErrors] = useState({});
     const [isValid, setIsValid] = useState(false);
-    const pacificTimeDiff = 7 * 60 * 60 * 1000;
     let newTimeStamp = "";
     // TODO: find way to test and ensure handleInputChange is working correctly. (i.e. updating json fields and replacing
     //  setResult correctly
@@ -58,7 +57,10 @@ function ApplicantForm({ databaseType, database, collection }) {
             setErrors(newErrors);
            //todo: need to implement means to display errors to user
         } else {
-            newTimeStamp = new Date(Date.now() - pacificTimeDiff).toISOString().slice(0, 19).replace('T', ' ')
+            const pacificTimeDiff = 7 * 60 * 60 * 1000;
+            newTimeStamp = new Date(Date.now() - pacificTimeDiff)
+                .toISOString().slice(0, 19)
+                .replace('T', ' ');
             setFormData({...formData, timeStamp: newTimeStamp});
             const response = await fetch("/api/data", {
                 method: "POST",
