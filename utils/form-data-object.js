@@ -1,8 +1,8 @@
 const formDataObject = {
     timestamp: '',
-    lastName: '',
-    middleInitial: '',
     firstName: '',
+    middleInitial: '',
+    lastName: '',
     gender: '',
     age: '',
     address: {
@@ -56,15 +56,15 @@ const formDataObject = {
     singleMaleHeadOfHousehold: false,
     singleFemaleHeadOfHousehold: false,
     race: {
-        americanIndianOrAlaskaNative: 0,
-        whiteOrCaucasian: 0,
-        asianAsianAmerican: 0,
-        otherRace: 0,
-        blackAfricanAmerican: 0,
-        multiRacial: 0,
-        latinoAmericanHispanic: 0,
-        unknown: 0,
-        nativeAmericanPacificIslander: 0,
+        americanIndianOrAlaskaNative: false,
+        whiteOrCaucasian: false,
+        asianAsianAmerican: false,
+        otherRace: false,
+        blackAfricanAmerican: false,
+        multiRacial: false,
+        latinoAmericanHispanic: false,
+        unknown: false,
+        nativeAmericanPacificIslander: false,
     },
 }
 
