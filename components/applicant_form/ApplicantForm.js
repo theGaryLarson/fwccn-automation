@@ -7,7 +7,7 @@ import formDataObject from "../../utils/form-data-object";
 // where the data.js folder contains two connections. one local mysql connection and another cloud-based
 // mongodb connection
 // TODO: ensure handleSubmit passes the correct information along and method, headers, and body is correct
-function ApplicantForm({ databaseType, database, collection }) {
+function ApplicantForm({ databaseType}) {
 
     const [formData, setFormData] = useState({
         timeStamp: "",
@@ -94,8 +94,6 @@ function ApplicantForm({ databaseType, database, collection }) {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     dbType: databaseType,
-                    database,
-                    collection,
                     data: formData,
                 }),
             });
