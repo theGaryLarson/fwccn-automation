@@ -9,7 +9,34 @@ import formDataObject from "../../utils/form-data-object";
 // TODO: ensure handleSubmit passes the correct information along and method, headers, and body is correct
 function ApplicantForm({ databaseType, database, collection }) {
 
-    const [formData, setFormData] = useState(formDataObject);
+    const [formData, setFormData] = useState({
+        timeStamp: "",
+        status: "PENDING",
+        socialSecLastFour: "",
+        fName: "",
+        MI: "",
+        lName: "",
+        address: {
+            street1: "",
+            street2: "",
+            city: "",
+            state: "",
+            zip: ""
+        },
+        phone: {
+            area_code: "",
+            extension: "",
+            line_number: ""
+        },
+        other_l_names_used: [ "Stevenson", "Rudolph"
+
+        ],
+        homeless: "",
+        disabled: "",
+
+        lastHelpDate: "",
+        householdIncome: "",
+    });
     const [errors, setErrors] = useState({});
     const [isValid, setIsValid] = useState(false);
     let newTimeStamp = "";
