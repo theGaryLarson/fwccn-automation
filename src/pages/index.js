@@ -103,7 +103,7 @@ export default function Home() {
         </a>
       </div>
       <div>
-          <ApplicantForm databaseType="mongodb" database="fwccn_applicants" collection="gary_test"></ApplicantForm>
+          <ApplicantForm databaseType="mongodb"></ApplicantForm>
       </div>
     </main>
   )
