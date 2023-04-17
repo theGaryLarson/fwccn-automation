@@ -37,7 +37,7 @@ export default async function handler(req, res) {
             //  a security concern?
             await client.connect();
             // need to assign collection from req.body collection
-            const col = client.db(req.body.database).collection(req.body.collection)
+            const col = client.db(process.env.MONGO_DB).collection(process.env.MONGO_DB_COL)
             await col.insertOne(req.body.data);
             result = "Successfully inserted applicant info into MongoDB database";
         } else {
