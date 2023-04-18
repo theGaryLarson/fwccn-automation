@@ -1,5 +1,6 @@
 import connection from './../../../database/sql';
 import client from './../../../database/mongodb';
+import clientPromise from "./../../../database/mongodb";
 
 
 export default async function handler(req, res) {
@@ -26,19 +27,28 @@ export default async function handler(req, res) {
                 req.body.data.lName,
                 req.body.data.socialSecLastFour,
                 req.body.data.lastHelpDate,
-                req.body.data.householdIncome,
+                req.body.data.monthlyHouseholdIncome,
             ];
 
             await connection.execute(sql, params);
             connection.commit();
             result = "Successfully inserted data into MySQL database";
         } else if (dbType === "mongodb") {
-            // optimize: discuss whether database/collection should be hardcoded are given as an argument is this
-            //  a security concern?
-            await client.connect();
-            // need to assign collection from req.body collection
-            const col = client.db(process.env.MONGO_DB).collection(process.env.MONGO_DB_COL)
-            await col.insertOne(req.body.data);
+            // todo: get mongo working on deployed server.
+            ///////////////////////////////////////////////////////////////////
+            // original use locally that seems to work fine when deployed does not connect. //
+            ///////////////////////////////////////////////////////////////////
+            //await client.connect();
+            //const col = client.db(process.env.MONGO_DB).collection(process.env.MONGO_DB_COL)
+            //await col.insertOne(req.body.data);
+            ///////////////////////////////////////////////////////////////////
+            try {
+                const client = await clientPromise;
+                const db = client.db(process.env.MONGO_DB);
+                await db.collection(process.env.MONGO_DB_COL).insertOne(req.body.data);
+            } catch (e) {
+                console.error(e);
+            }
             result = "Successfully inserted applicant info into MongoDB database";
         } else {
             return res.status(400).send("Invalid database type");
