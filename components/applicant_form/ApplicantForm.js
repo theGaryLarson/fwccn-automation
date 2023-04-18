@@ -6,42 +6,14 @@ import formDataObject from "../../utils/form-data-object";
 // remember the form checks the database type through the fetch method using the api/data route.
 // where the data.js folder contains two connections. one local mysql connection and another cloud-based
 // mongodb connection
-// TODO: ensure handleSubmit passes the correct information along and method, headers, and body is correct
 function ApplicantForm({ databaseType}) {
 
-    const [formData, setFormData] = useState({
-        timeStamp: "",
-        status: "PENDING",
-        socialSecLastFour: "",
-        fName: "",
-        MI: "",
-        lName: "",
-        address: {
-            street1: "",
-            street2: "",
-            city: "",
-            state: "",
-            zip: ""
-        },
-        phone: {
-            area_code: "",
-            extension: "",
-            line_number: ""
-        },
-        other_l_names_used: [ "Stevenson", "Rudolph"
-
-        ],
-        homeless: "",
-        disabled: "",
-
-        lastHelpDate: "",
-        householdIncome: "",
-    });
+    const [formData, setFormData] = useState(formDataObject);
+    console.log("FORM DATA: ");
+    console.log(formData);
     const [errors, setErrors] = useState({});
     const [isValid, setIsValid] = useState(false);
     let newTimeStamp = "";
-    // TODO: find way to test and ensure handleInputChange is working correctly. (i.e. updating json fields and replacing
-    //  setResult correctly
     function handleInputChange(event) {
         const {name, value} = event.target;
         setFormData({...formData, [name]: value});
@@ -69,7 +41,7 @@ function ApplicantForm({ databaseType}) {
         let fNameError = validateName(formData.fName);
         let lNameError = validateName(formData.lName);
         let socialSecLastFourError = validateSSN(formData.socialSecLastFour);
-        let houseHoldIncomeError = validateHouseHoldIncome(formData.householdIncome);
+        let houseHoldIncomeError = validateHouseHoldIncome(formData.monthlyHouseholdIncome);
 
         const newErrors = {
             fName: fNameError,
@@ -84,6 +56,7 @@ function ApplicantForm({ databaseType}) {
             setErrors(newErrors);
            //todo: need to implement means to display errors to user
         } else {
+            //fixme: timestamp occasionally showing blank in mongo db
             const pacificTimeDiff = 7 * 60 * 60 * 1000;
             newTimeStamp = new Date(Date.now() - pacificTimeDiff)
                 .toISOString().slice(0, 19)
@@ -157,9 +130,9 @@ function ApplicantForm({ databaseType}) {
                     <input
                         type="number"
                         id="household-income-input"
-                        name="householdIncome"
+                        name="monthlyHouseholdIncome"
                         placeholder="100000"
-                        value={formData.householdIncome}
+                        value={formData.monthlyHouseholdIncome}
                         onChange={handleInputChange}
                         required
                     />
