@@ -1,19 +1,28 @@
 const formDataObject = {
     timestamp: '',
-    firstName: '',
+    status: 'PENDING',
+    fName: '',
     middleInitial: '',
-    lastName: '',
+    lName: '',
     gender: '',
     age: '',
     address: {
-        street1: "",
-        street2: "",
-        city: "",
-        state: "",
-        zip: ""
+        street1: '',
+        street2: '',
+        city: '',
+        state: '',
+        zip: ''
     },
     phone: '',
     otherLastNames: [],
+    idSource: {
+        driverLicenseOrId: '',
+        expDate: '',
+        lastFourSSN: '',
+    },
+    socialSecLastFour: '',
+    situationReport: '',
+    futurePlans: '',
     homeless: false,
     disabled: false,
     helpRequested: {
@@ -23,18 +32,14 @@ const formDataObject = {
         busTicket: false,
         food: false,
     },
-    idSource: {
-        driverLicenseOrId: '',
-        expDate: '',
-        lastFourSSN: '',
-    },
+    lastHelpDate: '',
     apartmentLandlord: {
         name: '',
         phone: '',
         landlordCheck: false,
         address: {
-            street1: "",
-            street2: "",
+            street1: '',
+            street2: '',
             city: '',
             zip: ''
         },
@@ -50,7 +55,7 @@ const formDataObject = {
         schools: [],
     },
     otherAdults: [],
-    currentTotalMonthlyIncome: 0,
+    monthlyHouseholdIncome: 0,
     monthlyIncomeLast12Months: 0,
     numberOfHouseholdMembersSupported: 0,
     singleMaleHeadOfHousehold: false,
@@ -66,6 +71,7 @@ const formDataObject = {
         unknown: false,
         nativeAmericanPacificIslander: false,
     },
+    referredBy: ''
 }
 
 export default formDataObject;
