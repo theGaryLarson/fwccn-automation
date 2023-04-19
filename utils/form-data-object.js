@@ -33,11 +33,11 @@ const formDataObject = {
         food: false,
     },
     lastHelpDate: '',
-    apartmentLandlord: {
+    landLord: {
         name: '',
         phone: '',
-        landlordCheck: false,
-        address: {
+        verified: false,
+        landLordAddress: {
             street1: '',
             street2: '',
             city: '',
