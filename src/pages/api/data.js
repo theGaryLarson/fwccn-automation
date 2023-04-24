@@ -1,6 +1,5 @@
-import connection from './../../../database/sql';
-import client from './../../../database/mongodb';
-import clientPromise from "./../../../database/mongodb";
+import connection from '../../../lib/sql';
+import clientPromise from "../../../lib/mongodb";
 
 
 export default async function handler(req, res) {
