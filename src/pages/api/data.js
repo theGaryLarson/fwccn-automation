@@ -43,8 +43,8 @@ export default async function handler(req, res) {
             ///////////////////////////////////////////////////////////////////
             try {
                 const client = await clientPromise;
-                const db = client.db(process.env.MONGO_DB);
-                await db.collection(process.env.MONGO_DB_COL).insertOne(req.body.data);
+                const db = client.db("fwccn_applicants");
+                await db.collection("gary_test").insertOne(req.body.data);
             } catch (e) {
                 console.error(e);
             }
