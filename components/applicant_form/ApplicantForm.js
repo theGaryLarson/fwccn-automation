@@ -54,9 +54,9 @@ function ApplicantForm({ databaseType}) {
         // if there are errors update state and return
         if (Object.values(newErrors).some((error) => error !== null)) {
             setErrors(newErrors);
-           //todo: need to implement means to display errors to user
+           //todo: need to implement means to display errors to user can use built in methods
         } else {
-            //fixme: timestamp occasionally showing blank in mongo db
+            //fixme: timestamp showing blank on first entry in mongo db
             const pacificTimeDiff = 7 * 60 * 60 * 1000;
             newTimeStamp = new Date(Date.now() - pacificTimeDiff)
                 .toISOString().slice(0, 19)
