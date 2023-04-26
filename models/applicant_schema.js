@@ -1,7 +1,6 @@
-const mongoose = require('mongoose');
-const clientPromise = require('../../lib/mongodb').default;
+import {Schema, model, models} from 'mongoose';
 
-const formDataSchema = new mongoose.Schema({
+const applicantSchema = new Schema({
     timestamp: String,
     status: { type: String, default: 'PENDING' },
     fName: String,
@@ -77,23 +76,6 @@ const formDataSchema = new mongoose.Schema({
     referredBy: String
 });
 
-async function main() {
-    try {
-        // Create a new Mongoose instance using your existing clientPromise object
-        const db = await mongoose.connect(await clientPromise, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
-
-        // Use the "fromClient" method to create a Mongoose model for your collection
-        const FormDataModel = db.model('FormData', formDataSchema);
-
-        // Use the Mongoose model to interact with your collection
-        const documents = await FormDataModel.find();
-        console.log(documents);
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-main();
+// this is required with next.js so we don't get an error when next.js tries to create the model again and again
+const Applicant = models.Applicant || model('Applicant', applicantSchema, process.env.MONGO_DB_COL);
+export default Applicant;
