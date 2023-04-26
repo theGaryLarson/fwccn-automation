@@ -70,7 +70,7 @@ function ApplicantForm({ databaseType}) {
                     data: formData,
                 }),
             });
-            console.log(await response.json())
+            await response.json()
             // await response.json();
         }
     }
