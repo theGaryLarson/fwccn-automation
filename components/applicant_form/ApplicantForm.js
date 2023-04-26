@@ -1,8 +1,7 @@
 import {useEffect, useState} from "react";
 import {validateHouseHoldIncome, validateName, validateSSN} from "../../utils/validation";
 import styles from "./ApplicantForm.module.css"
-import formDataObject from "../../utils/form-data-object";
-
+import formDataObject from "../../models/form-data-object";
 // remember the form checks the database type through the fetch method using the api/data route.
 // where the data.js folder contains two connections. one local mysql connection and another cloud-based
 // mongodb connection
