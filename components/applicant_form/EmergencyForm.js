@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import formDataObject from "../../utils/form-data-object";
+import formDataObject from "../../models/form-data-object";
 
 const EmergencyServicesForm = () => {
     const [formData, setFormData] = useState(formDataObject);
