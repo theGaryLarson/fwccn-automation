@@ -1,17 +1,25 @@
 import {useEffect, useState} from "react";
 import styles from "./ApplicantForm.module.css"
-import formDataObject from "../../models/form-data-object";
-// remember the form checks the database type through the fetch method using the api/data route.
+import form_data_defaults from "../../models/form_data_defaults";
+// the form checks the database type through the fetch method using the api/data route.
 // where the data.js folder contains two connections. one local mysql connection and another cloud-based
+function createTimeStamp() {
+    const pacificTimeDiff = 7 * 60 * 60 * 1000;
+   return new Date(Date.now() - pacificTimeDiff)
+       .toISOString().slice(0, 19)
+       .replace('T', ' ');
+}
+
 // mongodb connection
 function ApplicantForm({ databaseType}) {
 
-    const [formData, setFormData] = useState(formDataObject);
+    const [formData, setFormData] = useState(form_data_defaults);
     const [isValid, setIsValid] = useState(false);
-    let newTimeStamp = "";
     function handleInputChange(event) {
         const {name, value} = event.target;
         setFormData({...formData, [name]: value});
+
+        // todo: modify boolean value based on client-input validation
         setIsValid(true);
     }
 
@@ -23,16 +31,9 @@ function ApplicantForm({ databaseType}) {
 
     async function handleSubmit(event) {
         event.preventDefault();
+        formData.timestamp = createTimeStamp();
 
-        // todo: validate each input.
-
-        //fixme: timestamp showing blank on first entry in mongodb
-        const pacificTimeDiff = 7 * 60 * 60 * 1000;
-        newTimeStamp = new Date(Date.now() - pacificTimeDiff)
-            .toISOString().slice(0, 19)
-            .replace('T', ' ');
-        setFormData({...formData, timeStamp: newTimeStamp});
-
+        // todo: validate each input using input attributes
         const response = await fetch("/api/add", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -41,7 +42,6 @@ function ApplicantForm({ databaseType}) {
                 data: formData,
             }),
         });
-        console.log(await response.json())
     }
 
     return (
