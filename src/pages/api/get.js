@@ -1,5 +1,5 @@
-import connectMongo from "../../../../utils/connectMongo";
-import Applicant from "../../../../models/applicant_schema";
+import connectMongo from "../../../utils/connectMongo";
+import Applicant from "../../../models/applicant_schema";
 
 /**
  *

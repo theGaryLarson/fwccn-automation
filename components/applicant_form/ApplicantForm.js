@@ -1,5 +1,4 @@
 import {useEffect, useState} from "react";
-import {validateHouseHoldIncome, validateName, validateSSN} from "../../utils/validation";
 import styles from "./ApplicantForm.module.css"
 import formDataObject from "../../models/form-data-object";
 // remember the form checks the database type through the fetch method using the api/data route.
@@ -8,14 +7,12 @@ import formDataObject from "../../models/form-data-object";
 function ApplicantForm({ databaseType}) {
 
     const [formData, setFormData] = useState(formDataObject);
-    const [errors, setErrors] = useState({});
     const [isValid, setIsValid] = useState(false);
     let newTimeStamp = "";
     function handleInputChange(event) {
         const {name, value} = event.target;
         setFormData({...formData, [name]: value});
-        setErrors({ ...errors, [name]: null }); // Clear any previous errors for this input
-
+        setIsValid(true);
     }
 
     // These methods update changes as soon as they are made rather than on the next render which happens by default
@@ -24,52 +21,29 @@ function ApplicantForm({ databaseType}) {
         console.log('New state is:', formData);
     }, [formData]);
 
-    useEffect(() => {
-        // Check if all input fields are valid
-        const formIsValid = Object.values(errors).every(error => error === null);
-        console.log("Errors:", errors);
-        setIsValid(formIsValid);
-    }, [errors]);
-
-
     async function handleSubmit(event) {
         event.preventDefault();
+
         // todo: validate each input.
-        let fNameError = validateName(formData.fName);
-        let lNameError = validateName(formData.lName);
-        let socialSecLastFourError = validateSSN(formData.socialSecLastFour);
-        let houseHoldIncomeError = validateHouseHoldIncome(formData.monthlyHouseholdIncome);
 
-        const newErrors = {
-            fName: fNameError,
-            lName: lNameError,
-            socialSecLastFour: socialSecLastFourError,
-            houseHoldIncome: houseHoldIncomeError,
-            // todo: add similar error objects for each input
-        }
+        //fixme: timestamp showing blank on first entry in mongodb
+        const pacificTimeDiff = 7 * 60 * 60 * 1000;
+        newTimeStamp = new Date(Date.now() - pacificTimeDiff)
+            .toISOString().slice(0, 19)
+            .replace('T', ' ');
+        setFormData({...formData, timeStamp: newTimeStamp});
 
-        // if there are errors update state and return
-        if (Object.values(newErrors).some((error) => error !== null)) {
-            setErrors(newErrors);
-           //todo: need to implement means to display errors to user can use built in methods
-        } else {
-            //fixme: timestamp showing blank on first entry in mongo db
-            const pacificTimeDiff = 7 * 60 * 60 * 1000;
-            newTimeStamp = new Date(Date.now() - pacificTimeDiff)
-                .toISOString().slice(0, 19)
-                .replace('T', ' ');
-            setFormData({...formData, timeStamp: newTimeStamp});
-            const response = await fetch("/api/data", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    dbType: databaseType,
-                    data: formData,
-                }),
-            });
-            console.log(await response.json())
-            // await response.json();
-        }
+        const response = await fetch("/api/add", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                dbType: databaseType,
+                data: formData,
+            }),
+        });
+        console.log(await response.json())
+        // await response.json();
+
     }
 
     return (
