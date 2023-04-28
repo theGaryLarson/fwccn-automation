@@ -1,4 +1,4 @@
-import connectMongo from "../../../utils/connectMongo";
+import connectMongo from "../../../lib/connectMongo";
 import Applicant from "../../../models/applicant_schema";
 
 /**
