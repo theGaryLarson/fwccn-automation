@@ -34,7 +34,7 @@ function ApplicantForm({ databaseType}) {
         formData.timestamp = createTimeStamp();
 
         // todo: validate each input using input attributes
-        const response = await fetch("/api/add", {
+        await fetch("/api/add", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
