@@ -42,8 +42,6 @@ function ApplicantForm({ databaseType}) {
             }),
         });
         console.log(await response.json())
-        // await response.json();
-
     }
 
     return (
