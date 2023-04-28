@@ -1,4 +1,4 @@
-const formDataObject = {
+const form_data_defaults = {
     timestamp: '',
     status: 'PENDING',
     fName: '',
@@ -74,4 +74,4 @@ const formDataObject = {
     referredBy: ''
 }
 
-export default formDataObject;
+export default form_data_defaults;
