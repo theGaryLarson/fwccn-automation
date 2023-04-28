@@ -8,8 +8,6 @@ import formDataObject from "../../models/form-data-object";
 function ApplicantForm({ databaseType}) {
 
     const [formData, setFormData] = useState(formDataObject);
-    console.log("FORM DATA: ");
-    console.log(formData);
     const [errors, setErrors] = useState({});
     const [isValid, setIsValid] = useState(false);
     let newTimeStamp = "";
