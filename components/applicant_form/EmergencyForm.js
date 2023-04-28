@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import formDataObject from "../../models/form-data-object";
+import form_data_defaults from "../../models/form_data_defaults";
 
 const EmergencyServicesForm = () => {
-    const [formData, setFormData] = useState(formDataObject);
+    const [formData, setFormData] = useState(form_data_defaults);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
