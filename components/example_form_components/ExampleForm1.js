@@ -1,14 +1,14 @@
 import {useEffect, useState} from "react";
-import {validateHouseHoldIncome, validateName, validateSSN} from "../../utils/validation";
+import {validateHouseHoldIncome, validateName, validateSSN} from "../../lib/validation";
 import styles from "./ExampleForm1.module.css"
-import formDataObject from "../../models/form-data-object";
+import form_data_defaults from "../../models/form_data_defaults";
 // remember the form checks the database type through the fetch method using the api/data route.
 // where the data.js folder contains two connections. one local mysql connection and another cloud-based
 // mongodb connection
 function ExampleForm1({ databaseType}) {
 
     // this creates a global variable and a form to set its state. It is initialized with values of formDataObject
-    const [formData, setFormData] = useState(formDataObject);
+    const [formData, setFormData] = useState(form_data_defaults);
     const [errors, setErrors] = useState({});
     const [isValid, setIsValid] = useState(false);
     let newTimeStamp = "";

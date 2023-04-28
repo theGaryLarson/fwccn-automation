@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import ApplicantNeed from "../ApplicantNeed";
-import ResidentCriteria from "../ResidentCriteria";
+import ApplicantNeed from "./ApplicantNeed";
+import ResidentCriteria from "./ResidentCriteria";
 
 function ExampleForm() {
     const [textValue, setTextValue] = useState('');
