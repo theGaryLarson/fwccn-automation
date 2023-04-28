@@ -1,5 +1,4 @@
 import {useEffect, useState} from "react";
-import {validateHouseHoldIncome, validateName, validateSSN} from "../../lib/validation";
 import styles from "./ExampleForm1.module.css"
 import form_data_defaults from "../../models/form_data_defaults";
 // remember the form checks the database type through the fetch method using the api/data route.
