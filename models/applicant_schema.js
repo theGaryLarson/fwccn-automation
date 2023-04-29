@@ -2,6 +2,7 @@ import {Schema, model, models} from 'mongoose';
 
 const applicantSchema = new Schema({
     timestamp: String,
+    // 3 states PENDING, APPROVED, DENIED
     status: { type: String, default: 'PENDING' },
     fName: String,
     middleInitial: String,
@@ -63,19 +64,19 @@ const applicantSchema = new Schema({
     singleMaleHeadOfHousehold: Boolean,
     singleFemaleHeadOfHousehold: Boolean,
     race: {
-        americanIndianOrAlaskaNative: Boolean,
-        whiteOrCaucasian: Boolean,
-        asianAsianAmerican: Boolean,
-        otherRace: Boolean,
-        blackAfricanAmerican: Boolean,
-        multiRacial: Boolean,
-        latinoAmericanHispanic: Boolean,
-        unknown: Boolean,
-        nativeAmericanPacificIslander: Boolean
+        americanIndianOrAlaskaNative: Number,
+        whiteOrCaucasian: Number,
+        asianAsianAmerican: Number,
+        otherRace: Number,
+        blackAfricanAmerican: Number,
+        multiRacial: Number,
+        latinoAmericanHispanic: Number,
+        unknown: Number,
+        nativeAmericanPacificIslander: Number
     },
     referredBy: String
 });
 
-// this is required with next.js so we don't get an error when next.js tries to create the model again and again
+// this is required with next.js so, we don't get an error when next.js tries to create the model again and again
 const Applicant = models.Applicant || model('Applicant', applicantSchema, process.env.MONGO_DB_COL);
 export default Applicant;
