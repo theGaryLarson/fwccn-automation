@@ -13,10 +13,11 @@ function createTimeStamp() {
 
 // mongodb connection
 function ApplicantForm({ databaseType}) {
-
+    // todo: import Applicant model and modify with useState [applicant, setApplicant]
     const [formData, setFormData] = useState(form_data_defaults);
     const [isValid, setIsValid] = useState(false);
     function handleInputChange(event) {
+        //todo: modify Applicant model here
         const {name, value} = event.target;
         setFormData({...formData, [name]: value});
 
