@@ -19,10 +19,33 @@ function ApplicantForm({ databaseType}) {
     function handleInputChange(event) {
         //todo: modify Applicant model here
         const {name, value} = event.target;
-        setFormData({...formData, [name]: value});
+        const newData = updateFormData(formData, name, value);
+        setFormData(newData);
 
         // todo: modify boolean value based on client-input validation
         setIsValid(true);
+    }
+
+    function updateFormData(formData, name, value) {
+        const keys = Object.keys(formData);
+
+        for (let i = 0; i < keys.length; i++) {
+            const key = keys[i];
+            const currentValue = formData[key];
+
+            if (key === name) {
+                return {...formData, [key]: value};
+            }
+
+            if (typeof currentValue === 'object') {
+                const updatedValue = updateFormData(currentValue, name, value);
+                if (updatedValue !== currentValue) {
+                    return {...formData, [key]: updatedValue};
+                }
+            }
+        }
+
+        return formData;
     }
 
     // These methods update changes as soon as they are made rather than on the next render which happens by default
