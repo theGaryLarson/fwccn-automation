@@ -1,65 +1,64 @@
 const form_data_defaults = {
-    timestamp: '',
+    timestamp: String,
+    // 3 states PENDING, APPROVED, DENIED
     status: 'PENDING',
-    fName: '',
-    middleInitial: '',
-    lName: '',
-    gender: '',
-    age: '',
-    address: {
-        street1: '',
-        street2: '',
-        city: '',
-        state: '',
-        zip: ''
-    },
-    phone: '',
-    otherLastNames: [],
-    idSource: {
-        driverLicenseOrId: '',
-        expDate: '',
-        lastFourSSN: '',
-    },
-    socialSecLastFour: '',
-    situationReport: '',
-    futurePlans: '',
-    homeless: false,
-    disabled: false,
+    referredBy: '',
+    lastHelpDate: null,
     helpRequested: {
         rent: false,
         gasoline: false,
-        licensePlate: '',
+        licensePlate: null,
         busTicket: false,
-        food: false,
+        food: false
     },
-    lastHelpDate: '',
-    landLord: {
-        name: '',
-        phone: '',
-        verified: false,
-        landLordAddress: {
+    reasonForNeed: '',
+    futurePlans: '',
+    fName: '',
+    middleInitial: '',
+    lName: '',
+    otherLastNames: [''],
+    gender: '',
+    age: 0,
+    phone: 0,
+    income: {
+        currentMonthlyIncome: null,
+        monthlyIncomeLast12Months: null,
+        totalHouseholdMembersIncomeSupports: null,
+    },
+    disabled: false,
+    idSource: {
+        driverLicenseOrId: '',
+        expDate: null,
+        socialSecLastFour: 0
+    },
+    homelessness: {
+        homeless: false,
+        durationXpHomelessness: 0,
+        whyHomeless: '',
+        tempAddress: {
             street1: '',
             street2: '',
             city: '',
+            state: '',
             zip: ''
-        },
+        }
     },
-    childrenUnder18:  {
+    children: {
         hasChildrenUnder18: false,
         boysCount: 0,
-        boysAges: [],
+        boysAges: [0],
         girlsCount: 0,
-        girlsAges: [],
+        girlsAges: [0],
+        nonBinaryCount: 0,
+        nonBinaryAges: [0],
         relationshipToChildren: '',
         schoolDistrict: '',
-        schools: [],
+        schools: ['']
     },
     otherAdults: [],
-    monthlyHouseholdIncome: 0,
-    monthlyIncomeLast12Months: 0,
-    numberOfHouseholdMembersSupported: 0,
-    singleMaleHeadOfHousehold: false,
-    singleFemaleHeadOfHousehold: false,
+    address: {},
+    landLord: {},
+    HouseHoldIncome: {},
     race: {
         americanIndianOrAlaskaNative: 0,
         whiteOrCaucasian: 0,
@@ -69,9 +68,8 @@ const form_data_defaults = {
         multiRacial: 0,
         latinoAmericanHispanic: 0,
         unknown: 0,
-        nativeAmericanPacificIslander: 0,
+        nativeAmericanPacificIslander: 0
     },
-    referredBy: ''
 }
 
 export default form_data_defaults;
