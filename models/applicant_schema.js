@@ -1,5 +1,8 @@
 import {Schema, model, models} from 'mongoose';
-
+// const mongoose = require('mongoose');
+// const Schema = mongoose.Schema;
+// const model = mongoose.model;
+// const models = mongoose.models;
 const applicantSchema = new Schema({
     timestamp: String,
     // 3 states PENDING, APPROVED, DENIED
@@ -107,3 +110,4 @@ const applicantSchema = new Schema({
 // this is required with next.js so, we don't get an error when next.js tries to create the model again and again
 const Applicant = models.Applicant || model('Applicant', applicantSchema, process.env.MONGO_DB_COL);
 export default Applicant;
+// module.exports = { Applicant };
