@@ -1,0 +1,116 @@
+[
+  {
+    "timestamp": "2023-05-01 01:21:12",
+    "status": "PENDING",
+    "referredBy": "",
+    "lastHelpDate": "2023-03-02 00:00:00",
+    "helpRequested": {
+      "rent": true,
+      "gasoline": false,
+      "busTicket": false
+    },
+    "reasonForNeed": "Ex incidunt delectus nulla. In animi ab. Dolores porro aut nihil.",
+    "futurePlans": "Illum perferendis veritatis praesentium accusantium in eius laudantium consectetur. Quae facere amet occaecati animi aliquid. Corrupti fuga aperiam soluta cumque.",
+    "fName": "Darrick",
+    "middleInitial": "B",
+    "lName": "Kuphal",
+    "otherLastNames": [
+      "Spinka"
+    ],
+    "gender": "female",
+    "age": 40,
+    "phone": "253-145-4207",
+    "income": {
+      "currentMonthlyIncome": 4651,
+      "monthlyIncomeLast12Months": 38113,
+      "totalHouseholdMembersIncomeSupports": 7
+    },
+    "disabled": false,
+    "idSource": {
+      "driverLicenseOrId": "fdef7273d3",
+      "expDate": "2025-08-14 00:00:00",
+      "socialSecLastFour": 7208
+    },
+    "homelessness": {
+      "homeless": false,
+      "durationXpHomelessness": 0,
+      "whyHomeless": "",
+      "tempAddress": {
+
+      }
+    },
+    "children": {
+      "hasChildrenUnder18": true,
+      "boysCount": 2,
+      "boysAges": [
+        17, 14
+      ],
+      "girlsCount": 3,
+      "girlsAges": [
+        1, 4, 7
+      ],
+      "nonBinaryCount": 0,
+      "nonBinaryAges": [
+
+      ],
+      "relationshipToChildren": [
+        "roommate's child",
+        "roommate's child",
+        "roommate's child",
+        "roommate's child",
+        "roommate's child"
+      ],
+      "schoolDistrict": "Tacoma Public Schools",
+      "schools": [
+        "Blix", "Baker", "Foss"
+      ]
+    },
+    "otherAdults": [
+      {
+        "adultFName": "Rocky",
+        "adultMiddleInitial": "Z",
+        "adultLName": "Kassulke",
+        "adultGender": "male",
+        "adultAge": 37,
+        "relationshipToAdult": "spouse",
+        "_id": "64501ea2789a6d23e41ae0e8"
+      }
+    ],
+    "address": {
+      "street1": "Blanda Crossroad",
+      "street2": "Apt. 617",
+      "city": "Federal Way",
+      "state": "WA",
+      "zip": "98422"
+    },
+    "landLord": {
+      "name": "Camryn West",
+      "landLordPhone": "945-846-0502",
+      "verified": true,
+      "landLordAddress": {
+        "street1": "Friesen Stream",
+        "street2": "Apt. 169",
+        "city": "Dinobury",
+        "zip": "91005"
+      }
+    },
+    "HouseHoldIncome": {
+      "totalHouseholdIncome": 61837,
+      "totalSupportMembers": 2,
+      "singleMaleHeadOfHousehold": false,
+      "singleFemaleHeadOfHousehold": false
+    },
+    "race": {
+      "americanIndianOrAlaskaNative": 0,
+      "whiteOrCaucasian": 5,
+      "asianAsianAmerican": 0,
+      "otherRace": 0,
+      "blackAfricanAmerican": 1,
+      "multiRacial": 1,
+      "latinoAmericanHispanic": 0,
+      "unknown": 0,
+      "nativeAmericanPacificIslander": 0
+    },
+    "_id": "64501ea2789a6d23e41ae0e7"
+  }
+]
