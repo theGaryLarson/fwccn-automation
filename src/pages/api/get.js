@@ -1,4 +1,3 @@
-import connectMongo from "../../../lib/connectMongo";
 import Applicant from "../../../models/applicant_schema";
 
 /**
@@ -8,10 +7,15 @@ import Applicant from "../../../models/applicant_schema";
  */
 export default async function getApplicant(req, res) {
     const { id } = req.query;
-    await connectMongo();
-    console.log('CONNECTED TO MONGO');
-    console.log(`RETRIEVING APPLICANT WITH ID: ${id}`);
-    const applicant = await Applicant.findById(id);
-    console.log(`RETRIEVED APPLICANT WITH ID: ${id}`);
-    res.json(applicant);
+    try {
+        const applicant = await Applicant.findById(id).exec();
+        if (applicant) {
+            console.log(`RETRIEVED APPLICANT WITH ID: ${id}`);
+        }
+        console.log(applicant)
+        res.json(applicant);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
 }
