@@ -3,14 +3,13 @@ const form_data_defaults = {
     // 3 states PENDING, APPROVED, DENIED
     status: 'PENDING',
     referredBy: '',
-    lastHelpDate: null,
+    lastHelpDate: '',
     helpRequested: {
         rent: false,
         gasoline: false,
-        licensePlate: null,
         busTicket: false,
-        food: false
     },
+    licensePlate: '---',
     reasonForNeed: '',
     futurePlans: '',
     fName: '',
@@ -21,14 +20,14 @@ const form_data_defaults = {
     age: 0,
     phone: 0,
     income: {
-        currentMonthlyIncome: null,
-        monthlyIncomeLast12Months: null,
-        totalHouseholdMembersIncomeSupports: null,
+        currentMonthlyIncome: 0,
+        monthlyIncomeLast12Months: 0,
+        totalHouseholdMembersIncomeSupports: 0,
     },
     disabled: false,
     idSource: {
         driverLicenseOrId: '',
-        expDate: null,
+        expDate: 0,
         socialSecLastFour: 0
     },
     homelessness: {
