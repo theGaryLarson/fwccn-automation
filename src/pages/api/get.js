@@ -10,7 +10,7 @@ export default async function getApplicant(req, res) {
     try {
         const applicant = await Applicant.findById(id).exec();
         if (applicant) {
-            console.log(`RETRIEVED APPLICANT WITH ID: ${id}`);
+            console.log(`RETRIEVED APPLICANT ${applicant.fName} WITH ID: ${id}`);
         }
         console.log(applicant)
         res.json(applicant);
