@@ -70,25 +70,25 @@ const applicantSchema = new Schema({
             relationshipToAdult: String,
         },
     ],
-    address: {
-        street1: String,
-        street2: String,
-        city: String,
-        state: String,
-        zip: String
+    homeAddress: {
+        homeStreet1: String,
+        homeStreet2: String,
+        homeCity: String,
+        homeState: String,
+        homeZip: Number
     },
     landLord: {
-        name: String,
+        fullName: String,
         landLordPhone: String,
         verified: Boolean,
         landLordAddress: {
-            street1: String,
-            street2: String,
-            city: String,
-            zip: String
+            landLordStreet1: String,
+            landLordStreet2: String,
+            landLordCity: String,
+            landLordZip: Number
         }
     },
-    HouseHoldIncome: {
+    houseHoldIncome: {
         totalHouseholdIncome: Number,
         totalSupportMembers: Number,
         singleMaleHeadOfHousehold: Boolean,
