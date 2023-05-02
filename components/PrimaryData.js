@@ -52,9 +52,9 @@ export default function PrimaryData( { formData, onComponentInputChange }) {
                 <input
                     type="number"
                     id="social-sec-input"
-                    name="socialSecLastFour"
+                    name="socialSecLastFour" // same name as json object
                     placeholder="1234"
-                    value={formData.socialSecLastFour}
+                    value={formData.idSource.socialSecLastFour} // must drill down to nested object
                     onChange={handleInputChange}
                     required
                 />
@@ -64,8 +64,8 @@ export default function PrimaryData( { formData, onComponentInputChange }) {
                 <input
                     type="date"
                     id="last-help-date-input"
-                    name="lastHelpDate"
-                    value={formData.lastHelpDate}
+                    name="lastHelpDate" // same name as json object
+                    value={formData.lastHelpDate} // must drill down to nested object
                     onChange={handleInputChange}
                     required
                 />
@@ -75,9 +75,9 @@ export default function PrimaryData( { formData, onComponentInputChange }) {
                 <input
                     type="number"
                     id="household-income-input"
-                    name="monthlyHouseholdIncome"
+                    name="currentMonthlyIncome" // same name as json object
                     placeholder="100000"
-                    value={formData.monthlyHouseholdIncome}
+                    value={formData.income.currentMonthlyIncome} // must drill down to nested object
                     onChange={handleInputChange}
                     required
                 />
