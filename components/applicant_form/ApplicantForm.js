@@ -1,7 +1,8 @@
 import {useEffect, useState} from "react";
 import styles from "./ApplicantForm.module.css"
 import form_data_defaults from "../../models/form_data_defaults";
-import PrimaryData from "../../components/PrimaryData";
+import PrimaryComponent from "../PrimaryComponent";
+import AddressComponent from "../AddressComponent";
 // the form checks the database type through the fetch method using the api/data route.
 // where the data.js folder contains two connections. one local mysql connection and another cloud-based
 function createTimeStamp() {
@@ -74,7 +75,8 @@ function ApplicantForm({ databaseType}) {
         <div>
             <form onSubmit={handleSubmit}>
                 <div className={styles.inputWrapper}>
-                    <PrimaryData onComponentInputChange={handleInputChange} formData={formData}/>
+                    <PrimaryComponent formData={formData} onComponentInputChange={handleInputChange}/>
+                    <AddressComponent title="Home" formData={formData} onComponentInputChange={handleInputChange}/>
 
 
                     <div>
