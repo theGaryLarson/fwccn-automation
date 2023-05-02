@@ -3,7 +3,7 @@
     "timestamp": "2023-05-01 01:21:12",
     "status": "PENDING",
     "referredBy": "",
-    "lastHelpDate": "2023-03-02 00:00:00",
+    "lastHelpDate": "2022-03-02 00:00:00",
     "helpRequested": {
       "rent": true,
       "gasoline": false,
@@ -72,8 +72,7 @@
         "adultLName": "Kassulke",
         "adultGender": "male",
         "adultAge": 37,
-        "relationshipToAdult": "spouse",
-        "_id": "64501ea2789a6d23e41ae0e8"
+        "relationshipToAdult": "spouse"
       }
     ],
     "address": {
@@ -110,7 +109,6 @@
       "latinoAmericanHispanic": 0,
       "unknown": 0,
       "nativeAmericanPacificIslander": 0
-    },
-    "_id": "64501ea2789a6d23e41ae0e7"
+    }
   }
 ]
