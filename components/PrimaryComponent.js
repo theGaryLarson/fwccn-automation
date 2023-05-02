@@ -3,7 +3,7 @@ import styles from "./applicant_form/ApplicantForm.module.css";
 
 
 
-export default function PrimaryData( { formData, onComponentInputChange }) {
+export default function PrimaryComponent({ formData, onComponentInputChange }) {
 
     const handleInputChange = (event) => {
         onComponentInputChange(event)
