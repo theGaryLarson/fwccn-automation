@@ -54,10 +54,39 @@ const form_data_defaults = {
         schoolDistrict: '',
         schools: ['']
     },
-    otherAdults: [],
-    address: {},
-    landLord: {},
-    HouseHoldIncome: {},
+    otherAdults: [
+        {
+            adultFName: '',
+            adultMiddleInitial: '',
+            adultLName: '',
+            adultGender: '',
+            adultAge: 0,
+            relationshipToAdult: '',
+        },
+    ],
+    homeAddress: {
+        homeStreet1: '',
+        homeStreet2: '',
+        homeCity: '',
+        homeZip: 0
+    },
+    landLord: {
+        fullName: '',
+        landLordPhone: '',
+        verified: false,
+        address: {
+            landLordStreet1: '',
+            landLordStreet2: '',
+            landLordCity: '',
+            landLordZip: 0
+        }
+    },
+    houseHoldIncome: {
+        totalHouseholdIncome: 0,
+        totalSupportMembers: 0,
+        singleMaleHeadOfHousehold: false,
+        singleFemaleHeadOfHousehold: false,
+    },
     race: {
         americanIndianOrAlaskaNative: 0,
         whiteOrCaucasian: 0,
