@@ -5,17 +5,17 @@ import {Schema, model, models} from 'mongoose';
 // const models = mongoose.models;
 const applicantSchema = new Schema({
     timestamp: String,
-    // 3 states PENDING, APPROVED, DENIED
+    // 4 states PENDING, APPROVED, DENIED, OVERRIDE-APPROVAL
     status: { type: String, default: 'PENDING' },
     referredBy: { type: String, default: '' },
     lastHelpDate: Date,
     helpRequested: {
         rent: Boolean,
         gasoline: Boolean,
-        licensePlate: String,
         busTicket: Boolean,
         food: Boolean
     },
+    licensePlate: String,
     reasonForNeed: String,
     futurePlans: String,
     fName: String,
@@ -33,7 +33,7 @@ const applicantSchema = new Schema({
     disabled: Boolean,
     idSource: {
         driverLicenseOrId: String,
-        expDate: String,
+        expDate: Date,
         socialSecLastFour: Number
     },
     homelessness: {
