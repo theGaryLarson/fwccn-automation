@@ -28,9 +28,10 @@ function ApplicantForm({ databaseType}) {
 
     function updateFormData(formData, name, value) {
         const keys = Object.keys(formData);
-
+        console.log(keys);
         for (let i = 0; i < keys.length; i++) {
             const key = keys[i];
+
             const currentValue = formData[key];
 
             if (key === name) {
