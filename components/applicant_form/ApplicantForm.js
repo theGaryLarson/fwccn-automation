@@ -75,7 +75,10 @@ function ApplicantForm({ databaseType}) {
         <div>
             <form onSubmit={handleSubmit}>
                 <div className={styles.inputWrapper}>
+                    {/*all subcomponents should have the Component suffix <function>Component
+                       All subcomponents will be placed here in the ApplicantForm*/}
                     <PrimaryComponent formData={formData} onComponentInputChange={handleInputChange}/>
+                    <hr/>
                     <AddressComponent title="Home" formData={formData} onComponentInputChange={handleInputChange}/>
 
 
