@@ -3,7 +3,7 @@ import styles from "./applicant_form/ApplicantForm.module.css";
 
 
 
-export default function AddressComponent({ formData, onComponentInputChange, title }) {
+export default function AddressComponent({ title, formData, onComponentInputChange }) {
 
     const handleInputChange = (event) => {
         onComponentInputChange(event)
