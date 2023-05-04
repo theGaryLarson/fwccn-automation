@@ -1,9 +1,9 @@
 [
   {
     "timestamp": "2023-05-01 01:21:12",
-    "status": "PENDING",
+    "status": "APPROVED",
     "referredBy": "",
-    "lastHelpDate": "2022-03-02 00:00:00",
+    "lastHelpDate": "2021-03-02 00:00:00",
     "helpRequested": {
       "rent": true,
       "gasoline": false,
@@ -94,7 +94,7 @@
       }
     },
     "HouseHoldIncome": {
-      "totalHouseholdIncome": 61837,
+      "totalHouseholdIncome": 4651,
       "totalSupportMembers": 2,
       "singleMaleHeadOfHousehold": false,
       "singleFemaleHeadOfHousehold": false
@@ -107,6 +107,109 @@
       "blackAfricanAmerican": 1,
       "multiRacial": 1,
       "latinoAmericanHispanic": 0,
+      "unknown": 0,
+      "nativeAmericanPacificIslander": 0
+    }
+  },
+  {
+    "timestamp": "2023-05-02 01:21:12",
+    "status": "PENDING",
+    "referredBy": "",
+    "lastHelpDate": "2022-03-02 00:00:00",
+    "helpRequested": {
+      "rent": true,
+      "gasoline": false,
+      "busTicket": false
+    },
+    "reasonForNeed": "Ex incidunt delectus nulla. In animi ab. Dolores porro aut nihil.",
+    "futurePlans": "Illum perferendis veritatis praesentium accusantium in eius laudantium consectetur. Quae facere amet occaecati animi aliquid. Corrupti fuga aperiam soluta cumque.",
+    "fName": "Kendall",
+    "middleInitial": "B",
+    "lName": "Kanali",
+    "otherLastNames": [
+      "Rissa"
+    ],
+    "gender": "female",
+    "age": 32,
+    "phone": "253-145-4207",
+    "income": {
+      "currentMonthlyIncome": 4651,
+      "monthlyIncomeLast12Months": 38113,
+      "totalHouseholdMembersIncomeSupports": 7
+    },
+    "disabled": false,
+    "idSource": {
+      "driverLicenseOrId": "wdlf7273d3",
+      "expDate": "2027-02-14 00:00:00",
+      "socialSecLastFour": 7208
+    },
+    "homelessness": {
+      "homeless": false,
+      "durationXpHomelessness": 0,
+      "whyHomeless": "",
+      "tempAddress": {
+
+      }
+    },
+    "children": {
+      "hasChildrenUnder18": true,
+      "boysCount": 1,
+      "boysAges": [
+        8
+      ],
+      "girlsCount": 1,
+      "girlsAges": [
+        4
+      ],
+      "nonBinaryCount": 0,
+      "nonBinaryAges": [
+
+      ],
+      "relationshipToChildren": [
+        "parent",
+        "parent"
+
+      ],
+      "schoolDistrict": "Federal Way Public Schools District",
+      "schools": [
+        "Baker"
+      ]
+    },
+    "otherAdults": [
+      "none"
+    ],
+    "address": {
+      "street1": "1234 Oak St",
+      "street2": "",
+      "city": "Federal Way",
+      "state": "WA",
+      "zip": "98422"
+    },
+    "landLord": {
+      "name": "Camryn West",
+      "landLordPhone": "945-846-0502",
+      "verified": true,
+      "landLordAddress": {
+        "street1": "Friesen Stream",
+        "street2": "",
+        "city": "Dinobury",
+        "zip": "91005"
+      }
+    },
+    "HouseHoldIncome": {
+      "totalHouseholdIncome": 4651,
+      "totalSupportMembers": 3,
+      "singleMaleHeadOfHousehold": false,
+      "singleFemaleHeadOfHousehold": true
+    },
+    "race": {
+      "americanIndianOrAlaskaNative": 0,
+      "whiteOrCaucasian": 0,
+      "asianAsianAmerican": 0,
+      "otherRace": 0,
+      "blackAfricanAmerican": 0,
+      "multiRacial": 2,
+      "latinoAmericanHispanic": 1,
       "unknown": 0,
       "nativeAmericanPacificIslander": 0
     }
