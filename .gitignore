@@ -34,3 +34,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 /.idea/vcs.xml
+/.idea/dictionaries/garyl.xml
+/.idea/jsLibraryMappings.xml
+/.idea/sqldialects.xml

@@ -1,0 +1,33 @@
+.inputWrapper {
+    text-align: left;
+
+    margin-bottom: 10px;
+    min-width: 50%;
+}
+
+.inputWrapper input {
+    color: black;
+    min-width: 50%;
+    width: 100%;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.inputWrapper button {
+    width: 100%;
+    text-align:center;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.formResult {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px; /* adjust the value as needed */
+}
+
+
+
