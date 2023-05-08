@@ -3,6 +3,7 @@ import styles from "./ApplicantForm.module.css"
 import form_data_defaults from "../../models/form_data_defaults";
 import PrimaryComponent from "../PrimaryComponent";
 import AddressComponent from "../AddressComponent";
+import IncomeComponent from "../IncomeComponent";
 // the form checks the database type through the fetch method using the api/data route.
 // where the data.js folder contains two connections. one local mysql connection and another cloud-based
 function createTimeStamp() {
@@ -79,7 +80,8 @@ function ApplicantForm({ databaseType}) {
                        All subcomponents will be placed here in the ApplicantForm*/}
                     <PrimaryComponent formData={formData} onComponentInputChange={handleInputChange}/>
                     <hr/>
-                    <AddressComponent title="Home" formData={formData} onComponentInputChange={handleInputChange}/>
+                    <IncomeComponent formData={formData} onComponentInputChange={handleInputChange}/>
+
 
 
                     <div>
