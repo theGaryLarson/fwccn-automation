@@ -2,10 +2,7 @@ import {useEffect, useState} from "react";
 import styles from "./ApplicantForm.module.css"
 import form_data_defaults from "../../models/form_data_defaults";
 import PrimaryComponent from "../PrimaryComponent";
-import AddressComponent from "../AddressComponent";
-import IncomeComponent from "../IncomeComponent";
-// the form checks the database type through the fetch method using the api/data route.
-// where the data.js folder contains two connections. one local mysql connection and another cloud-based
+
 function createTimeStamp() {
     const pacificTimeDiff = 7 * 60 * 60 * 1000;
    return new Date(Date.now() - pacificTimeDiff)
@@ -79,8 +76,7 @@ function ApplicantForm({ databaseType}) {
                     {/*all subcomponents should have the Component suffix <function>Component
                        All subcomponents will be placed here in the ApplicantForm*/}
                     <PrimaryComponent formData={formData} onComponentInputChange={handleInputChange}/>
-                    <hr/>
-                    <IncomeComponent formData={formData} onComponentInputChange={handleInputChange}/>
+
 
 
 
