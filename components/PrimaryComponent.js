@@ -1,5 +1,6 @@
 import styles from "./applicant_form/ApplicantForm.module.css";
 import AddressComponent from "./AddressComponent";
+import IncomeComponent from "./IncomeComponent";
 
 
 
@@ -26,7 +27,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
 
             </div>
             <div className={styles.inputWrapper}>
-                <label htmlFor="mi-input">Middle Initial:</label>
+                <label htmlFor="middle-initial-input">Middle Initial:</label>
                 <input
                     type="text"
                     id="middle-initial-input"
@@ -49,6 +50,32 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                 />
             </div>
             <div className={styles.inputWrapper}>
+                <label htmlFor="phone-input">Phone Number:</label>
+                <input
+                    type="text"
+                    id="phone-input"
+                    name="phone"
+                    placeholder="###-###-####"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    pattern="^[0-9]{3}-[0-9]{3}-[0-9]{4}$"
+                    title={"Please enter phone number in ###-###-#### format."}
+                />
+            </div>
+            <IncomeComponent formData={formData} onComponentInputChange={onComponentInputChange}/>
+            {/*todo: figure out how you are going to implememnt the different form functions disability radio button here*/}
+            <div className={styles.inputWrapper}>
+                <label htmlFor="picture-id">License/ID:</label>
+                <input
+                    type="text"
+                    id="picture-id"
+                    name="driverLicenseOrId"
+                    placeholder=""
+                    value={formData.idSource.driverLicenseOrId}
+                    onChange={handleInputChange}
+                />
+            </div>
+            <div className={styles.inputWrapper}>
                 <label htmlFor="social-sec-input">Social Security Last Four:</label>
                 <input
                     type="number"
@@ -60,30 +87,13 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                     required
                 />
             </div>
+            {/*todo: figure out how you are going to implememnt the different form functions experiencing homelessness radio button here*/}
             <AddressComponent title="Home" formData={formData} onComponentInputChange={handleInputChange}/>
-            {/*<div className={styles.inputWrapper}>*/}
-            {/*    <label htmlFor="last-help-date-input">Last Help Date:</label>*/}
-            {/*    <input*/}
-            {/*        type="date"*/}
-            {/*        id="last-help-date-input"*/}
-            {/*        name="lastHelpDate" // same name as json object*/}
-            {/*        value={formData.lastHelpDate} // must drill down to nested object*/}
-            {/*        onChange={handleInputChange}*/}
-            {/*        required*/}
-            {/*    />*/}
-            {/*</div>*/}
-            {/*<div className={styles.inputWrapper}>*/}
-            {/*    <label htmlFor="household-income-input">Monthly Household Income:</label>*/}
-            {/*    <input*/}
-            {/*        type="number"*/}
-            {/*        id="household-income-input"*/}
-            {/*        name="currentMonthlyIncome" // same name as json object*/}
-            {/*        placeholder="100000"*/}
-            {/*        value={formData.income.currentMonthlyIncome} // must drill down to nested object*/}
-            {/*        onChange={handleInputChange}*/}
-            {/*        required*/}
-            {/*    />*/}
-            {/*</div>*/}
+            {/*<RentAssistanceComponent></RentAssistanceComponent>*/}
+            {/*<ChildComponent></ChildComponent>*/}
+            {/*<AdultComponent></AdultComponent>*/}
+            {/*<TotalIncomeSupportComponent></TotalIncomeSupportComponent>*/}
+            {/*<RaceComponent></RaceComponent>*/}
         </div>
     );
 }
