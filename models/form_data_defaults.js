@@ -1,6 +1,6 @@
 const form_data_defaults = {
     timestamp: String,
-    // 3 states PENDING, APPROVED, DENIED, OVERRIDE-APPROVAL
+    // 3 states PENDING, APPROVED, DENIED, APPROVED-OVERRIDE
     status: 'PENDING',
     referredBy: '',
     lastHelpDate: '',
