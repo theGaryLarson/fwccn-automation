@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import styles from "./ExampleForm1.module.css"
+import styles from "../applicant_form/ApplicantForm.module.css"
 import form_data_defaults from "../../models/form_data_defaults";
 // remember the form checks the database type through the fetch method using the api/data route.
 // where the data.js folder contains two connections. one local mysql connection and another cloud-based
