@@ -62,7 +62,9 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                     title={"Please enter phone number in ###-###-#### format."}
                 />
             </div>
+            <hr/>
             <IncomeComponent formData={formData} onComponentInputChange={onComponentInputChange}/>
+            <hr/>
             {/*todo: figure out how you are going to implememnt the different form functions disability radio button here*/}
             <div className={styles.inputWrapper}>
                 <label htmlFor="picture-id">License/ID:</label>
