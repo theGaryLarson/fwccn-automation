@@ -1,8 +1,9 @@
 .inputWrapper {
     text-align: left;
-
     margin-bottom: 10px;
     min-width: 50%;
+    justify-content: center;
+    align-items: center;
 }
 
 .inputWrapper input {
@@ -16,6 +17,7 @@
 .inputWrapper button {
     width: 100%;
     text-align:center;
+    background: green;
 }
 .container {
     display: flex;
