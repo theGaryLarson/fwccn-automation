@@ -4,6 +4,20 @@ import form_data_defaults from "../../models/form_data_defaults";
 import PrimaryComponent from "../PrimaryComponent";
 import AddressComponent from "../AddressComponent";
 import IncomeComponent from "../IncomeComponent";
+import LandlordComponent from "../LandlordComponent";
+import RaceComponent from "../RaceComponent";
+import HomelessnessComponent from "../HomelessComponent";
+import ChildrenComponent from "../ChildComponent";
+import OtherAdultsComponent from "../AdultComponent";
+import HelpRequestedComponent from "../AssistanceNeedComponent";
+import HouseholdIncomeComponent from "../TotalIncomeSupportComponent";
+
+
+
+
+
+
+
 // the form checks the database type through the fetch method using the api/data route.
 // where the data.js folder contains two connections. one local mysql connection and another cloud-based
 function createTimeStamp() {
@@ -81,7 +95,20 @@ function ApplicantForm({ databaseType}) {
                     <PrimaryComponent formData={formData} onComponentInputChange={handleInputChange}/>
                     <hr/>
                     <IncomeComponent formData={formData} onComponentInputChange={handleInputChange}/>
-
+                    <hr/>
+                    <LandlordComponent formData={formData} onComponentInputChange={handleInputChange}/>
+                    <hr/>
+                    <RaceComponent formData={formData} onComponentInputChange={handleInputChange}/>
+                    <hr/>
+                    <HomelessnessComponent formData={formData} onComponentInputChange={handleInputChange}/>
+                    <hr/>
+                    <ChildrenComponent formData={formData} onComponentInputChange={handleInputChange}/>
+                    <hr/>
+                    <OtherAdultsComponent formData={formData} onComponentInputChange={handleInputChange}/>
+                    <hr/>
+                    <HelpRequestedComponent formData={formData} onComponentInputChange={handleInputChange}/>
+                    <hr/>
+                    <HouseholdIncomeComponent formData={formData} onComponentInputChange={handleInputChange}/>
 
 
                     <div>
