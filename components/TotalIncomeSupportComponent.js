@@ -1,0 +1,1 @@
+// total household income from all household members and number of people supported

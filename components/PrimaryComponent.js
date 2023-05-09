@@ -1,8 +1,9 @@
 import styles from "./applicant_form/ApplicantForm.module.css";
+import AddressComponent from "./AddressComponent";
 
 
 
-
+// applicant contact and identifying information
 export default function PrimaryComponent({ formData, onComponentInputChange }) {
 
     const handleInputChange = (event) => {
@@ -59,29 +60,30 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                     required
                 />
             </div>
-            <div className={styles.inputWrapper}>
-                <label htmlFor="last-help-date-input">Last Help Date:</label>
-                <input
-                    type="date"
-                    id="last-help-date-input"
-                    name="lastHelpDate" // same name as json object
-                    value={formData.lastHelpDate} // must drill down to nested object
-                    onChange={handleInputChange}
-                    required
-                />
-            </div>
-            <div className={styles.inputWrapper}>
-                <label htmlFor="household-income-input">Monthly Household Income:</label>
-                <input
-                    type="number"
-                    id="household-income-input"
-                    name="currentMonthlyIncome" // same name as json object
-                    placeholder="100000"
-                    value={formData.income.currentMonthlyIncome} // must drill down to nested object
-                    onChange={handleInputChange}
-                    required
-                />
-            </div>
+            <AddressComponent title="Home" formData={formData} onComponentInputChange={handleInputChange}/>
+            {/*<div className={styles.inputWrapper}>*/}
+            {/*    <label htmlFor="last-help-date-input">Last Help Date:</label>*/}
+            {/*    <input*/}
+            {/*        type="date"*/}
+            {/*        id="last-help-date-input"*/}
+            {/*        name="lastHelpDate" // same name as json object*/}
+            {/*        value={formData.lastHelpDate} // must drill down to nested object*/}
+            {/*        onChange={handleInputChange}*/}
+            {/*        required*/}
+            {/*    />*/}
+            {/*</div>*/}
+            {/*<div className={styles.inputWrapper}>*/}
+            {/*    <label htmlFor="household-income-input">Monthly Household Income:</label>*/}
+            {/*    <input*/}
+            {/*        type="number"*/}
+            {/*        id="household-income-input"*/}
+            {/*        name="currentMonthlyIncome" // same name as json object*/}
+            {/*        placeholder="100000"*/}
+            {/*        value={formData.income.currentMonthlyIncome} // must drill down to nested object*/}
+            {/*        onChange={handleInputChange}*/}
+            {/*        required*/}
+            {/*    />*/}
+            {/*</div>*/}
         </div>
     );
 }
