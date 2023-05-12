@@ -1,4 +1,4 @@
-// if homeless, additional homelessness information
+// if isHomeless, additional homelessness information
 import styles from "./applicant_form/ApplicantForm.module.css";
 
 // applicant homelessness information
@@ -9,7 +9,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
     }
 
     function isHomeless() {
-        return formData.homelessness.homeless === "true";
+        return formData.homelessness.isHomeless === "true";
     }
 
     return (
@@ -20,7 +20,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                 <select
                     id="homeless"
                     name="homeless"
-                    value={formData.homelessness.homeless}
+                    value={formData.homelessness.isHomeless}
                     onChange={handleInputChange}
                     required
                 >
@@ -48,8 +48,8 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         name="whyHomeless"
                         value={formData.homelessness.whyHomeless}
                         onChange={handleInputChange}
-                        required={formData.homelessness.homeless}
-                        disabled={!formData.homelessness.homeless}
+                        required={formData.homelessness.isHomeless}
+                        disabled={!formData.homelessness.isHomeless}
                     />
                 </div>
                 <div className={styles.inputWrapper}>
@@ -60,8 +60,8 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         name="street1"
                         value={formData.homelessness.tempAddress.street1}
                         onChange={handleInputChange}
-                        required={formData.homelessness.homeless}
-                        disabled={!formData.homelessness.homeless}
+                        required={formData.homelessness.isHomeless}
+                        disabled={!formData.homelessness.isHomeless}
                     />
                 </div>
                 <div className={styles.inputWrapper}>
@@ -72,8 +72,8 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         name="street2"
                         value={formData.homelessness.tempAddress.street2}
                         onChange={handleInputChange}
-                        required={formData.homelessness.homeless}
-                        disabled={!formData.homelessness.homeless}
+                        required={formData.homelessness.isHomeless}
+                        disabled={!formData.homelessness.isHomeless}
                     />
                 </div>
                 <div className={styles.inputWrapper}>
@@ -84,8 +84,8 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         name="city"
                         value={formData.homelessness.tempAddress.city}
                         onChange={handleInputChange}
-                        required={formData.homelessness.homeless}
-                        disabled={!formData.homelessness.homeless}
+                        required={formData.homelessness.isHomeless}
+                        disabled={!formData.homelessness.isHomeless}
                     />
                 </div>
                 <div className={styles.inputWrapper}>
@@ -96,8 +96,8 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         name="state"
                         value={formData.homelessness.tempAddress.state}
                         onChange={handleInputChange}
-                        required={formData.homelessness.homeless}
-                        disabled={!formData.homelessness.homeless}
+                        required={formData.homelessness.isHomeless}
+                        disabled={!formData.homelessness.isHomeless}
                     />
                 </div>
                 <div className={styles.inputWrapper}>
@@ -108,8 +108,8 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         name="zip"
                         value={formData.homelessness.tempAddress.zip}
                         onChange={handleInputChange}
-                        required={formData.homelessness.homeless}
-                        disabled={!formData.homelessness.homeless}
+                        required={formData.homelessness.isHomeless}
+                        disabled={!formData.homelessness.isHomeless}
                     />
                 </div>
             </div>}

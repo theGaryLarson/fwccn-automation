@@ -31,7 +31,7 @@ const form_data_defaults = {
         socialSecLastFour: 0
     },
     homelessness: {
-        homeless: false,
+        isHomeless: false,
         durationXpHomelessness: 0,
         whyHomeless: '',
         tempAddress: {
