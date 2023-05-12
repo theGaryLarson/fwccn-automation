@@ -28,6 +28,8 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                     name="landLordPhone"
                     placeholder="123-456-7890"
                     value={formData.landLord.landLordPhone}
+                    pattern = "^[0-9]{10}$"
+                    title = "Enter phone numbers in the following format ##########"
                     onChange={handleInputChange}
                     required
                 />
