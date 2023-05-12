@@ -17,10 +17,16 @@ const applicantSchema = new Schema({
         gasoline: Boolean,
         busTicket: Boolean,
         food: Boolean,
+        validate: {
+            validator: function (value) {
+                return value.rent || value.gasoline || value.busTicket || value.food;}
+        },
+        message: "Must select one help request option"
+    }
     },
     licensePlate: String,
-    reasonForNeed: String,
-    futurePlans: String,
+    reasonForNeed: {String, required: true},
+    futurePlans: {String, required: true},
     fName: {
         type: String,
         minlength: [2, "Your first name must be at least 2 characters long."],
@@ -37,7 +43,7 @@ const applicantSchema = new Schema({
     },
     age: {
         type: Number,
-        // min: [18, "You must be 18 years or older to apply"],
+        min: [18, "You must be 18 years or older to apply"],
         validate: {
             validator: function (value) {
                 return !isNaN(value);
@@ -47,18 +53,18 @@ const applicantSchema = new Schema({
     },
     phone: String,
     income: {
-        currentMonthlyIncome: { type: Number, required: false },
-        monthlyIncomeLast12Months: { type: Number, required: false },
-        totalHouseholdMembersIncomeSupports: { type: Number, required: false },
+        currentMonthlyIncome: { type: Number, required: true },
+        monthlyIncomeLast12Months: { type: Number, required: true },
+        totalHouseholdMembersIncomeSupports: { type: Number, required: true },
     },
-    disabled: { type: Boolean, required: false },
+    disabled: { type: Boolean, required: true },
     idSource: {
-        driverLicenseOrId: { type: String, required: false },
-        expDate: { type: Date, required: false },
-        socialSecLastFour: { type: Number, required: false },
+        driverLicenseOrId: { type: String, required: true },
+        expDate: { type: Date, required: true },
+        socialSecLastFour: { type: Number, required: true },
     },
     homelessness: {
-        homeless: { type: Boolean, default: false },
+        homeless: { type: Boolean, default: false, required: true },
         durationXpHomelessness: {
             Number,
             required: function () {return this.homeless;},

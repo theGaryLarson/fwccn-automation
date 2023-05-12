@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/swc-darwin-arm64": "^13.4.2",
     "autoprefixer": "10.4.14",
     "dotenv": "^16.0.3",
     "eslint": "8.37.0",
     "eslint-config-next": "13.3.0",
+    "force": "^0.0.3",
     "mongoose": "7.0.5",
     "mysql2": "3.2.0",
     "next": "13.3.0",
