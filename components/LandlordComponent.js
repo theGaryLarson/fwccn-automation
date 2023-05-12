@@ -13,7 +13,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                 <input
                     type="text"
                     id="landlord-full-name"
-                    name="landLord.fullName"
+                    name="fullName"
                     placeholder="John Smith"
                     value={formData.landLord.fullName}
                     onChange={handleInputChange}
@@ -25,9 +25,9 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                 <input
                     type="tel"
                     id="landlord-phone"
-                    name="landLord.landLordPhone"
+                    name="landLordPhone"
                     placeholder="123-456-7890"
-                    value={formData.landLord.landLordPhone}
+                    value={landLordPhone}
                     onChange={handleInputChange}
                     required
                 />
@@ -37,9 +37,9 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                 <input
                     type="text"
                     id="landlord-street1"
-                    name="landLord.address.landLordStreet1"
+                    name="landLordStreet1"
                     placeholder="123 Main St"
-                    value={formData.landLord.address.landLordStreet1}
+                    value={landLordStreet1}
                     onChange={handleInputChange}
                     required
                 />
@@ -49,9 +49,9 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                 <input
                     type="text"
                     id="landlord-street2"
-                    name="landLord.address.landLordStreet2"
+                    name="landLordStreet2"
                     placeholder="Apt. 100"
-                    value={formData.landLord.address.landLordStreet2}
+                    value={landLordStreet2}
                     onChange={handleInputChange}
                 />
             </div>
@@ -60,9 +60,9 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                 <input
                     type="text"
                     id="landlord-city"
-                    name="landLord.address.landLordCity"
+                    name="landLordCity"
                     placeholder="Seattle"
-                    value={formData.landLord.address.landLordCity}
+                    value={landLordCity}
                     onChange={handleInputChange}
                     required
                 />
@@ -72,7 +72,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                 <input
                     type="number"
                     id="landlord-zip"
-                    name="landLord.address.landLordZip"
+                    name="landLordZip"
                     placeholder="98101"
                     value={formData.landLord.address.landLordZip}
                     onChange={handleInputChange}
