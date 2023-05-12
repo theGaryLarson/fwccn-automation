@@ -16,6 +16,7 @@
 .inputWrapper button {
     width: 100%;
     text-align:center;
+    background: green;
 }
 .container {
     display: flex;
