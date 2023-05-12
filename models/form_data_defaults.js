@@ -54,16 +54,19 @@ const form_data_defaults = {
         schoolDistrict: '',
         schools: ['']
     },
-    otherAdults: [
-        {
-            adultFName: '',
-            adultMiddleInitial: '',
-            adultLName: '',
-            adultGender: '',
-            adultAge: 0,
-            relationshipToAdult: '',
-        },
-    ],
+    otherAdults: {
+        isOtherAdultsAtResidence: false,
+        adults: [
+                    {
+                        adultFName: '',
+                        adultMiddleInitial: '',
+                        adultLName: '',
+                        adultGender: '',
+                        adultAge: 0,
+                        relationshipToAdult: '',
+                    }
+                ]
+    },
     homeAddress: {
         homeStreet1: '',
         homeStreet2: '',
