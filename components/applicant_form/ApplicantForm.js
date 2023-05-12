@@ -2,7 +2,6 @@ import {useEffect, useState} from "react";
 import styles from "./ApplicantForm.module.css"
 import form_data_defaults from "../../models/form_data_defaults";
 import PrimaryComponent from "../PrimaryComponent";
-import AddressComponent from "../AddressComponent";
 import IncomeComponent from "../IncomeComponent";
 import LandlordComponent from "../LandlordComponent";
 import RaceComponent from "../RaceComponent";
@@ -92,7 +91,9 @@ function ApplicantForm({ databaseType}) {
                 <div className={styles.inputWrapper}>
                     {/*all subcomponents should have the Component suffix <function>Component
                        All subcomponents will be placed here in the ApplicantForm*/}
-                    <PrimaryComponent formData={formData} onComponentInputChange={handleInputChange}/>
+                    <div className={styles.componentWrapper}>
+                        <PrimaryComponent formData={formData} onComponentInputChange={handleInputChange}/>
+                    </div>
                     <hr/>
                     <IncomeComponent formData={formData} onComponentInputChange={handleInputChange}/>
                     <hr/>
