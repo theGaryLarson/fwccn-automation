@@ -1,52 +1,76 @@
-import {Schema, model, models} from 'mongoose';
-// const mongoose = require('mongoose');
-// const Schema = mongoose.Schema;
-// const model = mongoose.model;
-// const models = mongoose.models;
+import { Schema, model, models } from 'mongoose';
+
 const applicantSchema = new Schema({
     timestamp: String,
-    // 4 states PENDING, APPROVED, DENIED, OVERRIDE-APPROVAL
-    status: { type: String, default: 'PENDING' },
-    referredBy: { type: String, default: '' },
+    status: {
+        type: String,
+        enum: ['PENDING', 'APPROVED', 'DENIED', 'OVERRIDE-APPROVAL'],
+        default: 'PENDING',
+    },
+    referredBy: {
+        type: String,
+        default: '',
+    },
     lastHelpDate: Date,
     helpRequested: {
         rent: Boolean,
         gasoline: Boolean,
         busTicket: Boolean,
-        food: Boolean
+        food: Boolean,
     },
     licensePlate: String,
     reasonForNeed: String,
     futurePlans: String,
-    fName: String,
+    fName: {
+        type: String,
+        minlength: [2, "Your first name must be at least 2 characters long."],
+        required: true,
+    },
     middleInitial: String,
-    lName: String,
+    lName: {
+        type: String,
+        required: true,
+    },
     otherLastNames: [String],
-    gender: String,
-    age: Number,
+    gender: {
+        type: String
+    },
+    age: {
+        type: Number,
+        // min: [18, "You must be 18 years or older to apply"],
+        validate: {
+            validator: function (value) {
+                return !isNaN(value);
+            },
+            message: "Your age must be a number",
+        },
+    },
     phone: String,
     income: {
-        currentMonthlyIncome: Number,
-        monthlyIncomeLast12Months: Number,
-        totalHouseholdMembersIncomeSupports: Number,
+        currentMonthlyIncome: { type: Number, required: false },
+        monthlyIncomeLast12Months: { type: Number, required: false },
+        totalHouseholdMembersIncomeSupports: { type: Number, required: false },
     },
-    disabled: Boolean,
+    disabled: { type: Boolean, required: false },
     idSource: {
-        driverLicenseOrId: String,
-        expDate: Date,
-        socialSecLastFour: Number
+        driverLicenseOrId: { type: String, required: false },
+        expDate: { type: Date, required: false },
+        socialSecLastFour: { type: Number, required: false },
     },
     homelessness: {
         homeless: { type: Boolean, default: false },
-        durationXpHomelessness: Number,
-        whyHomeless: String,
+        durationXpHomelessness: {
+            Number,
+            required: function () {return this.homeless;},
+        whyHomeless: {
+                String, required: function () { return this.homeless;
         tempAddress: {
-            street1: String,
+            street1: {String, required: function () { return this.homeless;},
             street2: String,
-            city: String,
-            state: String,
-            zip: String
-        }
+            city: {String, required: function () { return this.homeless;},
+            state: {String, required: function () { return this.homeless;},
+            zip: {String, required: function () { return this.homeless;},
+        },
     },
     children: {
         hasChildrenUnder18: Boolean,
@@ -58,7 +82,7 @@ const applicantSchema = new Schema({
         nonBinaryAges: [Number],
         relationshipToChildren: String,
         schoolDistrict: String,
-        schools: [String]
+        schools: [String],
     },
     otherAdults: [
         {
@@ -75,7 +99,7 @@ const applicantSchema = new Schema({
         homeStreet2: String,
         homeCity: String,
         homeState: String,
-        homeZip: Number
+        homeZip: Number,
     },
     landLord: {
         fullName: String,
@@ -85,8 +109,8 @@ const applicantSchema = new Schema({
             landLordStreet1: String,
             landLordStreet2: String,
             landLordCity: String,
-            landLordZip: Number
-        }
+            landLordZip: Number,
+        },
     },
     houseHoldIncome: {
         totalHouseholdIncome: Number,
@@ -103,11 +127,9 @@ const applicantSchema = new Schema({
         multiRacial: Number,
         latinoAmericanHispanic: Number,
         unknown: Number,
-        nativeAmericanPacificIslander: Number
+        nativeAmericanPacificIslander: Number,
     },
 });
 
-// this is required with next.js so, we don't get an error when next.js tries to create the model again and again
 const Applicant = models.Applicant || model('Applicant', applicantSchema, process.env.MONGO_DB_COL);
 export default Applicant;
-// module.exports = { Applicant };
