@@ -4,11 +4,7 @@ const form_data_defaults = {
     status: 'PENDING',
     referredBy: '',
     lastHelpDate: '',
-    helpRequested: {
-        rent: false,
-        gasoline: false,
-        busTicket: false,
-    },
+    helpRequested: 'rent',
     licensePlate: '---',
     reasonForNeed: '',
     futurePlans: '',
