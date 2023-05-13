@@ -7,7 +7,8 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
     }
 
     return (
-        <div>
+        <div className={`border-2 border-black p-4 box m-4`}>
+            <h1>Landlord Information</h1>
             <div className={styles.inputWrapper}>
                 <label htmlFor="landlord-full-name">Landlord Full Name</label>
                 <input
