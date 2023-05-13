@@ -81,9 +81,10 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
     }
 
     return (
-        <div>
+        <div className={`border-2 border-black p-4 box m-4`}>
+            <h1> Other Adult Information</h1>
             <div className={styles.inputWrapper}>
-                <label htmlFor="adults">Is there other adults living at applicants residence?</label>
+                <label htmlFor="adults">{'Is there other adults living at applicant\'s residence?'}</label>
                 <select
                     id="adults"
                     name="isOtherAdultsAtResidence"
