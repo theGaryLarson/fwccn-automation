@@ -105,6 +105,21 @@ const applicantSchema = new Schema({
         unknown: Number,
         nativeAmericanPacificIslander: Number
     },
+    // two objects to store pdf documents
+    // contentType refers to MIME type which is 'application/pdf'
+    leaseDocument: {
+        name: String,
+        leaseSubmitDate: Date,
+        data: Buffer, // Field to store lease document as binary data
+        contentType: String, // MIME type of the document (e.g., 'application/pdf')
+    },
+
+    paystubDocument: {
+        name: String,
+        payStubSubmitDate: Date,
+        data: Buffer, // Field to store paystub document as binary data
+        contentType: String, // MIME type of the document (e.g., 'application/pdf')
+    },
 });
 
 // this is required with next.js so, we don't get an error when next.js tries to create the model again and again
