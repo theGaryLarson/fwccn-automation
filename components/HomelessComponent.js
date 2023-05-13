@@ -13,8 +13,8 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
     }
 
     return (
-        <div>
-            <h1>Homeless Data</h1>
+        <div className={`border-2 border-black p-4 box m-4`}>
+            <h1>Homelessness Information</h1>
             <div className={styles.inputWrapper}>
                 <label htmlFor="homeless">Are you currently homeless?</label>
                 <select
@@ -48,68 +48,69 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         name="whyHomeless"
                         value={formData.homelessness.whyHomeless}
                         onChange={handleInputChange}
-                        required={formData.homelessness.isHomeless}
-                        disabled={!formData.homelessness.isHomeless}
+                        required={formData.homelessness.isHomeless === 'true'}
+                        disabled={formData.homelessness.isHomeless === 'false'}
                     />
                 </div>
+                <h1>Temporary Address</h1>
                 <div className={styles.inputWrapper}>
-                    <label htmlFor="street1">Temporary Address (if applicable): Street 1</label>
+                    <label htmlFor="street1">Street 1</label>
                     <input
                         type="text"
                         id="street1"
                         name="street1"
                         value={formData.homelessness.tempAddress.street1}
                         onChange={handleInputChange}
-                        required={formData.homelessness.isHomeless}
-                        disabled={!formData.homelessness.isHomeless}
+                        required={formData.homelessness.isHomeless === 'true'}
+                        disabled={formData.homelessness.isHomeless === 'false'}
                     />
                 </div>
                 <div className={styles.inputWrapper}>
-                    <label htmlFor="street2">Temporary Address: Street 2 (optional)</label>
+                    <label htmlFor="street2">Street 2 (optional)</label>
                     <input
                         type="text"
                         id="street2"
                         name="street2"
                         value={formData.homelessness.tempAddress.street2}
                         onChange={handleInputChange}
-                        required={formData.homelessness.isHomeless}
-                        disabled={!formData.homelessness.isHomeless}
+                        required={formData.homelessness.isHomeless === 'true'}
+                        disabled={formData.homelessness.isHomeless === 'false'}
                     />
                 </div>
                 <div className={styles.inputWrapper}>
-                    <label htmlFor="city">Temporary Address: City</label>
+                    <label htmlFor="city">City</label>
                     <input
                         type="text"
                         id="city"
                         name="city"
                         value={formData.homelessness.tempAddress.city}
                         onChange={handleInputChange}
-                        required={formData.homelessness.isHomeless}
-                        disabled={!formData.homelessness.isHomeless}
+                        required={formData.homelessness.isHomeless === 'true'}
+                        disabled={formData.homelessness.isHomeless === 'false'}
                     />
                 </div>
                 <div className={styles.inputWrapper}>
-                    <label htmlFor="state">Temporary Address: State</label>
+                    <label htmlFor="state">State</label>
                     <input
                         type="text"
                         id="state"
                         name="state"
                         value={formData.homelessness.tempAddress.state}
                         onChange={handleInputChange}
-                        required={formData.homelessness.isHomeless}
-                        disabled={!formData.homelessness.isHomeless}
+                        required={formData.homelessness.isHomeless === 'true'}
+                        disabled={formData.homelessness.isHomeless === 'false'}
                     />
                 </div>
                 <div className={styles.inputWrapper}>
-                    <label htmlFor="zip">Temporary Address: ZIP code</label>
+                    <label htmlFor="zip">ZIP code</label>
                     <input
                         type="text"
                         id="zip"
                         name="zip"
                         value={formData.homelessness.tempAddress.zip}
                         onChange={handleInputChange}
-                        required={formData.homelessness.isHomeless}
-                        disabled={!formData.homelessness.isHomeless}
+                        required={formData.homelessness.isHomeless === 'true'}
+                        disabled={formData.homelessness.isHomeless === 'false'}
                     />
                 </div>
             </div>}
