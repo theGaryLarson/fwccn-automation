@@ -8,7 +8,8 @@ export default function RaceComponent({formData, onComponentInputChange }) {
     }
 
     return (
-        <div>
+        <div className={`border-2 border-black p-4 box m-4`}>
+            <h1>Demographic Information</h1>
             <div className={styles.inputWrapper}>
                 <label htmlFor="americanIndianOrAlaskaNative">American Indian or Alaska Native</label>
                 <input
