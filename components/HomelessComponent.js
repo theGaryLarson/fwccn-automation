@@ -19,8 +19,8 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                 <label htmlFor="homeless">Are you currently homeless?</label>
                 <select
                     id="homeless"
-                    name="homeless"
-                    value={formData.homelessness.isHomeless}
+                    name="isHomeless"
+                    value={formData.homelessness.isHomeless.toString()}
                     onChange={handleInputChange}
                     required
                 >
@@ -30,7 +30,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
             </div>
             { isHomeless() && <div>
                 <div className={styles.inputWrapper}>
-                    <label htmlFor="durationXpHomelessness">How long have you been homeless? (in months)</label>
+                    <label htmlFor="durationXpHomelessness">How many days have you been experiencing homelessness?</label>
                    <input
                         type="number"
                         id="durationXpHomelessness"
