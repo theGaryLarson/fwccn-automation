@@ -1,45 +1,52 @@
 // rent, gas, bus
 import styles from "./applicant_form/ApplicantForm.module.css";
+import valueProcessor from "next/dist/build/webpack/loaders/resolve-url-loader/lib/value-processor";
 
 // applicant help requested information
-export default function HelpRequestedComponent({formData, onComponentInputChange }) {
+export default function  AssistanceNeedComponent({formData, onComponentInputChange }) {
 
     const handleInputChange = (event) => {
-        onComponentInputChange(event)
+            onComponentInputChange(event)
     }
 
     return (
-        <div>
-            <div className={styles.inputWrapper}>
-                <label htmlFor="rent">Rent</label>
-                <input
-                    type="checkbox"
+        <div className={`border-2 border-black p-4`}>
+            <h1>Type of Need</h1>
+            <div className={styles.inputWrapper} >
+                <label htmlFor="rent">What type of assistance are you seeking?</label>
+                <select
                     id="rent"
-                    name="rent"
-                    checked={formData.helpRequested.rent}
+                    name="helpRequested"
+                    value={formData.helpRequested}
+                    onChange={handleInputChange}
+                >
+                    <option value={'rent'}>Rent Assistance</option>
+                    <option value={'gasoline'}>Gas Voucher</option>
+                    <option value={'busTicket'}>Bus Ticket</option>
+
+                </select>
+            </div>
+            <div className={styles.inputWrapper}>
+                <label htmlFor='explanation-of-need'>Explanation of Need</label>
+                <textarea
+                    id={`explanation-of-need`}
+                    name="reasonForNeed"
+                    value={formData.reasonForNeed}
                     onChange={handleInputChange}
                 />
             </div>
             <div className={styles.inputWrapper}>
-                <label htmlFor="gasoline">Gasoline</label>
+                <label htmlFor='referred-by'>Referred By</label>
                 <input
-                    type="checkbox"
-                    id="gasoline"
-                    name="gasoline"
-                    checked={formData.helpRequested.gasoline}
+                    type='text'
+                    id='referred-by'
+                    name="referredBy"
+                    value={formData.referredBy}
                     onChange={handleInputChange}
                 />
             </div>
-            <div className={styles.inputWrapper}>
-                <label htmlFor="busTicket">Bus Ticket</label>
-                <input
-                    type="checkbox"
-                    id="busTicket"
-                    name="busTicket"
-                    checked={formData.helpRequested.busTicket}
-                    onChange={handleInputChange}
-                />
-            </div>
+
+
         </div>
     );
 }
