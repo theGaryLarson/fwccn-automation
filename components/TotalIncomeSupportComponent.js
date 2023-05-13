@@ -2,14 +2,15 @@
 import styles from "./applicant_form/ApplicantForm.module.css";
 
 // applicant household income information
-export default function HouseholdIncomeComponent({formData, onComponentInputChange}) {
+export default function TotalIncomeSupportComponent({formData, onComponentInputChange}) {
 
     const handleInputChange = (event) => {
         onComponentInputChange(event)
     }
 
     return (
-        <div>
+        <div className={`border-2 border-black p-4 box m-4`}>
+            <h1>Cumulative Household Income</h1>
             <div className={styles.inputWrapper}>
                 <label htmlFor="totalHouseholdIncome">Total Household Income</label>
                 <input
@@ -22,7 +23,7 @@ export default function HouseholdIncomeComponent({formData, onComponentInputChan
                 />
             </div>
             <div className={styles.inputWrapper}>
-                <label htmlFor="totalSupportMembers">Total Number of Support Members</label>
+                <label htmlFor="totalSupportMembers">Total Number of Supported Members</label>
                 <input
                     type="number"
                     id="totalSupportMembers"
