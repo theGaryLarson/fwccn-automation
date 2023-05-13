@@ -1,6 +1,7 @@
 .inputWrapper {
     text-align: left;
-
+    display: flex;
+    flex-direction: column;
     margin-bottom: 10px;
     min-width: 50%;
 }
@@ -11,12 +12,29 @@
     width: 100%;
     white-space: pre-wrap;
     word-wrap: break-word;
+    border-color: black;
+    border-width: 1px;
+}
+
+.inputWrapper textarea {
+    border-width: 1px;
+    border-color: black;
+}
+
+.inputWrapper select {
+    border-width: 1px;
+    border-color: black;
 }
 
 .inputWrapper button {
     width: 100%;
     text-align:center;
     background: green;
+}
+
+.inputWrapper h1 {
+    text-align: center;
+    font-weight: bold;
 }
 .container {
     display: flex;
