@@ -123,6 +123,9 @@ const applicantSchema = new Schema({
                                 type: String,
                                 zip: {
                                     type: String,
+                                    required: function() {
+                                        return applicantSchema.get('homeless').type;
+                                    },
                                 },
                             },
                             children: {
@@ -270,7 +273,7 @@ const applicantSchema = new Schema({
     },
 });
 
-// functions
+// function
 
 
 
@@ -278,3 +281,6 @@ const applicantSchema = new Schema({
 
 const Applicant = models.Applicant || model('Applicant', applicantSchema, process.env.MONGO_DB_COL);
 export default Applicant;
+
+console.log('Applicant model loaded')
+console.log(Applicant.schema.get('homeless'));

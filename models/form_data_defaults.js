@@ -1,7 +1,7 @@
 const form_data_defaults = {
     timestamp: String,
     // 3 states PENDING, APPROVED, DENIED
-    status: 'PENDING',
+    status: 'APPROVED',
     referredBy: '',
     lastHelpDate: '',
     helpRequested: {
@@ -9,29 +9,29 @@ const form_data_defaults = {
         gasoline: false,
         busTicket: false,
     },
-    licensePlate: '---',
-    reasonForNeed: '',
-    futurePlans: '',
+    licensePlate: 'FXV-1234',
+    reasonForNeed: 'My car broke down and I need to get to work.',
+    futurePlans: 'I am going to get a new job and save money for a new car.',
     fName: '',
     middleInitial: '',
     lName: '',
     otherLastNames: [''],
     gender: '',
-    age: 0,
+    age: 21,
     phone: 0,
     income: {
-        currentMonthlyIncome: 0,
-        monthlyIncomeLast12Months: 0,
-        totalHouseholdMembersIncomeSupports: 0,
+        currentMonthlyIncome:  1234,
+        monthlyIncomeLast12Months: 1234,
+        totalHouseholdMembersIncomeSupports: 2,
     },
     disabled: false,
     idSource: {
-        driverLicenseOrId: '',
-        expDate: 0,
-        socialSecLastFour: 0
+        driverLicenseOrId: 'Driver License',
+        expDate: '05-01-2025',
+        socialSecLastFour: 1234,
     },
     homelessness: {
-        homeless: false,
+        homeless: true,
         durationXpHomelessness: 0,
         whyHomeless: '',
         tempAddress: {
