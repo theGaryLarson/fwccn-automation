@@ -5,7 +5,7 @@ import {Schema, model, models} from 'mongoose';
 // const models = mongoose.models;
 const applicantSchema = new Schema({
     timestamp: String,
-    // 4 states PENDING, APPROVED, DENIED, OVERRIDE-APPROVAL
+    // 4 states PENDING, APPROVED, DENIED, OVERRIDE-APPROVED
     status: { type: String, default: 'PENDING' },
     referredBy: { type: String, default: '' },
     lastHelpDate: Date,
