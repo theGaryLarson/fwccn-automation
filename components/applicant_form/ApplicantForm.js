@@ -6,10 +6,11 @@ import IncomeComponent from "../IncomeComponent";
 import LandlordComponent from "../LandlordComponent";
 import RaceComponent from "../RaceComponent";
 import HomelessnessComponent from "../HomelessComponent";
-import ChildrenComponent from "../ChildComponent";
-import OtherAdultsComponent from "../AdultComponent";
-import HelpRequestedComponent from "../AssistanceNeedComponent";
+import ChildComponent from "../ChildComponent";
+import AdultComponent from "../AdultComponent";
+import AssistanceNeedComponent from "../AssistanceNeedComponent";
 import HouseholdIncomeComponent from "../TotalIncomeSupportComponent";
+import TotalIncomeSupportComponent from "../TotalIncomeSupportComponent";
 
 
 
@@ -31,6 +32,7 @@ function ApplicantForm({ databaseType}) {
     // todo: import Applicant model and modify with useState [applicant, setApplicant]
     const [formData, setFormData] = useState(form_data_defaults);
     const [isValid, setIsValid] = useState(false);
+    const [isDataLoaded, setIsDataLoaded] = useState(false);
     function handleInputChange(event) {
         //todo: modify Applicant model here
         const {name, value} = event.target;
@@ -82,41 +84,57 @@ function ApplicantForm({ databaseType}) {
                 dbType: databaseType,
                 data: formData,
             }),
-        });
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                //check if data was loaded successfully
+                if (data && data._id) {
+                    setIsDataLoaded(true);
+                }
+
+        })
+            .catch((error) => {
+                console.error("Error loading data:", error)
+                setIsDataLoaded(false);
+            });
     }
 
     return (
-        <div>
+        <div className={"flex min-h-screen flex-col items-center justify-between p-4"}>
             <form onSubmit={handleSubmit}>
                 <div className={styles.inputWrapper}>
-                    {/*all subcomponents should have the Component suffix <function>Component
-                       All subcomponents will be placed here in the ApplicantForm*/}
-                    <div className={styles.componentWrapper}>
-                        <PrimaryComponent formData={formData} onComponentInputChange={handleInputChange}/>
-                    </div>
-                    <hr/>
-                    <IncomeComponent formData={formData} onComponentInputChange={handleInputChange}/>
-                    <hr/>
-                    <LandlordComponent formData={formData} onComponentInputChange={handleInputChange}/>
-                    <hr/>
+                    <AssistanceNeedComponent formData={formData} onComponentInputChange={handleInputChange}/>
+                </div>
+                <div className={styles.inputWrapper}>
+                    <PrimaryComponent formData={formData} onComponentInputChange={handleInputChange}/>
+                </div>
+                <div className={styles.inputWrapper}>
+                    <ChildComponent formData={formData} onComponentInputChange={handleInputChange}/>
+                </div>
+                <div className={styles.inputWrapper}>
+                    <AdultComponent formData={formData} onComponentInputChange={handleInputChange}/>
+                </div>
+                <div className={styles.inputWrapper}>
+                    <TotalIncomeSupportComponent formData={formData} onComponentInputChange={handleInputChange}/>
+                </div>
+                <div className={styles.inputWrapper}>
                     <RaceComponent formData={formData} onComponentInputChange={handleInputChange}/>
-                    <hr/>
-                    <HomelessnessComponent formData={formData} onComponentInputChange={handleInputChange}/>
-                    <hr/>
-                    <ChildrenComponent formData={formData} onComponentInputChange={handleInputChange}/>
-                    <hr/>
-                    <OtherAdultsComponent formData={formData} onComponentInputChange={handleInputChange}/>
-                    <hr/>
-                    <HelpRequestedComponent formData={formData} onComponentInputChange={handleInputChange}/>
-                    <hr/>
-                    <HouseholdIncomeComponent formData={formData} onComponentInputChange={handleInputChange}/>
+                </div>
+                <div className={styles.inputWrapper}>
+                    <LandlordComponent formData={formData} onComponentInputChange={handleInputChange}/>
+                </div>
 
 
-                    <div>
-                        <button type="submit" disabled={!isValid}>Submit</button>
-                    </div>
+                <div >
+                    <button className={styles.submitButton} type="submit" disabled={!isValid}>Submit</button>
                 </div>
             </form>
+            {isDataLoaded && (
+                <div>Data loaded successfully!</div>
+            )}
+            {isDataLoaded === false && (
+                <div>Error loading data. Please try again.</div>
+            )}
         </div>
     );
 }
