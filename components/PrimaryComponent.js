@@ -11,7 +11,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
     }
 
     return (
-        <div>
+        <div className={`border-2 border-black p-4`}>
             <div className={styles.inputWrapper}>
                 <label htmlFor="f-name-input">First Name:</label>
                 <input
@@ -49,6 +49,18 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                 />
             </div>
             <div className={styles.inputWrapper}>
+                <label htmlFor="identification">Last Name:</label>
+                <input
+                    type="text"
+                    id="identification"
+                    name="driverLicenseOrId"
+                    placeholder="Larson"
+                    value={formData.driverLicenseOrId}
+                    onChange={handleInputChange}
+                    required
+                />
+            </div>
+            <div className={styles.inputWrapper}>
                 <label htmlFor="social-sec-input">Social Security Last Four:</label>
                 <input
                     type="number"
@@ -61,29 +73,6 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                 />
             </div>
             <AddressComponent title="Home" formData={formData} onComponentInputChange={handleInputChange}/>
-            {/*<div className={styles.inputWrapper}>*/}
-            {/*    <label htmlFor="last-help-date-input">Last Help Date:</label>*/}
-            {/*    <input*/}
-            {/*        type="date"*/}
-            {/*        id="last-help-date-input"*/}
-            {/*        name="lastHelpDate" // same name as json object*/}
-            {/*        value={formData.lastHelpDate} // must drill down to nested object*/}
-            {/*        onChange={handleInputChange}*/}
-            {/*        required*/}
-            {/*    />*/}
-            {/*</div>*/}
-            {/*<div className={styles.inputWrapper}>*/}
-            {/*    <label htmlFor="household-income-input">Monthly Household Income:</label>*/}
-            {/*    <input*/}
-            {/*        type="number"*/}
-            {/*        id="household-income-input"*/}
-            {/*        name="currentMonthlyIncome" // same name as json object*/}
-            {/*        placeholder="100000"*/}
-            {/*        value={formData.income.currentMonthlyIncome} // must drill down to nested object*/}
-            {/*        onChange={handleInputChange}*/}
-            {/*        required*/}
-            {/*    />*/}
-            {/*</div>*/}
         </div>
     );
 }
