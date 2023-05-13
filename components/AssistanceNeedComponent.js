@@ -10,8 +10,8 @@ export default function  AssistanceNeedComponent({formData, onComponentInputChan
     }
 
     return (
-        <div className={`border-2 border-black p-4`}>
-            <h1>Type of Need</h1>
+        <div className={`border-2 border-black p-4 box m-4`}>
+            <h1>Type of Request</h1>
             <div className={styles.inputWrapper} >
                 <label htmlFor="rent">What type of assistance are you seeking?</label>
                 <select
@@ -27,7 +27,7 @@ export default function  AssistanceNeedComponent({formData, onComponentInputChan
                 </select>
             </div>
             <div className={styles.inputWrapper}>
-                <label htmlFor='explanation-of-need'>Explanation of Need</label>
+                <label htmlFor='explanation-of-need'>Explanation of Need:</label>
                 <textarea
                     id={`explanation-of-need`}
                     name="reasonForNeed"
@@ -36,7 +36,7 @@ export default function  AssistanceNeedComponent({formData, onComponentInputChan
                 />
             </div>
             <div className={styles.inputWrapper}>
-                <label htmlFor='referred-by'>Referred By</label>
+                <label htmlFor='referred-by'>Referred By:</label>
                 <input
                     type='text'
                     id='referred-by'
