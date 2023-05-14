@@ -1,5 +1,39 @@
-.inputWrapper button {
-    width: 100%;
+.removeButton {
+    width: auto;
+    padding: 4px;
     text-align:center;
-    background: gray;
+    font-weight: bold;
+    color: white;
+    background: red;
+    border-width: 1px;
+    border-color: red;
+    @apply rounded;
+    @apply ml-4
+}
+
+.removeButton:hover {
+    background: lightcoral;
+    border-width: 1px;
+    border-color: red;
+    color: red;
+}
+
+.addAdultButton {
+    width: 100%;
+    background: green;
+    color: white;
+    font-weight: bold;
+    border-width: 1px;
+    border-color: green;
+    padding:4px;
+    @apply rounded
+
+}
+
+.addAdultButton:hover {
+    width: 100%;
+    background: lightgreen;
+    color: green;
+    border-width: 1px;
+    border-color: green
 }
