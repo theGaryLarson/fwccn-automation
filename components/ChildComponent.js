@@ -15,11 +15,11 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
     // has the condition to check if data is changed to avoid an infinite loop
     useEffect(() => {
         if (prevFormDataChildren && JSON.stringify(prevFormDataChildren) !== JSON.stringify(formData.children)) {
-            updateChildCounts(formData.children.kids);
+            updateChildren(formData.children.kids);
         }
     }, [formData, onComponentInputChange, prevFormDataChildren]);
 
-    const updateChildCounts = (kids) => {
+    const updateChildren = (kids) => {
         const boys = kids.filter((child) => child.gender === 'male');
         const girls = kids.filter((child) => child.gender === 'female');
         const updatedFormData = {
@@ -31,6 +31,11 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                 boysAges: boys.map((boy) => boy.age),
                 girlsCount: girls.length,
                 girlsAges: girls.map((girl) => girl.age),
+                relationshipsToApplicant: kids.map((kid) => kid.relationshipToApplicant),
+                // possibly wrap these in new Set(...) to avoid duplication
+                schools: kids.map((kid) => kid.school),
+                schoolDistricts: kids.map((kid) => kid.schoolDistrict),
+
             },
         };
         onComponentInputChange({
@@ -62,6 +67,9 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                             boysAges: [],
                             girlsCount: 0,
                             girlsAges: [],
+                            relationshipsToApplicant: [],
+                            schools: [],
+                            schoolDistricts: [],
                         },
                     },
                 });
@@ -80,7 +88,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
             const updatedChildren = [...formData.children.kids];
             updatedChildren[index][name] = value;
             setChildren(updatedChildren);
-            updateChildCounts(updatedChildren);
+            updateChildren(updatedChildren);
             onComponentInputChange({
                 target: {
                     name: "children",
@@ -90,7 +98,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                     }
                 }
             });
-            updateChildCounts(updatedChildren);
+            updateChildren(updatedChildren);
         }
     };
 
