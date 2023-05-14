@@ -9,7 +9,7 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
     }
 
     return (
-        <div className={`border-2 border-black p-4 box m-4`}>
+        <div>
             <h1>Cumulative Household Income</h1>
             <div className={styles.inputWrapper}>
                 <label htmlFor="totalHouseholdIncome">Total Household Income</label>

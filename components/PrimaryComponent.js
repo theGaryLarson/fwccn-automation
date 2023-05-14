@@ -15,7 +15,8 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
     }
 
     return (
-        <div className={`border-2 border-black p-4 box m-4`}>
+        <div>
+            <h1>Applicant Information</h1>
             <div className={styles.inputWrapper}>
                 <label htmlFor="f-name-input">First Name:</label>
                 <input
@@ -66,7 +67,6 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                     required
                 />
             </div>
-            <IncomeComponent formData={formData} onComponentInputChange={handleInputChange}/>
             <div className={styles.inputWrapper}>
                 <label htmlFor="has-disability">Do you suffer from a disability?</label>
                 <select
@@ -78,30 +78,6 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                     <option value={"false"}>no</option>
                     <option value={"true"}>yes</option>
                 </select>
-            </div>
-            <div className={styles.inputWrapper}>
-                <label htmlFor="identification">State Identification Or License:</label>
-                <input
-                    type="text"
-                    id="identification"
-                    name="driverLicenseOrId"
-                    placeholder="WDLARSOGM197PD"
-                    value={formData.driverLicenseOrId}
-                    onChange={handleInputChange}
-                    required
-                />
-            </div>
-            <div className={styles.inputWrapper}>
-                <label htmlFor="id-expiration-date">Expiration Date:</label>
-                <input
-                    type="date"
-                    id="id-expiration-date"
-                    name="expDate"
-                    placeholder="WDLARSOGM197PD"
-                    value={formData.expDate}
-                    onChange={handleInputChange}
-                    required
-                />
             </div>
             <div className={styles.inputWrapper}>
                 <label htmlFor="social-sec-input">Social Security Last Four:</label>
@@ -116,6 +92,32 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                     onChange={handleInputChange}
                     required
                 />
+            </div>
+            <div className={`border-2 border-gray-600 p-4 box mt-4 `}>
+                <div>
+                    <label htmlFor="identification">State Identification Or License:</label>
+                    <input
+                        type="text"
+                        id="identification"
+                        name="driverLicenseOrId"
+                        placeholder="WDGARSOLM197PD"
+                        value={formData.driverLicenseOrId}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </div>
+                <div>
+                    <label htmlFor="id-expiration-date">Expiration Date:</label>
+                    <input
+                        type="date"
+                        id="id-expiration-date"
+                        name="expDate"
+                        placeholder="WDLARSOGM197PD"
+                        value={formData.expDate}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </div>
             </div>
             <HomelessnessComponent formData={formData} onComponentInputChange={handleInputChange}/>
             {formData.homelessness.isHomeless === 'false' && <AddressComponent title="Home" formData={formData} onComponentInputChange={handleInputChange}/>}
