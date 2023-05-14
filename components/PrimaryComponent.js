@@ -1,10 +1,6 @@
 import styles from "./applicant_form/ApplicantForm.module.css";
 import AddressComponent from "./AddressComponent";
 import HomelessnessComponent from "./HomelessComponent";
-import IncomeComponent from "./IncomeComponent";
-import ChildComponent from "./ChildComponent";
-import AdultComponent from "./AdultComponent";
-
 
 
 // applicant contact and identifying information
