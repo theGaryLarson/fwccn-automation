@@ -38,7 +38,6 @@ function ApplicantForm({ databaseType}) {
 
     function updateFormData(formData, name, value) {
         const keys = Object.keys(formData);
-        console.log(keys);
         for (let i = 0; i < keys.length; i++) {
             const key = keys[i];
 
@@ -62,7 +61,6 @@ function ApplicantForm({ databaseType}) {
     // These methods update changes as soon as they are made rather than on the next render which happens by default
     // Will be great for validation and the final commit to the database.
     useEffect(() => {
-        console.log('New state is:', formData);
     }, [formData]);
 
     async function handleSubmit(event) {
