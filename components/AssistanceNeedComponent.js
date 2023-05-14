@@ -1,8 +1,5 @@
-// rent, gas, bus
 import styles from "./applicant_form/ApplicantForm.module.css";
-import valueProcessor from "next/dist/build/webpack/loaders/resolve-url-loader/lib/value-processor";
 
-// applicant help requested information
 export default function  AssistanceNeedComponent({formData, onComponentInputChange }) {
 
     const handleInputChange = (event) => {
