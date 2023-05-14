@@ -10,7 +10,7 @@ export default function  AssistanceNeedComponent({formData, onComponentInputChan
     }
 
     return (
-        <div className={`border-2 border-black p-4 box m-4`}>
+        <div >
             <h1>Type of Request</h1>
             <div className={styles.inputWrapper} >
                 <label htmlFor="rent">What type of assistance are you seeking?</label>
