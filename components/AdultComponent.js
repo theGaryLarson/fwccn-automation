@@ -100,9 +100,8 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
             {isOtherAdults() && <div className={styles.inputWrapper}>
             {formData.otherAdults.adults.map((adult, index) => (
                 <div key={index}>
-                    <hr/>
                     <div className={'flex items-center'}>
-                        <h1 className={'mr-36 font-bold'}>Adult {index + 1} At Residence</h1>
+                        <h2 className={'mr-36 font-bold'}>Adult {index + 1} At Residence</h2>
                         <button className={`${style.removeButton} `} type="button" onClick={() => handleRemoveAdult(index)}>
                             Remove Adult {index + 1}
                         </button>
