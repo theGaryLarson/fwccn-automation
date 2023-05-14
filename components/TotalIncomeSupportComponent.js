@@ -1,12 +1,46 @@
 // total household income from all household members and number of people supported
 import styles from "./applicant_form/ApplicantForm.module.css";
 
+
 // applicant household income information
 export default function TotalIncomeSupportComponent({formData, onComponentInputChange}) {
 
     const handleInputChange = (event) => {
         onComponentInputChange(event)
     }
+
+    // this function specifically handles the onclick event surrounding the checkbox for male / female
+    // head of household which allows us to enable or disable the checkbox in a reversible fashion
+    const handleCheckboxChange = (event) => {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
+        const updatedFormData = {
+            ...formData,
+            houseHoldIncome: {
+                ...formData.houseHoldIncome,
+                [name]: value,
+            },
+        };
+
+        onComponentInputChange({
+            target: {
+                name: event.target.name,
+                value: value,
+            },
+        });
+
+        // Update the form data with the new checkbox value
+        onComponentInputChange({
+            target: {
+                name: 'houseHoldIncome',
+                value: updatedFormData.houseHoldIncome,
+            },
+        });
+    };
+
+
 
     return (
         <div className={`border-2 border-black p-4 box m-4`}>
@@ -40,7 +74,7 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                     id="singleMaleHeadOfHousehold"
                     name="singleMaleHeadOfHousehold"
                     checked={formData.houseHoldIncome.singleMaleHeadOfHousehold}
-                    onChange={handleInputChange}
+                    onChange={handleCheckboxChange}
                 />
             </div>
             <div className={styles.inputWrapper}>
@@ -50,9 +84,10 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                     id="singleFemaleHeadOfHousehold"
                     name="singleFemaleHeadOfHousehold"
                     checked={formData.houseHoldIncome.singleFemaleHeadOfHousehold}
-                    onChange={handleInputChange}
+                    onChange={handleCheckboxChange}
                 />
             </div>
         </div>
     );
 }
+
