@@ -1,6 +1,8 @@
 import {useEffect, useState} from "react";
-import styles from "./applicant_form/ApplicantForm.module.css";
 import {usePrevious} from "../lib/previous";
+import styles from "./applicant_form/ApplicantForm.module.css";
+import style from "./ChildComponent.module.css"
+
 
 export default function ChildComponent({ formData, onComponentInputChange }) {
     const [children, setChildren] = useState(formData.children.kids || []);
@@ -158,12 +160,11 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
             {hasChildrenUnder18 && <div>
                 {children.map((child, index) => (
                     <div key={index}>
-                        <hr />
-                        <h2 className={'font-bold'}>Child {index + 1}</h2>
-                        <div className={styles.inputWrapper}>
-                            <button type="button" onClick={() => handleRemoveKid(index)}>
-                                Remove Child
-                            </button>
+                        <div className={style.childContainer}>
+                            <h2 className={`${style.childHeader} font-bold`}>Child {index + 1} At Residence</h2>
+                                <button className={ `${style.removeButton} `}type="button" onClick={() => handleRemoveKid(index)}>
+                                    Remove Child
+                                </button>
                         </div>
                         <div className={styles.inputWrapper}>
                             <label htmlFor={`childGender-${index}`}>Gender assigned at Birth:</label>
@@ -225,7 +226,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                     </div>
                 ))}
                 <div className={styles.inputWrapper}>
-                    <button type="button" onClick={handleAddKid}>
+                    <button className={style.addButton} type="button" onClick={handleAddKid}>
                         Add Child
                     </button>
                 </div>
