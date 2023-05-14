@@ -53,7 +53,7 @@ const form_data_defaults = {
         girlsCount: 0,
         boysAges: [0],
         girlsAges: [0],
-        relationshipToChildren: [''],
+        relationshipsToApplicant: [''],
         schoolDistricts: [''],
         schools: ['']
     },
