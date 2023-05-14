@@ -40,14 +40,21 @@ const form_data_defaults = {
     },
     children: {
         hasChildrenUnder18: false,
+        kids : [
+            {
+                gender: 'female',
+                age: '',
+                school: '',
+                schoolDistrict: '',
+                relationshipToApplicant: ''
+            }
+        ],
         boysCount: 0,
-        boysAges: [0],
         girlsCount: 0,
+        boysAges: [0],
         girlsAges: [0],
-        nonBinaryCount: 0,
-        nonBinaryAges: [0],
-        relationshipToChildren: '',
-        schoolDistrict: '',
+        relationshipToChildren: [''],
+        schoolDistricts: [''],
         schools: ['']
     },
     otherAdults: {

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./applicant_form/ApplicantForm.module.css";
+import style from "./AdultComponent.module.css"
 
 export default function AdultComponent({ formData, onComponentInputChange }) {
     const [adultCount, setAdultCount] = useState(1);
@@ -81,11 +82,12 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
     }
 
     return (
-        <div className={`border-2 border-black p-4 box m-4`}>
+        <div>
             <h1> Other Adult Information</h1>
             <div className={styles.inputWrapper}>
                 <label htmlFor="adults">{'Is there other adults living at applicant\'s residence?'}</label>
                 <select
+                    className={'mb-4'}
                     id="adults"
                     name="isOtherAdultsAtResidence"
                     value={formData.otherAdults.isOtherAdultsAtResidence.toString()}
@@ -98,11 +100,13 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
             {isOtherAdults() && <div className={styles.inputWrapper}>
             {formData.otherAdults.adults.map((adult, index) => (
                 <div key={index}>
-                    <button type="button" onClick={() => handleRemoveAdult(index)}>
-                        Remove Adult {index + 1}
-                    </button>
                     <hr/>
-                    <h1 className={"font-bold"}>Adult {index + 1} At Residence</h1>
+                    <div className={'flex items-center'}>
+                        <h1 className={'mr-36 font-bold'}>Adult {index + 1} At Residence</h1>
+                        <button className={`${style.removeButton} `} type="button" onClick={() => handleRemoveAdult(index)}>
+                            Remove Adult {index + 1}
+                        </button>
+                    </div>
                     <div className={styles.inputWrapper}>
                         <label htmlFor={`adultFName-${index}`}>First name</label>
                         <input
@@ -160,11 +164,12 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                             <option value={'nonbinary'}>nonbinary</option>
                         </select>
                     </div>
-                    <div className={styles.inputWrapper}>
+                    <div className={`${styles.inputWrapper}`}>
                         <label htmlFor={`relationshipToAdult-${index}`}>Relation to Applicant</label>
                         <select
                             id={`relationshipToAdult-${index}`}
                             name="relationshipToAdult"
+                            className={'mb-4'}
                             value={adult.relationshipToAdult}
                             onChange={(event) => handleInputChange(event, index)}
                             required
@@ -178,7 +183,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
             ))}
 
             {/* Button to add a new adult */}
-            <button type="button" onClick={handleAddAdult}>
+            <button className={`${style.addAdultButton}`} type="button" onClick={handleAddAdult}>
                 Add Adult
             </button>
 

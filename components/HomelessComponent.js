@@ -13,10 +13,10 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
     }
 
     return (
-        <div className={`border-2 border-black p-4 box m-4`}>
+        <div className={`border-2 border-gray-600 p-4 box mt-4 mb-4`}>
             <h1>Homelessness Information</h1>
             <div className={styles.inputWrapper}>
-                <label htmlFor="homeless">Are you currently homeless?</label>
+                <label htmlFor="homeless">Are you currently experiencing homelessness?</label>
                 <select
                     id="homeless"
                     name="isHomeless"
@@ -42,10 +42,11 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                     />
                 </div>
                 <div className={styles.inputWrapper}>
-                    <label className={styles.textAreaLabel} htmlFor="whyHomeless">Why are you homeless?</label>
+                    <label className={styles.textAreaLabel} htmlFor="whyHomeless">Why are you experiencing homelessness?</label>
                     <textarea
                         id="whyHomeless"
                         name="whyHomeless"
+                        className={'mb-4'}
                         value={formData.homelessness.whyHomeless}
                         onChange={handleInputChange}
                         required={formData.homelessness.isHomeless === 'true'}

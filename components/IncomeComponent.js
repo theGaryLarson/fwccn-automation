@@ -8,7 +8,7 @@ export default function IncomeComponent({formData, onComponentInputChange }) {
     }
 
     return (
-        <div className={`border-2 border-black p-4 box m-4`}>
+        <div>
             <h1>Income Information</h1>
             <div className={styles.inputWrapper}>
                 <label htmlFor="monthly-income">Monthly Income:</label>

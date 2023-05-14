@@ -5,17 +5,10 @@ import PrimaryComponent from "../PrimaryComponent";
 import IncomeComponent from "../IncomeComponent";
 import LandlordComponent from "../LandlordComponent";
 import RaceComponent from "../RaceComponent";
-import HomelessnessComponent from "../HomelessComponent";
 import ChildComponent from "../ChildComponent";
 import AdultComponent from "../AdultComponent";
 import AssistanceNeedComponent from "../AssistanceNeedComponent";
-import HouseholdIncomeComponent from "../TotalIncomeSupportComponent";
 import TotalIncomeSupportComponent from "../TotalIncomeSupportComponent";
-
-
-
-
-
 
 
 // the form checks the database type through the fetch method using the api/data route.
@@ -45,7 +38,6 @@ function ApplicantForm({ databaseType}) {
 
     function updateFormData(formData, name, value) {
         const keys = Object.keys(formData);
-        console.log(keys);
         for (let i = 0; i < keys.length; i++) {
             const key = keys[i];
 
@@ -69,7 +61,6 @@ function ApplicantForm({ databaseType}) {
     // These methods update changes as soon as they are made rather than on the next render which happens by default
     // Will be great for validation and the final commit to the database.
     useEffect(() => {
-        console.log('New state is:', formData);
     }, [formData]);
 
     async function handleSubmit(event) {
@@ -102,25 +93,28 @@ function ApplicantForm({ databaseType}) {
     return (
         <div className={"flex min-h-screen flex-col items-center justify-between p-4"}>
             <form onSubmit={handleSubmit}>
-                <div className={styles.inputWrapper}>
+                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
                     <AssistanceNeedComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
-                <div className={styles.inputWrapper}>
+                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
                     <PrimaryComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
-                <div className={styles.inputWrapper}>
+                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
+                    <IncomeComponent formData={formData} onComponentInputChange={handleInputChange}/>
+                </div>
+                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
                     <ChildComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
-                <div className={styles.inputWrapper}>
+                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
                     <AdultComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
-                <div className={styles.inputWrapper}>
+                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
                     <TotalIncomeSupportComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
-                <div className={styles.inputWrapper}>
+                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
                     <RaceComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
-                <div className={styles.inputWrapper}>
+                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
                     <LandlordComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
 
