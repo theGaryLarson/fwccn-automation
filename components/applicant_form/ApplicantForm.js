@@ -102,25 +102,28 @@ function ApplicantForm({ databaseType}) {
     return (
         <div className={"flex min-h-screen flex-col items-center justify-between p-4"}>
             <form onSubmit={handleSubmit}>
-                <div className={styles.inputWrapper}>
+                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
                     <AssistanceNeedComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
-                <div className={styles.inputWrapper}>
+                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
                     <PrimaryComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
-                <div className={styles.inputWrapper}>
+                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
+                    <IncomeComponent formData={formData} onComponentInputChange={handleInputChange}/>
+                </div>
+                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
                     <ChildComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
-                <div className={styles.inputWrapper}>
+                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
                     <AdultComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
-                <div className={styles.inputWrapper}>
+                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
                     <TotalIncomeSupportComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
-                <div className={styles.inputWrapper}>
+                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
                     <RaceComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
-                <div className={styles.inputWrapper}>
+                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
                     <LandlordComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
 
