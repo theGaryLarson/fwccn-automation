@@ -7,7 +7,7 @@ export default function ChildComponent({formData, onComponentInputChange}) {
     };
 
     return (
-        <div className={`border-2 border-black p-4 box m-4`}>
+        <div>
             <h1>Child Information</h1>
             <div className={styles.inputWrapper}>
                 <label htmlFor="hasChildrenUnder18">Do you have children under 18 living at the residence?</label>
