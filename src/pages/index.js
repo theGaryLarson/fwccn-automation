@@ -1,8 +1,4 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
 import ApplicantForm from "../../components/applicant_form/ApplicantForm";
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
