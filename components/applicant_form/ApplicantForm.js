@@ -5,17 +5,10 @@ import PrimaryComponent from "../PrimaryComponent";
 import IncomeComponent from "../IncomeComponent";
 import LandlordComponent from "../LandlordComponent";
 import RaceComponent from "../RaceComponent";
-import HomelessnessComponent from "../HomelessComponent";
 import ChildComponent from "../ChildComponent";
 import AdultComponent from "../AdultComponent";
 import AssistanceNeedComponent from "../AssistanceNeedComponent";
-import HouseholdIncomeComponent from "../TotalIncomeSupportComponent";
 import TotalIncomeSupportComponent from "../TotalIncomeSupportComponent";
-
-
-
-
-
 
 
 // the form checks the database type through the fetch method using the api/data route.
