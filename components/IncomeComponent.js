@@ -16,6 +16,7 @@ export default function IncomeComponent({formData, onComponentInputChange }) {
                     type="number"
                     id="monthly-income"
                     name="currentMonthlyIncome"
+                    placeholder="$0000.00"
                     value={formData.income.currentMonthlyIncome}
                     onChange={handleInputChange}
                     required
@@ -28,7 +29,7 @@ export default function IncomeComponent({formData, onComponentInputChange }) {
                     type="number"
                     id="income-last-12-months"
                     name="monthlyIncomeLast12Months"
-                    placeholder="Apt. 100"
+                    placeholder="$0000.00"
                     value={formData.income.monthlyIncomeLast12Months}
                     onChange={handleInputChange}
                 />
@@ -39,7 +40,7 @@ export default function IncomeComponent({formData, onComponentInputChange }) {
                     type="number"
                     id="members-supported"
                     name="totalHouseholdMembersIncomeSupports"
-                    placeholder="Tacoma"
+                    placeholder="3"
                     value={formData.income.totalHouseholdMembersIncomeSupports}
                     onChange={handleInputChange}
                     required
