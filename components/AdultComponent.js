@@ -3,7 +3,7 @@ import styles from "./applicant_form/ApplicantForm.module.css";
 import style from "./AdultComponent.module.css"
 
 export default function AdultComponent({ formData, onComponentInputChange }) {
-    const [adultCount, setAdultCount] = useState(1);
+    const [adultCount, setAdultCount] = useState(0);
 
     const handleInputChange = (event, index) => {
         const { name, value } = event.target;
