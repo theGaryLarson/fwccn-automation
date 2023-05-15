@@ -6,41 +6,28 @@ import styles from "./applicant_form/ApplicantForm.module.css";
 export default function TotalIncomeSupportComponent({formData, onComponentInputChange}) {
 
     const handleInputChange = (event) => {
-        onComponentInputChange(event)
+        const {name, value} = event.target;
+
+        if (name === "headOfHousehold") {
+            const updatedHeadOfHousehold = {
+                ...formData,
+                houseHoldIncome: {
+                singleMaleHeadOfHousehold: false,
+                singleFemaleHeadOfHousehold: false,
+                totalHouseholdIncome: formData.houseHoldIncome.totalHouseholdIncome,
+                totalSupportMembers: formData.houseHoldIncome.totalSupportMembers}
+            }
+            if (value !== 'neither') {
+                updatedHeadOfHousehold.houseHoldIncome[value] = true;
+            }
+            onComponentInputChange( {target:{
+            name:'houseHoldIncome',
+            value: updatedHeadOfHousehold.houseHoldIncome
+        }})
+        } else {
+            onComponentInputChange(event)
+        }
     }
-
-    // this function specifically handles the onclick event surrounding the checkbox for male / female
-    // head of household which allows us to enable or disable the checkbox in a reversible fashion
-    const handleCheckboxChange = (event) => {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-
-        const updatedFormData = {
-            ...formData,
-            houseHoldIncome: {
-                ...formData.houseHoldIncome,
-                [name]: value,
-            },
-        };
-
-        onComponentInputChange({
-            target: {
-                name: event.target.name,
-                value: value,
-            },
-        });
-
-        // Update the form data with the new checkbox value
-        onComponentInputChange({
-            target: {
-                name: 'houseHoldIncome',
-                value: updatedFormData.houseHoldIncome,
-            },
-        });
-    };
-
-
 
     return (
         <div>
@@ -68,24 +55,16 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                 />
             </div>
             <div className={styles.inputWrapper}>
-                <label htmlFor="singleMaleHeadOfHousehold">Single Male Head of Household</label>
-                <input
-                    type="checkbox"
+                <label htmlFor="singleMaleHeadOfHousehold">Is applicant single head of household?</label>
+                <select
                     id="singleMaleHeadOfHousehold"
-                    name="singleMaleHeadOfHousehold"
-                    checked={formData.houseHoldIncome.singleMaleHeadOfHousehold}
-                    onChange={handleCheckboxChange}
-                />
-            </div>
-            <div className={styles.inputWrapper}>
-                <label htmlFor="singleFemaleHeadOfHousehold">Single Female Head of Household</label>
-                <input
-                    type="checkbox"
-                    id="singleFemaleHeadOfHousehold"
-                    name="singleFemaleHeadOfHousehold"
-                    checked={formData.houseHoldIncome.singleFemaleHeadOfHousehold}
-                    onChange={handleCheckboxChange}
-                />
+                    name="headOfHousehold"
+                    onChange={handleInputChange}
+                >
+                    <option value={'neither'}>No, Applicant not Head of Household</option>
+                    <option value={'singleMaleHeadOfHousehold'}>Yes, Male Head of Household</option>
+                    <option value={'singleFemaleHeadOfHousehold'}>Yes, Single Female Head of Household</option>
+                </select>
             </div>
         </div>
     );
