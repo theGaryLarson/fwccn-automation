@@ -35,6 +35,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         type="number"
                         id="durationXpHomelessness"
                         name="durationXpHomelessness"
+                        placeholder="12"
                         value={formData.homelessness.durationXpHomelessness}
                         onChange={handleInputChange}
                         required={isHomeless()}
@@ -46,6 +47,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                     <textarea
                         id="whyHomeless"
                         name="whyHomeless"
+                        placeholder="Brief explanation of what lead to applicant being homeless"
                         className={'mb-4'}
                         value={formData.homelessness.whyHomeless}
                         onChange={handleInputChange}
@@ -60,6 +62,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         type="text"
                         id="street1"
                         name="street1"
+                        placeholder="123 Main St."
                         value={formData.homelessness.tempAddress.street1}
                         onChange={handleInputChange}
                         required={formData.homelessness.isHomeless === 'true'}
@@ -72,6 +75,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         type="text"
                         id="street2"
                         name="street2"
+                        placeholder="Apt. 100"
                         value={formData.homelessness.tempAddress.street2}
                         onChange={handleInputChange}
                         required={formData.homelessness.isHomeless === 'true'}
@@ -84,6 +88,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         type="text"
                         id="city"
                         name="city"
+                        placeholder="Tacoma"
                         value={formData.homelessness.tempAddress.city}
                         onChange={handleInputChange}
                         required={formData.homelessness.isHomeless === 'true'}
@@ -96,6 +101,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         type="text"
                         id="state"
                         name="state"
+                        placeholder="WA"
                         value={formData.homelessness.tempAddress.state}
                         onChange={handleInputChange}
                         required={formData.homelessness.isHomeless === 'true'}
@@ -108,6 +114,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         type="text"
                         id="zip"
                         name="zip"
+                        placeholder="98101"
                         value={formData.homelessness.tempAddress.zip}
                         onChange={handleInputChange}
                         required={formData.homelessness.isHomeless === 'true'}
