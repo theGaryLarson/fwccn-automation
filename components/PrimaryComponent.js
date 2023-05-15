@@ -1,6 +1,7 @@
 import styles from "./applicant_form/ApplicantForm.module.css";
 import AddressComponent from "./AddressComponent";
 import HomelessnessComponent from "./HomelessComponent";
+import OtherLastNamesComponent from "./OtherLastNamesComponent";
 
 
 // applicant contact and identifying information
@@ -156,6 +157,9 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
 
                     </div>
                 </div>)}
+            </div>
+            <div className={styles.inputWrapper}>
+                < OtherLastNamesComponent formData={formData} onComponentInputChange={handleInputChange} />
             </div>
             <HomelessnessComponent formData={formData} onComponentInputChange={handleInputChange}/>
             {(formData.homelessness.isHomeless === "false" || formData.homelessness.isHomeless === false) && ( <AddressComponent title="Home" formData={formData} onComponentInputChange={handleInputChange}/>)}
