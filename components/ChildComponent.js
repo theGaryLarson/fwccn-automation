@@ -20,7 +20,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
         if (prevFormDataChildren && JSON.stringify(prevFormDataChildren) !== JSON.stringify(formData.children)) {
             updateChildren(formData.children.kids);
         }
-    }, [formData, onComponentInputChange, prevFormDataChildren]);
+    });
 
     const updateChildren = (kids) => {
         const boys = kids.filter((child) => child.gender === 'male');
