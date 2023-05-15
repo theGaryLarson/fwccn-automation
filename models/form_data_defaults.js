@@ -12,7 +12,16 @@ const form_data_defaults = {
     fName: '',
     middleInitial: '',
     lName: '',
-    otherLastNames: [''],
+    otherNames: {
+        hasOtherNames: false,
+        additionalNames: [
+            {
+                otherFirstName: '',
+                otherMiddleInitial: '',
+                otherLastName: ''
+            }
+        ]
+    },
     gender: '',
     age: '',
     phone: '',
@@ -42,7 +51,7 @@ const form_data_defaults = {
     },
     children: {
         hasChildrenUnder18: false,
-        kids : [
+        kids: [
             {
                 gender: 'female',
                 age: '',
