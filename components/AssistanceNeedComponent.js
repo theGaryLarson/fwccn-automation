@@ -28,6 +28,7 @@ export default function  AssistanceNeedComponent({formData, onComponentInputChan
                 <textarea
                     id={`explanation-of-need`}
                     name="reasonForNeed"
+                    placeholder="Brief explanation of why requesting FWCCN services"
                     value={formData.reasonForNeed}
                     onChange={handleInputChange}
                 />
@@ -38,6 +39,7 @@ export default function  AssistanceNeedComponent({formData, onComponentInputChan
                     type='text'
                     id='referred-by'
                     name="referredBy"
+                    placeholder="Person or agency that referred applicant (if any)"
                     value={formData.referredBy}
                     onChange={handleInputChange}
                 />
