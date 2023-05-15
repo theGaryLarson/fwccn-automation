@@ -38,6 +38,7 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                     type="number"
                     id="totalHouseholdIncome"
                     name="totalHouseholdIncome"
+                    placeholder="$0000.00"
                     value={formData.houseHoldIncome.totalHouseholdIncome}
                     onChange={handleInputChange}
                     required
@@ -49,6 +50,7 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                     type="number"
                     id="totalSupportMembers"
                     name="totalSupportMembers"
+                    placeholder="3"
                     value={formData.houseHoldIncome.totalSupportMembers}
                     onChange={handleInputChange}
                     required
