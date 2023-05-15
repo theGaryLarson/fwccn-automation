@@ -162,7 +162,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                     <div key={index}>
                         <div className={style.childContainer}>
                             <h2 className={`${style.childHeader} font-bold`}>Child {index + 1} At Residence</h2>
-                                <button className={ `${style.removeButton} `}type="button" onClick={() => handleRemoveKid(index)}>
+                                <button className={ `${style.removeButton} `} type="button" onClick={() => handleRemoveKid(index)}>
                                     Remove Child
                                 </button>
                         </div>
