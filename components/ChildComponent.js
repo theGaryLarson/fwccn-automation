@@ -5,7 +5,7 @@ import style from "./ChildComponent.module.css"
 
 
 export default function ChildComponent({ formData, onComponentInputChange }) {
-    const [children, setChildren] = useState([]);
+    const [children, setChildren] = useState(formData.children.kids || []);
     const [hasChildrenUnder18, setHasChildrenUnder18] = useState(
         formData.children.hasChildrenUnder18 || false
     );
@@ -107,7 +107,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
     const handleAddKid = () => {
         const newChild = {
             gender: "female",
-            age: "",
+            age: 0,
             school: "",
             schoolDistrict: "",
             relationshipToApplicant: "",
