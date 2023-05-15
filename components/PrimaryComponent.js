@@ -90,13 +90,27 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
             </div>
             <div className={`border-2 border-gray-600 p-4 box mt-4 `}>
                 <div>
-                    <label htmlFor="identification">State Identification Or License:</label>
+                    <label htmlFor="identification">{formData.helpRequested === 'gasoline' ? 'Driver\'s License:' : 'State Identification Or License:'}</label>
                     <input
                         type="text"
                         id="identification"
                         name="driverLicenseOrId"
                         placeholder="WDGARSOLM197PD"
                         value={formData.driverLicenseOrId}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </div>
+                <div>
+                    <label htmlFor="idStateIssued">{'State Issued:'}</label>
+                    <input
+                        type="text"
+                        id="idStateIssued"
+                        name="idStateIssued"
+                        placeholder="WA"
+                        pattern={'[A-Z]{2}'}
+                        title='Please enter 2 letter abbreviation for state. (e.g. WA)'
+                        value={formData.idSource.idStateIssued}
                         onChange={handleInputChange}
                         required
                     />
@@ -113,6 +127,35 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                         required
                     />
                 </div>
+                {formData.helpRequested === 'gasoline' && (<div>
+                    <div className={styles.inputWrapper}>
+                        <label htmlFor="licensePlate">License Plate Number:</label>
+                        <input
+                            type="text"
+                            id="licensePlate"
+                            name="licensePlate"
+                            placeholder="CBY2970"
+                            value={formData.licensePlate}
+                            onChange={handleInputChange}
+                            required
+                        />
+                        <div className={styles.inputWrapper}>
+                            <label htmlFor="licensePlateState">{'Which state issued license plate?'}</label>
+                            <input
+                                type="text"
+                                id="licensePlateState"
+                                name="licensePlateState"
+                                placeholder="WA"
+                                pattern={'[A-Z]{2}'}
+                                title='Please enter 2 letter abbreviation for state. (e.g. WA)'
+                                value={formData.licensePlateState}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </div>
+
+                    </div>
+                </div>)}
             </div>
             <HomelessnessComponent formData={formData} onComponentInputChange={handleInputChange}/>
             {(formData.homelessness.isHomeless === "false" || formData.homelessness.isHomeless === false) && ( <AddressComponent title="Home" formData={formData} onComponentInputChange={handleInputChange}/>)}
