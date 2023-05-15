@@ -5,7 +5,7 @@ import style from "./ChildComponent.module.css"
 
 
 export default function ChildComponent({ formData, onComponentInputChange }) {
-    const [children, setChildren] = useState(formData.children.kids || []);
+    const [children, setChildren] = useState([]);
     const [hasChildrenUnder18, setHasChildrenUnder18] = useState(
         formData.children.hasChildrenUnder18 || false
     );
