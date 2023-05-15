@@ -15,7 +15,16 @@ const form_data_defaults = {
     fName: '',
     middleInitial: '',
     lName: '',
-    otherLastNames: [''],
+    otherNames: {
+        hasOtherNames: false,
+        additionalNames: [
+            {
+                otherFirstName: '',
+                otherMiddleInitial: '',
+                otherLastName: ''
+            }
+        ]
+    },
     gender: '',
     age: 0,
     phone: 0,
