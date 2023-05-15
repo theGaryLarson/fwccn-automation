@@ -17,7 +17,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
             setIsOtherAdults(newValue);
             if (!newValue) {
                 setAdults([]);
-                //todo: clear adult info
+                // clears adult data
                 onComponentInputChange({
                     target: {
                         name: "otherAdults",
