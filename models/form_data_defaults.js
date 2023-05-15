@@ -1,11 +1,12 @@
 const form_data_defaults = {
     timestamp: String,
-    // 3 states PENDING, APPROVED, DENIED, OVERRIDE-APPROVAL
+    // 4 states PENDING, APPROVED, DENIED, APPROVED-OVERRIDE
     status: 'PENDING',
     referredBy: '',
     lastHelpDate: '',
     helpRequested: 'rent',
-    licensePlate: '---',
+    licensePlate: '',
+    licensePlateState: '',
     reasonForNeed: '',
     futurePlans: '',
     fName: '',
@@ -13,22 +14,23 @@ const form_data_defaults = {
     lName: '',
     otherLastNames: [''],
     gender: '',
-    age: 0,
-    phone: 0,
+    age: '',
+    phone: '',
     income: {
-        currentMonthlyIncome: 0,
-        monthlyIncomeLast12Months: 0,
-        totalHouseholdMembersIncomeSupports: 0,
+        currentMonthlyIncome: '',
+        monthlyIncomeLast12Months: '',
+        totalHouseholdMembersIncomeSupports: '',
     },
     disabled: false,
     idSource: {
         driverLicenseOrId: '',
-        expDate: 0,
-        socialSecLastFour: 0
+        expDate: '',
+        idStateIssued: '',
+        socialSecLastFour: ''
     },
     homelessness: {
         isHomeless: false,
-        durationXpHomelessness: 0,
+        durationXpHomelessness: '',
         whyHomeless: '',
         tempAddress: {
             street1: '',
@@ -49,13 +51,13 @@ const form_data_defaults = {
                 relationshipToApplicant: ''
             }
         ],
-        boysCount: 0,
-        girlsCount: 0,
-        boysAges: [0],
-        girlsAges: [0],
-        relationshipsToApplicant: [''],
-        schoolDistricts: [''],
-        schools: ['']
+        boysCount: '',
+        girlsCount: '',
+        boysAges: [],
+        girlsAges: [],
+        relationshipsToApplicant: [],
+        schoolDistricts: [],
+        schools: []
     },
     otherAdults: {
         isOtherAdultsAtResidence: false,
@@ -65,7 +67,7 @@ const form_data_defaults = {
                         adultMiddleInitial: '',
                         adultLName: '',
                         adultGender: '',
-                        adultAge: 0,
+                        adultAge: '',
                         relationshipToAdult: '',
                     }
                 ]
@@ -74,7 +76,7 @@ const form_data_defaults = {
         homeStreet1: '',
         homeStreet2: '',
         homeCity: '',
-        homeZip: 0
+        homeZip: ''
     },
     landLord: {
         fullName: '',
@@ -84,12 +86,12 @@ const form_data_defaults = {
             landLordStreet1: '',
             landLordStreet2: '',
             landLordCity: '',
-            landLordZip: 0
+            landLordZip: ''
         }
     },
     houseHoldIncome: {
-        totalHouseholdIncome: 0,
-        totalSupportMembers: 0,
+        totalHouseholdIncome: '',
+        totalSupportMembers: '',
         singleMaleHeadOfHousehold: false,
         singleFemaleHeadOfHousehold: false,
     },
