@@ -21,7 +21,7 @@ const applicantSchema = new Schema({
     fName: String,
     middleInitial: String,
     lName: String,
-    otherLastNames: [String],
+    otherNames: [String],
     gender: String,
     age: Number,
     phone: String,
