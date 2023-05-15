@@ -1,113 +1,286 @@
-import {Schema, model, models} from 'mongoose';
-// const mongoose = require('mongoose');
-// const Schema = mongoose.Schema;
-// const model = mongoose.model;
-// const models = mongoose.models;
+import {
+    Schema,
+    model,
+    models
+} from 'mongoose';
+
 const applicantSchema = new Schema({
-    timestamp: String,
-    // 4 states PENDING, APPROVED, DENIED, OVERRIDE-APPROVAL
-    status: { type: String, default: 'PENDING' },
-    referredBy: { type: String, default: '' },
-    lastHelpDate: Date,
+    timestamp: {
+        type: String
+    },
+    status: {
+        type: String,
+        enum: ['PENDING', 'APPROVED', 'DENIED', 'OVERRIDE-APPROVAL'],
+        default: 'PENDING',
+    },
+    referredBy: {
+        type: String,
+        default: '',
+    }
+
+    ,
+    lastHelpDate: {
+        type: Date
+    },
     helpRequested: {
-        rent: Boolean,
-        gasoline: Boolean,
-        busTicket: Boolean,
-        food: Boolean
+        type: String,
+        enum: ['rent', 'gasoline', 'busTicket', 'food'],
+        default: '',
     },
-    licensePlate: String,
-    reasonForNeed: String,
-    futurePlans: String,
-    fName: String,
-    middleInitial: String,
-    lName: String,
-    otherNames: [String],
-    gender: String,
-    age: Number,
-    phone: String,
+    licensePlate: {
+        type: String
+    },
+    reasonForNeed: {
+        type: String,
+        required: true
+    },
+    futurePlans: {
+        type: String,
+        required: true
+    },
+    fName: {
+        type: String,
+        minlength: [2, "Your first name must be at least 2 characters long."],
+        required: true,
+    },
+    middleInitial: {
+        type: String
+    },
+    lName: {
+        type: String,
+        required: true,
+    },
+    otherLastNames: [{
+        type: String
+    }],
+    gender: {
+        type: String
+    },
+    age: {
+        type: Number,
+        min: [18, "You must be 18 years or older to apply"],
+        validate: { // custom validator
+            validator: function(value) {
+                return !isNaN(value);
+            },
+            message: "Your age must be a number",
+        } // end validate
+    },
+    phone: {
+        type: String
+    },
     income: {
-        currentMonthlyIncome: Number,
-        monthlyIncomeLast12Months: Number,
-        totalHouseholdMembersIncomeSupports: Number,
+        currentMonthlyIncome: {
+            type: Number,
+            required: true
+        },
+        monthlyIncomeLast12Months: {
+            type: Number,
+            required: true
+        },
+        totalHouseholdMembersIncomeSupports: {
+            type: Number,
+            required: true
+        },
     },
-    disabled: Boolean,
+    disabled: {
+        type: Boolean,
+        required: true
+    },
     idSource: {
-        driverLicenseOrId: String,
-        expDate: Date,
-        socialSecLastFour: Number
+        driverLicenseOrId: {
+            type: String,
+            required: true
+        },
+        expDate: {
+            type: Date,
+            required: true
+        },
+        socialSecLastFour: {
+            type: Number,
+            required: true
+        },
     },
     homelessness: {
-        homeless: { type: Boolean, default: false },
-        durationXpHomelessness: Number,
-        whyHomeless: String,
-        tempAddress: {
-            street1: String,
-            street2: String,
-            city: String,
-            state: String,
-            zip: String
-        }
-    },
-    children: {
-        hasChildrenUnder18: Boolean,
-        boysCount: Number,
-        boysAges: [Number],
-        girlsCount: Number,
-        girlsAges: [Number],
-        nonBinaryCount: Number,
-        nonBinaryAges: [Number],
-        relationshipToChildren: String,
-        schoolDistrict: String,
-        schools: [String]
-    },
-    otherAdults: [
-        {
-            adultFName: String,
-            adultMiddleInitial: String,
-            adultLName: String,
-            adultGender: String,
-            adultAge: Number,
-            relationshipToAdult: String,
+        homeless: {
+            type: Boolean,
+            default: false,
+            required: true
         },
-    ],
-    homeAddress: {
-        homeStreet1: String,
-        homeStreet2: String,
-        homeCity: String,
-        homeState: String,
-        homeZip: Number
-    },
-    landLord: {
-        fullName: String,
-        landLordPhone: String,
-        verified: Boolean,
-        landLordAddress: {
-            landLordStreet1: String,
-            landLordStreet2: String,
-            landLordCity: String,
-            landLordZip: Number
-        }
-    },
-    houseHoldIncome: {
-        totalHouseholdIncome: Number,
-        totalSupportMembers: Number,
-        singleMaleHeadOfHousehold: Boolean,
-        singleFemaleHeadOfHousehold: Boolean,
-    },
-    race: {
-        americanIndianOrAlaskaNative: Number,
-        whiteOrCaucasian: Number,
-        asianAsianAmerican: Number,
-        otherRace: Number,
-        blackAfricanAmerican: Number,
-        multiRacial: Number,
-        latinoAmericanHispanic: Number,
-        unknown: Number,
-        nativeAmericanPacificIslander: Number
+        durationXpHomelessness: {
+            type: Number,
+            whyHomeless: {
+                type: String,
+                tempAddress: {
+                    street1: {
+                        type: String,
+                        street2: {
+                            type: String
+                        },
+                        city: {
+                            type: String,
+                            state: {
+                                type: String,
+                                zip: {
+                                    type: String,
+                                    required: function() {
+                                        return applicantSchema.get('homeless').type;
+                                    },
+                                },
+                            },
+                            children: {
+                                hasChildrenUnder18: {
+                                    type: Boolean
+                                },
+                                boysCount: {
+                                    type: Number
+                                },
+                                boysAges: [{
+                                    type: Number
+                                }],
+                                girlsCount: {
+                                    type: Number
+                                },
+                                girlsAges: [{
+                                    type: Number
+                                }],
+                                nonBinaryCount: {
+                                    type: Number
+                                },
+                                nonBinaryAges: [{
+                                    type: Number
+                                }],
+                                relationshipToChildren: {
+                                    type: String
+                                },
+                                schoolDistrict: {
+                                    type: String
+                                },
+                                schools: [{
+                                    type: String
+                                }],
+                            },
+                            otherAdults: [{
+                                adultFName: {
+                                    type: String
+                                },
+                                adultMiddleInitial: {
+                                    type: String
+                                },
+                                adultLName: {
+                                    type: String
+                                },
+                                adultGender: {
+                                    type: String
+                                },
+                                adultAge: {
+                                    type: Number
+                                },
+                                relationshipToAdult: {
+                                    type: String
+                                },
+                            }, ],
+                            homeAddress: {
+                                homeStreet1: {
+                                    type: String
+                                },
+                                homeStreet2: {
+                                    type: String
+                                },
+                                homeCity: {
+                                    type: String
+                                },
+                                homeState: {
+                                    type: String
+                                },
+                                homeZip: {
+                                    type: Number
+                                },
+                            },
+                            landLord: {
+                                fullName: {
+                                    type: String
+                                },
+                                landLordPhone: {
+                                    type: String
+                                },
+                                verified: {
+                                    type: Boolean
+                                },
+                                landLordAddress: {
+                                    landLordStreet1: {
+                                        type: String
+                                    },
+                                    landLordStreet2: {
+                                        type: String
+                                    },
+                                    landLordCity: {
+                                        type: String
+                                    },
+                                    landLordZip: {
+                                        type: Number
+                                    },
+                                },
+                            },
+                            houseHoldIncome: {
+                                totalHouseholdIncome: {
+                                    type: Number
+                                },
+                                totalSupportMembers: {
+                                    type: Number
+                                },
+                                singleMaleHeadOfHousehold: {
+                                    type: Boolean
+                                },
+                                singleFemaleHeadOfHousehold: {
+                                    type: Boolean
+                                },
+                            },
+                            race: {
+                                americanIndianOrAlaskaNative: {
+                                    type: Number
+                                },
+                                whiteOrCaucasian: {
+                                    type: Number
+                                },
+                                asianAsianAmerican: {
+                                    type: Number
+                                },
+                                otherRace: {
+                                    type: Number
+                                },
+                                blackAfricanAmerican: {
+                                    type: Number
+                                },
+                                multiRacial: {
+                                    type: Number
+                                },
+                                latinoAmericanHispanic: {
+                                    type: Number
+                                },
+                                unknown: {
+                                    type: Number
+                                },
+                                nativeAmericanPacificIslander: {
+                                    type: Number
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
     },
 });
 
-// this is required with next.js so, we don't get an error when next.js tries to create the model again and again
+// function
+
+
+
+
+
 const Applicant = models.Applicant || model('Applicant', applicantSchema, process.env.MONGO_DB_COL);
 export default Applicant;
-// module.exports = { Applicant };
+
+console.log('Applicant model loaded')
+console.log(Applicant.schema.get('homeless'));

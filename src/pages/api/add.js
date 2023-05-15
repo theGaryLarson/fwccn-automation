@@ -10,8 +10,11 @@ export default async function addApplicant(req, res) {
     await connectMongo();
     console.log('CONNECTED TO MONGO');
     console.log('CREATING DOCUMENT FOR ' + req.body.data.fName.toUpperCase());
+
+    // TODO: Add validation: https://mongoosejs.com/docs/validation.html
     const applicant = await Applicant.create(req.body.data);
     console.log('CREATED DOCUMENT');
     res.json(applicant);
 
 }
+
