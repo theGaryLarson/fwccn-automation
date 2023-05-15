@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
-import {usePrevious} from "../lib/previous";
+import {usePrevious} from "../lib/util";
+import { useRef } from "react";
 import styles from "./applicant_form/ApplicantForm.module.css";
 import style from "./ChildComponent.module.css"
 
@@ -58,6 +59,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
 
             if (!newValue) {
                 // Clear the kids data when there are no kids living at the residence
+                setChildren([])
                 onComponentInputChange({
                     target: {
                         name: "children",
@@ -125,7 +127,6 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
         });
     };
 
-
     const handleRemoveKid = (index) => {
         const updatedChildren = [...children];
         updatedChildren.splice(index, 1);
@@ -157,7 +158,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                     <option value={'true'}>Yes</option>
                 </select>
             </div>
-            {hasChildrenUnder18 && <div>
+            {hasChildrenUnder18 &&  (<div id='childElements'>
                 {children.map((child, index) => (
                     <div key={index}>
                         <div className={style.childContainer}>
@@ -230,7 +231,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                         Add Child
                     </button>
                 </div>
-            </div>}
+            </div>)}
         </div>
     );
 }
