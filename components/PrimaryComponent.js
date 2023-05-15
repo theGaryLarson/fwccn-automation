@@ -5,7 +5,6 @@ import HomelessnessComponent from "./HomelessComponent";
 
 // applicant contact and identifying information
 export default function PrimaryComponent({ formData, onComponentInputChange }) {
-
     const handleInputChange = (event) => {
         onComponentInputChange(event)
     }
@@ -116,7 +115,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                 </div>
             </div>
             <HomelessnessComponent formData={formData} onComponentInputChange={handleInputChange}/>
-            {formData.homelessness.isHomeless === 'false' && <AddressComponent title="Home" formData={formData} onComponentInputChange={handleInputChange}/>}
+            {(formData.homelessness.isHomeless === "false" || formData.homelessness.isHomeless === false) && ( <AddressComponent title="Home" formData={formData} onComponentInputChange={handleInputChange}/>)}
         </div>
     );
 }
