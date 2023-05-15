@@ -1,11 +1,27 @@
 import styles from "./applicant_form/ApplicantForm.module.css";
+import {useState} from "react";
 
 export default function LandLordComponent({ formData, onComponentInputChange }) {
 
     const handleInputChange = (event) => {
         onComponentInputChange(event)
     }
+    const [isVerified, setIsVerified] = useState(false);
 
+    const handleCheckboxChange = () => {
+        setIsVerified(!isVerified);
+        const updatedLandlord = {
+            ...formData.landLord,
+            verified: !isVerified,
+        }
+        onComponentInputChange({
+            target: {
+                name: 'landLord',
+                value: updatedLandlord
+            }
+
+        })
+    };
     return (
         <div>
             <h1>Landlord Information</h1>
@@ -81,6 +97,20 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                     onChange={handleInputChange}
                     required
                 />
+            </div>
+            <div className={styles.inputWrapper}>
+                <input
+                    type="checkbox"
+                    id="landLordIsVerified"
+                    className="hidden"
+                    onChange={handleCheckboxChange}
+                />
+                <label htmlFor="landLordIsVerified" className="flex items-center mt-4 select-none">
+                <span className={`mr-2 border rounded border-gray-400 bg-white w-5 h-5 flex items-center justify-center ${isVerified ? 'bg-green-500' : ''}`}>
+                    {isVerified && '✓'}
+                </span>
+                    <span className='font-bold'>Verified</span>
+                </label>
             </div>
         </div>
     );
