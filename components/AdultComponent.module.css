@@ -18,7 +18,7 @@
     color: red;
 }
 
-.addAdultButton {
+.addButton {
     width: 100%;
     background: green;
     color: white;
@@ -30,7 +30,7 @@
 
 }
 
-.addAdultButton:hover {
+.addButton:hover {
     width: 100%;
     background: lightgreen;
     color: green;
