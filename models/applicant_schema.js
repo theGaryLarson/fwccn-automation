@@ -1,128 +1,390 @@
-import {Schema, model, models} from 'mongoose';
-// const mongoose = require('mongoose');
-// const Schema = mongoose.Schema;
-// const model = mongoose.model;
-// const models = mongoose.models;
+import {
+    Schema,
+    model,
+    models
+} from 'mongoose';
+
 const applicantSchema = new Schema({
-    timestamp: String,
-    // 4 states PENDING, APPROVED, DENIED, OVERRIDE-APPROVED
-    status: { type: String, default: 'PENDING' },
-    referredBy: { type: String, default: '' },
-    lastHelpDate: Date,
+    timestamp: {
+        type: String,
+        match: [/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/, 'Format must be YYYY-MM-DD HH:MM:SS'],
+        required: true
+    },
+    status: {
+        type: String,
+        enum: ['PENDING', 'APPROVED', 'DENIED', 'APPROVED-OVERRIDE'],
+        default: 'PENDING',
+        required: true
+    },
+    interviewer: {
+        type: String,
+        required: true
+    },
+    referredBy: {
+        type: String,
+        default: '',
+    },
     helpRequested: {
-        rent: Boolean,
-        gasoline: Boolean,
-        busTicket: Boolean,
-        food: Boolean
+        type: String,
+        enum: ['rent', 'gasoline', 'busTicket'],
+        required: true
     },
-    licensePlate: String,
-    reasonForNeed: String,
-    futurePlans: String,
-    fName: String,
-    middleInitial: String,
-    lName: String,
-    otherLastNames: [String],
-    gender: String,
-    age: Number,
-    phone: String,
+    licensePlate: {
+        type: String
+    },
+    licensePlateState: {
+        type: String,
+        match: [/[A-Z]{2}/, 'Must enter 2-letter abbreviation for the state']
+    },
+    reasonForNeed: {
+        type: String,
+        required: true
+    },
+    futurePlans: {
+        type: String,
+        required: true
+    },
+    fName: {
+        type: String,
+        minlength: [2, "Your first name must be at least 2 characters long."],
+        required: true,
+    },
+    middleInitial: {
+        type: String
+    },
+    lName: {
+        type: String,
+        required: true,
+    },
+    applicantGender: {
+        type: String,
+        required: true
+    },
+    otherNames: {
+        hasOtherNames: {
+            type: Boolean,
+            required: true
+        },
+        additionalNames:[{
+            otherFirstName: {
+                type: String
+            },
+            otherMiddleInitial: {
+                type: String
+            },
+            otherLastName: {
+                type: String
+            }
+        }],
+    },
+    applicantAge: {
+        type: Number,
+        min: [18, "You must be 18 years or older to apply"],
+        validate: { // custom validator
+            validator: function(value) {
+                return !isNaN(value);
+            },
+            message: "Your age must be a number",
+        } // end validate
+    },
+    phone: {
+        type: Number,
+        match: [/^[0-9]{10}/, 'Enter 10 digit phone number exclude any additional characters']
+    },
     income: {
-        currentMonthlyIncome: Number,
-        monthlyIncomeLast12Months: Number,
-        totalHouseholdMembersIncomeSupports: Number,
+        currentMonthlyIncome: {
+            type: Number,
+            match: [/^\d*[1-9]\d*$/, 'Must enter a positive number'],
+            required: true
+        },
+        monthlyIncomeLast12Months: {
+            type: Number,
+            match: [/^\d*[1-9]\d*$/, 'Must enter a positive number'],
+            required: true
+        },
+        totalHouseholdMembersIncomeSupports: {
+            type: Number,
+            match: [/^\d*[0-9]\d*$/, 'Must enter a non-negative number'],
+            required: true
+        },
     },
-    disabled: Boolean,
+    disabled: {
+        type: Boolean,
+        required: true
+    },
     idSource: {
-        driverLicenseOrId: String,
-        expDate: Date,
-        socialSecLastFour: Number
+        driverLicenseOrId: {
+            type: String,
+            required: true
+        },
+        expDate: {
+            type: Date,
+            required: true
+        },
+        idStateIssued: {
+            type: String,
+            match: /[A-Z]{2}/
+        },
+        socialSecLastFour: {
+            type: Number,
+            match: [/[0-9]{4}/, 'Enter only the last 4 digits of applicant\'s social security number'],
+            required: true
+        },
     },
     homelessness: {
-        homeless: { type: Boolean, default: false },
-        durationXpHomelessness: Number,
-        whyHomeless: String,
-        tempAddress: {
-            street1: String,
-            street2: String,
-            city: String,
-            state: String,
-            zip: String
-        }
-    },
-    children: {
-        hasChildrenUnder18: Boolean,
-        boysCount: Number,
-        boysAges: [Number],
-        girlsCount: Number,
-        girlsAges: [Number],
-        nonBinaryCount: Number,
-        nonBinaryAges: [Number],
-        relationshipToChildren: String,
-        schoolDistrict: String,
-        schools: [String]
-    },
-    otherAdults: [
-        {
-            adultFName: String,
-            adultMiddleInitial: String,
-            adultLName: String,
-            adultGender: String,
-            adultAge: Number,
-            relationshipToAdult: String,
+        isHomeless: {
+            type: Boolean,
+            default: false,
+            required: true
         },
-    ],
-    homeAddress: {
-        homeStreet1: String,
-        homeStreet2: String,
-        homeCity: String,
-        homeState: String,
-        homeZip: Number
-    },
-    landLord: {
-        fullName: String,
-        landLordPhone: String,
-        verified: Boolean,
-        landLordAddress: {
-            landLordStreet1: String,
-            landLordStreet2: String,
-            landLordCity: String,
-            landLordZip: Number
-        }
-    },
-    houseHoldIncome: {
-        totalHouseholdIncome: Number,
-        totalSupportMembers: Number,
-        singleMaleHeadOfHousehold: Boolean,
-        singleFemaleHeadOfHousehold: Boolean,
-    },
-    race: {
-        americanIndianOrAlaskaNative: Number,
-        whiteOrCaucasian: Number,
-        asianAsianAmerican: Number,
-        otherRace: Number,
-        blackAfricanAmerican: Number,
-        multiRacial: Number,
-        latinoAmericanHispanic: Number,
-        unknown: Number,
-        nativeAmericanPacificIslander: Number
-    },
-    // two objects to store pdf documents
-    // contentType refers to MIME type which is 'application/pdf'
-    leaseDocument: {
-        name: String,
-        leaseSubmitDate: Date,
-        data: Buffer, // Field to store lease document as binary data
-        contentType: String, // MIME type of the document (e.g., 'application/pdf')
-    },
+        durationXpHomelessness: {
+            type: Number,
+            match: [/^\d*[0-9]\d*$/, 'Must enter a non-negative number']
+        },
+        whyHomeless: {
+            type: String,
+            required: true
+        },
+        tempAddress: {
+            street1: {
+                type: String,
+            },
+            street2: {
+                type: String
+            },
+            city: {
+                type: String,
+            },
+            state: {
+                type: String,
+                match: [/[A-Z]{2}/, 'Enter 2-letter abbrevation for state'],
+            },
+            zip: {
+                type: String,
+                match: [/^\d{5}(?:-\d{4})?$/, 'Enter zip code in the following format ##### or #####-####']
+            },
+        },
+        children: {
+            hasChildrenUnder18: {
+                type: Boolean,
+                required: true
+            },
+            kids: {
+                type: [
+                    {
+                        gender: {
+                            type: String,
+                            required: function() {
+                                return this.children.hasChildrenUnder18 === true;
+                            }
+                        },
+                        age: {
+                            type: Number,
+                            required: function() {
+                                return this.children.hasChildrenUnder18 === true;
+                            }
+                        },
+                        school: {
+                            type: String
+                        },
+                        schoolDistrict: {
+                            type: String
+                        },
+                        relationshipToApplicant: {
+                            type: String,
+                            required: function() {
+                                return this.children.hasChildrenUnder18 === true;
+                            }
+                        }
+                    }
+                ]
+            },
+            boysCount: {
+                type: Number,
+                match: [/^\d*[0-9]\d*$/, 'Must enter a non-negative number'],
 
-    paystubDocument: {
-        name: String,
-        payStubSubmitDate: Date,
-        data: Buffer, // Field to store paystub document as binary data
-        contentType: String, // MIME type of the document (e.g., 'application/pdf')
+            },
+            boysAges: [{
+                type: Number,
+                match: [/^\d*[0-9]\d*$/, 'Must enter a non-negative number'],
+            }],
+            girlsCount: {
+                type: Number,
+                match: [/^\d*[0-9]\d*$/, 'Must enter a non-negative number'],
+            },
+            girlsAges: [{
+                type: Number,
+                match: [/^\d*[0-9]\d*$/, 'Must enter a non-negative number'],
+            }],
+            relationToApplicant: [{
+                type: String
+            }],
+            schoolDistrict: [{
+                type: String
+            }],
+            schools: [{
+                type: String
+            }],
+        },
+        otherAdults: [{
+            isOtherAdultsAtResidence: {
+                type: Boolean,
+                required: true
+            },
+            adults: {
+                type: [
+                    {
+                        adultFName: {
+                            type: String,
+                            required: function () {
+                                return this.isOtherAdultsAtResidence === true;
+                            }
+                        },
+                        adultMiddleInitial: {
+                            type: String
+                        },
+                        adultLName: {
+                            type: String,
+                            required: function () {
+                                return this.isOtherAdultsAtResidence === true;
+                            }
+                        },
+                        adultGender: {
+                            type: String,
+                            required: function () {
+                                return this.isOtherAdultsAtResidence === true;
+                            }
+                        },
+                        adultAge: {
+                            type: Number,
+                            required: function () {
+                                return this.isOtherAdultsAtResidence === true;
+                            }
+                        },
+                        relationshipToAdult: {
+                            type: String,
+                            required: function () {
+                                return this.isOtherAdultsAtResidence === true;
+                            }
+                        }
+                    }
+                ]
+            }
+
+        }],
+        homeAddress: {
+            homeStreet1: {
+                type: String,
+                required: true
+            },
+            homeStreet2: {
+                type: String
+            },
+            homeCity: {
+                type: String,
+                required: true
+            },
+            homeState: {
+                type: String,
+                match: [/[A-Z]{2}/, 'Enter 2-letter abbreviation for state'],
+                required: true
+            },
+            homeZip: {
+                type: Number,
+                match: [/^\d{5}(?:-\d{4})?$/, 'Enter zip code in the following format ##### or #####-####']
+            },
+        },
+        landLord: {
+            fullName: {
+                type: String
+            },
+            landLordPhone: {
+                type: String,
+                match: [/^[0-9]{10}/, 'Enter 10 digit phone number. Exclue any additional characters'],
+            },
+            verified: {
+                type: Boolean
+            },
+            landLordAddress: {
+                landLordStreet1: {
+                    type: String
+                },
+                landLordStreet2: {
+                    type: String
+                },
+                landLordCity: {
+                    type: String
+                },
+                landLordZip: {
+                    type: Number,
+                    match: [/^\d{5}(?:-\d{4})?$/, 'Enter zip code in the following format ##### or #####-####']
+                },
+            },
+        },
+        houseHoldIncome: {
+            totalHouseholdIncome: {
+                type: Number,
+                match: [/^\d*[0-9]\d*$/, 'Must enter a non-negative number'],
+            },
+            totalSupportMembers: {
+                type: Number,
+                match: [/^\d*[0-9]\d*$/, 'Must enter a non-negative number'],
+            },
+            singleMaleHeadOfHousehold: {
+                type: Boolean,
+                required: true
+            },
+            singleFemaleHeadOfHousehold: {
+                type: Boolean,
+                required: true
+            },
+        },
+        race: {
+            americanIndianOrAlaskaNative: {
+                type: Number,
+                match: [/^\d*[0-9]\d*$/, 'Must enter a non-negative number'],
+            },
+            whiteOrCaucasian: {
+                type: Number,
+                match: [/^\d*[0-9]\d*$/, 'Must enter a non-negative number'],
+            },
+            asianAsianAmerican: {
+                type: Number,
+                match: [/^\d*[0-9]\d*$/, 'Must enter a non-negative number'],
+            },
+            otherRace: {
+                type: Number,
+                match: [/^\d*[0-9]\d*$/, 'Must enter a non-negative number'],
+            },
+            blackAfricanAmerican: {
+                type: Number,
+                match: [/^\d*[0-9]\d*$/, 'Must enter a non-negative number'],
+            },
+            multiRacial: {
+                type: Number,
+                match: [/^\d*[0-9]\d*$/, 'Must enter a non-negative number'],
+            },
+            latinoAmericanHispanic: {
+                type: Number,
+                match: [/^\d*[0-9]\d*$/, 'Must enter a non-negative number'],
+            },
+            unknown: {
+                type: Number,
+                match: [/^\d*[0-9]\d*$/, 'Must enter a non-negative number'],
+            },
+            nativeAmericanPacificIslander: {
+                type: Number,
+                match: [/^\d*[0-9]\d*$/, 'Must enter a non-negative number'],
+            },
+        },
     },
 });
 
-// this is required with next.js so, we don't get an error when next.js tries to create the model again and again
+// function
+
+
+
+
+
 const Applicant = models.Applicant || model('Applicant', applicantSchema, process.env.MONGO_DB_COL);
 export default Applicant;
-// module.exports = { Applicant };
