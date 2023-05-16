@@ -57,7 +57,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                 </div>
                 <h1>Temporary Address</h1>
                 <div className={styles.inputWrapper}>
-                    <label htmlFor="street1">Street 1</label>
+                    <label htmlFor="street1">Street 1:</label>
                     <input
                         type="text"
                         id="street1"
@@ -70,7 +70,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                     />
                 </div>
                 <div className={styles.inputWrapper}>
-                    <label htmlFor="street2">Street 2 (optional)</label>
+                    <label htmlFor="street2">Street 2:</label>
                     <input
                         type="text"
                         id="street2"
@@ -83,7 +83,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                     />
                 </div>
                 <div className={styles.inputWrapper}>
-                    <label htmlFor="city">City</label>
+                    <label htmlFor="city">City:</label>
                     <input
                         type="text"
                         id="city"
@@ -96,7 +96,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                     />
                 </div>
                 <div className={styles.inputWrapper}>
-                    <label htmlFor="state">State</label>
+                    <label htmlFor="state">State:</label>
                     <input
                         type="text"
                         id="state"
@@ -109,7 +109,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                     />
                 </div>
                 <div className={styles.inputWrapper}>
-                    <label htmlFor="zip">ZIP code</label>
+                    <label htmlFor="zip">ZIP code:</label>
                     <input
                         type="text"
                         id="zip"
