@@ -3,12 +3,13 @@ const form_data_defaults = {
     // 4 states PENDING, APPROVED, DENIED, APPROVED-OVERRIDE
     status: 'PENDING',
     referredBy: '',
+    interviewer: 'Important role model like person',
     lastHelpDate: '',
     helpRequested: 'rent',
     licensePlate: '',
     licensePlateState: '',
     reasonForNeed: '',
-    futurePlans: '',
+    futurePlans: 'responsible stuff',
     fName: '',
     middleInitial: '',
     lName: '',
@@ -22,8 +23,8 @@ const form_data_defaults = {
             }
         ]
     },
-    gender: '',
-    age: '',
+    applicantGender: 'male',
+    applicantAge: '44',
     phone: '',
     income: {
         currentMonthlyIncome: '',
@@ -64,7 +65,7 @@ const form_data_defaults = {
         girlsCount: '',
         boysAges: [],
         girlsAges: [],
-        relationshipsToApplicant: [],
+        relationsToApplicant: [],
         schoolDistricts: [],
         schools: []
     },
