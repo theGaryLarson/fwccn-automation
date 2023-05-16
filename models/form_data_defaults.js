@@ -2,8 +2,8 @@ const form_data_defaults = {
     timestamp: String,
     // 3 states PENDING, APPROVED, DENIED
     status: 'APPROVED',
+    interviewer: '',
     referredBy: '',
-    lastHelpDate: '',
     helpRequested: {
         rent: false,
         gasoline: false,
@@ -15,6 +15,7 @@ const form_data_defaults = {
     fName: '',
     middleInitial: '',
     lName: '',
+    applicantGender: '',
     otherNames: {
         hasOtherNames: false,
         additionalNames: [
@@ -35,12 +36,13 @@ const form_data_defaults = {
     },
     disabled: false,
     idSource: {
-        driverLicenseOrId: 'Driver License',
-        expDate: '05-01-2025',
-        socialSecLastFour: 1234,
+        driverLicenseOrId: '',
+        expDate: '',
+        idStateIssued: '',
+        socialSecLastFour: ''
     },
     homelessness: {
-        homeless: true,
+        isHomeless: true,
         durationXpHomelessness: 0,
         whyHomeless: '',
         tempAddress: {
@@ -57,8 +59,6 @@ const form_data_defaults = {
         boysAges: [0],
         girlsCount: 0,
         girlsAges: [0],
-        nonBinaryCount: 0,
-        nonBinaryAges: [0],
         relationshipToChildren: '',
         schoolDistrict: '',
         schools: ['']
