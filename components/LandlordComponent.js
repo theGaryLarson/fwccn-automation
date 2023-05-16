@@ -12,7 +12,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
         setIsVerified(!isVerified);
         const updatedLandlord = {
             ...formData.landLord,
-            verified: isVerified,
+            verified: !isVerified,
         }
         onComponentInputChange({
             target: {
@@ -31,7 +31,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                     type="text"
                     id="landlord-full-name"
                     name="fullName"
-                    placeholder="John Smith"
+                    placeholder="Zhāng Jìng"
                     value={formData.landLord.fullName}
                     onChange={handleInputChange}
                     required
@@ -43,7 +43,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                     type="tel"
                     id="landlord-phone"
                     name="landLordPhone"
-                    placeholder="123-456-7890"
+                    placeholder="1234567890"
                     value={formData.landLord.landLordPhone}
                     pattern = "^[0-9]{10}$"
                     title = "Enter phone numbers in the following format ##########"
@@ -106,8 +106,8 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                     onChange={handleCheckboxChange}
                 />
                 <label htmlFor="landLordIsVerified" className="flex items-center mt-4 select-none">
-                <span className={` ${isVerified ? 'bg-green-500' : ''} mr-2 border rounded border-gray-400 bg-white w-5 h-5 flex items-center justify-center `}>
-                    {!isVerified && '✓'}
+                <span className={` ${!isVerified ? 'bg-green-500' : ''} mr-2 border rounded border-gray-400 bg-white w-5 h-5 flex items-center justify-center `}>
+                    {isVerified && '✓'}
                 </span>
                     <span className='font-bold'>Verified</span>
                 </label>
