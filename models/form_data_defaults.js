@@ -3,7 +3,7 @@ const form_data_defaults = {
     // 4 states PENDING, APPROVED, DENIED, APPROVED-OVERRIDE
     status: 'PENDING',
     referredBy: '',
-    interviewer: 'Important role model like person',
+    interviewer: '',
     lastHelpDate: '',
     helpRequested: 'rent',
     licensePlate: '',
