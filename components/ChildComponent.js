@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {usePrevious} from "../lib/util";
+import {ordinalNumber, usePrevious} from "../lib/util";
 import styles from "./applicant_form/ApplicantForm.module.css";
 import style from "./ChildComponent.module.css"
 
@@ -160,8 +160,8 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
             {hasChildrenUnder18 &&  (<div id='childElements'>
                 {children.map((child, index) => (
                     <div key={index}>
-                        <div className={style.childContainer}>
-                            <h2 className={`${style.childHeader} font-bold`}>Child {index + 1} At Residence</h2>
+                        <div className={'flex items-center'}>
+                            <h2 className={`${style.childHeader} font-bold`}>{ordinalNumber(index)} Child At Residence</h2>
                                 <button className={ `${style.removeButton} `} type="button" onClick={() => handleRemoveKid(index)}>
                                     Remove Child
                                 </button>
@@ -180,7 +180,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                             </select>
                         </div>
                         <div className={styles.inputWrapper}>
-                            <label htmlFor={`kidAge-${index}`}>Age</label>
+                            <label htmlFor={`kidAge-${index}`}>Age:</label>
                             <input
                                 type="number"
                                 id={`kidAge-${index}`}
@@ -191,7 +191,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                             />
                         </div>
                         <div className={styles.inputWrapper}>
-                            <label htmlFor={`kidSchool-${index}`}>School</label>
+                            <label htmlFor={`kidSchool-${index}`}>School:</label>
                             <input
                                 type="text"
                                 id={`kidSchool-${index}`}
@@ -202,7 +202,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                             />
                         </div>
                         <div className={styles.inputWrapper}>
-                            <label htmlFor={`kidSchoolDistrict-${index}`}>School District</label>
+                            <label htmlFor={`kidSchoolDistrict-${index}`}>School District:</label>
                             <input
                                 type="text"
                                 id={`kidSchoolDistrict-${index}`}
@@ -218,6 +218,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                                 type="text"
                                 id={`kidRelationship-${index}`}
                                 name={`relationshipToApplicant`}
+                                className={'mb-4'}
                                 value={child.relationshipToApplicant}
                                 onChange={(event) => handleInputChange(event, index)}
                                 required
@@ -225,11 +226,11 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                         </div>
                     </div>
                 ))}
-                <div className={styles.inputWrapper}>
-                    <button className={style.addButton} type="button" onClick={handleAddKid}>
-                        Add Child
-                    </button>
-                </div>
+
+                <button className={styles.addButton} type="button" onClick={handleAddKid}>
+                    Add Child
+                </button>
+
             </div>)}
         </div>
     );
