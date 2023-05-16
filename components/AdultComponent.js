@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./applicant_form/ApplicantForm.module.css";
-import style from "./AdultComponent.module.css"
+import {ordinalNumber} from "../lib/util";
 
 export default function AdultComponent({ formData, onComponentInputChange }) {
     const [adultCount, setAdultCount] = useState(0);
@@ -123,8 +123,8 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                     {formData.otherAdults.adults.map((adult, index) => (
                         <div key={index}>
                             <div className={'flex items-center'}>
-                                <h2 className={'mr-36 font-bold'}>Adult {index + 1} At Residence</h2>
-                                <button className={`${style.removeButton} `} type="button" onClick={() => handleRemoveAdult(index)}>
+                                <h2 className={'mr-36 font-bold'}>{ordinalNumber(index)} Additional Adult</h2>
+                                <button className={`${styles.removeButton} `} type="button" onClick={() => handleRemoveAdult(index)}>
                                     Remove Adult
                                 </button>
                             </div>
@@ -202,7 +202,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                             </div>
                         </div>
                     ))}
-                <button className={`${style.addAdultButton}`} type="button" onClick={handleAddAdult}>
+                <button className={`${styles.addButton}`} type="button" onClick={handleAddAdult}>
                     Add Adult
                 </button>
 
