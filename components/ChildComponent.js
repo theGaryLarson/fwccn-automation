@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react";
 import {usePrevious} from "../lib/util";
-import { useRef } from "react";
 import styles from "./applicant_form/ApplicantForm.module.css";
 import style from "./ChildComponent.module.css"
 
@@ -34,7 +33,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                 boysAges: boys.map((boy) => boy.age),
                 girlsCount: girls.length,
                 girlsAges: girls.map((girl) => girl.age),
-                relationshipsToApplicant: kids.map((kid) => kid.relationshipToApplicant),
+                relationsToApplicant: kids.map((kid) => kid.relationshipToApplicant),
                 // possibly wrap these in new Set(...) to avoid duplication
                 schools: kids.map((kid) => kid.school),
                 schoolDistricts: kids.map((kid) => kid.schoolDistrict),
@@ -71,7 +70,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                             boysAges: [],
                             girlsCount: 0,
                             girlsAges: [],
-                            relationshipsToApplicant: [],
+                            relationsToApplicant: [],
                             schools: [],
                             schoolDistricts: [],
                         },
