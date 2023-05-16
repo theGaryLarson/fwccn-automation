@@ -3,7 +3,6 @@ import {
     model,
     models
 } from 'mongoose';
-import {ZCOOL_KuaiLe} from "next/dist/compiled/@next/font/dist/google";
 
 const applicantSchema = new Schema({
     timestamp: {
@@ -156,6 +155,30 @@ const applicantSchema = new Schema({
             hasChildrenUnder18: {
                 type: Boolean
             },
+            kids: [
+                {
+                    gender: {
+                        type: String,
+                        required: true
+                    },
+                    age: {
+                        type: Number,
+                        required: true
+                    },
+                    school: {
+                        type: String,
+                        required: true
+                    },
+                    schoolDistrict: {
+                        type: String,
+                        required: true
+                    },
+                    relationshipToApplicant: {
+                        type: String,
+                        required: true
+                    }
+                }
+            ],
             boysCount: {
                 type: Number
             },
@@ -168,35 +191,44 @@ const applicantSchema = new Schema({
              girlsAges: [{
                 type: Number
              }],
-             relationshipToChildren: {
+             relationToApplicant: [{
+                    type: String
+             }],
+             schoolDistrict: [{
                 type: String
-             },
-             schoolDistrict: {
-                type: String
-             },
+             }],
              schools: [{
                 type: String
              }],
         },
         otherAdults: [{
-            adultFName: {
-                type: String
+            isOtherAdultsAtResidence: {
+                type: Boolean,
+                required: true
             },
-            adultMiddleInitial: {
-                type: String
-            },
-            adultLName: {
-                type: String
-            },
-            adultGender: {
-                type: String
-            },
-            adultAge: {
-                type: Number
-            },
-            relationshipToAdult: {
-                type: String
-            },
+            adults: [
+                {
+                    adultFName: {
+                        type: String
+                    },
+                    adultMiddleInitial: {
+                        type: String
+                    },
+                    adultLName: {
+                        type: String
+                    },
+                    adultGender: {
+                        type: String
+                    },
+                    adultAge: {
+                        type: Number
+                    },
+                    relationshipToAdult: {
+                        type: String
+                    }
+                }
+            ]
+
         }],
         homeAddress: {
             homeStreet1: {
@@ -294,6 +326,3 @@ const applicantSchema = new Schema({
 
 const Applicant = models.Applicant || model('Applicant', applicantSchema, process.env.MONGO_DB_COL);
 export default Applicant;
-
-console.log('Applicant model loaded')
-console.log(Applicant.schema.get('homeless'));

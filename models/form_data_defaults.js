@@ -1,21 +1,17 @@
 const form_data_defaults = {
     timestamp: String,
-    // 3 states PENDING, APPROVED, DENIED
-    status: 'APPROVED',
-    interviewer: '',
+    // 4 states PENDING, APPROVED, DENIED, APPROVED-OVERRIDE
+    status: 'PENDING',
     referredBy: '',
-    helpRequested: {
-        rent: false,
-        gasoline: false,
-        busTicket: false,
-    },
-    licensePlate: 'FXV-1234',
-    reasonForNeed: 'My car broke down and I need to get to work.',
-    futurePlans: 'I am going to get a new job and save money for a new car.',
+    lastHelpDate: '',
+    helpRequested: 'rent',
+    licensePlate: '',
+    licensePlateState: '',
+    reasonForNeed: '',
+    futurePlans: '',
     fName: '',
     middleInitial: '',
     lName: '',
-    applicantGender: '',
     otherNames: {
         hasOtherNames: false,
         additionalNames: [
@@ -27,12 +23,12 @@ const form_data_defaults = {
         ]
     },
     gender: '',
-    age: 21,
-    phone: 0,
+    age: '',
+    phone: '',
     income: {
-        currentMonthlyIncome:  1234,
-        monthlyIncomeLast12Months: 1234,
-        totalHouseholdMembersIncomeSupports: 2,
+        currentMonthlyIncome: '',
+        monthlyIncomeLast12Months: '',
+        totalHouseholdMembersIncomeSupports: '',
     },
     disabled: false,
     idSource: {
@@ -42,8 +38,8 @@ const form_data_defaults = {
         socialSecLastFour: ''
     },
     homelessness: {
-        isHomeless: true,
-        durationXpHomelessness: 0,
+        isHomeless: false,
+        durationXpHomelessness: '',
         whyHomeless: '',
         tempAddress: {
             street1: '',
@@ -55,29 +51,41 @@ const form_data_defaults = {
     },
     children: {
         hasChildrenUnder18: false,
-        boysCount: 0,
-        boysAges: [0],
-        girlsCount: 0,
-        girlsAges: [0],
-        relationshipToChildren: '',
-        schoolDistrict: '',
-        schools: ['']
+        kids: [
+            {
+                gender: 'female',
+                age: '',
+                school: '',
+                schoolDistrict: '',
+                relationshipToApplicant: ''
+            }
+        ],
+        boysCount: '',
+        girlsCount: '',
+        boysAges: [],
+        girlsAges: [],
+        relationToApplicant: [],
+        schoolDistricts: [],
+        schools: []
     },
-    otherAdults: [
-        {
-            adultFName: '',
-            adultMiddleInitial: '',
-            adultLName: '',
-            adultGender: '',
-            adultAge: 0,
-            relationshipToAdult: '',
-        },
-    ],
+    otherAdults: {
+        isOtherAdultsAtResidence: false,
+        adults: [
+            {
+                adultFName: '',
+                adultMiddleInitial: '',
+                adultLName: '',
+                adultGender: '',
+                adultAge: '',
+                relationshipToAdult: '',
+            }
+        ]
+    },
     homeAddress: {
         homeStreet1: '',
         homeStreet2: '',
         homeCity: '',
-        homeZip: 0
+        homeZip: ''
     },
     landLord: {
         fullName: '',
@@ -87,12 +95,12 @@ const form_data_defaults = {
             landLordStreet1: '',
             landLordStreet2: '',
             landLordCity: '',
-            landLordZip: 0
+            landLordZip: ''
         }
     },
     houseHoldIncome: {
-        totalHouseholdIncome: 0,
-        totalSupportMembers: 0,
+        totalHouseholdIncome: '',
+        totalSupportMembers: '',
         singleMaleHeadOfHousehold: false,
         singleFemaleHeadOfHousehold: false,
     },
