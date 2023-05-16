@@ -94,6 +94,18 @@ function ApplicantForm({ databaseType}) {
         <div className={"flex min-h-screen flex-col items-center justify-between p-4"}>
             <form onSubmit={handleSubmit}>
                 <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
+                    <label htmlFor='interviewer'>Interviewer Name:</label>
+                    <input
+                        type='text'
+                        id='interviewer'
+                        name='interviewer'
+                        placeholder='Interviewer first and last name'
+                        value={formData.interviewer}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </div>
+                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
                     <AssistanceNeedComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
                 <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
