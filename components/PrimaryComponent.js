@@ -49,6 +49,34 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                     required
                 />
             </div>
+
+            <div className={styles.inputWrapper}>
+                <label htmlFor={"applicantGender"}>Gender assigned at Birth:</label>
+                <select
+                    id={"applicantGender"}
+                    name="applicantGender"
+                    value={formData.applicantGender}
+                    onChange={handleInputChange}
+                    required
+                >
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                </select>
+            </div>
+
+            <div className={styles.inputWrapper}>
+                <label htmlFor={"applicantAge"}>Applicant Age:</label>
+                <input
+                    type="text"
+                    id={"applicantAge"}
+                    name="applicantAge"
+                    value={formData.applicantAge}
+                    onChange={handleInputChange}
+                    required
+                />
+            </div>
+
+
             <div className={styles.inputWrapper}>
                 <label htmlFor="applicant-phone">Phone Number:</label>
                 <input
