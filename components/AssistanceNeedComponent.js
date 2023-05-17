@@ -34,6 +34,16 @@ export default function  AssistanceNeedComponent({formData, onComponentInputChan
                 />
             </div>
             <div className={styles.inputWrapper}>
+                <label htmlFor='{`futurePlans`}'>Future Plans:</label>
+                <textarea
+                    id={`futurePlans`}
+                    name="futurePlans"
+                    placeholder="Brief summary of applicants plans for the future."
+                    value={formData.futurePlans}
+                    onChange={handleInputChange}
+                />
+            </div>
+            <div className={styles.inputWrapper}>
                 <label htmlFor='referred-by'>Referred By:</label>
                 <input
                     type='text'
