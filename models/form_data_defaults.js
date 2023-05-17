@@ -9,7 +9,7 @@ const form_data_defaults = {
     licensePlate: '',
     licensePlateState: '',
     reasonForNeed: '',
-    futurePlans: 'responsible stuff',
+    futurePlans: '',
     fName: '',
     middleInitial: '',
     lName: '',
@@ -23,8 +23,8 @@ const form_data_defaults = {
             }
         ]
     },
-    applicantGender: 'male',
-    applicantAge: '44',
+    applicantGender: 'Female',
+    applicantAge: '',
     phone: '',
     income: {
         currentMonthlyIncome: '',
