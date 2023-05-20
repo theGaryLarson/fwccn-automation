@@ -58,7 +58,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                     id="landlord-street1"
                     name="landLordStreet1"
                     placeholder="123 Main St"
-                    value={formData.landLord.landLordStreet1}
+                    value={formData.landLord.address.landLordStreet1}
                     onChange={handleInputChange}
                     required
                 />
@@ -70,7 +70,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                     id="landlord-street2"
                     name="landLordStreet2"
                     placeholder="Apt. 100"
-                    value={formData.landLord.landLordStreet2}
+                    value={formData.landLord.address.landLordStreet2}
                     onChange={handleInputChange}
                 />
             </div>
@@ -81,7 +81,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                     id="landlord-city"
                     name="landLordCity"
                     placeholder="Seattle"
-                    value={formData.landLord.landLordCity}
+                    value={formData.landLord.address.landLordCity}
                     onChange={handleInputChange}
                     required
                 />
