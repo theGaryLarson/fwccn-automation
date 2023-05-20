@@ -5,11 +5,23 @@ import styles from "./applicant_form/ApplicantForm.module.css";
 export default function HomelessnessComponent({formData, onComponentInputChange}) {
 
     const handleInputChange = (event) => {
-        onComponentInputChange(event)
+        const {name, value } = event.target;
+        let newValue = name === 'isHomeless' ? value === 'true' : value;
+        // Ensure durationXpHomelessness is not null and assign 0 if empty string
+        if (name === 'durationXpHomelessness') {
+            newValue = value === '' ? 0 : parseInt(value);
+        }
+        onComponentInputChange({
+            target: {
+                name,
+                value: newValue
+            }
+            }
+        )
     }
 
     function isHomeless() {
-        return formData.homelessness.isHomeless === "true";
+        return formData.homelessness.isHomeless === 'true';
     }
 
     return (
@@ -78,7 +90,6 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         placeholder="Apt. 100"
                         value={formData.homelessness.tempAddress.street2}
                         onChange={handleInputChange}
-                        required={formData.homelessness.isHomeless === 'true'}
                         disabled={formData.homelessness.isHomeless === 'false'}
                     />
                 </div>
