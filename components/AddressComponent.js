@@ -49,6 +49,21 @@ export default function AddressComponent({ title, formData, onComponentInputChan
                 />
             </div>
             <div className={styles.inputWrapper}>
+                <label htmlFor="homeState">State:</label>
+                <input
+                    type="text"
+                    id="city"
+                    name="homeState"
+                    placeholder="Tacoma"
+                    pattern = '[A-Z]{2}'
+                    title = 'Enter 2-letter state abbreviation'
+                    value={formData.homeAddress.homeState}
+                    onChange={handleInputChange}
+                    required
+                />
+            </div>
+
+            <div className={styles.inputWrapper}>
                 <label htmlFor="zipCode">Zip Code:</label>
                 <input
                     type="number"
