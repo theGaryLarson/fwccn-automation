@@ -125,7 +125,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                         id="identification"
                         name="driverLicenseOrId"
                         placeholder="WDGARSOLM197PD"
-                        value={formData.driverLicenseOrId}
+                        value={formData.idSource.driverLicenseOrId}
                         onChange={handleInputChange}
                         required
                     />
@@ -151,7 +151,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                         id="id-expiration-date"
                         name="expDate"
                         placeholder="WDLARSOGM197PD"
-                        value={formData.expDate}
+                        value={formData.idSource.expDate}
                         onChange={handleInputChange}
                         required
                     />
