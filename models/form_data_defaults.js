@@ -2,45 +2,44 @@ const form_data_defaults = {
     timestamp: String,
     // 4 states PENDING, APPROVED, DENIED, APPROVED-OVERRIDE
     status: 'PENDING',
-    referredBy: '',
-    interviewer: '',
-    lastHelpDate: '',
+    referredBy: 'Mercy House',
+    interviewer: 'Jane Doe',
     helpRequested: 'rent',
-    licensePlate: '',
-    licensePlateState: '',
-    reasonForNeed: '',
-    futurePlans: '',
-    fName: '',
-    middleInitial: '',
-    lName: '',
+    licensePlate: 'CBY-2970',
+    licensePlateState: 'WA',
+    reasonForNeed: 'behind on rent',
+    futurePlans: 'increased hours at work over summer',
+    fName: 'Zhang',
+    middleInitial: 'T',
+    lName: 'Jang',
     otherNames: {
-        hasOtherNames: false,
+        hasOtherNames: true,
         additionalNames: [
             {
-                otherFirstName: '',
+                otherFirstName: 'Bob',
                 otherMiddleInitial: '',
-                otherLastName: ''
+                otherLastName: 'Ross'
             }
         ]
     },
     applicantGender: 'Female',
-    applicantAge: '',
-    phone: '',
+    applicantAge: '33',
+    phone: '9876543210',
     income: {
-        currentMonthlyIncome: '',
-        monthlyIncomeLast12Months: '',
-        totalHouseholdMembersIncomeSupports: '',
+        currentMonthlyIncome: 850,
+        monthlyIncomeLast12Months: 16750,
+        totalHouseholdMembersIncomeSupports: 3,
     },
-    disabled: false,
+    disabled: true,
     idSource: {
-        driverLicenseOrId: '',
-        expDate: '',
-        idStateIssued: '',
-        socialSecLastFour: ''
+        driverLicenseOrId: 'WDLDOEJANEEE197PD',
+        expDate: '2028-10-05',
+        idStateIssued: 'WA',
+        socialSecLastFour: '9999'
     },
     homelessness: {
         isHomeless: false,
-        durationXpHomelessness: '',
+        durationXpHomelessness: 0, // fixme: this is required for schema to validate correctly
         whyHomeless: '',
         tempAddress: {
             street1: '',
@@ -53,16 +52,10 @@ const form_data_defaults = {
     children: {
         hasChildrenUnder18: false,
         kids: [
-            {
-                gender: 'female',
-                age: '',
-                school: '',
-                schoolDistrict: '',
-                relationshipToApplicant: ''
-            }
+
         ],
-        boysCount: '',
-        girlsCount: '',
+        boysCount: undefined,
+        girlsCount: undefined,
         boysAges: [],
         girlsAges: [],
         relationsToApplicant: [],
@@ -70,38 +63,40 @@ const form_data_defaults = {
         schools: []
     },
     otherAdults: {
-        isOtherAdultsAtResidence: false,
+        isOtherAdultsAtResidence: true,
         adults: [
                     {
-                        adultFName: '',
+                        adultFName: 'John',
                         adultMiddleInitial: '',
-                        adultLName: '',
-                        adultGender: '',
-                        adultAge: '',
-                        relationshipToAdult: '',
+                        adultLName: 'Doe',
+                        adultGender: 'Male',
+                        adultAge: '33',
+                        relationshipToAdult: 'spouse',
                     }
                 ]
     },
     homeAddress: {
-        homeStreet1: '',
-        homeStreet2: '',
-        homeCity: '',
-        homeZip: ''
-    },
+        homeStreet1: '123 Oak St.',
+        homeStreet2: 'Apt. 100',
+        homeCity: 'Tacoma',
+        homeState: 'WA',
+        homeZip: '98142'
+    }, //todo: add rent assistance
     landLord: {
-        fullName: '',
-        landLordPhone: '',
-        verified: false,
+        fullName: 'Nikki Rofland',
+        landLordPhone: '1234567890',
+        verified: true,
         address: {
-            landLordStreet1: '',
+            landLordStreet1: '321 Main St',
             landLordStreet2: '',
-            landLordCity: '',
-            landLordZip: ''
+            landLordCity: 'Seattle',
+            landLordState: 'WA',
+            landLordZip: '98101'
         }
     },
     houseHoldIncome: {
-        totalHouseholdIncome: '',
-        totalSupportMembers: '',
+        totalHouseholdIncome: '16750',
+        totalSupportMembers: '3',
         singleMaleHeadOfHousehold: false,
         singleFemaleHeadOfHousehold: false,
     },
@@ -109,7 +104,7 @@ const form_data_defaults = {
         americanIndianOrAlaskaNative: 0,
         whiteOrCaucasian: 0,
         asianAsianAmerican: 0,
-        otherRace: 0,
+        otherRace: 3,
         blackAfricanAmerican: 0,
         multiRacial: 0,
         latinoAmericanHispanic: 0,
