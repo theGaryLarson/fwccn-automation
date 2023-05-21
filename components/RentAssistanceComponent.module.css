@@ -1,0 +1,53 @@
+.addRemoveContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.addRemoveHeader {
+    margin: 0;
+    padding: 0;
+}
+
+.removeButton {
+    margin-left: auto;
+    font-weight: bold;
+    padding: 4px;
+    color:white;
+    background: red;
+    border-width: 1px;
+    border-color: red;
+    @apply rounded;
+}
+
+.removeButton:hover {
+    margin-left: auto;
+    font-weight: bold;
+    padding: 4px;
+    color: red;
+    background: lightcoral;
+    border-width: 1px;
+    border-color: red;
+    @apply rounded;
+}
+
+.addButton {
+    width: 100%;
+    background: green;
+    color: white;
+    font-weight: bold;
+    border-width: 1px;
+    border-color: green;
+    padding:4px;
+    @apply rounded
+
+}
+
+.addButton:hover {
+    width: 100%;
+    background: lightgreen;
+    color: green;
+    border-width: 1px;
+    border-color: green
+}
