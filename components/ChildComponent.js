@@ -161,7 +161,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                 {children.map((child, index) => (
                     <div key={index}>
                         <div className={'flex items-center'}>
-                            <h2 className={`${style.childHeader} font-bold`}>{ordinalNumber(index)} Child At Residence</h2>
+                            <h2 className={`${style.addRemoveHeader} font-bold`}>{ordinalNumber(index)} Child At Residence</h2>
                                 <button className={ `${style.removeButton} `} type="button" onClick={() => handleRemoveKid(index)}>
                                     Remove Child
                                 </button>
