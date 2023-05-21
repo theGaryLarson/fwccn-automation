@@ -91,9 +91,10 @@ const applicantSchema = new Schema({
                     type: String,
                     default: ''
                 }
-            }]
-        },
-        default: []
+            }],
+            default: []
+        }
+
     },
     applicantAge: {
         type: Number,
@@ -430,6 +431,7 @@ const applicantSchema = new Schema({
                         },
                         relationshipToAdult: {
                             type: String,
+                            default: 'spouse',
                             required: function () {
                                 return this.parent().isOtherAdultsAtResidence === true;
                             }
