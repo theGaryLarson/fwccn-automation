@@ -2,6 +2,8 @@ import styles from "./applicant_form/ApplicantForm.module.css";
 import AddressComponent from "./AddressComponent";
 import HomelessnessComponent from "./HomelessComponent";
 import OtherLastNamesComponent from "./OtherLastNamesComponent";
+import RentAssistanceComponent from "./RentAssistanceComponent";
+import {useState} from "react";
 
 
 // applicant contact and identifying information
@@ -191,6 +193,8 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
             </div>
             <HomelessnessComponent formData={formData} onComponentInputChange={handleInputChange}/>
             {(formData.homelessness.isHomeless === "false" || formData.homelessness.isHomeless === false) && ( <AddressComponent title="Home" formData={formData} onComponentInputChange={handleInputChange}/>)}
+            {(formData.helpRequested === 'rent') && (<RentAssistanceComponent formData={formData} onComponentInputChange={handleInputChange}/>)}
+
         </div>
     );
 }
