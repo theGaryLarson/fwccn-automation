@@ -52,7 +52,13 @@ const form_data_defaults = {
     children: {
         hasChildrenUnder18: false,
         kids: [
-
+            /*
+            gender: '',
+            age: 0,
+            school: '',
+            schoolDistrict: '',
+            relationshipToApplicant: ''
+             */
         ],
         boysCount: undefined,
         girlsCount: undefined,
@@ -81,7 +87,22 @@ const form_data_defaults = {
         homeCity: 'Tacoma',
         homeState: 'WA',
         homeZip: '98142'
-    }, //todo: add rent assistance
+    },
+    //todo: add rent assistance to schema
+    rentAssistance: {
+        hasRentAssistance: false,
+        monthlyRentPaidByApplicant: 0,
+        hasSection8Assistance: false,
+        monthlyRentPaidBySection8: 0,
+        otherAssistance: [
+            // {
+            //     rentAssistanceProgram: '',
+            //     amountPaidByProgram: 0
+            // }
+        ]
+
+
+    },
     landLord: {
         fullName: 'Nikki Rofland',
         landLordPhone: '1234567890',
