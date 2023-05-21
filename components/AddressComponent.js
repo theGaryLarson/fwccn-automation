@@ -1,4 +1,5 @@
 import styles from "./applicant_form/ApplicantForm.module.css";
+import RentAssistanceComponent from "./RentAssistanceComponent";
 
 
 
@@ -10,7 +11,8 @@ export default function AddressComponent({ title, formData, onComponentInputChan
     }
 
     return (
-        <div>
+        <div className={`border-2 border-gray-600 p-4 box mt-4 mb-4`}>
+
             <h1>{title} Address</h1>
             <div className={styles.inputWrapper}>
                 <label htmlFor="street-1">Street1:</label>
