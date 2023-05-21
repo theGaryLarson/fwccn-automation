@@ -21,7 +21,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
     }
 
     function isHomeless() {
-        return formData.homelessness.isHomeless === 'true';
+        return formData.homelessness.isHomeless;
     }
 
     return (
@@ -40,7 +40,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                     <option value={'true'}>Yes</option>
                 </select>
             </div>
-            { isHomeless() && <div>
+            { isHomeless && <div>
                 <div className={styles.inputWrapper}>
                     <label htmlFor="durationXpHomelessness">How many days have you been experiencing homelessness?</label>
                    <input
