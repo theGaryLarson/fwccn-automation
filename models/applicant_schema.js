@@ -398,7 +398,7 @@ const applicantSchema = new Schema({
                         adultFName: {
                             type: String,
                             required: function () {
-                                return this.isOtherAdultsAtResidence === true;
+                                return this.parent().isOtherAdultsAtResidence === true;
                             }
                         },
                         adultMiddleInitial: {
@@ -407,13 +407,13 @@ const applicantSchema = new Schema({
                         adultLName: {
                             type: String,
                             required: function () {
-                                return this.isOtherAdultsAtResidence === true;
+                                return this.parent().isOtherAdultsAtResidence === true;
                             }
                         },
                         adultGender: {
                             type: String,
                             required: function () {
-                                return this.isOtherAdultsAtResidence === true;
+                                return this.parent().isOtherAdultsAtResidence === true;
                             }
                         },
                         adultAge: { //todo: require min age of 18
@@ -425,20 +425,20 @@ const applicantSchema = new Schema({
                                 message: 'Must enter a non-negative number'
                             },
                             required: function () {
-                                return this.isOtherAdultsAtResidence === true;
+                                return this.parent().isOtherAdultsAtResidence === true;
                             }
                         },
                         relationshipToAdult: {
                             type: String,
                             required: function () {
-                                return this.isOtherAdultsAtResidence === true;
+                                return this.parent().isOtherAdultsAtResidence === true;
                             }
                         }
                     }
                 ],
                 default: [],
                 required: function () {
-                    return this.isOtherAdultsAtResidence === true;
+                    return this.parent().isOtherAdultsAtResidence === true;
                 }
             }
         }]
@@ -470,6 +470,43 @@ const applicantSchema = new Schema({
                         message: 'Enter zip code in the following format ##### or #####-####'
                     }
                 },
+        }
+    },
+    rentAssistance: {
+        hasRentAssistance: {
+            type: Boolean,
+            default: false
+        },
+        monthlyRentPaidByApplicant: {
+            type: Number,
+            default: 0
+        },
+        hasSection8Assistance: {
+            type: Boolean,
+            default: false
+        },
+        monthlyRentPaidBySection8: {
+            type: Number,
+            default: 0
+        },
+        otherAssistance: {
+            type: [
+                {
+                    rentAssistanceProgram: {
+                        type: String,
+                        required: function () {
+                            return this.parent().hasRentAssistance === true;
+                        }
+                    },
+                    amountPaidByProgram: {
+                        type: Number,
+                        required: function () {
+                            return this.parent().hasRentAssistance === true;
+                        }
+                    }
+                }
+            ],
+            default: []
         }
     },
     landLord: {
