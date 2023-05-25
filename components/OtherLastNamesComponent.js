@@ -1,7 +1,7 @@
 import styles from "./applicant_form/ApplicantForm.module.css";
 import {useState} from "react";
 import style from "./AdultComponent.module.css";
-import {ordinalNumber, toTitleCase} from "../lib/util";
+import { ordinalNumber } from "../lib/util";
 
 // applicant race information
 export default function OtherLastNamesComponent({formData, onComponentInputChange }) {
