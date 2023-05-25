@@ -97,6 +97,7 @@ export default function OtherLastNamesComponent({formData, onComponentInputChang
 
     return (
         <div className={`border-2 border-gray-600 p-4 box mt-4 mb-4`}>
+            <h1>Additional Names</h1>
             <div className={`${styles.inputWrapper} `}>
                 <label htmlFor="otherLastNames">Have you gone by any other names?</label>
                 <select
