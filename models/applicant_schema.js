@@ -181,12 +181,17 @@ const applicantSchema = new Schema({
                 },
                 required: true
             },
+            isValidLicense: {
+                type: Boolean,
+                required: true
+            }
         },
         default: {
             driverLicenseOrId: '',
             expDate: '',
             idStateIssued: '',
-            socialSecLastFour: 0
+            socialSecLastFour: 0,
+            isValidLicense: false
         },
         required: true
     },
@@ -205,6 +210,13 @@ const applicantSchema = new Schema({
                 },
                 message: 'Must enter a non-negative number',
             },
+        },
+        placeStayedRecently: {
+            type: String,
+            default: '',
+            required: function () {
+                return this.parent().isHomeless === true;
+            }
         },
         whyHomeless: {
             type: String,
@@ -449,27 +461,39 @@ const applicantSchema = new Schema({
         type: {
                 homeStreet1: {
                     type: String,
-                        required: true
+                    required: function () {
+                        return this.parent().helpRequested === 'rent';
+                    }
                 },
                 homeStreet2: {
                     type: String
                 },
                 homeCity: {
                     type: String,
-                        required: true
+                    required: function () {
+                        return this.parent().helpRequested === 'rent';
+                    }
                 },
                 homeState: {
                     type: String,
                         match: [/[A-Z]{2}/, 'Enter 2-letter abbreviation for state'],
-                        required: true
+                    required: function () {
+                        return this.parent().helpRequested === 'rent';
+                    }
                 },
                 homeZip: {
                     type: Number,
-                    validate: {
-                        validator: function(v) {
-                            return /^\d{5}(?:-\d{4})?$/.test(v.toString());
+                    default: undefined,
+                    validate: [
+                        {
+                            validator: function(v) {
+                                if (v != null) return /^\d{5}(?:-\d{4})?$/.test(v.toString());
+                            },
+                            message: 'Enter zip code in the following format ##### or #####-####'
                         },
-                        message: 'Enter zip code in the following format ##### or #####-####'
+                    ],
+                    required: function () {
+                        return this.parent().helpRequested === 'rent';
                     }
                 },
         }
@@ -497,13 +521,13 @@ const applicantSchema = new Schema({
                     rentAssistanceProgram: {
                         type: String,
                         required: function () {
-                            return this.parent().hasRentAssistance === true;
+                            return this.parent().hasRentAssistance === true && this.parent().hasSection8Assistance === false;
                         }
                     },
                     amountPaidByProgram: {
                         type: Number,
                         required: function () {
-                            return this.parent().hasRentAssistance === true;
+                            return this.parent().hasRentAssistance === true && this.parent().hasSection8Assistance === false;
                         }
                     }
                 }
@@ -545,18 +569,32 @@ const applicantSchema = new Schema({
             },
             landLordZip: {
                 type: Number,
-                validate: {
-                    validator: function(v) {
-                        return /^\d{5}(?:-\d{4})?$/.test(v.toString());
-                    },
-                    message: 'Enter zip code in the following format ##### or #####-####'
-                }
+                default: undefined,
+                validate: [
+                    {
+                        validator: function (v) {
+                            if ( v != null ) return /^\d{5}(?:-\d{4})?$/.test(v.toString());
+                        },
+                        message: 'Enter zip code in the following format ##### or #####-####'
+                    }
+                ]
             },
         },
     },
     houseHoldIncome: {
         totalHouseholdIncome: {
             type: Number,
+            required: true,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
+        houseHoldIncomePastYear: {
+            type: Number,
+            required: true,
             validate: {
                 validator: function(v) {
                     return /^\d*[0-9]\d*$/.test(v.toString());
@@ -566,6 +604,7 @@ const applicantSchema = new Schema({
         },
         totalSupportMembers: {
             type: Number,
+            required: true,
             validate: {
                 validator: function(v) {
                     return /^\d*[0-9]\d*$/.test(v.toString());
@@ -583,6 +622,11 @@ const applicantSchema = new Schema({
             default: false,
             required: true
         },
+        isIncomeVerified: {
+            type: Boolean,
+            default: false,
+            required: true
+        }
     },
     race: {
         americanIndianOrAlaskaNative: {
