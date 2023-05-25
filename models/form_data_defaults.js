@@ -7,11 +7,12 @@ const form_data_defaults = {
     helpRequested: 'rent',
     licensePlate: 'CBY-2970',
     licensePlateState: 'WA',
+    isBusPrimaryTransport: false, //todo add to schema
     reasonForNeed: 'behind on rent',
     futurePlans: 'increased hours at work over summer',
-    fName: 'Zhang',
-    middleInitial: 'T',
-    lName: 'Jang',
+    fName: 'John',
+    middleInitial: 'D',
+    lName: 'Mark',
     otherNames: {
         hasOtherNames: true,
         additionalNames: [
@@ -22,7 +23,7 @@ const form_data_defaults = {
             }
         ]
     },
-    applicantGender: 'Female',
+    applicantGender: 'Male',
     applicantAge: '33',
     phone: '9876543210',
     income: {
@@ -30,16 +31,18 @@ const form_data_defaults = {
         monthlyIncomeLast12Months: 16750,
         totalHouseholdMembersIncomeSupports: 3,
     },
-    disabled: true,
+    disabled: false,
     idSource: {
-        driverLicenseOrId: 'WDLDOEJANEEE197PD',
+        driverLicenseOrId: 'FGSLTWHGHOBS316',
         expDate: '2028-10-05',
         idStateIssued: 'WA',
-        socialSecLastFour: '9999'
+        socialSecLastFour: '7777',
+        isValidLicense: false
     },
     homelessness: {
         isHomeless: false,
         durationXpHomelessness: 0, // fixme: this is required for schema to validate correctly
+        placeStayedRecently: '',
         whyHomeless: '',
         tempAddress: {
             street1: '',
@@ -69,16 +72,16 @@ const form_data_defaults = {
         schools: []
     },
     otherAdults: {
-        isOtherAdultsAtResidence: true,
+        isOtherAdultsAtResidence: false,
         adults: [
-                    {
-                        adultFName: 'John',
-                        adultMiddleInitial: '',
-                        adultLName: 'Doe',
-                        adultGender: 'Male',
-                        adultAge: '33',
-                        relationshipToAdult: 'spouse',
-                    }
+                    // {
+                    //     adultFName: 'John',
+                    //     adultMiddleInitial: '',
+                    //     adultLName: 'Doe',
+                    //     adultGender: 'Male',
+                    //     adultAge: '33',
+                    //     relationshipToAdult: 'spouse',
+                    // }
                 ]
     },
     homeAddress: {
@@ -88,7 +91,6 @@ const form_data_defaults = {
         homeState: 'WA',
         homeZip: '98142'
     },
-    //todo: add rent assistance to schema
     rentAssistance: {
         hasRentAssistance: false,
         monthlyRentPaidByApplicant: 0,
@@ -116,10 +118,12 @@ const form_data_defaults = {
         }
     },
     houseHoldIncome: {
-        totalHouseholdIncome: '16750',
-        totalSupportMembers: '3',
+        totalHouseholdIncome: 850,
+        houseHoldIncomePastYear: 10200,
+        totalSupportMembers: 3,
         singleMaleHeadOfHousehold: false,
         singleFemaleHeadOfHousehold: false,
+        isIncomeVerified: false
     },
     race: {
         americanIndianOrAlaskaNative: 0,
