@@ -40,7 +40,21 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                     <option value={'true'}>Yes</option>
                 </select>
             </div>
-            { isHomeless && <div>
+            { isHomeless() && <div>
+                <div className={styles.inputWrapper}>
+                    <label htmlFor="placeStayedRecently">Where have you stayed recently?</label>
+                    <input
+                        type="text"
+                        id="placeStayedRecently"
+                        name="placeStayedRecently"
+                        placeholder="Friend, Shelter, etc."
+                        className={'mb-4'}
+                        value={formData.homelessness.placeStayedRecently}
+                        onChange={handleInputChange}
+                        required={isHomeless()}
+                        disabled={!isHomeless()}
+                    />
+                </div>
                 <div className={styles.inputWrapper}>
                     <label htmlFor="durationXpHomelessness">How many days have you been experiencing homelessness?</label>
                    <input
@@ -55,7 +69,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                     />
                 </div>
                 <div className={styles.inputWrapper}>
-                    <label className={styles.textAreaLabel} htmlFor="whyHomeless">Why are you experiencing homelessness?</label>
+                    <label htmlFor="whyHomeless">Why are you experiencing homelessness?</label>
                     <textarea
                         id="whyHomeless"
                         name="whyHomeless"
@@ -63,8 +77,8 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         className={'mb-4'}
                         value={formData.homelessness.whyHomeless}
                         onChange={handleInputChange}
-                        required={formData.homelessness.isHomeless === 'true'}
-                        disabled={formData.homelessness.isHomeless === 'false'}
+                        required={isHomeless()}
+                        disabled={!isHomeless()}
                     />
                 </div>
                 <h1>Temporary Address</h1>
