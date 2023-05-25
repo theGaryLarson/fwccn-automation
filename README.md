@@ -32,7 +32,9 @@ LOCAL_URI = "mongodb+srv://<username>:<password>@<cluster>/<database>?retryWrite
 > For dev purposes currently there is a LOCAL_URI and MONGO_URI to easily switch back and forth in our dev teams .env.local file
 
 If you choose to do something similar the environment variables are located in these two files:
+
 [./lib/connectMongo.js](https://github.com/theGaryLarson/fwccn-automation/blob/demo_branch/lib/connectMongo.js)
+
 [./models/applicant_schema.js](https://github.com/theGaryLarson/fwccn-automation/blob/demo_branch/models/applicant_schema.js)
 
 ---
