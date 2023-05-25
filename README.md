@@ -36,7 +36,7 @@ If you choose to do something similar the environment variables are located in t
 
 [./lib/connectMongo.js](https://github.com/theGaryLarson/fwccn-automation/blob/demo_branch/lib/connectMongo.js)
 
-[./models/applicant_schema.js](https://github.com/theGaryLarson/fwccn-automation/blob/demo_branch/models/applicant_schema.js)
+[./models/applicant_schema.js](https://github.com/theGaryLarson/fwccn-automation/blob/demo_branch/models/applicant_schema.js) (Very bottom of file)
 
 ---
 
