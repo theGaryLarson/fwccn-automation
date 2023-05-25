@@ -8,9 +8,36 @@ import {useState} from "react";
 
 // applicant contact and identifying information
 export default function PrimaryComponent({ formData, onComponentInputChange }) {
+    const [isLicenseVerified, setIsLicenseVerified] = useState(formData.idSource.isValidLicense || false)
+    const [isBusPrimaryTransport, setIsBusPrimaryTransport] = useState(formData.isBusPrimaryTransport || false)
     const handleInputChange = (event) => {
         onComponentInputChange(event)
     }
+    const handleCheckboxChange = (event) => {
+        const  name = event.target.name
+
+        if (name === 'isValidLicense') {
+            setIsLicenseVerified(!isLicenseVerified);
+            const updatedLicenseVerification = {
+                ...formData.idSource,
+                isValidLicense: !isLicenseVerified,
+            }
+            onComponentInputChange({
+                target: {
+                    name: 'idSource',
+                    value: updatedLicenseVerification
+                }
+            })
+        } else if (name === 'isBusPrimaryTransport') {
+            setIsBusPrimaryTransport(!isBusPrimaryTransport);
+            onComponentInputChange({
+                target: {
+                    name: 'isBusPrimaryTransport',
+                    value: !isBusPrimaryTransport
+                }
+            })
+        }
+    };
 
     return (
         <div>
@@ -184,9 +211,41 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                                 required
                             />
                         </div>
+                        <div className={styles.inputWrapper}>
+                            <input
+                                type="checkbox"
+                                id="isValidLicense"
+                                name="isValidLicense"
+                                className="hidden"
+                                onChange={handleCheckboxChange}
+                            />
+                            <label htmlFor="isValidLicense" className="flex items-center mt-4 select-none">
+                                <span className={` ${!isLicenseVerified ? 'bg-green-500' : ''} mr-2 border rounded border-gray-400 bg-white w-5 h-5 flex items-center justify-center `}>
+                                    {isLicenseVerified && '✓'}
+                                </span>
+                                <span className='font-bold'> License Verified</span>
+                            </label>
+                        </div>
 
                     </div>
                 </div>)}
+                {formData.helpRequested === 'busTicket' && (
+                    <div className={styles.inputWrapper}>
+                        <input
+                            type="checkbox"
+                            id="isBusPrimaryTransport"
+                            name="isBusPrimaryTransport"
+                            className="hidden"
+                            onChange={handleCheckboxChange}
+                        />
+                        <label htmlFor="isBusPrimaryTransport" className="flex items-center mt-4 select-none">
+                                <span className={` ${!isBusPrimaryTransport ? 'bg-green-500' : ''} mr-2 border rounded border-gray-400 bg-white w-5 h-5 flex items-center justify-center `}>
+                                    {isBusPrimaryTransport && '✓'}
+                                </span>
+                            <span className='font-bold'> Bus Primary Transport Verified</span>
+                        </label>
+                    </div>
+                )}
             </div>
             <div className={styles.inputWrapper}>
                 < OtherLastNamesComponent formData={formData} onComponentInputChange={handleInputChange} />
