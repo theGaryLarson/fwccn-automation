@@ -109,7 +109,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                 <span className={` ${!isVerified ? 'bg-green-500' : ''} mr-2 border rounded border-gray-400 bg-white w-5 h-5 flex items-center justify-center `}>
                     {isVerified && '✓'}
                 </span>
-                    <span className='font-bold'>Verified</span>
+                    <span className='font-bold'>Lease Verified</span>
                 </label>
             </div>
         </div>
