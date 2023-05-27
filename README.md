@@ -40,7 +40,14 @@ If you choose to do something similar the environment variables are located in t
 
 ---
 
-### Second, run the development server:
+### Second in ther terminal run 
+```npm install```
+
+After the dependencies are done installing then...
+
+---
+
+### Third, run the development server:
 
 ```bash
 npm run dev
