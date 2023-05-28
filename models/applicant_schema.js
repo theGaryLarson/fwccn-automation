@@ -632,6 +632,27 @@ const applicantSchema = new Schema({
             default: false,
             required: true
         },
+        incomeSituation: {
+            type: String,
+            default: ""
+        },
+        incomeSources: {
+            type: [
+                {
+                    name: {
+                        type: String,
+                        default: "no income",
+                        required: true
+                    },
+                    peopleCount: {
+                        type: Number,
+                        default: 0,
+                        required: true
+                    }
+                }
+            ],
+            required: true
+        },
         isIncomeVerified: {
             type: Boolean,
             default: false,
