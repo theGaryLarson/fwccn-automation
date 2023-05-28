@@ -92,7 +92,7 @@ function ApplicantForm({ databaseType}) {
     return (
         <div className={"flex min-h-screen flex-col items-center justify-between p-4"}>
             <form onSubmit={handleSubmit}>
-                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
+                <div className={`${styles.componentWrapper} border-2 border-black p-4 box m-4`}>
                     <label htmlFor='interviewer'>Interviewer Name:</label>
                     <input
                         type='text'
@@ -104,10 +104,10 @@ function ApplicantForm({ databaseType}) {
                         required
                     />
                 </div>
-                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
+                <div className={`${styles.componentWrapper} border-2 border-black p-4 box m-4`}>
                     <AssistanceNeedComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
-                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
+                <div className={`${styles.componentWrapper} border-2 border-black p-4 box m-4`}>
                     <PrimaryComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
                 {/*<div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>*/}
@@ -116,16 +116,16 @@ function ApplicantForm({ databaseType}) {
                 <div className={`${styles.componentWrapper} border-2 border-black p-4 box m-4`}>
                     <ChildComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
-                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
+                <div className={`${styles.componentWrapper} border-2 border-black p-4 box m-4`}>
                     <AdultComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
-                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
+                <div className={`${styles.componentWrapper} border-2 border-black p-4 box m-4`}>
                     <TotalIncomeSupportComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
-                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
+                <div className={`${styles.componentWrapper} border-2 border-black p-4 box m-4`}>
                     <RaceComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
-                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
+                <div className={`${styles.componentWrapper} border-2 border-black p-4 box m-4`}>
                     <LandlordComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
 
@@ -137,8 +137,8 @@ function ApplicantForm({ databaseType}) {
             {isDataLoaded && (
                 <div>Data loaded successfully!</div>
             )}
-            {isDataLoaded === false && (
-                <div>Error loading data. Please try again.</div>
+            {!isDataLoaded && (
+                <div>{/*Error loading data. Please try again.*/}</div>
             )}
         </div>
     );
