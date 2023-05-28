@@ -113,45 +113,45 @@ const applicantSchema = new Schema({
         default: '0000000000',
         match: [/^[0-9]{10}/, 'Enter 10 digit phone number exclude any additional characters']
     },
-    income: {
-        type: {
-            currentMonthlyIncome: {
-                type: Number,
-                default: 0,
-                validate: {
-                    validator: function (v) {
-                        return /^\d*[1-9]\d*$/.test(v.toString());
-                    },
-                    message: 'Must be a non-negative integer'
-                },
-                required: true
-            },
-            monthlyIncomeLast12Months: {
-                type: Number,
-                default: 0,
-                validate: {
-                    validator: function (v) {
-                        return /^\d*[1-9]\d*$/.test(v.toString());
-                    },
-                    message: 'Must be a non-negative integer'
-                },
-                required: true
-            },
-            totalHouseholdMembersIncomeSupports: {
-                type: Number,
-                default: 0,
-                validate: {
-                    validator: function (v) {
-                        return /^\d*[1-9]\d*$/.test(v.toString());
-                    },
-                    message: 'Must be a non-negative integer'
-                },
-                required: true
-            },
-        },
-        default: {},
-        required: true
-    },
+    // income: {
+    //     type: {
+    //         currentMonthlyIncome: {
+    //             type: Number,
+    //             default: 0,
+    //             validate: {
+    //                 validator: function (v) {
+    //                     return /^\d*[1-9]\d*$/.test(v.toString());
+    //                 },
+    //                 message: 'Must be a non-negative integer'
+    //             },
+    //             required: true
+    //         },
+    //         monthlyIncomeLast12Months: {
+    //             type: Number,
+    //             default: 0,
+    //             validate: {
+    //                 validator: function (v) {
+    //                     return /^\d*[1-9]\d*$/.test(v.toString());
+    //                 },
+    //                 message: 'Must be a non-negative integer'
+    //             },
+    //             required: true
+    //         },
+    //         totalHouseholdMembersIncomeSupports: {
+    //             type: Number,
+    //             default: 0,
+    //             validate: {
+    //                 validator: function (v) {
+    //                     return /^\d*[1-9]\d*$/.test(v.toString());
+    //                 },
+    //                 message: 'Must be a non-negative integer'
+    //             },
+    //             required: true
+    //         },
+    //     },
+    //     default: {},
+    //     required: true
+    // },
     disabled: {
         type: Boolean,
         default: false,
