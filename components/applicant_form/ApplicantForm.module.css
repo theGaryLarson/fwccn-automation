@@ -1,33 +1,39 @@
-.inputWrapper {
+.componentWrapper {
     text-align: left;
     display: flex;
     flex-direction: column;
     margin-bottom: 4px;
-    min-width: 50%;
     background-color: lightgray;
     border-radius: 15px;
 
 
 }
-
-.inputWrapper input {
+/*todo: make more specific*/
+.componentWrapper input {
     color: black;
-    min-width: 50%;
-    width: 100%;
+    width: auto;
     white-space: pre-wrap;
     word-wrap: break-word;
     border-color: black;
     border-width: 1px;
 }
 
-.inputWrapper textarea {
+.smFootPrint {
+    width: 25%
+}
+
+.componentWrapper textarea {
     border-width: 1px;
     border-color: black;
 }
 
-.inputWrapper select {
+.componentWrapper select {
     border-width: 1px;
     border-color: black;
+}
+
+.incomeSourcePeopleCount {
+    width: 25%;
 }
 
 .submitButton {
@@ -42,7 +48,7 @@
     color: white;
 }
 
-.inputWrapper h1 {
+.componentWrapper h1 {
     text-align: center;
     font-weight: bold;
 }
