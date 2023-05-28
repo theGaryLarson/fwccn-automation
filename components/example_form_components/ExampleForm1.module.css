@@ -1,11 +1,11 @@
-.inputWrapper {
+.componentWrapper {
     text-align: left;
 
     margin-bottom: 10px;
     min-width: 50%;
 }
 
-.inputWrapper input {
+.componentWrapper input {
     color: black;
     min-width: 50%;
     width: 100%;
@@ -13,7 +13,7 @@
     word-wrap: break-word;
 }
 
-.inputWrapper button {
+.componentWrapper button {
     width: 100%;
     text-align:center;
 }
