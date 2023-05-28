@@ -124,8 +124,8 @@ const form_data_defaults = {
         totalSupportMembers: 3,
         singleMaleHeadOfHousehold: false,
         singleFemaleHeadOfHousehold: false,
-        incomeSituation: "", //todo: add to schema
-        incomeSources: [ // todo: add to schema
+        incomeSituation: "",
+        incomeSources: [
             {
                 name: "Job(s)",
                 peopleCount: 0
