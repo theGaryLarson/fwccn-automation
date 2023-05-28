@@ -110,8 +110,7 @@ const form_data_defaults = {
     landLord: {
         fullName: 'Nikki Rofland',
         landLordPhone: '1234567890',
-        verified: true,
-        address: {
+        landLordAddress: {
             landLordStreet1: '321 Main St',
             landLordStreet2: '',
             landLordCity: 'Seattle',
