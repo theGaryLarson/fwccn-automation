@@ -9,7 +9,7 @@ export default function  AssistanceNeedComponent({formData, onComponentInputChan
     return (
         <div >
             <h1>Type of Request</h1>
-            <div className={styles.inputWrapper} >
+            <div className={styles.componentWrapper} >
                 <label htmlFor="rent">What type of assistance are you seeking?</label>
                 <select
                     id="rent"
@@ -23,7 +23,7 @@ export default function  AssistanceNeedComponent({formData, onComponentInputChan
 
                 </select>
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor='explanation-of-need'>Explanation of Need:</label>
                 <textarea
                     id={`explanation-of-need`}
@@ -33,7 +33,7 @@ export default function  AssistanceNeedComponent({formData, onComponentInputChan
                     onChange={handleInputChange}
                 />
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor='{`futurePlans`}'>Future Plans:</label>
                 <textarea
                     id={`futurePlans`}
@@ -43,7 +43,7 @@ export default function  AssistanceNeedComponent({formData, onComponentInputChan
                     onChange={handleInputChange}
                 />
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor='referred-by'>Referred By:</label>
                 <input
                     type='text'
@@ -54,8 +54,6 @@ export default function  AssistanceNeedComponent({formData, onComponentInputChan
                     onChange={handleInputChange}
                 />
             </div>
-
-
         </div>
     );
 }
