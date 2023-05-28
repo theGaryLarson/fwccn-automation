@@ -2,7 +2,6 @@ import {useEffect, useState} from "react";
 import styles from "./ApplicantForm.module.css"
 import form_data_defaults from "../../models/form_data_defaults";
 import PrimaryComponent from "../PrimaryComponent";
-import IncomeComponent from "../IncomeComponent";
 import LandlordComponent from "../LandlordComponent";
 import RaceComponent from "../RaceComponent";
 import ChildComponent from "../ChildComponent";
@@ -111,10 +110,10 @@ function ApplicantForm({ databaseType}) {
                 <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
                     <PrimaryComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
-                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
-                    <IncomeComponent formData={formData} onComponentInputChange={handleInputChange}/>
-                </div>
-                <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
+                {/*<div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>*/}
+                {/*    <IncomeComponent formData={formData} onComponentInputChange={handleInputChange}/>*/}
+                {/*</div>*/}
+                <div className={`${styles.componentWrapper} border-2 border-black p-4 box m-4`}>
                     <ChildComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
                 <div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>
