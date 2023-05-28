@@ -1,7 +1,7 @@
 // section 8 and other rental assistance information
 // cash assistance is reduced for members on assistance
-import {useEffect, useState} from "react";
-import {ordinalNumber, usePrevious} from "../lib/util";
+import {useState} from "react";
+import {ordinalNumber} from "../lib/util";
 import styles from "./applicant_form/ApplicantForm.module.css";
 import style from "./RentAssistanceComponent.module.css"
 
@@ -13,35 +13,22 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
         formData.rentAssistance.hasRentAssistance || false
     );
 
-   //  // had to create custom hook leveraging useRef() to avoid an infinite loop when formData is changed
-   //  // TODO: remove or use, depends on if needed.
-   // const prevFormDataRentAssistance = usePrevious(formData.rentAssistance.otherAssistance); // Use the custom hook
-   //
-   //
-   //  // has the condition to check if data is changed to avoid an infinite loop
-   //  // TODO: remove or use, depends on if needed.
-   //  useEffect(() => {
-   //      if (prevFormDataRentAssistance && JSON.stringify(prevFormDataRentAssistance) !== JSON.stringify(formData.RentAssistance)) {
-   //          updatedAssistancePrograms(formData.rentAssistance.otherAssistance);
-   //      }
-   //  });
-
-    const updatedAssistancePrograms = (otherAssistance) => {
-
-        const updatedFormData = {
-            ...formData,
-            rentAssistance: {
-                ...formData.rentAssistance,
-                otherAssistance: otherAssistance,
-            },
-        };
-        onComponentInputChange({
-            target: {
-                name: "rentAssistance",
-                value: updatedFormData.otherAssistance,
-            },
-        });
-    };
+    // const updatedAssistancePrograms = (otherAssistance) => {
+    //
+    //     const updatedFormData = {
+    //         ...formData,
+    //         rentAssistance: {
+    //             ...formData.rentAssistance,
+    //             otherAssistance: otherAssistance,
+    //         },
+    //     };
+    //     onComponentInputChange({
+    //         target: {
+    //             name: "rentAssistance",
+    //             value: updatedFormData.otherAssistance,
+    //         },
+    //     });
+    // };
 
 
     const handleInputChange = (event, index) => {

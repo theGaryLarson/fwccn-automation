@@ -1,18 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { usePrevious } from "../lib/util";
+import React, { useState} from "react";
 import styles from "./applicant_form/ApplicantForm.module.css";
 
 export default function IncomeSourcesComponent({ formData, onComponentInputChange }) {
     const [incomeSources, setIncomeSources] = useState(formData.houseHoldIncome.incomeSources || []);
-
-    // const prevFormDataIncome = usePrevious(formData.houseHoldIncome); // Use the custom hook
-    //
-    // useEffect(() => {
-    //     if (prevFormDataIncome && JSON.stringify(prevFormDataIncome) !== JSON.stringify(formData.houseHoldIncome)) {
-    //         setIncomeSources(formData.houseHoldIncome.incomeSources);
-    //     }
-    // }, [formData.houseHoldIncome, prevFormDataIncome]);
-
     const handleIncomeSourceChange = (event, index) => {
         const updatedIncomeSources = [...incomeSources];
         updatedIncomeSources[index].name = event.target.value;

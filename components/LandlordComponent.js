@@ -1,6 +1,4 @@
 import styles from "./applicant_form/ApplicantForm.module.css";
-import {useState} from "react";
-
 export default function LandLordComponent({ formData, onComponentInputChange }) {
 
     const handleInputChange = (event) => {
