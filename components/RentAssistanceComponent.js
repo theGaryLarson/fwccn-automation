@@ -5,7 +5,6 @@ import {ordinalNumber} from "../lib/util";
 import styles from "./applicant_form/ApplicantForm.module.css";
 import style from "./RentAssistanceComponent.module.css"
 
-
 export default function RentAssistanceComponent({ formData, onComponentInputChange }) {
     const [assistancePrograms, setAssistancePrograms] = useState(formData.rentAssistance.otherAssistance || []);
     const [hasSection8, setHasSection8] = useState(formData.rentAssistance.hasSection8Assistance || false)
@@ -17,7 +16,6 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
         if (name === "hasRentAssistance") {
             const newValue = value === "true";
             setHasRentAssistance(newValue);
-
             if (!newValue) {
                 // Clear the otherAssistance data when there is no other assistance
                 setAssistancePrograms([])
@@ -46,7 +44,6 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
             }
         } else if (name === 'rentAssistanceProgram' || name === 'amountPaidByProgram'){
             // Update the array of rent assistance programs
-            console.log(name)
             const updatedRentAssistance = formData.rentAssistance.otherAssistance.map((program, i) => {
                 if (i === index) {
                     return {
@@ -57,7 +54,6 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
                 return program;
             });
             setAssistancePrograms(updatedRentAssistance)
-            console.log(updatedRentAssistance)
             onComponentInputChange({
                 target: {
                     name: 'rentAssistance',
@@ -67,8 +63,6 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
                     }
                 }
             });
-
-
         } else if (name === 'hasSection8Assistance') {
             const newValue = value === "true";
             setHasSection8(newValue);
@@ -85,7 +79,6 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
             onComponentInputChange(event);
         }
     };
-
     const handleAddRentAssistanceProgram = () => {
         const newAssistanceProgram = {
             rentAssistanceProgram: '',
@@ -103,7 +96,6 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
             }
         });
     };
-
     const handleRemoveRentAssistanceProgram = (index) => {
         const updatedAssistancePrograms = [...assistancePrograms];
         updatedAssistancePrograms.splice(index, 1);
@@ -118,7 +110,6 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
             },
         });
     };
-
     return (
         <div className={`border-2 border-gray-600 p-4 box mt-4 mb-4`}>
             <h1>Rent Assistance Information</h1>
@@ -202,7 +193,6 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
                         </div>
                     </div>
                 ))}
-
                 <button className={`${style.addButton} mt-4 mb-4` } type="button" onClick={handleAddRentAssistanceProgram}>
                     Add Additional Assistance
                 </button>
