@@ -12,25 +12,6 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
     const [hasRentAssistance, setHasRentAssistance] = useState(
         formData.rentAssistance.hasRentAssistance || false
     );
-
-    // const updatedAssistancePrograms = (otherAssistance) => {
-    //
-    //     const updatedFormData = {
-    //         ...formData,
-    //         rentAssistance: {
-    //             ...formData.rentAssistance,
-    //             otherAssistance: otherAssistance,
-    //         },
-    //     };
-    //     onComponentInputChange({
-    //         target: {
-    //             name: "rentAssistance",
-    //             value: updatedFormData.otherAssistance,
-    //         },
-    //     });
-    // };
-
-
     const handleInputChange = (event, index) => {
         const { name, value } = event.target;
         if (name === "hasRentAssistance") {
