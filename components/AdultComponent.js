@@ -12,12 +12,11 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
 
         // Update the isOtherAdultsAtResidence field
         if (name === 'isOtherAdultsAtResidence') {
-
             const newValue = value === 'true';
             setIsOtherAdults(newValue);
             if (!newValue) {
-                setAdults([]);
                 // clears adult data
+                setAdults([]);
                 onComponentInputChange({
                     target: {
                         name: "otherAdults",
@@ -69,7 +68,8 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
             adultLName: "",
             adultGender: "",
             adultAge: 0,
-            relationshipToAdult: ""
+            relationshipToAdult: "",
+            relationDetails: ""
         };
 
         const updatedOtherAdults = [...formData.otherAdults.adults, newAdult];
@@ -100,12 +100,13 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                 }
             }
         });
+        setAdultCount(adultCount - 1);
     };
 
     return (
         <div>
             <h1> Other Adult Information</h1>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="adults">{'Is there other adults living at applicant\'s residence?'}</label>
                 <select
                     className={'mb-4'}
@@ -119,7 +120,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                 </select>
             </div>
                 {isOtherAdults && (
-                    <div className={styles.inputWrapper}>
+                    <div className={styles.componentWrapper}>
                     {formData.otherAdults.adults.map((adult, index) => (
                         <div key={index}>
                             <div className={'flex items-center'}>
@@ -128,7 +129,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                                     Remove Adult
                                 </button>
                             </div>
-                            <div className={styles.inputWrapper}>
+                            <div className={styles.componentWrapper}>
                                 <label htmlFor={`adultFName-${index}`}>First name</label>
                                 <input
                                     type="text"
@@ -139,7 +140,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                                     required
                                 />
                             </div>
-                            <div className={styles.inputWrapper}>
+                            <div className={styles.componentWrapper}>
                                 <label htmlFor={`adultMiddleInitial-${index}`}>Middle Initial</label>
                                 <input
                                     type="text"
@@ -149,7 +150,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                                     onChange={(event) => handleInputChange(event, index)}
                                 />
                             </div>
-                            <div className={styles.inputWrapper}>
+                            <div className={styles.componentWrapper}>
                                 <label htmlFor={`adultLName-${index}`}>Last Name</label>
                                 <input
                                     type="text"
@@ -160,7 +161,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                                     required
                                 />
                             </div>
-                            <div className={styles.inputWrapper}>
+                            <div className={styles.componentWrapper}>
                                 <label htmlFor={`adultAge-${index}`}>Age</label>
                                 <input
                                     type="number"
@@ -171,7 +172,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                                     required
                                 />
                             </div>
-                            <div className={styles.inputWrapper}>
+                            <div className={styles.componentWrapper}>
                                 <label htmlFor={`adultGender-${index}`}>Gender</label>
                                 <select
                                     id={`adultGender-${index}`}
@@ -185,24 +186,38 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                                     <option value={'nonbinary'}>nonbinary</option>
                                 </select>
                             </div>
-                            <div className={`${styles.inputWrapper}`}>
+                            <div className={`${styles.componentWrapper}`}>
                                 <label htmlFor={`relationshipToAdult-${index}`}>Relation to Applicant</label>
                                 <select
                                     id={`relationshipToAdult-${index}`}
                                     name="relationshipToAdult"
-                                    className={'mb-4'}
                                     value={adult.relationshipToAdult}
                                     onChange={(event) => handleInputChange(event, index)}
                                     required
                                 >
+                                    <option value={'undisclosed'}>not disclosed</option>
                                     <option value={'spouse'}>spouse</option>
+                                    <option value={'partner'}>partner</option>
                                     <option value={'roommate'}>roommate</option>
                                     <option value={'relative'}>relative</option>
+                                    <option value={'other'}>other</option>
                                 </select>
                             </div>
+                            { (adult.relationshipToAdult === "relative" || adult.relationshipToAdult === "other") && (
+                                <div className={`${styles.componentWrapper}`}>
+                                    <label htmlFor={"relationDetails"}>Relationship Details</label> {/* todo: conditional if relative "Relation Details"*/}
+                                    <textarea
+                                        id={"relationDetails"}
+                                        name={"relationDetails"}
+                                        value={adult.relationDetails}
+                                        onChange={(event) => handleInputChange(event, index)}
+                                        required
+                                    />
+                                </div> )
+                            }
                         </div>
                     ))}
-                <button className={`${styles.addButton}`} type="button" onClick={handleAddAdult}>
+                <button className={`${styles.addButton} mt-4`} type="button" onClick={handleAddAdult}>
                     Add Adult
                 </button>
 
