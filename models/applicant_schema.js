@@ -13,7 +13,7 @@ const applicantSchema = new Schema({
     },
     status: {
         type: String,
-        enum: ['PENDING', 'APPROVED', 'DENIED', 'APPROVED-OVERRIDE'],
+        enum: ['PENDING', 'APPROVED', 'DENIED', 'APPROVED-OVERRIDE', 'NON-RETURN'],
         default: 'PENDING',
         required: true
     },
