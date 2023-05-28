@@ -144,7 +144,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
     return (
         <div>
             <h1>Child Information</h1>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="children">{'Is there children living at applicant\'s residence?'}</label>
                 <select
                     className={'mb-4'}
@@ -166,7 +166,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                                     Remove Child
                                 </button>
                         </div>
-                        <div className={styles.inputWrapper}>
+                        <div className={styles.componentWrapper}>
                             <label htmlFor={`childGender-${index}`}>Gender assigned at Birth:</label>
                             <select
                                 id={`childGender-${index}`}
@@ -179,7 +179,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                                 <option value="male">Male</option>
                             </select>
                         </div>
-                        <div className={styles.inputWrapper}>
+                        <div className={styles.componentWrapper}>
                             <label htmlFor={`kidAge-${index}`}>Age:</label>
                             <input
                                 type="number"
@@ -190,7 +190,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                                 required
                             />
                         </div>
-                        <div className={styles.inputWrapper}>
+                        <div className={styles.componentWrapper}>
                             <label htmlFor={`kidSchool-${index}`}>School:</label>
                             <input
                                 type="text"
@@ -201,7 +201,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                                 required
                             />
                         </div>
-                        <div className={styles.inputWrapper}>
+                        <div className={styles.componentWrapper}>
                             <label htmlFor={`kidSchoolDistrict-${index}`}>School District:</label>
                             <input
                                 type="text"
@@ -212,7 +212,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                                 required
                             />
                         </div>
-                        <div className={styles.inputWrapper}>
+                        <div className={styles.componentWrapper}>
                             <label htmlFor={`kidRelationship-${index}`}>Relation to Applicant:</label>
                             <input
                                 type="text"
