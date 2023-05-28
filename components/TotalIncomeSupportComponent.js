@@ -1,6 +1,7 @@
 // total household income from all household members and number of people supported
 import styles from "./applicant_form/ApplicantForm.module.css";
 import {useState} from "react";
+import IncomeSourcesComponent from "./IncomeSourcesComponent";
 
 
 // applicant household income information
@@ -53,7 +54,21 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
     return (
         <div>
             <h1>Cumulative Household Income</h1>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
+                <input
+                    type="checkbox"
+                    id="isIncomeVerified"
+                    className="hidden"
+                    onChange={handleCheckboxChange}
+                />
+                <label htmlFor="isIncomeVerified" className="flex items-center mt-4 select-none">
+                <span className={` ${isIncomeVerified ? 'bg-green-500' : 'bg-white'} mr-2 border rounded border-gray-400 w-5 h-5 flex items-center justify-center `}>
+                    {isIncomeVerified && '✓'}
+                </span>
+                    <span className='font-bold'> Income Verified</span>
+                </label>
+            </div>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="totalHouseholdIncome">Current Monthly Household Income (include all sources):</label>
                 <input
                     type="number"
@@ -65,7 +80,7 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                     required
                 />
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="houseHoldIncomePastYear">Monthly Income Last 12 Months:</label>
                 <input
                     type="number"
@@ -77,7 +92,7 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                     required
                 />
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="totalSupportMembers">Total Number of Supported Members</label>
                 <input
                     type="number"
@@ -89,7 +104,7 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                     required
                 />
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="singleMaleHeadOfHousehold">Is applicant single head of household?</label>
                 <select
                     id="singleMaleHeadOfHousehold"
@@ -101,20 +116,17 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                     <option value={'singleFemaleHeadOfHousehold'}>Yes, Single Female Head of Household</option>
                 </select>
             </div>
-            <div className={styles.inputWrapper}>
-                <input
-                    type="checkbox"
-                    id="isIncomeVerified"
-                    className="hidden"
-                    onChange={handleCheckboxChange}
+            <div className={styles.componentWrapper}>
+                <label htmlFor='incomeSituation'>Income Situation</label>
+                <textarea
+                    id={`incomeSituation`}
+                    name="incomeSituation"
+                    placeholder="Brief explanation to clarify income situation"
+                    value={formData.houseHoldIncome.incomeSituation}
+                    onChange={handleInputChange}
                 />
-                <label htmlFor="isIncomeVerified" className="flex items-center mt-4 select-none">
-                <span className={` ${!isIncomeVerified ? 'bg-green-500' : ''} mr-2 border rounded border-gray-400 bg-white w-5 h-5 flex items-center justify-center `}>
-                    {isIncomeVerified && '✓'}
-                </span>
-                    <span className='font-bold'> Income Verified</span>
-                </label>
             </div>
+            <IncomeSourcesComponent formData={formData} onComponentInputChange={onComponentInputChange}/>
         </div>
     );
 }
