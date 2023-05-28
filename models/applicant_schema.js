@@ -443,9 +443,16 @@ const applicantSchema = new Schema({
                         },
                         relationshipToAdult: {
                             type: String,
-                            default: 'spouse',
+                            default: 'undisclosed',
                             required: function () {
                                 return this.parent().isOtherAdultsAtResidence === true;
+                            }
+                        },
+                        relationDetails: {
+                            type: String,
+                            default: "",
+                            required: function () { //todo : test inputs
+                                return (this.parent().relationshipToAdult === "relative" || this.parent().relationshipToAdult === 'other')
                             }
                         }
                     }
@@ -496,6 +503,14 @@ const applicantSchema = new Schema({
                         return this.parent().helpRequested === 'rent';
                     }
                 },
+            verified: {
+                    type: Boolean,
+                    default: false,
+                required: function () {
+                    return this.parent().helpRequested === 'rent';
+                }
+            }
+
         }
     },
     rentAssistance: {
@@ -542,13 +557,8 @@ const applicantSchema = new Schema({
         },
         landLordPhone: {
             type: String,
-            default: '0000000000', //todo: make sure phone numbers are the same. String is preferred if doesn't break form
+            default: '0000000000', // todo: make sure phone numbers are the same. String is preferred if doesn't break form
                 match: [/^[0-9]{10}/, 'Enter 10 digit phone number. Exclue any additional characters'],
-        },
-        verified: {
-            type: Boolean,
-            default: false,
-            required: true
         },
         landLordAddress: {
             landLordStreet1: {
