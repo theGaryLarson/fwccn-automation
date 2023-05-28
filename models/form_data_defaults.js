@@ -90,7 +90,8 @@ const form_data_defaults = {
         homeStreet2: 'Apt. 100',
         homeCity: 'Tacoma',
         homeState: 'WA',
-        homeZip: '98142'
+        homeZip: '98142',
+        verified: false
     },
     rentAssistance: {
         hasRentAssistance: false,
