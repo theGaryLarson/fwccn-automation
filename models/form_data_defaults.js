@@ -26,11 +26,11 @@ const form_data_defaults = {
     applicantGender: 'Male',
     applicantAge: '33',
     phone: '9876543210',
-    income: {
-        currentMonthlyIncome: 850,
-        monthlyIncomeLast12Months: 16750,
-        totalHouseholdMembersIncomeSupports: 3,
-    },
+    // income: {
+    //     currentMonthlyIncome: 850,
+    //     monthlyIncomeLast12Months: 16750,
+    //     totalHouseholdMembersIncomeSupports: 3,
+    // },
     disabled: false,
     idSource: {
         driverLicenseOrId: 'FGSLTWHGHOBS316',
