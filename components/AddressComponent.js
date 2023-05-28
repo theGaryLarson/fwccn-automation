@@ -1,11 +1,25 @@
 import styles from "./applicant_form/ApplicantForm.module.css";
-import RentAssistanceComponent from "./RentAssistanceComponent";
-
-
-
+import {useState} from "react";
+import Link from "next/link";
 
 export default function AddressComponent({ title, formData, onComponentInputChange }) {
 
+    const [isVerified, setIsVerified] = useState(false);
+
+    const handleCheckboxChange = () => {
+        setIsVerified(!isVerified);
+        const updatedLandlord = {
+            ...formData.homeAddress,
+            verified: !isVerified,
+        }
+        onComponentInputChange({
+            target: {
+                name: 'homeAddress',
+                value: updatedLandlord
+            }
+
+        })
+    };
     const handleInputChange = (event) => {
         onComponentInputChange(event)
     }
@@ -14,7 +28,21 @@ export default function AddressComponent({ title, formData, onComponentInputChan
         <div className={`border-2 border-gray-600 p-4 box mt-4 mb-4`}>
 
             <h1>{title} Address</h1>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
+                <input
+                    type="checkbox"
+                    id="landLordIsVerified"
+                    className="hidden"
+                    onChange={handleCheckboxChange}
+                />
+                <label htmlFor="landLordIsVerified" className="flex items-center mt-4 select-none">
+                <span className={` mr-2 border rounded border-gray-400 w-5 h-5 flex items-center justify-center ${isVerified ? 'bg-green-500' : 'bg-white'}`}>
+                    {isVerified && '✓'}
+                </span>
+                    <span className='font-bold'>Lease Verified</span>
+                </label>
+            </div>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="street-1">Street1:</label>
                 <input
                     type="text"
@@ -27,7 +55,7 @@ export default function AddressComponent({ title, formData, onComponentInputChan
                 />
 
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="street-2">Street2:</label>
                 <input
                     type="text"
@@ -38,7 +66,7 @@ export default function AddressComponent({ title, formData, onComponentInputChan
                     onChange={handleInputChange}
                 />
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="city">City:</label>
                 <input
                     type="text"
@@ -50,7 +78,7 @@ export default function AddressComponent({ title, formData, onComponentInputChan
                     required
                 />
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="homeState">State:</label>
                 <input
                     type="text"
@@ -65,7 +93,7 @@ export default function AddressComponent({ title, formData, onComponentInputChan
                 />
             </div>
 
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="zipCode">Zip Code:</label>
                 <input
                     type="number"
@@ -77,6 +105,14 @@ export default function AddressComponent({ title, formData, onComponentInputChan
                     required
                 />
             </div>
+            <Link
+                className="text-blue-500 hover:text-blue-700 underline"
+                href={"https://atip.piercecountywa.gov/app/parcelSearch/search"}
+                target={"_blank"}
+                rel="noopener noreferrer"
+            >
+                Parcel Viewer
+            </Link>
         </div>
     );
 }
