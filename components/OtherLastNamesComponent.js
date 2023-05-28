@@ -98,7 +98,7 @@ export default function OtherLastNamesComponent({formData, onComponentInputChang
     return (
         <div className={`border-2 border-gray-600 p-4 box mt-4 mb-4`}>
             <h1>Additional Names</h1>
-            <div className={`${styles.inputWrapper} `}>
+            <div className={`${styles.componentWrapper} `}>
                 <label htmlFor="otherLastNames">Have you gone by any other names?</label>
                 <select
                     id="otherLastNames"
@@ -112,16 +112,16 @@ export default function OtherLastNamesComponent({formData, onComponentInputChang
                 </select>
             </div>
             {hasOtherNames &&(
-                <div className={styles.inputWrapper}>
+                <div className={styles.componentWrapper}>
                     {formData.otherNames.additionalNames.map((otherName, index) => (
                         <div key = {index}>
                             <div className={'flex items-center'}>
                                 <h2 className={'mr-36 font-bold'}>{ordinalNumber(index)} Additional Name</h2>
-                                <button className={`${styles.removeButton}`} type={'button'} onClick={() => handleRemoveName(index)}>
+                                <button className={`${styles.removeButton} mt-4`} type={'button'} onClick={() => handleRemoveName(index)}>
                                     Remove Name
                                 </button>
                             </div>
-                            <div className={styles.inputWrapper}>
+                            <div className={styles.componentWrapper}>
                                 <label htmlFor={`otherFirstName-${index}`}>First Name:</label>
                                 <input
                                     type="text"
@@ -133,7 +133,7 @@ export default function OtherLastNamesComponent({formData, onComponentInputChang
                                 />
 
                             </div>
-                            <div className={styles.inputWrapper}>
+                            <div className={styles.componentWrapper}>
                                 <label htmlFor={`otherMiddleInitial-${index}`}>Middle Initial:</label>
                                 <input
                                     type="text"
@@ -144,13 +144,12 @@ export default function OtherLastNamesComponent({formData, onComponentInputChang
                                     onChange={(event) => handleInputChange(event, index)}
                                 />
                             </div>
-                            <div className={styles.inputWrapper}>
+                            <div className={styles.componentWrapper}>
                                 <label htmlFor={`otherMiddleInitial-${index}`}>Last Name:</label>
                                 <input
                                     type="text"
                                     id={`otherMiddleInitial-${index}`}
                                     name="otherLastName"
-                                    className={'mb-4'}
                                     placeholder="Garson"
                                     value={otherName.otherLastName}
                                     onChange={(event) => handleInputChange(event, index)}
@@ -158,7 +157,7 @@ export default function OtherLastNamesComponent({formData, onComponentInputChang
                             </div>
                         </div>
                     ))}
-                    <button className={`${style.addButton}`} type="button" onClick={handleAddName}>
+                    <button className={`${style.addButton} mt-4`} type="button" onClick={handleAddName}>
                         Add Name
                     </button>
                 </div>)}

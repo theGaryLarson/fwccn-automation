@@ -154,7 +154,7 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
     return (
         <div className={`border-2 border-gray-600 p-4 box mt-4 mb-4`}>
             <h1>Rent Assistance Information</h1>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="monthlyRentPaidByApplicant">{'Monthly Rent Paid By Applicant:'}</label>
                 <input
                     type="text"
@@ -165,7 +165,7 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
                     required
                 />
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="hasRentAssistance">{'Do you receive any form of rent assistance?'}</label>
                 <select
                     className={'mb-4'}
@@ -179,7 +179,7 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
                 </select>
             </div>
             {hasRentAssistance &&  (<div id='childElements'>
-                <div className={styles.inputWrapper}>
+                <div className={styles.componentWrapper}>
                     <label htmlFor={`hasSection8Assistance`}>{'Do you receive Section 8 (Seattle Housing Choice Voucher)?'}</label>
                     <select
                         id="hasSection8Assistance"
@@ -191,7 +191,7 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
                         <option value={'true'}>Yes</option>
                     </select>
                 </div>
-                    {hasSection8 && (<div className={styles.inputWrapper}>
+                    {hasSection8 && (<div className={styles.componentWrapper}>
                         <label htmlFor={`monthlyRentPaidBySection8`}>Total Rent Paid By Section 8:</label>
                         <input
                             type="number"
@@ -210,7 +210,7 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
                                 Remove Assistance
                             </button>
                         </div>
-                        <div className={styles.inputWrapper}>
+                        <div className={styles.componentWrapper}>
                             <label htmlFor={`rentAssistanceProgram-${index}`}>Name of Assistance Program:</label>
                             <input
                                 type='text'
@@ -221,7 +221,7 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
                                 required
                             />
                         </div>
-                        <div className={`${styles.inputWrapper} mb-0`}>
+                        <div className={`${styles.componentWrapper} mb-0`}>
                             <label htmlFor={`amountPaidByProgram-${index}`}>Total Rent Paid By Program:</label>
                             <input
                                 type="number"

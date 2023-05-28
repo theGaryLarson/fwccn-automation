@@ -27,7 +27,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
     return (
         <div className={`border-2 border-gray-600 p-4 box mt-4 mb-4`}>
             <h1>Homelessness Information</h1>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="homeless">Are you currently experiencing homelessness?</label>
                 <select
                     id="homeless"
@@ -41,7 +41,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                 </select>
             </div>
             { isHomeless() && <div>
-                <div className={styles.inputWrapper}>
+                <div className={styles.componentWrapper}>
                     <label htmlFor="placeStayedRecently">Where have you stayed recently?</label>
                     <input
                         type="text"
@@ -55,7 +55,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         disabled={!isHomeless()}
                     />
                 </div>
-                <div className={styles.inputWrapper}>
+                <div className={styles.componentWrapper}>
                     <label htmlFor="durationXpHomelessness">How many days have you been experiencing homelessness?</label>
                    <input
                         type="number"
@@ -68,7 +68,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         disabled={!isHomeless()}
                     />
                 </div>
-                <div className={styles.inputWrapper}>
+                <div className={styles.componentWrapper}>
                     <label htmlFor="whyHomeless">Why are you experiencing homelessness?</label>
                     <textarea
                         id="whyHomeless"
@@ -82,7 +82,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                     />
                 </div>
                 <h1>Temporary Address</h1>
-                <div className={styles.inputWrapper}>
+                <div className={styles.componentWrapper}>
                     <label htmlFor="street1">Street 1:</label>
                     <input
                         type="text"
@@ -95,7 +95,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         disabled={formData.homelessness.isHomeless === 'false'}
                     />
                 </div>
-                <div className={styles.inputWrapper}>
+                <div className={styles.componentWrapper}>
                     <label htmlFor="street2">Street 2:</label>
                     <input
                         type="text"
@@ -107,7 +107,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         disabled={formData.homelessness.isHomeless === 'false'}
                     />
                 </div>
-                <div className={styles.inputWrapper}>
+                <div className={styles.componentWrapper}>
                     <label htmlFor="city">City:</label>
                     <input
                         type="text"
@@ -120,7 +120,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         disabled={formData.homelessness.isHomeless === 'false'}
                     />
                 </div>
-                <div className={styles.inputWrapper}>
+                <div className={styles.componentWrapper}>
                     <label htmlFor="state">State:</label>
                     <input
                         type="text"
@@ -133,7 +133,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         disabled={formData.homelessness.isHomeless === 'false'}
                     />
                 </div>
-                <div className={styles.inputWrapper}>
+                <div className={styles.componentWrapper}>
                     <label htmlFor="zip">ZIP code:</label>
                     <input
                         type="text"

@@ -10,7 +10,7 @@ export default function IncomeComponent({formData, onComponentInputChange }) {
     return (
         <div>
             <h1>Income Information</h1>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="monthly-income">Monthly Income:</label>
                 <input
                     type="number"
@@ -23,7 +23,7 @@ export default function IncomeComponent({formData, onComponentInputChange }) {
                 />
 
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="income-last-12-months">Total Income Last 12 Months:</label>
                 <input
                     type="number"
@@ -34,7 +34,7 @@ export default function IncomeComponent({formData, onComponentInputChange }) {
                     onChange={handleInputChange}
                 />
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="members-supported">Household Members Supported By This Income:</label>
                 <input
                     type="number"

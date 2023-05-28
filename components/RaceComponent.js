@@ -10,7 +10,7 @@ export default function RaceComponent({formData, onComponentInputChange }) {
     return (
         <div>
             <h1>Demographic Information</h1>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="americanIndianOrAlaskaNative">American Indian or Alaska Native</label>
                 <input
                     type="number"
@@ -22,7 +22,7 @@ export default function RaceComponent({formData, onComponentInputChange }) {
                 />
 
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="whiteOrCaucasian">White or Caucasian</label>
                 <input
                     type="number"
@@ -33,7 +33,7 @@ export default function RaceComponent({formData, onComponentInputChange }) {
                     required
                 />
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="asianAsianAmerican">Asian or Asian American</label>
                 <input
                     type="number"
@@ -44,7 +44,7 @@ export default function RaceComponent({formData, onComponentInputChange }) {
                     required
                 />
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="otherRace">Other Race</label>
                 <input
                     type="number"
@@ -55,7 +55,7 @@ export default function RaceComponent({formData, onComponentInputChange }) {
                     required
                 />
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="blackAfricanAmerican">Black or African American</label>
                 <input
                     type="number"
@@ -66,7 +66,7 @@ export default function RaceComponent({formData, onComponentInputChange }) {
                     required
                 />
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="multiRacial">Multi-Racial</label>
                 <input
                     type="number"
@@ -77,7 +77,7 @@ export default function RaceComponent({formData, onComponentInputChange }) {
                     required
                 />
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="latinoAmericanHispanic">Latino or Hispanic</label>
                 <input
                     type="number"
@@ -88,7 +88,7 @@ export default function RaceComponent({formData, onComponentInputChange }) {
                     required
                 />
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="unknown">Unknown</label>
                 <input
                     type="number"
@@ -99,7 +99,7 @@ export default function RaceComponent({formData, onComponentInputChange }) {
                     required
                 />
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="nativeAmericanPacificIslander">Native Hawaiian or Pacific Islander</label>
                 <input
                     type="number"

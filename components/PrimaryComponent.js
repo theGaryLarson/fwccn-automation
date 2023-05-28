@@ -42,7 +42,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
     return (
         <div>
             <h1>Applicant Information</h1>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="f-name-input">First Name:</label>
                 <input
                     type="text"
@@ -55,7 +55,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                 />
 
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="mi-input">Middle Initial:</label>
                 <input
                     type="text"
@@ -66,7 +66,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                     onChange={handleInputChange}
                 />
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="l-name-input">Last Name:</label>
                 <input
                     type="text"
@@ -79,7 +79,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                 />
             </div>
 
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor={"applicantGender"}>Gender assigned at Birth:</label>
                 <select
                     id={"applicantGender"}
@@ -93,7 +93,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                 </select>
             </div>
 
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor={"applicantAge"}>Applicant Age:</label>
                 <input
                     type="text"
@@ -106,7 +106,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
             </div>
 
 
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="applicant-phone">Phone Number:</label>
                 <input
                     type="text"
@@ -120,7 +120,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                     required
                 />
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="has-disability">Do you suffer from a disability?</label>
                 <select
                     id="has-disability"
@@ -132,7 +132,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                     <option value={"true"}>yes</option>
                 </select>
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="social-sec-input">Social Security Last Four:</label>
                 <input
                     type="text"
@@ -147,7 +147,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                 />
             </div>
             <div className={`border-2 border-gray-600 p-4 box mt-4 `}>
-                <div>
+                <div className={styles.componentWrapper}>
                     <label htmlFor="identification">{formData.helpRequested === 'gasoline' ? 'Driver\'s License:' : 'State Identification Or License:'}</label>
                     <input
                         type="text"
@@ -159,7 +159,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                         required
                     />
                 </div>
-                <div>
+                <div className={styles.componentWrapper}>
                     <label htmlFor="idStateIssued">{'State Issued:'}</label>
                     <input
                         type="text"
@@ -173,7 +173,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                         required
                     />
                 </div>
-                <div>
+                <div className={styles.componentWrapper}>
                     <label htmlFor="id-expiration-date">Expiration Date:</label>
                     <input
                         type="date"
@@ -186,7 +186,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                     />
                 </div>
                 {formData.helpRequested === 'gasoline' && (<div>
-                    <div className={styles.inputWrapper}>
+                    <div className={styles.componentWrapper}>
                         <label htmlFor="licensePlate">License Plate Number:</label>
                         <input
                             type="text"
@@ -197,7 +197,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                             onChange={handleInputChange}
                             required
                         />
-                        <div className={styles.inputWrapper}>
+                        <div className={styles.componentWrapper}>
                             <label htmlFor="licensePlateState">{'Which state issued license plate?'}</label>
                             <input
                                 type="text"
@@ -211,7 +211,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                                 required
                             />
                         </div>
-                        <div className={styles.inputWrapper}>
+                        <div className={styles.componentWrapper}>
                             <input
                                 type="checkbox"
                                 id="isValidLicense"
@@ -220,7 +220,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                                 onChange={handleCheckboxChange}
                             />
                             <label htmlFor="isValidLicense" className="flex items-center mt-4 select-none">
-                                <span className={` ${!isLicenseVerified ? 'bg-green-500' : ''} mr-2 border rounded border-gray-400 bg-white w-5 h-5 flex items-center justify-center `}>
+                                <span className={` ${isLicenseVerified ? 'bg-green-500' : 'bg-white'} mr-2 border rounded border-gray-400 w-5 h-5 flex items-center justify-center `}>
                                     {isLicenseVerified && '✓'}
                                 </span>
                                 <span className='font-bold'> License Verified</span>
@@ -230,7 +230,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                     </div>
                 </div>)}
                 {formData.helpRequested === 'busTicket' && (
-                    <div className={styles.inputWrapper}>
+                    <div className={styles.componentWrapper}>
                         <input
                             type="checkbox"
                             id="isBusPrimaryTransport"
@@ -247,7 +247,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                     </div>
                 )}
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles.componentWrapper}>
                 < OtherLastNamesComponent formData={formData} onComponentInputChange={handleInputChange} />
             </div>
             <HomelessnessComponent formData={formData} onComponentInputChange={handleInputChange}/>
