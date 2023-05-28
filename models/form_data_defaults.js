@@ -124,6 +124,45 @@ const form_data_defaults = {
         totalSupportMembers: 3,
         singleMaleHeadOfHousehold: false,
         singleFemaleHeadOfHousehold: false,
+        incomeSituation: "", //todo: add to schema
+        incomeSources: [ // todo: add to schema
+            {
+                name: "Job(s)",
+                peopleCount: 0
+            },
+            {
+                name: "Unemployment",
+                peopleCount: 0
+            },
+            {
+                name: "DSHS",
+                peopleCount: 0
+            },
+            {
+                name: "Social Security",
+                peopleCount: 0
+            },
+            {
+                name: "Pension",
+                peopleCount: 0
+            },
+            {
+                name: "Child Support",
+                peopleCount: 0
+            },
+            {
+                name: "Child Tax Credit Payments",
+                peopleCount: 0
+            },
+            {
+                name: "Food Stamps",
+                peopleCount: 0
+            },
+            {
+                name: "State Medical",
+                peopleCount: 0
+            },
+        ],
         isIncomeVerified: false
     },
     race: {
