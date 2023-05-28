@@ -39,7 +39,7 @@ export default function AddressComponent({ title, formData, onComponentInputChan
                 <span className={` mr-2 border rounded border-gray-400 w-5 h-5 flex items-center justify-center ${isVerified ? 'bg-green-500' : 'bg-white'}`}>
                     {isVerified && '✓'}
                 </span>
-                    <span className='font-bold'>Lease Verified</span>
+                    <span className='font-bold'>Address Verified</span>
                 </label>
             </div>
             <div className={styles.componentWrapper}>
