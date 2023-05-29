@@ -82,7 +82,7 @@ export default function AddressComponent({ title, formData, onComponentInputChan
                 <label htmlFor="homeState">State:</label>
                 <input
                     type="text"
-                    id="city"
+                    id="homeState"
                     name="homeState"
                     placeholder="Tacoma"
                     pattern = '[A-Z]{2}'
