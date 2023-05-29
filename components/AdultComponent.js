@@ -58,6 +58,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                     }
                 }
             });
+            //todo: check to see if i should update adults state here
         }
     };
 
