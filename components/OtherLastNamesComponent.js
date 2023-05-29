@@ -145,10 +145,10 @@ export default function OtherLastNamesComponent({formData, onComponentInputChang
                                 />
                             </div>
                             <div className={styles.componentWrapper}>
-                                <label htmlFor={`otherMiddleInitial-${index}`}>Last Name:</label>
+                                <label htmlFor={`otherLastName-${index}`}>Last Name:</label>
                                 <input
                                     type="text"
-                                    id={`otherMiddleInitial-${index}`}
+                                    id={`otherLastName-${index}`}
                                     name="otherLastName"
                                     placeholder="Garson"
                                     value={otherName.otherLastName}
