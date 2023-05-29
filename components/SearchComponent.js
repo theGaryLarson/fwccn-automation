@@ -6,7 +6,7 @@ export default function SearchComponent({parentHandleSubmit}) {
     const[isAddress, setIsAddress] = useState(false);
     const [queryText, setQueryText] = useState("");
     const [queryObject, setQueryObject] = useState({});
-    const [searchChoice, setSearchChoice] = useState("idQuery");
+    const [searchChoice, setSearchChoice] = useState("idSearch");
     const [streetAddress, setStreetAddress] = useState({
         homeStreet1: '',
         homeStreet2: '',
