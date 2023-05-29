@@ -34,9 +34,9 @@ export default function  AssistanceNeedComponent({formData, onComponentInputChan
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor='{`futurePlans`}'>Future Plans:</label>
+                <label htmlFor="futurePlans">Future Plans:</label>
                 <textarea
-                    id={`futurePlans`}
+                    id="futurePlans"
                     name="futurePlans"
                     placeholder="Brief summary of applicants plans for the future."
                     value={formData.futurePlans}
