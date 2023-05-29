@@ -15,7 +15,7 @@ export default async function getByAddress(req, res) {
         // console.log('RETRIEVED DOCUMENTS BY ADDRESS\n', formsByAddress);
         console.log(`RECEIVED ${formsByAddress.length} DOCS BY ADDRESS`)
     } catch (error) {
-        console.error('ERROR RETRIEVING DOCUMENTS:', error);
+        console.error('ERROR RETRIEVING DOCUMENTS BY ADDRESS:', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 }
