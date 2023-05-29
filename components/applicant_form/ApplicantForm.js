@@ -71,7 +71,6 @@ function ApplicantForm({ databaseType}) {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                dbType: databaseType,
                 data: formData,
             }),
         })
@@ -90,7 +89,7 @@ function ApplicantForm({ databaseType}) {
     }
 
     return (
-        <div className={"flex min-h-screen flex-col items-center justify-between p-4"}>
+        <div className={""}>
             <form onSubmit={handleSubmit}>
                 <div className={`${styles.componentWrapper} border-2 border-black p-4 box m-4`}>
                     <label htmlFor='interviewer'>Interviewer Name:</label>
