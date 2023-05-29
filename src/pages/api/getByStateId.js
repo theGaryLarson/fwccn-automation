@@ -8,15 +8,14 @@ export default async function getByAddress(req, res) {
 
     try {
         console.log("req_query: ", req.query.driverLicenseOrId)
-        const formsByAddress = await Applicant.find({
+        const formsById = await Applicant.find({
             "idSource.driverLicenseOrId": req.query.driverLicenseOrId
         }).exec();
 
-        res.status(200).json(formsByAddress);
-        // console.log('RETRIEVED DOCUMENTS BY ADDRESS\n', formsByAddress);
-        console.log("RECEIVED DOCS BY STATE ID")
+        res.status(200).json(formsById);
+        console.log(`RECEIVED ${formsById.length} DOCS BY STATE ID`)
     } catch (error) {
-        console.error('ERROR RETRIEVING DOCUMENTS:', error);
+        console.error('ERROR RETRIEVING DOCUMENTS BY STATE ID:', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 }
