@@ -56,7 +56,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
 
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="mi-input">Middle Initial:</label>
+                <label htmlFor="middle-initial-input">Middle Initial:</label>
                 <input
                     type="text"
                     id="middle-initial-input"
