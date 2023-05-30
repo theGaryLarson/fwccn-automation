@@ -1,30 +1,22 @@
 import SearchComponent from "./SearchComponent";
 import DecisionDetailsComponent from "./DecisionDetailsComponent";
 import {useEffect, useState} from "react";
+import {RequirementFlags} from "../models/requirementFlags";
 
 
-export default function EditReviewComponent() {
-    const [records, setRecords] = useState([]);
-    const [isMultipleAddresses, setIsMultipleAddresses] = useState(false);
-    const [isDuplicateApplicant, setIsDuplicateApplicant] = useState(false);
+export default function EditReviewComponent({records, setRecords}) {
+
     const [recordCount, setRecordCount] = useState(0);
-    const [flags, setFlags] = useState( {
-        //todo: set boolean values for requirements
-    })
 
+    // fixme: discern between multipleaddress or duplicate applicant :: In Progress with requirementCheck api route
     useEffect(() => {
-        setIsMultipleAddresses(records.length > 1);
-        console.log(`Updated records. Count: ${records.length} records. Multiple addresses: `, records.length > 1);
-    }, [records]);
-
-    useEffect(() => {
-        setIsDuplicateApplicant(records.length > 1);
-        console.log(`Updated records. Count: ${records.length} records. Duplicate applicants: `, records.length > 1);
+        setRecordCount(records.length)
+        console.log(`Updated records. Count: ${records.length} records.`);
     }, [records]);
 
     async function getApplicantRecords(isAddress, queryObject) {
         let resultRecords = isAddress ?
-            await getApplicantAddresses(queryObject) :
+            await getApplicantByAddress(queryObject) :
             await getApplicantByStateId(queryObject);
         setRecords(resultRecords);
     }
@@ -42,7 +34,7 @@ export default function EditReviewComponent() {
             return null;
         }
     }
-    async function getApplicantAddresses(queryObject) {
+    async function getApplicantByAddress(queryObject) {
         try {
             const response = await fetch(`/api/getByAddress?${queryObject}`);
             if (response.ok) {
@@ -59,7 +51,7 @@ export default function EditReviewComponent() {
      <div>
          <div className={"styles.componentWrapper"}>
              <SearchComponent parentHandleSubmit={getApplicantRecords}/>
-             <DecisionDetailsComponent/>
+             <DecisionDetailsComponent />
          </div>
      </div>
  )
