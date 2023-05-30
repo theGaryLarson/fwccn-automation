@@ -1,8 +1,6 @@
 import SearchComponent from "./SearchComponent";
 import DecisionDetailsComponent from "./DecisionDetailsComponent";
 import {useEffect, useState} from "react";
-import {RequirementFlags} from "../models/requirementFlags";
-
 
 export default function EditReviewComponent({records, setRecords}) {
 
