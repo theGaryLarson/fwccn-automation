@@ -3,7 +3,16 @@ import styles from "./applicant_form/ApplicantForm.module.css";
 export default function  AssistanceNeedComponent({formData, onComponentInputChange }) {
 
     const handleInputChange = (event) => {
-            onComponentInputChange(event)
+        let {name, value} = event.target;
+        if (name === "isMoreThanMonthBehind") {
+            value = value === "true"
+        }
+        onComponentInputChange({
+            target : {
+                name: name,
+                value: value
+            }
+        })
     }
 
     return (
@@ -23,6 +32,20 @@ export default function  AssistanceNeedComponent({formData, onComponentInputChan
 
                 </select>
             </div>
+            { formData.helpRequested === "rent" &&
+                (<div className={styles.componentWrapper} >
+                    <label htmlFor="isMoreThanMonthBehind">Are you more than a month behind on the rent?</label>
+                    <select
+                        id="isMoreThanMonthBehind"
+                        name="isMoreThanMonthBehind"
+                        value={formData.homeAddress.isMoreThanMonthBehind.toString()}
+                        onChange={handleInputChange}
+                    >
+                        <option value={'false'}>No</option>
+                        <option value={'true'}>Yes</option>
+                    </select>
+                </div>)
+            }
             <div className={styles.componentWrapper}>
                 <label htmlFor='explanation-of-need'>Explanation of Need:</label>
                 <textarea
