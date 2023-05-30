@@ -1,12 +1,12 @@
 import RequirementCheckComponent from "./RequirementCheckComponent";
 import NeedSummaryComponent from "./NeedSummaryComponent";
 
-export default function DecisionDetailsComponent({flags, records}) {
+export default function DecisionDetailsComponent({requirementFlags, records}) {
 
     return (
         <div>
-            {/*<RequirementCheckComponent/>*/}
-            {/*<NeedSummaryComponent/>*/}
+            <NeedSummaryComponent/>
+            <RequirementCheckComponent/>
         </div>
     )
 }
