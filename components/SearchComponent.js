@@ -7,49 +7,31 @@ export default function SearchComponent({parentHandleSubmit}) {
     const [queryText, setQueryText] = useState("");
     const [queryObject, setQueryObject] = useState({});
     const [searchChoice, setSearchChoice] = useState("idSearch");
-    const [streetAddress, setStreetAddress] = useState({
-        homeStreet1: '',
-        homeStreet2: '',
-        homeCity: '',
-        homeState: '',
-        homeZip: 0
-    });
-useEffect(() => {}, [queryObject, searchChoice])
-    const updateQueryText = (event) => {
-        const { name, value } = event.target;
-        setQueryText(value)
-        // const _name = isAddress ? 'homeAddress' : 'stateId'
-        // setQueryObject({
-        //     [_name]: {
-        //         [name]: value
-        //     }
-        // })
 
+    useEffect(() => {}, [queryObject, searchChoice]);
+
+    const updateQueryText = (event) => {
+        const { value } = event.target;
+        setQueryText(value)
     }
     const upDateSearchChoice = (event) => {
         setSearchChoice(event.target.value)
         setIsAddress(event.target.value === "addressSearch")
     }
-
     const handleSubmit = (event) => {
-        const {name, value} = event.target;
         event.preventDefault();
         if (isAddress) {
+            // TODO: convert to POST so can avoid using encodeURIComponent
             const queryParams =
                 encodeURIComponent('homeStreet1') + "=" +  encodeURIComponent(queryText)
 
-            console.log('queryParamsAddress: ', JSON.stringify(queryParams))
             parentHandleSubmit(isAddress, queryParams)
         } else {
             const queryParams =
                 encodeURIComponent('driverLicenseOrId') + "=" +  encodeURIComponent(queryText)
 
-            console.log('queryParamsID: ', JSON.stringify(queryParams))
             parentHandleSubmit(isAddress, queryParams)
         }
-
-
-
     }
     return (
         <div className={`${styles.componentWrapper} border-2 border-black p-4 box m-4`}>
