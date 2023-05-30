@@ -1,16 +1,18 @@
 import ApplicantForm from "../../components/applicant_form/ApplicantForm";
 import EditReviewComponent from "../../components/EditReviewComponent";
+import {useState} from "react";
 
 
 export default function Home() {
+    const [records, setRecords] = useState([]);
     return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-8">
+    <main className="flex flex-col items-center justify-between p-8">
         <h1 className="font-bold">FWCCN Applicant Form</h1>
         <div>
             <div>
-                <EditReviewComponent/>
+                <EditReviewComponent records={records} setRecords={setRecords}/>
             </div>
-            <ApplicantForm></ApplicantForm>
+            {/*<ApplicantForm></ApplicantForm>*/}
         </div>
     </main>
   )
