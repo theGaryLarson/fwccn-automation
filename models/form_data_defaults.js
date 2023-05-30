@@ -91,6 +91,7 @@ const form_data_defaults = {
         homeCity: 'Tacoma',
         homeState: 'WA',
         homeZip: '98142',
+        isMoreThanMonthBehind: false,
         verified: false
     },
     rentAssistance: {
