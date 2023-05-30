@@ -503,13 +503,20 @@ const applicantSchema = new Schema({
                         return this.parent().helpRequested === 'rent';
                     }
                 },
-            verified: {
+                isMoreThanMonthBehind: {
+                    type: Boolean,
+                    default:false,
+                    required: function () {
+                        return this.parent().helpRequested === 'rent';
+                    }
+                },
+                verified: {
                     type: Boolean,
                     default: false,
-                required: function () {
-                    return this.parent().helpRequested === 'rent';
+                    required: function () {
+                        return this.parent().helpRequested === 'rent';
+                    }
                 }
-            }
 
         }
     },
