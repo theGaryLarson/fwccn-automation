@@ -12,7 +12,7 @@ export default function  AssistanceNeedComponent({formData, onComponentInputChan
                 name: name,
                 value: value
             }
-        })
+        });
     }
 
     return (

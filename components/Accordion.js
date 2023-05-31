@@ -1,7 +1,5 @@
 import React, {useContext, useState} from "react";
 import { formatNextEligibleDate } from "../lib/util";
-import DataContext from "../lib/DataContext";
-
 
     function Accordion(props) {
         const [isOpen, setIsOpen] = useState(false);
