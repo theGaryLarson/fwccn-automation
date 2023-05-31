@@ -3,6 +3,8 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 4px;
+    margin-left: 1px;
+    margin-right: 1px;
     background-color: lightgray;
     border-radius: 15px;
 
