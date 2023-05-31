@@ -1,35 +1,36 @@
 import connectMongo from "../../../lib/connectMongo";
 import Applicant from "../../../models/applicant_schema";
 import {formatNextEligibleDate} from "../../../lib/util"
-export default async function handler(req, res) {
+export default async function validateApplicantRecord(req, res) {
     if (req.method !== "POST") {
         return res.status(405).end();
     }
     await connectMongo();
     const { driverLicenseOrId, homeStreet1, homeStreet2, homeZip } = req.body;
 
-    // Check if we got an empty homeStreet2 or homeZip. If they are empty, we will ignore them.
-    const hasHomeStreet2 = homeStreet2 !== "";
-    const hasHomeZip = homeZip !== "";
     // Define our search condition
     const condition = {
         $or: [
             { "idSource.driverLicenseOrId": driverLicenseOrId },
             {
                 "homeAddress.homeStreet1": homeStreet1,
-                ...(hasHomeStreet2 ? { "homeAddress.homeStreet2": homeStreet2 } : {}),
-                ...(hasHomeZip ? { "homeAddress.homeZip": homeZip } : {}),
             },
         ],
     };
+    if (homeStreet2) {
+        condition.$or.push({ "homeAddress.homeStreet2": homeStreet2 });
+    }
+    if (homeZip) {
+        condition.$or.push({ "homeAddress.homeZip": homeZip });
+    }
 
     // Find applicants based on the built condition
-    const applicants = await Applicant.find(condition).exec();
-
+    const duplicateRecords = await Applicant.find(condition).exec();
+    console.log("applicants: ", duplicateRecords.length)
     // Build Requirements object
     let responseFlags = {
-        multipleAddresses: { flag: false, records: [] },
-        duplicateApplicant: { flag: false, records: [] },
+        addressDuplicates: { flag: false, records: [] },
+        stateIdDuplicates: { flag: false, records: [] },
         helpLast2Years: { flag: false },
         help2TimesLast4Years: { flag: false }
     };
@@ -42,88 +43,97 @@ export default async function handler(req, res) {
     const street2 = homeStreet2 || ""
     const zip = homeZip || ""
     const address = `${street1}${street2}${zip}`
+    const targetStateId = driverLicenseOrId !== "" ? driverLicenseOrId : undefined;
+    const targetAddress = address !== "" ? address : undefined;
+
 
     // Group the applicants by their home address or state ID
-    const groupedRecords = groupFilteredRecords(driverLicenseOrId, address,applicants);
-
+    const groupedRecords = groupFilteredRecords(targetStateId, targetAddress,duplicateRecords);
     // flag duplicate applicants check for eligibility
-    if (groupedRecords.idGroups && groupedRecords.idGroups.length > 1 ) {
-        responseFlags.duplicateApplicant.flag = true;
-        responseFlags.duplicateApplicant.records = JSON.parse(JSON.stringify(groupedRecords.idGroups)); // deep copy
+    if (groupedRecords.idGroup) {
+        responseFlags.stateIdDuplicates.flag = true;
+        responseFlags.stateIdDuplicates.records = groupedRecords.idGroup;
         responseFlags = {
             ...responseFlags,
-            ...checkEligibility(groupedRecords.idGroups, today),
+            ...checkEligibility(duplicateRecords, today,  true)
         }
     }
 
     // flag multiple addresses check for eligibility
-    if (groupedRecords.addressGroups && groupedRecords.addressGroups.length > 1) {
-        responseFlags.multipleAddresses.flag = true;
-        responseFlags.multipleAddresses.records = JSON.parse(JSON.stringify(groupedRecords.addressGroups)); // deep copy
+    if (groupedRecords.addressGroup) {
+        responseFlags.addressDuplicates.flag = true;
+        responseFlags.addressDuplicates.records = groupedRecords.addressGroup;
         responseFlags = {
             ...responseFlags,
-            ...checkEligibility(groupedRecords.addressGroups,today)
+            ...checkEligibility(duplicateRecords, today,  false)
         }
-    }
 
+    }
     res.json(responseFlags);
 }
 
 /**
  * Groups applicant records based on home address or state ID
- * @param targetId
- * @param targetAddress
- * @param applicants
- * @returns {Object}
+ * @param targetId state identification
+ * @param targetAddress address; can be streetAddress1 or an addition of streetAddres2 and zip code consecutively
+ * @param records duplicate applications of target
+ * @returns {Object} { idGroup: [], addressGroup[] }
  */
-function groupFilteredRecords( targetId, targetAddress, applicants) {
-    const idGroups = [];
-    const addressGroups = [];
+function groupFilteredRecords( targetId, targetAddress, records) {
+    const idGroup = [];
+    const addressGroup = [];
 
-    for (const applicant of applicants) {
-        const id = applicant.idSource.driverLicenseOrId;
-        const applicantHomeStreet1 = applicant.homeAddress.homeStreet1 || "";
-        const applicantHomeStreet2 = applicant.homeAddress.homeStreet2 || "";
-        const applicantHomeZip = applicant.homeAddress.homeZip || "";
+    for (const document of records) {
+        const id = document.idSource.driverLicenseOrId;
+        const applicantHomeStreet1 = document.homeAddress.homeStreet1 || "";
+        const applicantHomeStreet2 = document.homeAddress.homeStreet2 || "";
+        const applicantHomeZip = document.homeAddress.homeZip || "";
         const address = `${applicantHomeStreet1}${applicantHomeStreet2}${applicantHomeZip}`;
+        //fixed: address and targetAddress do not match address is only homeStreet1 in this case but our comparison
+        if (targetId && id === targetId) {
+            idGroup.push(document);
+        }
 
-        if (
-            (targetId && id === targetId) ||
-            (!targetId && address === targetAddress)
-        ) {
-            if (!idGroups[id]) {
-                idGroups[id] = [];
-            }
-
-            if (!addressGroups[address]) {
-                addressGroups[address] = [];
-            }
-
-            idGroups[id].push(applicant);
-            addressGroups[address].push(applicant);
+        if (!targetId && address.startsWith(targetAddress)) {
+            addressGroup.push(document);
         }
     }
+    // sort in descending order so most recent application is at the top of the lists
+    idGroup.sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp))
+    addressGroup.sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp))
 
-    // sort each array in descending order
-    idGroups.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-    addressGroups.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-    return { idGroups, addressGroups };
+    return { idGroup, addressGroup };
 }
 
-function isWithinLastYears(date1, date2, years) {
-    const differenceInMilliseconds = date2 - date1;
+/**
+ *
+ * @param pastDate the past limit from years
+ * @param currrentDate today's date
+ * @param years number of years between now and the past date
+ * @returns {boolean}
+ */
+function isWithinLastYears(pastDate, currrentDate, years) {
+    const differenceInMilliseconds = currrentDate - pastDate;
     const differenceInYears = differenceInMilliseconds / 1000 / 60 / 60 / 24 / 365;
 
     return differenceInYears < years;
 }
 
+/**
+ * Iterates through all duplicate applications checking FWCCN time constraints
+ * Help once every 2 years, after being helped twice there is a 4 year waiting period
+ * @param records
+ * @param currentDate
+ * @param isIdGroup
+ * @returns {{idGroup?: {eligible: boolean, shortMessage: string, message: string, nextHelpDate: string}, addressGroup?: {eligible: boolean, shortMessage: string, message: string, nextHelpDate: string}}|{idGroup?: {helpLast2Years: {flag: boolean}, eligible: boolean, shortMessage: string, mostRecentHelpDate: null, nextHelpDate: *, message: string}, addressGroup?: {helpLast2Years: {flag: boolean}, eligible: boolean, shortMessage: string, mostRecentHelpDate: *, nextHelpDate: *, message: string}}|{idGroup?: {eligible: boolean, help2TimesLast4Years: {flag: boolean}, shortMessage: string, mostRecentHelpDate: null, nextHelpDate: *, message: string}, addressGroup?: {eligible: boolean, help2TimesLast4Years: {flag: boolean}, shortMessage: string, mostRecentHelpDate: null, nextHelpDate: *, message: string}}}
+ */
 function checkEligibility(records, currentDate, isIdGroup) {
-    // Sorting records by timestamp in descending order
-    records.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-
+    // time constraints for an applicant: help once every 2 years. If received help twice a 4 year waiting period
     let helpInCurrentTwoYearBlock = 0, helpInPreviousTwoYearBlock = 0;
-    let twoYearBlockStart = new Date(currentDate.getFullYear() - 2, currentDate.getMonth(), currentDate.getDate());
-
+    let twoYearBlockStart = new Date(
+        currentDate.getFullYear() - 2,
+        currentDate.getMonth(),
+        currentDate.getDate());
     let mostRecentHelpDate = null;
 
     for (const rec of records) {
@@ -148,6 +158,7 @@ function checkEligibility(records, currentDate, isIdGroup) {
             ...(isIdGroup
                     ? { idGroup: {
                             eligible: false,
+                            mostRecentHelpDate: mostRecentHelpDate,
                             nextHelpDate: formatNextEligibleDate(mostRecentHelpDate, 4),
                             message: 'The person is not eligible for help. They have received help in each of the last two two-year blocks and must wait four years from the last help date before receiving help again.',
                             shortMessage: "4 year wait",
@@ -155,6 +166,7 @@ function checkEligibility(records, currentDate, isIdGroup) {
                         }}
                     : { addressGroup: {
                             eligible: false,
+                            mostRecentHelpDate: mostRecentHelpDate,
                             nextHelpDate: formatNextEligibleDate(mostRecentHelpDate, 4),
                             message: 'The person is not eligible for help. They have received help in each of the last two two-year blocks and must wait four years from the last help date before receiving help again.',
                             shortMessage: "4 year wait",
@@ -169,6 +181,7 @@ function checkEligibility(records, currentDate, isIdGroup) {
             ...(isIdGroup
                     ? { idGroup: {
                             eligible: false,
+                            mostRecentHelpDate: mostRecentHelpDate,
                             nextHelpDate: formatNextEligibleDate(mostRecentHelpDate, 2),
                             message: 'The person is not eligible for help. They have received help within the last two years and must wait until two years from the last help date before receiving help again.',
                             shortMessage: "2 year wait",
@@ -177,6 +190,7 @@ function checkEligibility(records, currentDate, isIdGroup) {
                     : {
                         addressGroup: {
                             eligible: false,
+                            mostRecentHelpDate: formatNextEligibleDate(mostRecentHelpDate, 0),
                             nextHelpDate: formatNextEligibleDate(mostRecentHelpDate, 2),
                             message: 'The person is not eligible for help. They have received help within the last two years and must wait until two years from the last help date before receiving help again.',
                             shortMessage: "2 year wait",
