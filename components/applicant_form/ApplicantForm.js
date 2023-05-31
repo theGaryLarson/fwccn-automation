@@ -89,7 +89,7 @@ function ApplicantForm({ databaseType}) {
     }
 
     return (
-        <div className={""}>
+        <div className={"mt-4"}>
             <form onSubmit={handleSubmit}>
                 <div className={`${styles.componentWrapper} border-2 border-black p-4 box m-4`}>
                     <label htmlFor='interviewer'>Interviewer Name:</label>
