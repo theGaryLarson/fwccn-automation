@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import styles from "../components/applicant_form/ApplicantForm.module.css"
 
 
-export default function SearchComponent({parentHandleSubmit}) {
+export default function SearchComponent({ setParentQueryObject, parentHandleSubmit}) {
     const[isAddress, setIsAddress] = useState(false);
     const [queryText, setQueryText] = useState("");
     const [queryObject, setQueryObject] = useState({});
@@ -12,7 +12,7 @@ export default function SearchComponent({parentHandleSubmit}) {
 
     const updateQueryText = (event) => {
         const { value } = event.target;
-        setQueryText(value)
+        setQueryText(value) // TODO: refactor and remove once requirements is working
     }
     const upDateSearchChoice = (event) => {
         setSearchChoice(event.target.value)
@@ -24,12 +24,16 @@ export default function SearchComponent({parentHandleSubmit}) {
             // TODO: convert to POST so can avoid using encodeURIComponent
             const queryParams =
                 encodeURIComponent('homeStreet1') + "=" +  encodeURIComponent(queryText)
-
+            setParentQueryObject( {
+                homeStreet1: queryText
+            })
             parentHandleSubmit(isAddress, queryParams)
         } else {
             const queryParams =
                 encodeURIComponent('driverLicenseOrId') + "=" +  encodeURIComponent(queryText)
-
+            setParentQueryObject( {
+                driverLicenseOrId: queryText
+            })
             parentHandleSubmit(isAddress, queryParams)
         }
     }
