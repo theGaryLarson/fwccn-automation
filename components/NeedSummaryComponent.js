@@ -1,8 +1,15 @@
-export default function NeedSummaryComponent() {
-
+export default function NeedSummaryComponent(props) {
+    const { focusedItem } = props;
+    console.log(focusedItem)
     return (
         <div>
-        todo: add need summary components
+            { focusedItem &&
+                (
+                    <div>
+                        <h1>{focusedItem.timestamp}</h1>
+                    </div>
+                )
+            }
         </div>
     )
 }
