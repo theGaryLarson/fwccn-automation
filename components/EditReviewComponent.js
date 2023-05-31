@@ -3,12 +3,13 @@ import DecisionDetailsComponent from "./DecisionDetailsComponent";
 import {useEffect, useState} from "react";
 
 export default function EditReviewComponent({records, setRecords}) {
-
+    const [queryObject, setQueryObject] = useState("")
     const [recordCount, setRecordCount] = useState(0);
 
     // fixme: discern between multipleaddress or duplicate applicant :: In Progress with requirementCheck api route
     useEffect(() => {
         setRecordCount(records.length)
+        {console.log("queryObject: ", queryObject)}
         console.log(`Updated records. Count: ${records.length} records.`);
     }, [records]);
 
@@ -49,8 +50,8 @@ export default function EditReviewComponent({records, setRecords}) {
  return (
      <div>
          <div className={"styles.componentWrapper"}>
-             <SearchComponent parentHandleSubmit={getApplicantRecords}/>
-             <DecisionDetailsComponent />
+             <SearchComponent setParentQueryObject={setQueryObject} parentHandleSubmit={getApplicantRecords}/>
+             <DecisionDetailsComponent queryObject={queryObject} records={records}/>
          </div>
      </div>
  )
