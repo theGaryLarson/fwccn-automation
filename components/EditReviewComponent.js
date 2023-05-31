@@ -13,10 +13,11 @@ export default function EditReviewComponent({records, setRecords}) {
     }, [records]);
 
     async function getApplicantRecords(isAddress, queryObject) {
-        let resultRecords = isAddress ?
-            await getApplicantByAddress(queryObject) :
-            await getApplicantByStateId(queryObject);
-        setRecords(resultRecords);
+        // let resultRecords = isAddress ?
+        //     await getApplicantByAddress(queryObject) :
+        //     await getApplicantByStateId(queryObject);
+        // setRecords(resultRecords);
+        // console.log(resultRecords);
     }
 
     async function getApplicantByStateId(queryObject) {
