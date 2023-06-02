@@ -7,13 +7,12 @@ import {
 const applicantSchema = new Schema({
     timestamp: {
         type: String,
-        default: '', //FIXME: DO NOT ALLOW THIS TO BE EMPTY EVER IN PRODUCTION
         match: [/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/, 'Format must be YYYY-MM-DD HH:MM:SS'],
         required: true
     },
     status: {
         type: String,
-        enum: ['PENDING', 'APPROVED', 'DENIED', 'APPROVED-OVERRIDE', 'NON-RETURN'],
+        enum: ['PENDING', 'APPROVED', 'DENIED', 'APPROVED-OVERRIDE', 'NO-RETURN'],
         default: 'PENDING',
         required: true
     },
@@ -113,45 +112,6 @@ const applicantSchema = new Schema({
         default: '0000000000',
         match: [/^[0-9]{10}/, 'Enter 10 digit phone number exclude any additional characters']
     },
-    // income: {
-    //     type: {
-    //         currentMonthlyIncome: {
-    //             type: Number,
-    //             default: 0,
-    //             validate: {
-    //                 validator: function (v) {
-    //                     return /^\d*[1-9]\d*$/.test(v.toString());
-    //                 },
-    //                 message: 'Must be a non-negative integer'
-    //             },
-    //             required: true
-    //         },
-    //         monthlyIncomeLast12Months: {
-    //             type: Number,
-    //             default: 0,
-    //             validate: {
-    //                 validator: function (v) {
-    //                     return /^\d*[1-9]\d*$/.test(v.toString());
-    //                 },
-    //                 message: 'Must be a non-negative integer'
-    //             },
-    //             required: true
-    //         },
-    //         totalHouseholdMembersIncomeSupports: {
-    //             type: Number,
-    //             default: 0,
-    //             validate: {
-    //                 validator: function (v) {
-    //                     return /^\d*[1-9]\d*$/.test(v.toString());
-    //                 },
-    //                 message: 'Must be a non-negative integer'
-    //             },
-    //             required: true
-    //         },
-    //     },
-    //     default: {},
-    //     required: true
-    // },
     disabled: {
         type: Boolean,
         default: false,
@@ -345,7 +305,7 @@ const applicantSchema = new Schema({
                 return undefined;
             }
         },
-        relationToApplicant: {
+        relationsToApplicant: {
             type: [
                 {
                     type: String
@@ -399,70 +359,69 @@ const applicantSchema = new Schema({
         }
     },
     otherAdults: {
-        type: [{
-            isOtherAdultsAtResidence: {
-                type: Boolean,
-                default: false,
-                required: true
-            },
-            adults: {
-                type: [
-                    {
-                        adultFName: {
-                            type: String,
-                            required: function () {
-                                return this.parent().isOtherAdultsAtResidence === true;
-                            }
-                        },
-                        adultMiddleInitial: {
-                            type: String
-                        },
-                        adultLName: {
-                            type: String,
-                            required: function () {
-                                return this.parent().isOtherAdultsAtResidence === true;
-                            }
-                        },
-                        adultGender: {
-                            type: String,
-                            required: function () {
-                                return this.parent().isOtherAdultsAtResidence === true;
-                            }
-                        },
-                        adultAge: { //todo: require min age of 18
-                            type: Number,
-                            validate: {
-                                validator: function(v) {
-                                    return /^\d*[0-9]\d*$/.test(v.toString());
-                                },
-                                message: 'Must enter a non-negative number'
+
+        isOtherAdultsAtResidence: {
+            type: Boolean,
+            default: false,
+            required: true
+        },
+        adults: {
+            type: [
+                {
+                    adultFName: {
+                        type: String,
+                        required: function () {
+                            return this.parent().isOtherAdultsAtResidence === true;
+                        }
+                    },
+                    adultMiddleInitial: {
+                        type: String
+                    },
+                    adultLName: {
+                        type: String,
+                        required: function () {
+                            return this.parent().isOtherAdultsAtResidence === true;
+                        }
+                    },
+                    adultGender: {
+                        type: String,
+                        required: function () {
+                            return this.parent().isOtherAdultsAtResidence === true;
+                        }
+                    },
+                    adultAge: { //todo: require min age of 18
+                        type: Number,
+                        validate: {
+                            validator: function(v) {
+                                return /^\d*[0-9]\d*$/.test(v.toString());
                             },
-                            required: function () {
-                                return this.parent().isOtherAdultsAtResidence === true;
-                            }
+                            message: 'Must enter a non-negative number'
                         },
-                        relationshipToAdult: {
-                            type: String,
-                            default: 'undisclosed',
-                            required: function () {
-                                return this.parent().isOtherAdultsAtResidence === true;
-                            }
-                        },
-                        relationDetails: {
-                            type: String,
-                            default: "",
-                            required: function () { //todo : test inputs
-                                return (this.parent().relationshipToAdult === "relative" || this.parent().relationshipToAdult === 'other')
-                            }
+                        required: function () {
+                            return this.parent().isOtherAdultsAtResidence === true;
+                        }
+                    },
+                    relationshipToAdult: {
+                        type: String,
+                        default: 'undisclosed',
+                        required: function () {
+                            return this.parent().isOtherAdultsAtResidence === true;
+                        }
+                    },
+                    relationDetails: {
+                        type: String,
+                        default: "",
+                        required: function () { //todo : test inputs
+                            return (this.parent().relationshipToAdult === "relative" || this.parent().relationshipToAdult === 'other')
                         }
                     }
-                ],
-                default: [],
-                required: function () {
-                    return this.parent().isOtherAdultsAtResidence === true;
                 }
+            ],
+            default: [],
+            required: function () {
+                return this.parent().isOtherAdultsAtResidence === true;
             }
-        }]
+        }
     },
     homeAddress: {
         type: {
