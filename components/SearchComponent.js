@@ -2,13 +2,14 @@ import {useEffect, useState} from "react";
 import styles from "../components/applicant_form/ApplicantForm.module.css"
 
 
-export default function SearchComponent({ setParentQueryObject, parentHandleSubmit}) {
+export default function SearchComponent(props) {
+    const {setParentQueryObject, parentHandleSubmit } = props
     const[isAddress, setIsAddress] = useState(false);
     const [queryText, setQueryText] = useState("");
-    const [queryObject, setQueryObject] = useState({});
+    // const [queryObject, setQueryObject] = useState({});
     const [searchChoice, setSearchChoice] = useState("idSearch");
 
-    useEffect(() => {}, [queryObject, searchChoice]);
+    useEffect(() => {}, [/*queryObject,*/ searchChoice]);
 
     const updateQueryText = (event) => {
         const { value } = event.target;
