@@ -1,6 +1,6 @@
 const form_data_defaults = {
     timestamp: String,
-    // 4 states PENDING, APPROVED, DENIED, APPROVED-OVERRIDE
+    // 5 states PENDING, APPROVED, DENIED, APPROVED-OVERRIDE, NO-RETURN
     status: 'PENDING',
     referredBy: 'Mercy House',
     interviewer: 'Jane Doe',
