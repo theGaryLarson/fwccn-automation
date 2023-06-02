@@ -221,22 +221,6 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                 <button className={`${styles.addButton} mt-4`} type="button" onClick={handleAddAdult}>
                     Add Adult
                 </button>
-
-                {/* Displaying each adult and their info */}
-                {/*<div>*/}
-                {/*    <h3>Other Adults:</h3>*/}
-                {/*    {formData.otherAdults.adults.map((adult, index) => (*/}
-                {/*        <div key={index}>*/}
-                {/*            <p>*/}
-                {/*                <strong>Adult {index + 1}:</strong> {adult.adultFName} {adult.adultMiddleInitial + '.'} {adult.adultLName}*/}
-                {/*            </p>*/}
-                {/*            <p>Age: {adult.adultAge}</p>*/}
-                {/*            <p>Gender: {adult.adultGender}</p>*/}
-                {/*            <p>Relationship to Adult: {adult.relationshipToAdult}</p>*/}
-                {/*            <hr />*/}
-                {/*        </div>*/}
-                {/*    ))}*/}
-                {/*</div>*/}
             </div>)}
         </div>
     );
