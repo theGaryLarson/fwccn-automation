@@ -196,7 +196,6 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
                 <button className={`${style.addButton} mt-4 mb-4` } type="button" onClick={handleAddRentAssistanceProgram}>
                     Add Additional Assistance
                 </button>
-
             </div>)}
         </div>
     );
