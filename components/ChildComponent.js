@@ -48,14 +48,12 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
         });
     };
 
-
     const handleInputChange = (event, index) => {
         const { name, value } = event.target;
 
         if (name === "hasChildrenUnder18") {
             const newValue = value === "true";
             setHasChildrenUnder18(newValue);
-
             if (!newValue) {
                 // Clear the kids data when there are no kids living at the residence
                 setChildren([])
