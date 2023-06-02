@@ -6,7 +6,6 @@ export default function RaceComponent({formData, onComponentInputChange }) {
     const handleInputChange = (event) => {
         onComponentInputChange(event)
     }
-
     return (
         <div>
             <h1>Demographic Information</h1>
@@ -20,7 +19,6 @@ export default function RaceComponent({formData, onComponentInputChange }) {
                     onChange={handleInputChange}
                     required
                 />
-
             </div>
             <div className={styles.componentWrapper}>
                 <label htmlFor="whiteOrCaucasian">White or Caucasian</label>
