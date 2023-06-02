@@ -53,7 +53,6 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                     onChange={handleInputChange}
                     required
                 />
-
             </div>
             <div className={styles.componentWrapper}>
                 <label htmlFor="middle-initial-input">Middle Initial:</label>
@@ -78,7 +77,6 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                     required
                 />
             </div>
-
             <div className={styles.componentWrapper}>
                 <label htmlFor={"applicantGender"}>Gender assigned at Birth:</label>
                 <select
@@ -104,8 +102,6 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                     required
                 />
             </div>
-
-
             <div className={styles.componentWrapper}>
                 <label htmlFor="applicant-phone">Phone Number:</label>
                 <input
@@ -253,7 +249,6 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
             <HomelessnessComponent formData={formData} onComponentInputChange={handleInputChange}/>
             {(formData.homelessness.isHomeless === "false" || formData.homelessness.isHomeless === false) && ( <AddressComponent title="Home" formData={formData} onComponentInputChange={handleInputChange}/>)}
             {(formData.helpRequested === 'rent') && (<RentAssistanceComponent formData={formData} onComponentInputChange={handleInputChange}/>)}
-
         </div>
     );
 }
