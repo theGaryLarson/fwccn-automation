@@ -33,8 +33,6 @@ export default function OtherLastNamesComponent({formData, onComponentInputChang
                     }
                 });
             }
-
-
         } else if (index !== null) {
             const updateOtherNames = formData.otherNames.additionalNames.map((otherName, i) => {
                 if (i === index) {
@@ -45,7 +43,6 @@ export default function OtherLastNamesComponent({formData, onComponentInputChang
                 }
                 return otherName;
             });
-
             onComponentInputChange({
                 target: {
                     name: 'otherNames',
@@ -131,7 +128,6 @@ export default function OtherLastNamesComponent({formData, onComponentInputChang
                                     value={otherName.otherFirstName}
                                     onChange={(event) => handleInputChange(event, index)}
                                 />
-
                             </div>
                             <div className={styles.componentWrapper}>
                                 <label htmlFor={`otherMiddleInitial-${index}`}>Middle Initial:</label>
