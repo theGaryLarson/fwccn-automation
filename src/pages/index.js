@@ -8,7 +8,7 @@ export default function Home() {
     // console.log(serverRuntimeConfig.ipAddress)
     const [records, setRecords] = useState([]);
     return (
-    <main className="flex flex-col items-center justify-between p-8">
+    <main className="flex flex-col min-w-max items-center  pt-8">
         <h1 className="font-bold">FWCCN Applicant Form</h1>
         <div>
             <div>
