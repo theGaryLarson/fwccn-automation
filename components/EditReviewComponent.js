@@ -9,9 +9,8 @@ export default function EditReviewComponent({records, setRecords}) {
     // fixme: discern between multipleaddress or duplicate applicant :: In Progress with requirementCheck api route
     useEffect(() => {
         setRecordCount(records.length)
-        {console.log("queryObject: ", queryObject)}
         console.log(`Updated records. Count: ${records.length} records.`);
-    }, [records]);
+    }, [records, recordCount]);
 
     async function getApplicantRecords(isAddress, queryObject) {
         // let resultRecords = isAddress ?
@@ -23,6 +22,7 @@ export default function EditReviewComponent({records, setRecords}) {
 
     async function getApplicantByStateId(queryObject) {
         try {
+            // todo: change api route. Use POST. Return all records. SORT BY PENDING
             const response = await fetch(`/api/getByStateId?${queryObject}`);
             if (response.ok) {
                 return await response.json()
@@ -36,6 +36,7 @@ export default function EditReviewComponent({records, setRecords}) {
     }
     async function getApplicantByAddress(queryObject) {
         try {
+            // todo: change api route. Use POST. Return all records. SORT BY PENDING
             const response = await fetch(`/api/getByAddress?${queryObject}`);
             if (response.ok) {
                 return await response.json()
