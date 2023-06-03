@@ -113,7 +113,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                     className={'mb-4'}
                     id="adults"
                     name="isOtherAdultsAtResidence"
-                    value={formData.otherAdults.isOtherAdultsAtResidence.toString()}
+                    value={formData.otherAdults.isOtherAdultsAtResidence?.toString()}
                     onChange={(event) => handleInputChange(event, null)}
                 >
                     <option value={'false'}>No</option>
@@ -122,7 +122,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
             </div>
                 {isOtherAdults && (
                     <div className={styles.componentWrapper}>
-                    {formData.otherAdults.adults.map((adult, index) => (
+                    {formData.otherAdults.adults?.map((adult, index) => (
                         <div key={index}>
                             <div className={'flex items-center'}>
                                 <h2 className={'mr-36 font-bold'}>{ordinalNumber(index)} Additional Adult</h2>
@@ -136,7 +136,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                                     type="text"
                                     id={`adultFName-${index}`}
                                     name="adultFName"
-                                    value={adult.adultFName}
+                                    value={adult?.adultFName ?? ''}
                                     onChange={(event) => handleInputChange(event, index)}
                                     required
                                 />
@@ -147,7 +147,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                                     type="text"
                                     id={`adultMiddleInitial-${index}`}
                                     name="adultMiddleInitial"
-                                    value={adult.adultMiddleInitial}
+                                    value={adult?.adultMiddleInitial ?? ''}
                                     onChange={(event) => handleInputChange(event, index)}
                                 />
                             </div>
@@ -157,7 +157,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                                     type="text"
                                     id={`adultLName-${index}`}
                                     name="adultLName"
-                                    value={adult.adultLName}
+                                    value={adult?.adultLName ?? ''}
                                     onChange={(event) => handleInputChange(event, index)}
                                     required
                                 />
@@ -168,7 +168,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                                     type="number"
                                     id={`adultAge-${index}`}
                                     name="adultAge"
-                                    value={adult.adultAge}
+                                    value={adult?.adultAge ?? ''}
                                     onChange={(event) => handleInputChange(event, index)}
                                     required
                                 />
@@ -178,7 +178,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                                 <select
                                     id={`adultGender-${index}`}
                                     name="adultGender"
-                                    value={adult.adultGender}
+                                    value={adult?.adultGender ?? ''}
                                     onChange={(event) => handleInputChange(event, index)}
                                     required
                                 >
@@ -192,7 +192,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                                 <select
                                     id={`relationshipToAdult-${index}`}
                                     name="relationshipToAdult"
-                                    value={adult.relationshipToAdult}
+                                    value={adult?.relationshipToAdult ?? ''}
                                     onChange={(event) => handleInputChange(event, index)}
                                     required
                                 >
