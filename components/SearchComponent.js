@@ -5,15 +5,28 @@ import styles from "../components/applicant_form/ApplicantForm.module.css"
 export default function SearchComponent(props) {
     const {setParentQueryObject, parentHandleSubmit } = props
     const[isAddress, setIsAddress] = useState(false);
-    const [queryText, setQueryText] = useState("");
-    // const [queryObject, setQueryObject] = useState({});
     const [searchChoice, setSearchChoice] = useState("idSearch");
+    const [stateId, setStateId] = useState("")
+    const [street1, setStreet1] = useState("")
+    const [street2, setStreet2] = useState("")
+    const [homeZip, setHomeZip] = useState("")
 
-    useEffect(() => {}, [/*queryObject,*/ searchChoice]);
+    useEffect(() => {}, [searchChoice]);
 
-    const updateQueryText = (event) => {
-        const { value } = event.target;
-        setQueryText(value) // TODO: refactor and remove once requirements is working
+
+    const updateStateId = (event) => {
+        setStateId(event.target.value)
+    }
+    const updateStreet1 = (event) => {
+        setStreet1(event.target.value)
+    }
+
+    const updateStreet2 = (event) => {
+        setStreet2(event.target.value)
+    }
+
+    const updateHomeZip = (event) => {
+        setHomeZip(event.target.value)
     }
     const upDateSearchChoice = (event) => {
         setSearchChoice(event.target.value)
@@ -21,22 +34,26 @@ export default function SearchComponent(props) {
     }
     const handleSubmit = (event) => {
         event.preventDefault();
+        let queryParams
         if (isAddress) {
-            // TODO: convert to POST so can avoid using encodeURIComponent
-            const queryParams =
-                encodeURIComponent('homeStreet1') + "=" +  encodeURIComponent(queryText)
+            // TODO: convert to POST so can avoid using encodeURIComponent. ** WIP FIX: using requirementsCheck route **
+            // queryParams =
+            //     encodeURIComponent('homeStreet1') + "=" +  encodeURIComponent(queryText)
             setParentQueryObject( {
-                homeStreet1: queryText
+                homeStreet1: street1,
+                homeStreet2: street2,
+                homeZip: homeZip
             })
-            parentHandleSubmit(isAddress, queryParams)
+
         } else {
-            const queryParams =
-                encodeURIComponent('driverLicenseOrId') + "=" +  encodeURIComponent(queryText)
+           // queryParams =
+           //      encodeURIComponent('driverLicenseOrId') + "=" +  encodeURIComponent(queryText)
             setParentQueryObject( {
-                driverLicenseOrId: queryText
+                driverLicenseOrId: stateId
             })
-            parentHandleSubmit(isAddress, queryParams)
+
         }
+        parentHandleSubmit(isAddress, queryParams)
     }
     return (
         <div className={`${styles.componentWrapper} border-2 border-black p-4 box m-4`}>
@@ -53,19 +70,60 @@ export default function SearchComponent(props) {
                         <option value={'addressSearch'}>Street Address</option>
                     </select>
                 </div>
-                <div className={`${styles.componentWrapper}`}>
-                    <label htmlFor={isAddress ? 'homeStreet1' : 'driverLicenseOrId'}> Search by {isAddress ? "Address" : "State ID"}</label>
-                    <input
-                        type='text'
-                        id={isAddress ? 'homeStreet1' : 'driverLicenseOrId'}
-                        name={isAddress ? 'homeStreet1' : 'driverLicenseOrId'}
-                        placeholder={isAddress ? ' Enter Street Address' :' Enter State ID' }
-                        onChange={updateQueryText}
-                        value={queryText}
-                        required
-                    />
-                </div>
-                <div >
+                {/*TODO: render separate divs based on selection*/}
+                {
+                    !isAddress && (
+                        <div className={`${styles.componentWrapper}`}>
+                            <label htmlFor={'driverLicenseOrId'}> Search by State ID</label>
+                            <input
+                                type='text'
+                                id={'driverLicenseOrId'}
+                                name={'driverLicenseOrId'}
+                                placeholder={'Enter State ID'}
+                                onChange={updateStateId}
+                                value={stateId}
+                                required
+                            />
+                        </div>
+                    )
+                }
+                {
+                    isAddress && (
+                        <div className={`${styles.componentWrapper}`}>
+                            <h1>Enter Address</h1>
+
+                            <input
+                                type='text'
+                                id={'street1'}
+                                name={'street1'}
+                                className={`mt-1`}
+                                placeholder={' Enter Street Address'}
+                                onChange={updateStreet1}
+                                value={street1}
+                                required
+                            />
+                            <input
+                                type='text'
+                                id={'street2'}
+                                name={'street2'}
+                                className={`mt-1`}
+                                placeholder={' Enter Apartment # (optional)'}
+                                onChange={updateStreet2}
+                                value={street2}
+                            />
+                            <input
+                                type='text'
+                                id={'zip'}
+                                name={'zip'}
+                                className={`mt-1`}
+                                placeholder={' Enter Zip Code (optional)'}
+                                onChange={updateHomeZip}
+                                value={homeZip}
+                            />
+                        </div>
+                    )
+                }
+                <div>
                     <button className={styles.submitButton} type="submit" >Search</button>
                 </div>
 
