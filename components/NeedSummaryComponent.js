@@ -11,22 +11,24 @@ export default function NeedSummaryComponent(props) {
     const [ hasChildren, setHasChildren] = useState( false);
     const [hasAdults, setHasAdults] = useState( false)
 
+
     useEffect( () => {
         if (!isEmptyObject(focusedItem)) {
             setText(text)
-            console.log('focusedItem: ', focusedItem)
             setHasChildren(focusedItem.children.hasChildrenUnder18)
             setHasAdults((focusedItem.otherAdults.isOtherAdultsAtResidence))
-            console.log("firstItem: ", firstItem)
         }
         textAreaRef.current.addEventListener(
             "input",
             adjustTextAreaSize
         );
-
-
     },[setText, setHasChildren, text, firstItem, focusedItem] )
 
+    function isEditable() {
+        const isMostRecentApplicationSubmitted = firstItem === focusedItem
+        const applicationPending = focusedItem.status === "PENDING"
+        return isMostRecentApplicationSubmitted || applicationPending
+    }
     function handleStatusChange(event) {
         const {value} = event.target
         focusedItem.status = value
@@ -40,13 +42,13 @@ export default function NeedSummaryComponent(props) {
             textarea.style.height = "auto";
             textarea.style.height = `${textarea.scrollHeight}px`;
             window.scrollTo({
-                top: 0,
+                top: parent.top.screenTop,
                 behavior: "smooth",
             });
         } else {
-            textarea.style.height = "100px";
+            textarea.style.height = "150px";
             window.scrollTo({
-                top: 0,
+                top: parent.top.screenTop,
                 behavior: "smooth",
             });
         }
@@ -80,7 +82,7 @@ export default function NeedSummaryComponent(props) {
                                         value = {focusedItem.status}
                                         onChange={handleStatusChange}
                                         className={`text-center `}
-                                        disabled={false}
+                                        disabled={!isEditable()}
                                     >
                                         <option value={"PENDING"}>PENDING</option>
                                         <option value={"APPROVED"}>APPROVED</option>
@@ -141,14 +143,13 @@ export default function NeedSummaryComponent(props) {
                                 id="reasonForNeed"
                                 name="reasonForNeed"
                                 value={focusedItem.reasonForNeed}
-                                className="min-h-50 max-h-200 bg-gray-200 w-full h-150 p-4 pt-1 border-b-black  resize-none"
+                                className="h-150 bg-gray-200 w-full p-4 pt-1 border-b-black  resize-none"
                                 onClick={collapseTextArea}
                                 ref={textAreaRef}
                                 readOnly
                             />
                         </div>
                     </div>
-
                 )
             }
         </div>
