@@ -59,6 +59,11 @@ function ApplicantForm(props) {
     useEffect(() => {
     }, [formData]);
 
+    useEffect( () => {
+        if (item) {
+            setFormData(item)
+        }
+    }, [item])
     async function handleSubmit(event) {
         event.preventDefault();
         formData.timestamp = createTimeStamp();
@@ -138,9 +143,9 @@ function ApplicantForm(props) {
             {isDataLoaded && (
                 <div>Data loaded successfully!</div>
             )}
-            {!isDataLoaded && (
-                <div>Error loading data. Please try again.</div>
-            )}
+            {/*{!isDataLoaded && (*/}
+            {/*    <div>Error loading data. Please try again.</div>*/}
+            {/*)}*/}
         </div>
     );
 }
