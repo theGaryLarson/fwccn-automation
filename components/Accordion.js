@@ -2,7 +2,7 @@ import React, {useContext, useState} from "react";
 import { formatNextEligibleDate } from "../lib/util";
 import NeedSummaryComponent from "./NeedSummaryComponent";
 import ApplicantForm from "./applicant_form/ApplicantForm";
-import EditReviewComponent from "./EditReviewComponent";
+import EditApplicationComponent from "./EditApplicationComponent";
 
     function Accordion(props) {
         const { item, setItemFocus, firstItem } = props;
@@ -75,7 +75,7 @@ import EditReviewComponent from "./EditReviewComponent";
                             </div>
                             <div>
                                 <button onClick={loadApplication} className={"bg-gray-600"} type="button">LOAD APPLICATION</button>
-                                {showForm && <EditReviewComponent item={item} />} {/* conditionally render the form */}
+                                {showForm && <EditApplicationComponent item={item} />} {/* conditionally render the form */}
                             </div>
                         </div>
 
