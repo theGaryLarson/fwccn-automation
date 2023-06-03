@@ -9,8 +9,8 @@ export default function EditReviewComponent(props) {
 
     // fixme: discern between multipleaddress or duplicate applicant :: In Progress with requirementCheck api route
     useEffect(() => {
-        setRecordCount(records.length)
-        console.log(`Updated records. Count: ${records.length} records.`);
+        // setRecordCount(records.length)
+        // console.log(`Updated records. Count: ${records.length} records.`);
     }, [records, recordCount]);
 
     async function getApplicantRecords(isAddress, queryObject) {
