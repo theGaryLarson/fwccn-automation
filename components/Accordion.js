@@ -1,11 +1,13 @@
 import React, {useContext, useState} from "react";
 import { formatNextEligibleDate } from "../lib/util";
 import NeedSummaryComponent from "./NeedSummaryComponent";
+import ApplicantForm from "./applicant_form/ApplicantForm";
+import EditReviewComponent from "./EditReviewComponent";
 
     function Accordion(props) {
+        const { item, setItemFocus, firstItem } = props;
         const [isOpen, setIsOpen] = useState(false);
-        const { item, setItemFocus } = props;
-        const items = Object.values(item);
+        const [showForm, setShowForm] = useState(false);
         const toggleAccordion = () => {
             setIsOpen(!isOpen);
         };
@@ -14,10 +16,15 @@ import NeedSummaryComponent from "./NeedSummaryComponent";
             setItemFocus(item)
         }
 
+        const loadApplication = () => {
+            setShowForm(true);
+        }
+
         return (
             <div onClick={handleFocus}>
                 <div className={`flex flex-col items-center`}>
                     <button
+                        type="button"
                         onClick={toggleAccordion}
                         className={` rounded m-1 mb-0 p-2 w-full text-center ${item.status === 'APPROVED' || item.status === 'APPROVED-OVERRIDE' ? ' bg-green-100 border-green-500 border-2' : ' bg-red-100 border-red-500 border-2'}`}
                     >
@@ -27,8 +34,8 @@ import NeedSummaryComponent from "./NeedSummaryComponent";
 
                     </button>
                     {isOpen && (
-                        <div>
-                            <NeedSummaryComponent focusedItem={item} />
+                        <div className={'w-full'}>
+                            <NeedSummaryComponent focusedItem={item} firstItem={firstItem} />
                             <div className={`flex flex-row w-full bg-gray-100 p-2 `}>
                                 <div className="bg-gray-100 rounded  w-full left">
                                     <p className="ml-4"><span
@@ -64,9 +71,11 @@ import NeedSummaryComponent from "./NeedSummaryComponent";
                                     <p className="ml-4"><span
                                         className={"font-bold"}>Bus Primary Transport:</span> {item.idSource.isBusPrimaryTransport ? 'Yes' : 'No'}
                                     </p>
-
-
                                 </div>
+                            </div>
+                            <div>
+                                <button onClick={loadApplication} className={"bg-gray-600"} type="button">LOAD APPLICATION</button>
+                                {showForm && <EditReviewComponent item={item} />} {/* conditionally render the form */}
                             </div>
                         </div>
 
