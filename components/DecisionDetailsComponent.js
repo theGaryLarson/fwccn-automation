@@ -3,16 +3,14 @@ import NeedSummaryComponent from "./NeedSummaryComponent";
 import {useEffect, useState} from "react";
 
 export default function DecisionDetailsComponent(props) {
-    const { queryObject, records} = props
-    const [ focusedItem, setFocusedItem ] = useState({}) //todo: change state to undefined and could remove helper function in NeedsSummary
-    const [firstItem, setFirstItem] = useState(undefined)
-    useEffect( () => {
+    const { queryObject, records} = props // queryObject state in EditReviewComponents
 
-    }, [focusedItem])
+    // useEffect( () => {
+    //
+    // }, [focusedItem])
     return (
             <div>
-                <RequirementCheckComponent queryObject={queryObject} setFocusedItem={setFocusedItem} />
-                {/*<NeedSummaryComponent focusedItem={focusedItem} firstItem={firstItem}/>*/}
+                <RequirementCheckComponent queryObject={queryObject}  />
             </div>
     )
 }
