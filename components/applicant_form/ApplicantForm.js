@@ -8,19 +8,16 @@ import ChildComponent from "../ChildComponent";
 import AdultComponent from "../AdultComponent";
 import AssistanceNeedComponent from "../AssistanceNeedComponent";
 import TotalIncomeSupportComponent from "../TotalIncomeSupportComponent";
+import {createTimeStamp} from "../../lib/util";
 
 
 // the form checks the database type through the fetch method using the api/data route.
 // where the data.js folder contains two connections. one local mysql connection and another cloud-based
-function createTimeStamp() {
-    const pacificTimeDiff = 7 * 60 * 60 * 1000;
-   return new Date(Date.now() - pacificTimeDiff)
-       .toISOString().slice(0, 19)
-       .replace('T', ' ');
-}
+
 
 // mongodb connection
-function ApplicantForm({ databaseType}) {
+function ApplicantForm(props) {
+    const { item } = props
     // todo: import Applicant model and modify with useState [applicant, setApplicant]
     const [formData, setFormData] = useState(form_data_defaults);
     const [isValid, setIsValid] = useState(false);
@@ -65,7 +62,7 @@ function ApplicantForm({ databaseType}) {
     async function handleSubmit(event) {
         event.preventDefault();
         formData.timestamp = createTimeStamp();
-
+        console.log("SUBMITTED")
         // todo: validate each input using input attributes
         await fetch("/api/add", {
             method: "POST",
@@ -127,17 +124,22 @@ function ApplicantForm({ databaseType}) {
                 <div className={`${styles.componentWrapper} border-2 border-black p-4 box m-4`}>
                     <LandlordComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
+                { !item &&
+                    (
+                        <div>
+                            <button className={styles.submitButton} type="submit" disabled={!isValid}>Submit</button>
+                        </div>
+                    )
+                }
 
 
-                <div >
-                    <button className={styles.submitButton} type="submit" disabled={!isValid}>Submit</button>
-                </div>
             </form>
+            {/*todo: fix how submission message is rendered*/}
             {isDataLoaded && (
                 <div>Data loaded successfully!</div>
             )}
             {!isDataLoaded && (
-                <div>{/*Error loading data. Please try again.*/}</div>
+                <div>Error loading data. Please try again.</div>
             )}
         </div>
     );
