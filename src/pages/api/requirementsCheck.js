@@ -8,25 +8,29 @@ export default async function validateApplicantRecord(req, res) {
     await connectMongo();
     const { driverLicenseOrId, homeStreet1, homeStreet2, homeZip } = req.body;
 
-    // Define our search condition
-    const condition = {
-        $or: [
-            { "idSource.driverLicenseOrId": driverLicenseOrId },
-            {
-                "homeAddress.homeStreet1": homeStreet1,
-            },
-        ],
-    };
-    if (homeStreet2) {
-        condition.$or.push({ "homeAddress.homeStreet2": homeStreet2 });
-    }
-    if (homeZip) {
-        condition.$or.push({ "homeAddress.homeZip": homeZip });
+    // Build our search condition
+    const condition = {};
+
+    if (driverLicenseOrId && driverLicenseOrId !== "") {
+        condition["idSource.driverLicenseOrId"] = driverLicenseOrId;
     }
 
+    if (homeStreet1 && homeStreet1 !== "") {
+        condition["homeAddress.homeStreet1"] = homeStreet1;
+    }
+
+    if (homeStreet2 && homeStreet2 !== "") {
+        condition["homeAddress.homeStreet2"] = homeStreet2;
+    }
+
+    if (homeZip && homeZip !== "") {
+        condition["homeAddress.homeZip"] = homeZip;
+    }
+    // todo: need different logic if condition is {} which returns all records.
+    //  Current code assumes returning duplicates
     // Find applicants based on the built condition
     const duplicateRecords = await Applicant.find(condition).exec();
-
+    console.log("returned records: \n", duplicateRecords.length)
     // Build Requirements object
     let responseFlags = {
         addressDuplicates: { flag: false, records: [] },
