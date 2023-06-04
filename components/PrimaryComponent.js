@@ -7,9 +7,10 @@ import {useState} from "react";
 
 
 // applicant contact and identifying information
-export default function PrimaryComponent({ formData, onComponentInputChange }) {
-    const [isLicenseVerified, setIsLicenseVerified] = useState(formData.idSource.isValidLicense || false)
-    const [isBusPrimaryTransport, setIsBusPrimaryTransport] = useState(formData.isBusPrimaryTransport || false)
+export default function PrimaryComponent(props) {
+    const  { formData, onComponentInputChange } = props
+    const [isLicenseVerified, setIsLicenseVerified] = useState(formData.idSource?.isValidLicense ?? false)
+    const [isBusPrimaryTransport, setIsBusPrimaryTransport] = useState(formData?.isBusPrimaryTransport ?? false)
     const handleInputChange = (event) => {
         onComponentInputChange(event)
     }
@@ -109,7 +110,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                     id="applicant-phone"
                     name="phone"
                     placeholder="1234567890"
-                    value={formData.phone}
+                    value={formData?.phone?? ''}
                     pattern="[0-9]{10}"
                     title="Please enter 10 digit phone number. (e.g. 1234567890)"
                     onChange={handleInputChange}
@@ -137,7 +138,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                     placeholder="1234"
                     pattern='^[0-9]{4}'
                     title="Enter only the last four digits of applicant's social security number (e.g. 1234)"
-                    value={formData.idSource.socialSecLastFour} // must drill down to nested object
+                    value={formData?.idSource?.socialSecLastFour ?? ''} // must drill down to nested object
                     onChange={handleInputChange}
                     required
                 />
@@ -150,7 +151,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                         id="identification"
                         name="driverLicenseOrId"
                         placeholder="WDGARSOLM197PD"
-                        value={formData.idSource.driverLicenseOrId}
+                        value={formData?.idSource?.driverLicenseOrId ?? ''}
                         onChange={handleInputChange}
                         required
                     />
@@ -164,7 +165,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                         placeholder="WA"
                         pattern={'[A-Z]{2}'}
                         title='Please enter 2 letter abbreviation for state. (e.g. WA)'
-                        value={formData.idSource.idStateIssued}
+                        value={formData?.idSource?.idStateIssued ?? ''}
                         onChange={handleInputChange}
                         required
                     />
@@ -176,7 +177,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                         id="id-expiration-date"
                         name="expDate"
                         placeholder="WDLARSOGM197PD"
-                        value={formData.idSource.expDate}
+                        value={formData?.idSource?.expDate.slice(0, 10) ?? undefined} // must slice for data to load correctly needs YYY-MM-DD format
                         onChange={handleInputChange}
                         required
                     />
@@ -189,7 +190,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                             id="licensePlate"
                             name="licensePlate"
                             placeholder="CBY2970"
-                            value={formData.licensePlate}
+                            value={formData?.licensePlate ?? ''}
                             onChange={handleInputChange}
                             required
                         />
@@ -202,7 +203,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                                 placeholder="WA"
                                 pattern={'[A-Z]{2}'}
                                 title='Please enter 2 letter abbreviation for state. (e.g. WA)'
-                                value={formData.licensePlateState}
+                                value={formData?.licensePlateState ?? ''}
                                 onChange={handleInputChange}
                                 required
                             />
@@ -225,7 +226,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
 
                     </div>
                 </div>)}
-                {formData.helpRequested === 'busTicket' && (
+                {(formData?.helpRequested ?? 'not busTicket' === 'busTicket') && (
                     <div className={styles.componentWrapper}>
                         <input
                             type="checkbox"
@@ -235,7 +236,7 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                             onChange={handleCheckboxChange}
                         />
                         <label htmlFor="isBusPrimaryTransport" className="flex items-center mt-4 select-none">
-                                <span className={` ${!isBusPrimaryTransport ? 'bg-green-500' : ''} mr-2 border rounded border-gray-400 bg-white w-5 h-5 flex items-center justify-center `}>
+                                <span className={` mr-2 border rounded border-gray-400 w-5 h-5 flex items-center justify-center ${isBusPrimaryTransport ? 'bg-green-500' : 'bg-white'}`}>
                                     {isBusPrimaryTransport && '✓'}
                                 </span>
                             <span className='font-bold'> Bus Primary Transport Verified</span>
@@ -247,8 +248,8 @@ export default function PrimaryComponent({ formData, onComponentInputChange }) {
                 < OtherLastNamesComponent formData={formData} onComponentInputChange={handleInputChange} />
             </div>
             <HomelessnessComponent formData={formData} onComponentInputChange={handleInputChange}/>
-            {(formData.homelessness.isHomeless === "false" || formData.homelessness.isHomeless === false) && ( <AddressComponent title="Home" formData={formData} onComponentInputChange={handleInputChange}/>)}
-            {(formData.helpRequested === 'rent') && (<RentAssistanceComponent formData={formData} onComponentInputChange={handleInputChange}/>)}
+            {((formData?.homelessness?.isHomeless ?? '') === "false" || (formData?.homelessness?.isHomeless ?? true) === false) && ( <AddressComponent title="Home" formData={formData} onComponentInputChange={handleInputChange}/>)}
+            {(formData?.helpRequested ?? 'not rent') === 'rent' && (<RentAssistanceComponent formData={formData} onComponentInputChange={handleInputChange}/>)}
         </div>
     );
 }
