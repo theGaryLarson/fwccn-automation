@@ -11,7 +11,7 @@ export default async function getAndUpdateOneRecord(req, res) {
         return res.status(405).end();
     }
 
-    // await connectMongo();
+    await connectMongo();
     const { _id } = req.body;
     const updateData = req.body
     console.log("_id: ", _id)
