@@ -5,18 +5,19 @@ import style from "./ChildComponent.module.css"
 
 
 export default function ChildComponent({ formData, onComponentInputChange }) {
-    const [children, setChildren] = useState(formData.children.kids || []);
+    const [children, setChildren] = useState(formData?.children?.kids??[]);
     const [hasChildrenUnder18, setHasChildrenUnder18] = useState(
-        formData.children.hasChildrenUnder18 || false
+        formData?.children?.hasChildrenUnder18??false
     );
 
     // had to create custom hook leveraging useRef() to avoid an infinite loop when formData is changed
-    const prevFormDataChildren = usePrevious(formData.children); // Use the custom hook
+    const prevFormDataChildren = usePrevious(formData?.children??undefined); // Use the custom hook
 
 
     // has the condition to check if data is changed to avoid an infinite loop
     useEffect(() => {
         if (prevFormDataChildren && JSON.stringify(prevFormDataChildren) !== JSON.stringify(formData.children)) {
+            if(formData?.children?.kids??false)
             updateChildren(formData.children.kids);
         }
     });
@@ -148,7 +149,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                     className={'mb-4'}
                     id="children"
                     name="hasChildrenUnder18"
-                    value={formData.children.hasChildrenUnder18.toString()}
+                    value={formData?.children?.hasChildrenUnder18?.toString()??'false'}
                     onChange={(event) => handleInputChange(event, null)}
                 >
                     <option value={'false'}>No</option>
@@ -169,7 +170,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                             <select
                                 id={`childGender-${index}`}
                                 name="gender"
-                                value={child.gender}
+                                value={child?.gender??'female'}
                                 onChange={(event) => handleInputChange(event, index)}
                                 required
                             >
@@ -183,7 +184,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                                 type="number"
                                 id={`kidAge-${index}`}
                                 name='age'
-                                value={child.age}
+                                value={child?.age??undefined}
                                 onChange={(event) => handleInputChange(event, index)}
                                 required
                             />
@@ -194,7 +195,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                                 type="text"
                                 id={`kidSchool-${index}`}
                                 name={`school`}
-                                value={child.school}
+                                value={child?.school??''}
                                 onChange={(event) => handleInputChange(event, index)}
                                 required
                             />
@@ -205,7 +206,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                                 type="text"
                                 id={`kidSchoolDistrict-${index}`}
                                 name={`schoolDistrict`}
-                                value={child.schoolDistrict}
+                                value={child?.schoolDistrict??''}
                                 onChange={(event) => handleInputChange(event, index)}
                                 required
                             />
@@ -217,7 +218,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                                 id={`kidRelationship-${index}`}
                                 name={`relationshipToApplicant`}
                                 className={'mb-4'}
-                                value={child.relationshipToApplicant}
+                                value={child?.relationshipToApplicant??''}
                                 onChange={(event) => handleInputChange(event, index)}
                                 required
                             />
