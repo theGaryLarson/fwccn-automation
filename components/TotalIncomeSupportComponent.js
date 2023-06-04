@@ -6,7 +6,7 @@ import IncomeSourcesComponent from "./IncomeSourcesComponent";
 
 // applicant household income information
 export default function TotalIncomeSupportComponent({formData, onComponentInputChange}) {
-    const [isIncomeVerified, setIsIncomeVerified] = useState(formData.houseHoldIncome.isIncomeVerified || false)
+    const [isIncomeVerified, setIsIncomeVerified] = useState(formData?.houseHoldIncome?.isIncomeVerified??false)
     const handleInputChange = (event) => {
         const {name, value} = event.target;
 
@@ -75,7 +75,7 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                     id="totalHouseholdIncome"
                     name="totalHouseholdIncome"
                     placeholder="$0000.00"
-                    value={formData.houseHoldIncome.totalHouseholdIncome}
+                    value={formData?.houseHoldIncome?.totalHouseholdIncome??undefined}
                     onChange={handleInputChange}
                     required
                 />
@@ -87,7 +87,7 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                     id="houseHoldIncomePastYear"
                     name="houseHoldIncomePastYear"
                     placeholder="$0000.00"
-                    value={formData.houseHoldIncome.houseHoldIncomePastYear}
+                    value={formData?.houseHoldIncome?.houseHoldIncomePastYear??''}
                     onChange={handleInputChange}
                     required
                 />
@@ -99,7 +99,7 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                     id="totalSupportMembers"
                     name="totalSupportMembers"
                     placeholder="3"
-                    value={formData.houseHoldIncome.totalSupportMembers}
+                    value={formData?.houseHoldIncome?.totalSupportMembers??''}
                     onChange={handleInputChange}
                     required
                 />
@@ -122,7 +122,7 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                     id={`incomeSituation`}
                     name="incomeSituation"
                     placeholder="Brief explanation to clarify income situation"
-                    value={formData.houseHoldIncome.incomeSituation}
+                    value={formData?.houseHoldIncome?.incomeSituation??''}
                     onChange={handleInputChange}
                 />
             </div>
