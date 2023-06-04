@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { formatNextEligibleDate } from "../lib/util";
 import NeedSummaryComponent from "./NeedSummaryComponent";
 import ApplicantForm from "./applicant_form/ApplicantForm";
@@ -8,6 +8,10 @@ import EditApplicationComponent from "./EditApplicationComponent";
         const { item, setItemFocus, firstItem } = props;
         const [isOpen, setIsOpen] = useState(false);
         const [showForm, setShowForm] = useState(false);
+
+        // useEffect(() => {
+        //     setItemFocus(item)
+        // }, [item, setItemFocus])
         const toggleAccordion = () => {
             setIsOpen(!isOpen);
         };
@@ -75,7 +79,7 @@ import EditApplicationComponent from "./EditApplicationComponent";
                             </div>
                             <div>
                                 <button onClick={toggleShowForm} className={"bg-gray-600"} type="button">{showForm ? `HIDE FORM` : `SHOW FORM`}</button>
-                                {showForm && <EditApplicationComponent item={item} />} {/* conditionally render the form */}
+                                {showForm && <EditApplicationComponent item={item} />}
                             </div>
                         </div>
 
