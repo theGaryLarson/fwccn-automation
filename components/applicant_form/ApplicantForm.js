@@ -10,12 +10,6 @@ import AssistanceNeedComponent from "../AssistanceNeedComponent";
 import TotalIncomeSupportComponent from "../TotalIncomeSupportComponent";
 import {createTimeStamp} from "../../lib/util";
 
-
-// the form checks the database type through the fetch method using the api/data route.
-// where the data.js folder contains two connections. one local mysql connection and another cloud-based
-
-
-// mongodb connection
 function ApplicantForm(props) {
     const { item, updateApplicant, setEditedItem } = props
     // todo: import Applicant model and modify with useState [applicant, setApplicant]
@@ -79,7 +73,6 @@ function ApplicantForm(props) {
     async function handleSubmit(event) {
         event.preventDefault();
         formData.timestamp = createTimeStamp();
-        console.log("SUBMITTED")
         // todo: validate each input using input attributes
         await fetch("/api/add", {
             method: "POST",
@@ -112,7 +105,7 @@ function ApplicantForm(props) {
                         id='interviewer'
                         name='interviewer'
                         placeholder='Interviewer first and last name'
-                        value={formData.interviewer}
+                        value={formData?.interviewer??''}
                         onChange={handleInputChange}
                         required
                     />
@@ -159,7 +152,7 @@ function ApplicantForm(props) {
                         <div>
                             <button
                                 type="button"
-                                onClick={ async ()  => { await updateApplicant(item).then(r => {console.log(r)})}}
+                                onClick={ async ()  => { await updateApplicant(formData).then(r => {console.log("apiResponseMesg: ", r.record)})}}
                                 className={styles.submitButton}
                                 disabled={!isValid}
                             >
