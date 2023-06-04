@@ -17,9 +17,9 @@ import {createTimeStamp} from "../../lib/util";
 
 // mongodb connection
 function ApplicantForm(props) {
-    const { item } = props
+    const { item, updateApplicant, setEditedItem } = props
     // todo: import Applicant model and modify with useState [applicant, setApplicant]
-    const [formData, setFormData] = useState(form_data_defaults);
+    const [formData, setFormData] = useState(item??form_data_defaults);
     const [isValid, setIsValid] = useState(false);
     const [isDataLoaded, setIsDataLoaded] = useState(false);
     function handleInputChange(event) {
@@ -27,6 +27,12 @@ function ApplicantForm(props) {
         const {name, value} = event.target;
         const newData = updateFormData(formData, name, value);
         setFormData(newData);
+        // if (item) {
+        //     setEditedItem({
+        //             ...formData,
+        //             ...item
+        //     })
+        // }
 
         // todo: modify boolean value based on client-input validation
         setIsValid(true);
@@ -57,13 +63,19 @@ function ApplicantForm(props) {
     // These methods update changes as soon as they are made rather than on the next render which happens by default
     // Will be great for validation and the final commit to the database.
     useEffect(() => {
+
     }, [formData]);
 
     useEffect( () => {
-        if (item) {
-            setFormData(item)
+
+        if (item && !formData) { // needed to add !formData to get rid of infinite loop
+            console.log('useEffect: ', formData)
+            setFormData({
+
+
+            })
         }
-    }, [item])
+    }, [item, formData])
     async function handleSubmit(event) {
         event.preventDefault();
         formData.timestamp = createTimeStamp();
@@ -132,7 +144,27 @@ function ApplicantForm(props) {
                 { !item &&
                     (
                         <div>
-                            <button className={styles.submitButton} type="submit" disabled={!isValid}>Submit</button>
+                            <button
+                                type="submit"
+                                className={styles.submitButton}
+                                disabled={!isValid}
+                            >
+                                Submit
+                            </button>
+                        </div>
+                    )
+                }
+                { item &&
+                    (
+                        <div>
+                            <button
+                                type="button"
+                                onClick={ async ()  => { await updateApplicant(item).then(r => {console.log(r)})}}
+                                className={styles.submitButton}
+                                disabled={!isValid}
+                            >
+                                Update Form
+                            </button>
                         </div>
                     )
                 }
