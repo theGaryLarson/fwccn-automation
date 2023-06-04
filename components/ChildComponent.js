@@ -157,7 +157,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                 </select>
             </div>
             {hasChildrenUnder18 &&  (<div id='childElements'>
-                {children.map((child, index) => (
+                {children?.map((child, index) => (
                     <div key={index}>
                         <div className={'flex items-center'}>
                             <h2 className={`${style.addRemoveHeader} font-bold`}>{ordinalNumber(index)} Child At Residence</h2>
