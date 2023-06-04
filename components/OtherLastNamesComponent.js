@@ -5,8 +5,8 @@ import { ordinalNumber } from "../lib/util";
 
 // applicant race information
 export default function OtherLastNamesComponent({formData, onComponentInputChange }) {
-    const [hasOtherNames, setHasOtherNames] = useState(formData.otherNames.hasOtherNames || false)
-    const [otherNames, setOtherNames] = useState(formData.otherNames.additionalNames || [])
+    const [hasOtherNames, setHasOtherNames] = useState(formData?.otherNames?.hasOtherNames ?? false)
+    const [otherNames, setOtherNames] = useState(formData?.otherNames?.additionalNames ?? [])
     const handleInputChange = (event, index) => {
         const {name, value} = event.target;
         if (name === 'hasOtherNames') {
@@ -34,7 +34,7 @@ export default function OtherLastNamesComponent({formData, onComponentInputChang
                 });
             }
         } else if (index !== null) {
-            const updateOtherNames = formData.otherNames.additionalNames.map((otherName, i) => {
+            const updateOtherNames = formData?.otherNames?.additionalNames?.map((otherName, i) => {
                 if (i === index) {
                     return {
                         ...otherName,
@@ -100,7 +100,7 @@ export default function OtherLastNamesComponent({formData, onComponentInputChang
                 <select
                     id="otherLastNames"
                     name="hasOtherNames"
-                    value={formData.otherNames.hasOtherNames.toString()}
+                    value={formData?.otherNames?.hasOtherNames?.toString() ?? ''}
                     onChange={(event) => handleInputChange(event, null)}
                     required
                 >
@@ -110,7 +110,7 @@ export default function OtherLastNamesComponent({formData, onComponentInputChang
             </div>
             {hasOtherNames &&(
                 <div className={styles.componentWrapper}>
-                    {formData.otherNames.additionalNames.map((otherName, index) => (
+                    {formData?.otherNames?.additionalNames?.map((otherName, index) => (
                         <div key = {index}>
                             <div className={'flex items-center'}>
                                 <h2 className={'mr-36 font-bold'}>{ordinalNumber(index)} Additional Name</h2>
@@ -125,7 +125,7 @@ export default function OtherLastNamesComponent({formData, onComponentInputChang
                                     id={`otherFirstName-${index}`}
                                     name="otherFirstName"
                                     placeholder="Larry"
-                                    value={otherName.otherFirstName}
+                                    value={otherName?.otherFirstName}
                                     onChange={(event) => handleInputChange(event, index)}
                                 />
                             </div>
@@ -136,7 +136,7 @@ export default function OtherLastNamesComponent({formData, onComponentInputChang
                                     id={`otherMiddleInitial-${index}`}
                                     name="otherMiddleInitial"
                                     placeholder="M"
-                                    value={otherName.otherMiddleInitial}
+                                    value={otherName?.otherMiddleInitial}
                                     onChange={(event) => handleInputChange(event, index)}
                                 />
                             </div>
@@ -147,7 +147,7 @@ export default function OtherLastNamesComponent({formData, onComponentInputChang
                                     id={`otherLastName-${index}`}
                                     name="otherLastName"
                                     placeholder="Garson"
-                                    value={otherName.otherLastName}
+                                    value={otherName?.otherLastName}
                                     onChange={(event) => handleInputChange(event, index)}
                                 />
                             </div>
