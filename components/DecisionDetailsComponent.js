@@ -5,9 +5,6 @@ import {useEffect, useState} from "react";
 export default function DecisionDetailsComponent(props) {
     const { queryObject, records} = props // queryObject state in EditReviewComponents
 
-    // useEffect( () => {
-    //
-    // }, [focusedItem])
     return (
             <div>
                 <RequirementCheckComponent queryObject={queryObject}  />
