@@ -16,8 +16,8 @@ import EditApplicationComponent from "./EditApplicationComponent";
             setItemFocus(item)
         }
 
-        const loadApplication = () => {
-            setShowForm(true);
+        const toggleShowForm = () => {
+            setShowForm(!showForm);
         }
 
         return (
@@ -74,7 +74,7 @@ import EditApplicationComponent from "./EditApplicationComponent";
                                 </div>
                             </div>
                             <div>
-                                <button onClick={loadApplication} className={"bg-gray-600"} type="button">LOAD APPLICATION</button>
+                                <button onClick={toggleShowForm} className={"bg-gray-600"} type="button">{showForm ? `HIDE FORM` : `SHOW FORM`}</button>
                                 {showForm && <EditApplicationComponent item={item} />} {/* conditionally render the form */}
                             </div>
                         </div>
