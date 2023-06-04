@@ -21,7 +21,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
     }
 
     function isHomeless() {
-        return formData.homelessness.isHomeless;
+        return formData?.homelessness?.isHomeless??false;
     }
 
     return (
@@ -32,7 +32,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                 <select
                     id="homeless"
                     name="isHomeless"
-                    value={formData.homelessness.isHomeless.toString()}
+                    value={formData?.homelessness?.isHomeless.toString()??'false'}
                     onChange={handleInputChange}
                     required
                 >
@@ -49,7 +49,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         name="placeStayedRecently"
                         placeholder="Friend, Shelter, etc."
                         className={'mb-4'}
-                        value={formData.homelessness.placeStayedRecently}
+                        value={formData?.homelessness?.placeStayedRecently??''}
                         onChange={handleInputChange}
                         required={isHomeless()}
                         disabled={!isHomeless()}
@@ -62,7 +62,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         id="durationXpHomelessness"
                         name="durationXpHomelessness"
                         placeholder="12"
-                        value={formData.homelessness.durationXpHomelessness}
+                        value={formData?.homelessness?.durationXpHomelessness??0}
                         onChange={handleInputChange}
                         required={isHomeless()}
                         disabled={!isHomeless()}
@@ -75,7 +75,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         name="whyHomeless"
                         placeholder="Brief explanation of what lead to applicant being homeless"
                         className={'mb-4'}
-                        value={formData.homelessness.whyHomeless}
+                        value={formData?.homelessness?.whyHomeless??''}
                         onChange={handleInputChange}
                         required={isHomeless()}
                         disabled={!isHomeless()}
@@ -89,10 +89,10 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         id="street1"
                         name="street1"
                         placeholder="123 Main St."
-                        value={formData.homelessness.tempAddress.street1}
+                        value={formData?.homelessness?.tempAddress?.street1 ?? ''}
                         onChange={handleInputChange}
-                        required={formData.homelessness.isHomeless === 'true'}
-                        disabled={formData.homelessness.isHomeless === 'false'}
+                        required={(formData?.homelessness?.isHomeless ?? 'false') === 'true'}
+                        disabled={(formData?.homelessness?.isHomeless ?? 'true' )=== 'false'}
                     />
                 </div>
                 <div className={styles.componentWrapper}>
@@ -102,9 +102,9 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         id="street2"
                         name="street2"
                         placeholder="Apt. 100"
-                        value={formData.homelessness.tempAddress.street2}
+                        value={formData?.homelessness?.tempAddress?.street2 ?? ''}
                         onChange={handleInputChange}
-                        disabled={formData.homelessness.isHomeless === 'false'}
+                        disabled={!formData?.homelessness?.isHomeless??'false' === 'false'}
                     />
                 </div>
                 <div className={styles.componentWrapper}>
@@ -114,10 +114,10 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         id="city"
                         name="city"
                         placeholder="Tacoma"
-                        value={formData.homelessness.tempAddress.city}
+                        value={formData?.homelessness?.tempAddress?.city??''}
                         onChange={handleInputChange}
-                        required={formData.homelessness.isHomeless === 'true'}
-                        disabled={formData.homelessness.isHomeless === 'false'}
+                        required={formData?.homelessness?.isHomeless??'true' === 'true'}
+                        disabled={!formData?.homelessness?.isHomeless??'false' === 'false'}
                     />
                 </div>
                 <div className={styles.componentWrapper}>
@@ -127,10 +127,10 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         id="state"
                         name="state"
                         placeholder="WA"
-                        value={formData.homelessness.tempAddress.state}
+                        value={formData?.homelessness?.tempAddress?.state??''}
                         onChange={handleInputChange}
-                        required={formData.homelessness.isHomeless === 'true'}
-                        disabled={formData.homelessness.isHomeless === 'false'}
+                        required={formData?.homelessness?.isHomeless??'false' === 'true'}
+                        disabled={!formData?.homelessness?.isHomeless??'false' === 'false'}
                     />
                 </div>
                 <div className={styles.componentWrapper}>
@@ -140,10 +140,10 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         id="zip"
                         name="zip"
                         placeholder="98101"
-                        value={formData.homelessness.tempAddress.zip}
+                        value={formData?.homelessness?.tempAddress?.zip??''}
                         onChange={handleInputChange}
-                        required={formData.homelessness.isHomeless === 'true'}
-                        disabled={formData.homelessness.isHomeless === 'false'}
+                        required={formData?.homelessness?.isHomeless??'false' === 'true'}
+                        disabled={!formData?.homelessness?.isHomeless??'false' === 'false'}
                     />
                 </div>
             </div>}
