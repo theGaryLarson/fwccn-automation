@@ -15,7 +15,7 @@ export default function RaceComponent({formData, onComponentInputChange }) {
                     type="number"
                     id="americanIndianOrAlaskaNative"
                     name="americanIndianOrAlaskaNative"
-                    value={formData.race.americanIndianOrAlaskaNative}
+                    value={formData?.race?.americanIndianOrAlaskaNative??0}
                     onChange={handleInputChange}
                     required
                 />
@@ -26,7 +26,7 @@ export default function RaceComponent({formData, onComponentInputChange }) {
                     type="number"
                     id="whiteOrCaucasian"
                     name="whiteOrCaucasian"
-                    value={formData.race.whiteOrCaucasian}
+                    value={formData?.race?.whiteOrCaucasian??0}
                     onChange={handleInputChange}
                     required
                 />
@@ -37,7 +37,7 @@ export default function RaceComponent({formData, onComponentInputChange }) {
                     type="number"
                     id="asianAsianAmerican"
                     name="asianAsianAmerican"
-                    value={formData.race.asianAsianAmerican}
+                    value={formData?.race?.asianAsianAmerican??0}
                     onChange={handleInputChange}
                     required
                 />
@@ -48,7 +48,7 @@ export default function RaceComponent({formData, onComponentInputChange }) {
                     type="number"
                     id="otherRace"
                     name="otherRace"
-                    value={formData.race.otherRace}
+                    value={formData?.race?.otherRace??0}
                     onChange={handleInputChange}
                     required
                 />
@@ -59,7 +59,7 @@ export default function RaceComponent({formData, onComponentInputChange }) {
                     type="number"
                     id="blackAfricanAmerican"
                     name="blackAfricanAmerican"
-                    value={formData.race.blackAfricanAmerican}
+                    value={formData?.race?.blackAfricanAmerican??0}
                     onChange={handleInputChange}
                     required
                 />
@@ -70,7 +70,7 @@ export default function RaceComponent({formData, onComponentInputChange }) {
                     type="number"
                     id="multiRacial"
                     name="multiRacial"
-                    value={formData.race.multiRacial}
+                    value={formData?.race?.multiRacial??0}
                     onChange={handleInputChange}
                     required
                 />
@@ -81,7 +81,7 @@ export default function RaceComponent({formData, onComponentInputChange }) {
                     type="number"
                     id="latinoAmericanHispanic"
                     name="latinoAmericanHispanic"
-                    value={formData.race.latinoAmericanHispanic}
+                    value={formData?.race?.latinoAmericanHispanic??0}
                     onChange={handleInputChange}
                     required
                 />
@@ -92,7 +92,7 @@ export default function RaceComponent({formData, onComponentInputChange }) {
                     type="number"
                     id="unknown"
                     name="unknown"
-                    value={formData.race.unknown}
+                    value={formData?.race?.unknown??0}
                     onChange={handleInputChange}
                     required
                 />
@@ -103,7 +103,7 @@ export default function RaceComponent({formData, onComponentInputChange }) {
                     type="number"
                     id="nativeAmericanPacificIslander"
                     name="nativeAmericanPacificIslander"
-                    value={formData.race.nativeAmericanPacificIslander}
+                    value={formData?.race?.nativeAmericanPacificIslander??0}
                     onChange={handleInputChange}
                     required
                 />
