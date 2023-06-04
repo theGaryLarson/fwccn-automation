@@ -7,12 +7,12 @@ const form_data_defaults = {
     helpRequested: 'rent',
     licensePlate: 'CBY-2970',
     licensePlateState: 'WA',
-    isBusPrimaryTransport: false, //todo add to schema
+    isBusPrimaryTransport: true, //todo add to schema
     reasonForNeed: 'behind on rent',
     futurePlans: 'increased hours at work over summer',
-    fName: 'John',
+    fName: 'May',
     middleInitial: 'D',
-    lName: 'Mark',
+    lName: 'Madeline',
     otherNames: {
         hasOtherNames: true,
         additionalNames: [
@@ -35,70 +35,86 @@ const form_data_defaults = {
         isValidLicense: false
     },
     homelessness: {
-        isHomeless: false,
-        durationXpHomelessness: 0, // fixme: this is required for schema to validate correctly
-        placeStayedRecently: '',
-        whyHomeless: '',
+        isHomeless: true,
+        durationXpHomelessness: 5, // fixme: this is required for schema to validate correctly
+        placeStayedRecently: 'friend\'s house',
+        whyHomeless: 'jobless',
         tempAddress: {
-            street1: '',
+            street1: '123 Gospel Way',
             street2: '',
-            city: '',
-            state: '',
-            zip: ''
+            city: 'Federal Way',
+            state: 'WA',
+            zip: '98106'
         }
     },
     children: {
-        hasChildrenUnder18: false,
+        hasChildrenUnder18: true,
         kids: [
-            /*
-            gender: '',
-            age: 0,
-            school: '',
-            schoolDistrict: '',
-            relationshipToApplicant: ''
-             */
+            {
+                gender: 'female',
+                age: 14,
+                school: 'Tacoma School',
+                schoolDistrict: 'Tacoma School District',
+                relationshipToApplicant: 'daughter'
+            },
+            {
+                gender: 'male',
+                age: 9,
+                school: 'Tacoma School',
+                schoolDistrict: 'Tacoma School District',
+                relationshipToApplicant: 'son'
+            }
         ],
-        boysCount: undefined,
-        girlsCount: undefined,
-        boysAges: [],
-        girlsAges: [],
-        relationsToApplicant: [],
-        schoolDistricts: [],
-        schools: []
+        boysCount: 1,
+        girlsCount: 1,
+        boysAges: [9],
+        girlsAges: [14],
+        relationsToApplicant: ['daughter'],
+        schoolDistricts: ['Tacoma School District', 'Tacoma School District'],
+        schools: ['Tacoma School', 'Tacoma School']
     },
     otherAdults: {
-        isOtherAdultsAtResidence: false,
+        isOtherAdultsAtResidence: true,
         adults: [
-                    // {
-                    //     adultFName: 'John',
-                    //     adultMiddleInitial: '',
-                    //     adultLName: 'Doe',
-                    //     adultGender: 'Male',
-                    //     adultAge: '33',
-                    //     relationshipToAdult: 'spouse',
-                    //     relationDetails: ''
-                    // }
-                ]
+                    {
+                        adultFName: 'John',
+                        adultMiddleInitial: '',
+                        adultLName: 'Doe',
+                        adultGender: 'Male',
+                        adultAge: '33',
+                        relationshipToAdult: 'spouse',
+                        relationDetails: ''
+                    },
+                    {
+                        adultFName: 'John',
+                        adultMiddleInitial: '',
+                        adultLName: 'Doe',
+                        adultGender: 'Male',
+                        adultAge: '33',
+                        relationshipToAdult: 'relative',
+                        relationDetails: 'step-brother'
+                    }
+        ]
     },
     homeAddress: {
-        homeStreet1: '123 Oak St.',
+        homeStreet1: '123 oak st',
         homeStreet2: 'Apt. 100',
         homeCity: 'Tacoma',
         homeState: 'WA',
         homeZip: '98142',
         isMoreThanMonthBehind: false,
-        verified: false
+        verified: true
     },
     rentAssistance: {
-        hasRentAssistance: false,
-        monthlyRentPaidByApplicant: 0,
-        hasSection8Assistance: false,
-        monthlyRentPaidBySection8: 0,
+        hasRentAssistance: true,
+        monthlyRentPaidByApplicant: 300,
+        hasSection8Assistance: true,
+        monthlyRentPaidBySection8: 650,
         otherAssistance: [
-            // {
-            //     rentAssistanceProgram: '',
-            //     amountPaidByProgram: 0
-            // }
+            {
+                rentAssistanceProgram: 'Second Chances',
+                amountPaidByProgram: 25
+            }
         ]
 
 
@@ -119,12 +135,12 @@ const form_data_defaults = {
         houseHoldIncomePastYear: 10200,
         totalSupportMembers: 3,
         singleMaleHeadOfHousehold: false,
-        singleFemaleHeadOfHousehold: false,
-        incomeSituation: "",
+        singleFemaleHeadOfHousehold: true,
+        incomeSituation: "getting laid off in one week. A month behind.",
         incomeSources: [
             {
                 name: "Job(s)",
-                peopleCount: 0
+                peopleCount: 1
             },
             {
                 name: "Unemployment",
@@ -152,23 +168,23 @@ const form_data_defaults = {
             },
             {
                 name: "Food Stamps",
-                peopleCount: 0
+                peopleCount: 2
             },
             {
                 name: "State Medical",
                 peopleCount: 0
             },
         ],
-        isIncomeVerified: false
+        isIncomeVerified: true
     },
     race: {
         americanIndianOrAlaskaNative: 0,
         whiteOrCaucasian: 0,
         asianAsianAmerican: 0,
-        otherRace: 3,
+        otherRace: 0,
         blackAfricanAmerican: 0,
         multiRacial: 0,
-        latinoAmericanHispanic: 0,
+        latinoAmericanHispanic: 4,
         unknown: 0,
         nativeAmericanPacificIslander: 0
     },
