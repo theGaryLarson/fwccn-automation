@@ -1,6 +1,12 @@
 import connectMongo from "../../../lib/connectMongo";
 import Applicant from "../../../models/applicant_schema";
 import {checkEligibility, groupFilteredRecords} from "../../../lib/util"
+
+/**
+ *
+ * @param {import('next').NextApiRequest} req
+ * @param {import('next').NextApiResponse} res
+ */
 export default async function validateApplicantRecord(req, res) {
     if (req.method !== "POST") {
         return res.status(405).end();
@@ -26,11 +32,12 @@ export default async function validateApplicantRecord(req, res) {
     if (homeZip && homeZip !== "") {
         condition["homeAddress.homeZip"] = homeZip;
     }
-    // todo: need different logic if condition is {} which returns all records.
-    //  Current code assumes returning duplicates
+    // fixme: need different logic if condition is {} which returns all records.
+    //  Current code assumes returning duplicates.
+    //  Also, fetches all data on load
     // Find applicants based on the built condition
     const duplicateRecords = await Applicant.find(condition).exec();
-    console.log("returned records: \n", duplicateRecords.length)
+    console.log("/api/reqCheckL40\n    fix returned records: \n", duplicateRecords.length)
     // Build Requirements object
     let responseFlags = {
         addressDuplicates: { flag: false, records: [] },
