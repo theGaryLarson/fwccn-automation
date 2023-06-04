@@ -18,11 +18,7 @@ export default function NeedSummaryComponent(props) {
             setHasChildren(focusedItem.children.hasChildrenUnder18)
             setHasAdults((focusedItem.otherAdults.isOtherAdultsAtResidence))
         }
-        textAreaRef.current.addEventListener(
-            "input",
-            adjustTextAreaSize
-        );
-    },[setText, setHasChildren, text, firstItem, focusedItem] )
+    },[setText, setHasChildren, text, firstItem, focusedItem,] )
 
     function isEditable() {
         const isMostRecentApplicationSubmitted = firstItem === focusedItem
@@ -34,31 +30,20 @@ export default function NeedSummaryComponent(props) {
         focusedItem.status = value
         setStatus(value)
     }
-    const collapseTextArea = () => {
+    const toggleTextAreaSize = () => {
         setIsTextAreaCollapsed(!isTextAreaCollapsed);
         const textarea = textAreaRef.current;
 
         if (isTextAreaCollapsed) {
-            textarea.style.height = "auto";
+            textarea.style.height = "150px";
             textarea.style.height = `${textarea.scrollHeight}px`;
-            window.scrollTo({
-                top: parent.top.screenTop,
-                behavior: "smooth",
-            });
+
         } else {
             textarea.style.height = "150px";
             window.scrollTo({
                 top: parent.top.screenTop,
                 behavior: "smooth",
             });
-        }
-    };
-
-    const adjustTextAreaSize = () => {
-        const textarea = textAreaRef.current
-        if (textarea) {
-            textarea.style.height = "auto";
-            textarea.style.height = `${textarea.scrollHeight}px`
         }
     };
 
@@ -75,7 +60,7 @@ export default function NeedSummaryComponent(props) {
                             </div>
                             <div className={"w-full flex justify-end"}>
                                 <div className={` w-full flex justify-end`}>
-                                    <label className={"font-bold"}>Status:</label>
+                                    <label htmlFor={"status-edit"} className={"font-bold"}>Status:</label>
                                     <select
                                         id={"status-edit"}
                                         name={"status-edit"}
@@ -98,8 +83,13 @@ export default function NeedSummaryComponent(props) {
                             <div className={' w-full left '}>
                                 <span className={"font-medium"}>Has Disability: </span>{focusedItem.disabled ? 'Yes' : 'No'}
                             </div>
-                            <div className={`w-full justify-end pr-8`}>
-                                <span className={"font-medium"}>Referred by: </span> {focusedItem.referredBy}
+                            <div className={`flex flex-col w-full justify-end pr-8`}>
+                                <div className={'w-full'}>
+                                    <span className={"font-medium"}>Interviewed by: </span> {focusedItem.interviewer}
+                                </div>
+                                <div className={'w-full'}>
+                                    <span className={"font-medium"}>Referred by: </span> {focusedItem?.referredBy??''}
+                                </div>
                             </div>
                         </div>
                         <div className={`flex flex-col w-full bg-gray-100 p-2`}>
@@ -144,7 +134,7 @@ export default function NeedSummaryComponent(props) {
                                 name="reasonForNeed"
                                 value={focusedItem.reasonForNeed}
                                 className="h-150 bg-gray-200 w-full p-4 pt-1 border-b-black  resize-none"
-                                onClick={collapseTextArea}
+                                onClick={toggleTextAreaSize}
                                 ref={textAreaRef}
                                 readOnly
                             />
