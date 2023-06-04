@@ -36,9 +36,6 @@ export default function SearchComponent(props) {
         event.preventDefault();
         let queryParams
         if (isAddress) {
-            // TODO: convert to POST so can avoid using encodeURIComponent. ** WIP FIX: using requirementsCheck route **
-            // queryParams =
-            //     encodeURIComponent('homeStreet1') + "=" +  encodeURIComponent(queryText)
             setParentQueryObject( {
                 homeStreet1: street1,
                 homeStreet2: street2,
@@ -46,8 +43,7 @@ export default function SearchComponent(props) {
             })
 
         } else {
-           // queryParams =
-           //      encodeURIComponent('driverLicenseOrId') + "=" +  encodeURIComponent(queryText)
+
             setParentQueryObject( {
                 driverLicenseOrId: stateId
             })
