@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useState} from "react";
 import { formatNextEligibleDate } from "../lib/util";
 import NeedSummaryComponent from "./NeedSummaryComponent";
 import ApplicantForm from "./applicant_form/ApplicantForm";
@@ -8,18 +8,12 @@ import EditApplicationComponent from "./EditApplicationComponent";
         const { item, setItemFocus, firstItem } = props;
         const [isOpen, setIsOpen] = useState(false);
         const [showForm, setShowForm] = useState(false);
-
-        // useEffect(() => {
-        //     setItemFocus(item)
-        // }, [item, setItemFocus])
         const toggleAccordion = () => {
             setIsOpen(!isOpen);
         };
-
         const handleFocus = () => {
             setItemFocus(item)
         }
-
         const toggleShowForm = () => {
             setShowForm(!showForm);
         }
@@ -35,7 +29,6 @@ import EditApplicationComponent from "./EditApplicationComponent";
                          <span className="font-bold">
                             {formatNextEligibleDate(item.timestamp, 0)}
                          </span>
-
                     </button>
                     {isOpen && (
                         <div className={'w-full'}>
@@ -82,12 +75,8 @@ import EditApplicationComponent from "./EditApplicationComponent";
                                 {showForm && <EditApplicationComponent item={item} />}
                             </div>
                         </div>
-
-
                     )}
-
                 </div>
-
             </div>
         );
 }
