@@ -84,6 +84,7 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
             rentAssistanceProgram: '',
             amountPaidByProgram: 0
         };
+
         const updatedAssistancePrograms = [...formData.rentAssistance.otherAssistance, newAssistanceProgram]
         setAssistancePrograms(updatedAssistancePrograms);
         onComponentInputChange({
@@ -119,7 +120,7 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
                     type="text"
                     id="monthlyRentPaidByApplicant"
                     name="monthlyRentPaidByApplicant"
-                    value={formData.rentAssistance.monthlyRentPaidByApplicant}
+                    value={formData?.rentAssistance?.monthlyRentPaidByApplicant??''}
                     onChange={(event) => handleInputChange(event, null)}
                     required
                 />
@@ -130,7 +131,7 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
                     className={'mb-4'}
                     id="hasRentAssistance"
                     name="hasRentAssistance"
-                    value={formData.rentAssistance.hasRentAssistance.toString()}
+                    value={formData?.rentAssistance?.hasRentAssistance?.toString()??''}
                     onChange={(event) => handleInputChange(event, null)}
                 >
                     <option value={'false'}>No</option>
@@ -143,7 +144,7 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
                     <select
                         id="hasSection8Assistance"
                         name="hasSection8Assistance"
-                        value={formData.rentAssistance.hasSection8Assistance.toString()}
+                        value={formData?.rentAssistance?.hasSection8Assistance?.toString()??''}
                         onChange={(event) => handleInputChange(event, null)}
                     >
                         <option value={'false'}>No</option>
@@ -156,12 +157,12 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
                             type="number"
                             id={`monthlyRentPaidBySection8`}
                             name='monthlyRentPaidBySection8'
-                            value={formData.rentAssistance.monthlyRentPaidBySection8}
+                            value={formData?.rentAssistance?.monthlyRentPaidBySection8??''}
                             onChange={(event) => handleInputChange(event, null)}
                             required
                         />
                     </div>)}
-                {assistancePrograms.map((rentAssistance, index) => (
+                {assistancePrograms?.map((rentAssistance, index) => (
                     <div key={index}>
                         <div className={'flex items-center'}>
                             <h2 className={`${style.addRemoveHeader} font-bold `}>{ordinalNumber(index)} Additional Program</h2>
@@ -175,7 +176,7 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
                                 type='text'
                                 id={`rentAssistanceProgram-${index}`}
                                 name="rentAssistanceProgram"
-                                value={rentAssistance.rentAssistanceProgram} //assigned from map does not map to formData
+                                value={rentAssistance?.rentAssistanceProgram??''} //assigned from map does not map to formData
                                 onChange={(event) => handleInputChange(event, index)}
                                 required
                             />
@@ -186,7 +187,7 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
                                 type="number"
                                 id={`amountPaidByProgram-${index}`}
                                 name='amountPaidByProgram'
-                                value={rentAssistance.amountPaidByProgram} //assigned from map does not map to formData
+                                value={rentAssistance?.amountPaidByProgram??undefined} //assigned from map does not map to formData
                                 onChange={(event) => handleInputChange(event, index)}
                                 required
                             />
