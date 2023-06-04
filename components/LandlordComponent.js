@@ -15,7 +15,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                     id="landlord-full-name"
                     name="fullName"
                     placeholder="Zhāng Jìng"
-                    value={formData.landLord.fullName}
+                    value={formData?.landLord?.fullName??''}
                     onChange={handleInputChange}
                     required
                 />
@@ -27,7 +27,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                     id="landlord-phone"
                     name="landLordPhone"
                     placeholder="1234567890"
-                    value={formData.landLord.landLordPhone}
+                    value={formData?.landLord?.landLordPhone??''}
                     pattern = "^[0-9]{10}$"
                     title = "Enter phone numbers in the following format ##########"
                     onChange={handleInputChange}
@@ -41,7 +41,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                     id="landlord-street1"
                     name="landLordStreet1"
                     placeholder="123 Main St"
-                    value={formData.landLord.landLordAddress.landLordStreet1}
+                    value={formData?.landLord?.landLordAddress?.landLordStreet1??''}
                     onChange={handleInputChange}
                     required
                 />
@@ -53,7 +53,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                     id="landlord-street2"
                     name="landLordStreet2"
                     placeholder="Apt. 100"
-                    value={formData.landLord.landLordAddress.landLordStreet2}
+                    value={formData?.landLord?.landLordAddress?.landLordStreet2??''}
                     onChange={handleInputChange}
                 />
             </div>
@@ -64,7 +64,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                     id="landlord-city"
                     name="landLordCity"
                     placeholder="Seattle"
-                    value={formData.landLord.landLordAddress.landLordCity}
+                    value={formData?.landLord?.landLordAddress?.landLordCity??''}
                     onChange={handleInputChange}
                     required
                 />
@@ -76,7 +76,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                     id="landlord-zip"
                     name="landLordZip"
                     placeholder="98101"
-                    value={formData.landLord.landLordAddress.landLordZip}
+                    value={formData?.landLord?.landLordAddress?.landLordZip??''}
                     onChange={handleInputChange}
                     required
                 />
