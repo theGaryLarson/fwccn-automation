@@ -42,12 +42,16 @@ export default function Home() {
                     </button>
                 </nav>
             </div>
-            { !isLookUp && (<div className={"w-full"}>
-                <EditReviewComponent records={records} setRecords={setRecords}/>
-            </div>)}
-            {isLookUp && (<div>
-                <ApplicantForm></ApplicantForm>
-            </div>)}
+            { !isLookUp && (
+                <div className={"w-full"}>
+                    <EditReviewComponent records={records} setRecords={setRecords}/>
+                </div>
+            )}
+            {isLookUp && (
+                <div>
+                    <ApplicantForm></ApplicantForm>
+                </div>
+            )}
         </div>
     </main>
   )
