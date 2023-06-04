@@ -4,18 +4,18 @@ import Link from "next/link";
 
 export default function AddressComponent({ title, formData, onComponentInputChange }) {
 
-    const [isVerified, setIsVerified] = useState(false);
+    const [isVerified, setIsVerified] = useState(formData?.homeAddress?.verified??false);
 
     const handleCheckboxChange = () => {
         setIsVerified(!isVerified);
-        const updatedLandlord = {
+        const updateAddressVerification = {
             ...formData.homeAddress,
             verified: !isVerified,
         }
         onComponentInputChange({
             target: {
                 name: 'homeAddress',
-                value: updatedLandlord
+                value: updateAddressVerification
             }
 
         })

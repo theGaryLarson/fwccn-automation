@@ -4,7 +4,7 @@ import {ordinalNumber} from "../lib/util";
 
 export default function AdultComponent({ formData, onComponentInputChange }) {
     const [adultCount, setAdultCount] = useState(0);
-    const [adults, setAdults] = useState(formData.otherAdults.adults || [])
+    const [adults, setAdults] = useState(formData?.otherAdults?.adults??[])
     const [isOtherAdults, setIsOtherAdults] = useState(false);
 
     const handleInputChange = (event, index) => {
@@ -59,6 +59,15 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                 }
             });
             //todo: check to see if i should update adults state here
+            setAdults({
+                target: {
+                    name: 'otherAdults',
+                    value: {
+                        ...formData.otherAdults,
+                        ...updatedOtherAdults
+                    }
+                }
+            })
         }
     };
 
@@ -113,7 +122,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                     className={'mb-4'}
                     id="adults"
                     name="isOtherAdultsAtResidence"
-                    value={formData.otherAdults.isOtherAdultsAtResidence?.toString()}
+                    value={formData?.otherAdults?.isOtherAdultsAtResidence?.toString()??'false'}
                     onChange={(event) => handleInputChange(event, null)}
                 >
                     <option value={'false'}>No</option>
@@ -122,7 +131,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
             </div>
                 {isOtherAdults && (
                     <div className={styles.componentWrapper}>
-                    {formData.otherAdults.adults?.map((adult, index) => (
+                    {formData?.otherAdults?.adults?.map((adult, index) => (
                         <div key={index}>
                             <div className={'flex items-center'}>
                                 <h2 className={'mr-36 font-bold'}>{ordinalNumber(index)} Additional Adult</h2>
@@ -204,13 +213,13 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                                     <option value={'other'}>other</option>
                                 </select>
                             </div>
-                            { (adult.relationshipToAdult === "relative" || adult.relationshipToAdult === "other") && (
+                            { (adult?.relationshipToAdult === "relative" || adult?.relationshipToAdult === "other") && (
                                 <div className={`${styles.componentWrapper}`}>
                                     <label htmlFor={"relationDetails"}>Relationship Details</label> {/* todo: conditional if relative "Relation Details"*/}
                                     <textarea
                                         id={"relationDetails"}
                                         name={"relationDetails"}
-                                        value={adult.relationDetails}
+                                        value={adult?.relationDetails}
                                         onChange={(event) => handleInputChange(event, index)}
                                         required
                                     />
