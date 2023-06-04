@@ -2,7 +2,7 @@ import React, { useState} from "react";
 import styles from "./applicant_form/ApplicantForm.module.css";
 
 export default function IncomeSourcesComponent({ formData, onComponentInputChange }) {
-    const [incomeSources, setIncomeSources] = useState(formData.houseHoldIncome.incomeSources || []);
+    const [incomeSources, setIncomeSources] = useState(formData?.houseHoldIncome?.incomeSources ?? []);
     const handleIncomeSourceChange = (event, index) => {
         const updatedIncomeSources = [...incomeSources];
         updatedIncomeSources[index].name = event.target.value;
