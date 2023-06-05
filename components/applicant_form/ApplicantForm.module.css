@@ -81,6 +81,7 @@
 .removeButton {
     margin-left: auto;
     font-weight: bold;
+    white-space: nowrap;
     padding: 4px;
     color:white;
     background: red;
