@@ -1,7 +1,6 @@
 import React, {useState} from "react";
-import { formatNextEligibleDate } from "../lib/util";
+import { dateFormatNYears } from "../lib/util";
 import NeedSummaryComponent from "./NeedSummaryComponent";
-import styles from "./applicant_form/ApplicantForm.module.css";
 import EditApplicationComponent from "./EditApplicationComponent";
 
     function Accordion(props) {
@@ -9,6 +8,27 @@ import EditApplicationComponent from "./EditApplicationComponent";
         const [isOpen, setIsOpen] = useState(false);
         const [showForm, setShowForm] = useState(false);
         const [item, setItem] = useState(initialItem)
+
+        const  updateApplicant = async (editedItem) => {
+            try {
+                const response = await fetch(`api/getAndUpdateOneRecord`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(editedItem)
+                });
+                if (response.ok) {
+                    return await response.json();
+                } else {
+                    console.error(`Error updating item for state id#: ${editedItem.idSource?.driverLicenseOrId ?? ''} `, response.status);
+                }
+
+            } catch (e) {
+                console.error(`Error updating item for state id#: ${editedItem.idSource?.driverLicenseOrId ?? ''}\n `, e);
+                return null;
+            }
+        }
 
        const updateItem = (updatedItem) => {
            setItem(updatedItem)
@@ -21,6 +41,13 @@ import EditApplicationComponent from "./EditApplicationComponent";
         }
         const toggleShowForm = () => {
             setShowForm(!showForm);
+        }
+        function handleStatusChange(event) {
+            const {value} = event.target
+            setItem( {
+                ...item,
+                status: value
+            })
         }
 
         return (
