@@ -4,7 +4,6 @@ import ApplicantForm from "./applicant_form/ApplicantForm";
 
 export default function EditApplicationComponent(props) {
     const {item, onUpdate} = props
-    const [editedItem, setEditedItem] = useState(item)
     const MemorizedApplicantForm = memo(ApplicantForm);
 
     const  updateApplicant = async (editedItem) => {
