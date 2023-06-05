@@ -168,10 +168,10 @@ const applicantSchema = new Schema({
         },
         durationXpHomelessness: {
             type: Number,
-            default: 0,
+            default: null,
             validate: {
                 validator: function (v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    return v === null || /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number',
             },
