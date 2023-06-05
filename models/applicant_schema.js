@@ -395,13 +395,14 @@ const applicantSchema = new Schema({
                             return this.parent().isOtherAdultsAtResidence === true;
                         }
                     },
-                    adultAge: { //todo: require min age of 18
+                    adultAge: {
                         type: Number,
+                        min: [18, 'Adult must be at least 18 years old'],
                         validate: {
                             validator: function(v) {
-                                return /^\d*[0-9]\d*$/.test(v.toString());
+                                return v === null || ( /^\d*[0-9]\d*$/.test(v.toString()));
                             },
-                            message: 'Must enter a non-negative number'
+                            message: 'Must enter a non-negative number and be at least 18'
                         },
                         required: function () {
                             return this.parent().isOtherAdultsAtResidence === true;
