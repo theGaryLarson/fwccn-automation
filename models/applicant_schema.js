@@ -591,7 +591,7 @@ const applicantSchema = new Schema({
             required: true,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    return v === null || /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
