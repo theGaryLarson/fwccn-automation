@@ -226,7 +226,7 @@ export default function PrimaryComponent(props) {
 
                     </div>
                 </div>)}
-                {(formData?.helpRequested ?? 'not busTicket' === 'busTicket') && (
+                {(formData?.helpRequested === 'busTicket') && (
                     <div className={styles.componentWrapper}>
                         <input
                             type="checkbox"
