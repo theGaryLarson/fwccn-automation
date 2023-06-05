@@ -71,7 +71,7 @@ export default function RequirementCheckComponent(props) {
             {ids && (
                 <div className={"w-full"}>
                     {ids?.map((item, index) => {
-                        return (<Accordion setItemFocus={setFocusedItem} key={index} item={item} firstItem={firstItem} />)}
+                        return (<Accordion setItemFocus={setFocusedItem} key={index} initialItem={item} firstItem={firstItem} />)}
                     )}
                 </div>
             )}
@@ -80,7 +80,7 @@ export default function RequirementCheckComponent(props) {
                     <div className={"place-items-center"}>
                     </div>
                     {addresses?.map((item, index) => (
-                        <Accordion setItemFocus={setFocusedItem} key={index} item={item} firstItem={firstItem}/>
+                        <Accordion setItemFocus={setFocusedItem} key={index} initialItem={item} firstItem={firstItem}/>
                     ))}
                 </div>
             )}
