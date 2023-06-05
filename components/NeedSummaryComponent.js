@@ -1,5 +1,4 @@
 import {useEffect, useRef, useState} from "react";
-import styles from "./applicant_form/ApplicantForm.module.css";
 import {isEmptyObject} from "../lib/util";
 
 export default function NeedSummaryComponent(props) {
