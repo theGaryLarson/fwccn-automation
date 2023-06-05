@@ -143,7 +143,7 @@ import EditApplicationComponent from "./EditApplicationComponent";
                                     <div className="whitespace-nowrap flex-1">
                                         <p className={"font-bold"}>Address:</p>
                                     </div>
-                                    <div className="whitespace-nowrap w-full flex-1 leading-tight px-2 pt-2 pb-2 rounded border-2 bg-blue-100 border-indigo-700">
+                                    <div className=" w-full flex-1 leading-tight px-2 pt-2 pb-2 rounded border-2 bg-blue-100 border-indigo-700">
                                         <p className="ml-2">{item.homeAddress.homeStreet1}</p>
                                         <p className="ml-2">{item.homeAddress.homeStreet2}</p>
                                         <p className="ml-2">{item.homeAddress.homeCity + " " + item.homeAddress.homeState + ", " + item.homeAddress.homeZip}</p>
