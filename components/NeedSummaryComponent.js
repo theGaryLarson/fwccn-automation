@@ -19,11 +19,11 @@ export default function NeedSummaryComponent(props) {
         }
     },[setText, setHasChildren, text, firstItem, focusedItem,] )
 
-    function isEditable() {
-        const isMostRecentApplicationSubmitted = firstItem === focusedItem
-        const applicationPending = focusedItem.status === "PENDING"
-        return isMostRecentApplicationSubmitted || applicationPending
-    }
+    // function isEditable() {
+    //     const isMostRecentApplicationSubmitted = firstItem === focusedItem
+    //     const applicationPending = focusedItem.status === "PENDING"
+    //     return isMostRecentApplicationSubmitted || applicationPending
+    // }
     function handleStatusChange(event) {
         const {value} = event.target
         focusedItem.status = value
