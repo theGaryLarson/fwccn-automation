@@ -10,7 +10,7 @@ export default function Home() {
     const [isLookUp, setIsLookUp]  = useState(false)
 
     function handleOnClick(event) {
-        const {name, value} = event.target
+        const {name} = event.target
         if (name === 'new-form') {
             setIsLookUp(true)
         } else {
