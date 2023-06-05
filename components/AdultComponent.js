@@ -5,7 +5,7 @@ import {ordinalNumber} from "../lib/util";
 export default function AdultComponent({ formData, onComponentInputChange }) {
     const [adultCount, setAdultCount] = useState(0);
     const [adults, setAdults] = useState(formData?.otherAdults?.adults??[])
-    const [isOtherAdults, setIsOtherAdults] = useState(formData?.otherAdults??false);
+    const [isOtherAdults, setIsOtherAdults] = useState(formData?.isOtherAdultsAtResidence??false);
 
     const handleInputChange = (event, index) => {
         const { name, value } = event.target;
@@ -131,7 +131,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
             </div>
                 {isOtherAdults && (
                     <div className={styles.componentWrapper}>
-                    {adults?.map((adult, index) => (
+                    {formData?.otherAdults?.adults?.map((adult, index) => (
                         <div key={index}>
                             <div className={'flex items-center'}>
                                 <h2 className={'mr-36 font-bold'}>{ordinalNumber(index)} Additional Adult</h2>
