@@ -11,7 +11,7 @@ export default function SearchComponent(props) {
     const [street2, setStreet2] = useState("")
     const [homeZip, setHomeZip] = useState("")
 
-    useEffect(() => {}, [searchChoice]);
+    // useEffect(() => {}, [searchChoice]);
 
 
     const updateStateId = (event) => {
@@ -49,7 +49,7 @@ export default function SearchComponent(props) {
             })
 
         }
-        parentHandleSubmit(isAddress, queryParams)
+        // parentHandleSubmit(isAddress)
     }
     return (
         <div className={`${styles.componentWrapper} border-2 border-black p-4 box m-4`}>
