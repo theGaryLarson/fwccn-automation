@@ -113,7 +113,7 @@ export default function OtherLastNamesComponent({formData, onComponentInputChang
                     {formData?.otherNames?.additionalNames?.map((otherName, index) => (
                         <div key = {index}>
                             <div className={'flex items-center'}>
-                                <h2 className={'mr-36 font-bold'}>{ordinalNumber(index)} Additional Name</h2>
+                                <h2 className={'w-full whitespace-nowrap mr-18 font-bold'}>{ordinalNumber(index)} Additional Name</h2>
                                 <button className={`${styles.removeButton} mt-4`} type={'button'} onClick={() => handleRemoveName(index)}>
                                     Remove Name
                                 </button>
