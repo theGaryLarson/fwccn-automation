@@ -1,7 +1,6 @@
 import React, {useEffect, useMemo, useState} from "react";
 import Accordion from "./Accordion";
-import NeedSummaryComponent from "./NeedSummaryComponent";
-import {formatNextEligibleDate} from "../lib/util";
+
 export default function RequirementCheckComponent(props) {
     const {  queryObject  } = props;
     const [data, setData] = useState({});
