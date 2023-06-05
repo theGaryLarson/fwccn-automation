@@ -6,8 +6,8 @@ import styles from "./applicant_form/ApplicantForm.module.css";
 import style from "./RentAssistanceComponent.module.css"
 
 export default function RentAssistanceComponent({ formData, onComponentInputChange }) {
-    const [assistancePrograms, setAssistancePrograms] = useState(formData.rentAssistance.otherAssistance || []);
-    const [hasSection8, setHasSection8] = useState(formData.rentAssistance.hasSection8Assistance || false)
+    const [assistancePrograms, setAssistancePrograms] = useState(formData?.rentAssistance?.otherAssistance ?? []);
+    const [hasSection8, setHasSection8] = useState(formData?.rentAssistance?.hasSection8Assistance ?? false)
     const [hasRentAssistance, setHasRentAssistance] = useState(
         formData.rentAssistance.hasRentAssistance || false
     );
