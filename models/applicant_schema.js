@@ -219,7 +219,8 @@ const applicantSchema = new Schema({
                         type: Number,
                         required: function () {
                             return this.parent().hasChildrenUnder18 === true;
-                        }
+                        },
+                        max: [17, 'Child must be 17 years or younger']
                     },
                     school: {
                         type: String
