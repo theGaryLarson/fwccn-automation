@@ -40,6 +40,10 @@ const applicantSchema = new Schema({
         default: '',
         match: [/[A-Z]{2}/, 'Must enter 2-letter abbreviation for the state']
     },
+    isBusPrimaryTransport: {
+        type: Boolean,
+        default: false
+    },
     reasonForNeed: {
         type: String,
         default: '',
