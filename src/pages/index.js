@@ -18,11 +18,12 @@ export default function Home() {
         }
     }
     return (
-    <main className="flex flex-col min-w-max items-center pt-8">
-        <h1 className="font-bold">FWCCN Applicant Form</h1>
+    <main className="flex justify-center w-full pt-8">
 
-        <div className={'mb-16'}>
-            <div className='w-full'>
+
+        <div className={'mb-16 w-[650px] h-full bg-white flex flex-col items-stretch'}>
+            <h1 className="font-bold text-center">FWCCN Applicant Form</h1>
+            <div className=' flex-1 w-full'>
                 <nav className="flex justify-end gap-x-1 mt-4 ">
                     <button
                         id={'look-up'}
