@@ -168,8 +168,12 @@ import EditApplicationComponent from "./EditApplicationComponent";
                                     </div>
                                 </div>
                             </div>
-                            <NeedSummaryComponent focusedItem={item} firstItem={firstItem} />
-                            <div>
+                            { !showForm &&
+                                (
+                                    <NeedSummaryComponent focusedItem={item} firstItem={firstItem}/>
+                                )
+                            }
+                            <div >
                                 <div>
                                     {showForm && <EditApplicationComponent item={item} onUpdate={updateItem} updateApplicant={updateApplicant} />}
                                     { showForm &&
