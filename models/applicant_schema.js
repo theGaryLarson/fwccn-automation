@@ -727,5 +727,37 @@ const applicantSchema = new Schema({
     }
 });
 
+//
+console.log("Test")
+// applicantSchema.pre('validate', function(next) {
+//     if(this.helpRequested === '') {
+//         this.helpRequested = 'rent';
+//     }
+//     next();
+// });
+
+applicantSchema.pre('save', function(next) {
+    console.log('pre save hook running');
+    if(this.durationXpHomelessness === '') {
+        this.durationXpHomelessness = null;
+    }
+    if(this.totalHouseholdIncome === '') {
+        this.totalHouseholdIncome = null;
+    }
+    if(this.isOtherAdultsAtResidence?.adultAge === '') {
+        this.isOtherAdultsAtResidence.adultAge = null;
+    }
+    if(this.houseHoldIncomePastYear === '') {
+        this.houseHoldIncomePastYear = null;
+    }
+    if(this.totalSupportMembers === '') {
+        this.totalSupportMembers = null;
+    }
+
+    next();
+});
+
+
+
 const Applicant = models.Applicant || model('Applicant', applicantSchema, process.env.MONGO_DB_COL);
 export default Applicant;
