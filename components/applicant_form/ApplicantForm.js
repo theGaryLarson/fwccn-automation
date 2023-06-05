@@ -11,7 +11,7 @@ import TotalIncomeSupportComponent from "../TotalIncomeSupportComponent";
 import {createTimeStamp} from "../../lib/util";
 
 function ApplicantForm(props) {
-    const { item, updateApplicant, setEditedItem } = props
+    const { item, updateApplicant, onUpdate } = props
     // todo: import Applicant model and modify with useState [applicant, setApplicant]
     const [formData, setFormData] = useState(item??form_data_defaults);
     const [isValid, setIsValid] = useState(false);
@@ -152,7 +152,16 @@ function ApplicantForm(props) {
                         <div>
                             <button
                                 type="button"
-                                onClick={ async ()  => { await updateApplicant(formData).then(r => {console.log("apiResponseMesg: ", r.record)})}}
+                                onClick={ async ()  => {
+                                    await updateApplicant(formData)
+                                        .then(r => {
+                                            console.log("apiResponseMesg: ", r.record)
+                                            if (onUpdate) { // New addition here
+                                                onUpdate(r.record);
+                                            }
+                                        })
+
+                                }}
                                 className={styles.submitButton}
                                 disabled={!isValid}
                             >
