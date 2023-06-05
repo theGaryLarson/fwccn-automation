@@ -1,5 +1,6 @@
 import React, {useEffect, useMemo, useState} from "react";
 import Accordion from "./Accordion";
+import Legend from "./Legend";
 
 export default function RequirementCheckComponent(props) {
     const {  queryObject  } = props;
@@ -61,28 +62,36 @@ export default function RequirementCheckComponent(props) {
         }
     }, [addresses]);
     return (
-        <div className={` w-full border-2 border-gray-600 p-4 box mt-4 mb-4`}>
-            <h1 className={"flex items-center justify-center font-bold"}>
-                {ids.length > 0 && 'Applicants Submission History'}
-                {addresses.length > 0 && 'Address Submission History'}
-                {ids.length < 1 && addresses.length < 1 && 'No Record of Applicant or Address'}
-            </h1>
-            {ids && (
-                <div className={"w-full"}>
-                    {ids?.map((item, index) => {
-                        return (<Accordion setItemFocus={setFocusedItem} key={index} initialItem={item} firstItem={firstItem} />)}
-                    )}
-                </div>
-            )}
-            {addresses && (
-                <div className={"w-full"}>
-                    <div className={"place-items-center"}>
+        <div>
+            <div className={` w-full border-2 border-gray-600 p-4 box mt-4 mb-4`}>
+                <Legend></Legend>
+            </div>
+            <div className={` w-full border-2 border-gray-600 p-4 box mt-4 mb-4`}>
+                <h1 className={"flex items-center justify-center font-bold"}>
+                    {ids.length > 0 && 'Applicants Submission History'}
+                    {addresses.length > 0 && 'Address Submission History'}
+                    {queryObject && (ids.length < 1 && addresses.length < 1) && 'No Record of Applicant or Address'}
+                </h1>
+                {ids && (
+                    <div className={"w-full"}>
+                        {ids?.map((item, index) => {
+                                return (<Accordion setItemFocus={setFocusedItem} key={index} initialItem={item}
+                                                   firstItem={firstItem}/>)
+                            }
+                        )}
                     </div>
-                    {addresses?.map((item, index) => (
-                        <Accordion setItemFocus={setFocusedItem} key={index} initialItem={item} firstItem={firstItem}/>
-                    ))}
-                </div>
-            )}
+                )}
+                {addresses && (
+                    <div className={"w-full"}>
+                        <div className={"place-items-center"}>
+                        </div>
+                        {addresses?.map((item, index) => (
+                            <Accordion setItemFocus={setFocusedItem} key={index} initialItem={item}
+                                       firstItem={firstItem}/>
+                        ))}
+                    </div>
+                )}
+            </div>
         </div>
     );
 }
