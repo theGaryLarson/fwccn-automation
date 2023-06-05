@@ -67,7 +67,6 @@ export default function NeedSummaryComponent(props) {
                                         value = {focusedItem.status}
                                         onChange={handleStatusChange}
                                         className={`text-center `}
-                                        disabled={!isEditable()}
                                     >
                                         <option value={"PENDING"}>PENDING</option>
                                         <option value={"APPROVED"}>APPROVED</option>
