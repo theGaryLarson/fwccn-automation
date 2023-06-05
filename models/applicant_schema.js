@@ -591,15 +591,9 @@ const applicantSchema = new Schema({
                 message: 'Must enter a non-negative number'
             }
         },
-        singleMaleHeadOfHousehold: {
-            type: Boolean,
-            default: false,
-            required: true
-        },
-        singleFemaleHeadOfHousehold: {
-            type: Boolean,
-            default: false,
-            required: true
+        singleHeadOfHouseHold: {
+            type: String,
+            default: "No"
         },
         incomeSituation: {
             type: String,
