@@ -134,8 +134,9 @@ const form_data_defaults = {
         totalHouseholdIncome: 850,
         houseHoldIncomePastYear: 10200,
         totalSupportMembers: 3,
-        singleMaleHeadOfHousehold: false,
-        singleFemaleHeadOfHousehold: true,
+        singleHeadOfHouseHold: 'No', // states: 'No', 'Yes-male', 'Yes-female'
+        // singleMaleHeadOfHousehold: false,
+        // singleFemaleHeadOfHousehold: true,
         incomeSituation: "getting laid off in one week. A month behind.",
         incomeSources: [
             {
