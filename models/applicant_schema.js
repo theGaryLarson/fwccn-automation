@@ -108,9 +108,14 @@ const applicantSchema = new Schema({
         required: true
     },
     phone: {
-        type: String, //todo: look at this if continue getting errors might need to be a string
-        default: '0000000000',
-        match: [/^[0-9]{10}/, 'Enter 10 digit phone number exclude any additional characters']
+        type: Number, //todo: look at this if continue getting errors might need to be a string
+        match: [/^[0-9]{10}/, 'Enter 10 digit phone number exclude any additional characters'],
+        validate: { // custom validator
+            validator: function(value) {
+                return !isNaN(value);
+            },
+            message: "Your phone number must be a number",
+        } , // end validate
     },
     disabled: {
         type: Boolean,
