@@ -14,22 +14,14 @@ function ApplicantForm(props) {
     const { item, updateApplicant, onUpdate } = props
     // todo: import Applicant model and modify with useState [applicant, setApplicant]
     const [formData, setFormData] = useState(item??form_data_defaults);
-    const [isValid, setIsValid] = useState(false);
     const [isDataLoaded, setIsDataLoaded] = useState(false);
     function handleInputChange(event) {
         //todo: modify Applicant model here
         const {name, value} = event.target;
+
         const newData = updateFormData(formData, name, value);
         setFormData(newData);
-        // if (item) {
-        //     setEditedItem({
-        //             ...formData,
-        //             ...item
-        //     })
-        // }
 
-        // todo: modify boolean value based on client-input validation
-        setIsValid(true);
     }
 
     function updateFormData(formData, name, value) {
@@ -140,7 +132,6 @@ function ApplicantForm(props) {
                             <button
                                 type="submit"
                                 className={styles.submitButton}
-                                disabled={!isValid}
                             >
                                 Submit
                             </button>
@@ -156,14 +147,13 @@ function ApplicantForm(props) {
                                     await updateApplicant(formData)
                                         .then(r => {
                                             console.log("apiResponseMesg: ", r.record)
-                                            if (onUpdate) { // New addition here
+                                            if (onUpdate) {
                                                 onUpdate(r.record);
                                             }
                                         })
 
                                 }}
                                 className={styles.submitButton}
-                                disabled={!isValid}
                             >
                                 Update Form
                             </button>
