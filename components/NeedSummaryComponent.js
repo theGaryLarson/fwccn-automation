@@ -4,7 +4,7 @@ import {isEmptyObject} from "../lib/util";
 export default function NeedSummaryComponent(props) {
     const { firstItem, focusedItem } = props;
     const textAreaRef = useRef(focusedItem.reasonForNeed)
-    const [status, setStatus] = useState("PENDING")
+    // const [status, setStatus] = useState("PENDING")
     const [text, setText] = useState(focusedItem.reasonForNeed || "")
     const [ isTextAreaCollapsed, setIsTextAreaCollapsed] = useState(false)
     const [ hasChildren, setHasChildren] = useState( false);
@@ -27,7 +27,7 @@ export default function NeedSummaryComponent(props) {
     function handleStatusChange(event) {
         const {value} = event.target
         focusedItem.status = value
-        setStatus(value)
+        // setStatus(value)
     }
     const toggleTextAreaSize = () => {
         setIsTextAreaCollapsed(!isTextAreaCollapsed);
