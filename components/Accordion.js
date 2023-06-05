@@ -1,13 +1,18 @@
 import React, {useState} from "react";
 import { formatNextEligibleDate } from "../lib/util";
 import NeedSummaryComponent from "./NeedSummaryComponent";
-import ApplicantForm from "./applicant_form/ApplicantForm";
+import styles from "./applicant_form/ApplicantForm.module.css";
 import EditApplicationComponent from "./EditApplicationComponent";
 
     function Accordion(props) {
-        const { item, setItemFocus, firstItem } = props;
+        const { initialItem, setItemFocus, firstItem } = props;
         const [isOpen, setIsOpen] = useState(false);
         const [showForm, setShowForm] = useState(false);
+        const [item, setItem] = useState(initialItem)
+
+       const updateItem = (updatedItem) => {
+           setItem(updatedItem)
+       }
         const toggleAccordion = () => {
             setIsOpen(!isOpen);
         };
@@ -71,8 +76,8 @@ import EditApplicationComponent from "./EditApplicationComponent";
                                 </div>
                             </div>
                             <div>
-                                <button onClick={toggleShowForm} className={"bg-gray-600"} type="button">{showForm ? `HIDE FORM` : `SHOW FORM`}</button>
-                                {showForm && <EditApplicationComponent item={item} />}
+                                <button onClick={toggleShowForm} className={`${styles.addButton} mt-4 mb-8`} type="button">{showForm ? `HIDE FORM` : `SHOW FORM`}</button>
+                                {showForm && <EditApplicationComponent item={item} onUpdate={updateItem} />}
                             </div>
                         </div>
                     )}
