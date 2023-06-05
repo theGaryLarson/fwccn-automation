@@ -9,32 +9,12 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
     const [isIncomeVerified, setIsIncomeVerified] = useState(formData?.houseHoldIncome?.isIncomeVerified??false)
     const handleInputChange = (event) => {
         const {name, value} = event.target;
-
-        if (name === "headOfHousehold") {
-            const updatedHeadOfHousehold = {
-                ...formData,
-                houseHoldIncome: {
-                    singleMaleHeadOfHousehold: false,
-                    singleFemaleHeadOfHousehold: false,
-                    totalHouseholdIncome: formData.houseHoldIncome.totalHouseholdIncome,
-                    houseHoldIncomePastYear: formData.houseHoldIncome.houseHoldIncomePastYear,
-                    totalSupportMembers: formData.houseHoldIncome.totalSupportMembers
-                }
-            }
-            if (value !== 'neither') {
-                updatedHeadOfHousehold.houseHoldIncome[value] = true;
-            }
-            onComponentInputChange( {target:{
-            name:'houseHoldIncome',
-            value: updatedHeadOfHousehold.houseHoldIncome
-        }})
+        if(name === "totalHouseholdIncome" || name === "houseHoldIncomePastYear" || name === "totalSupportMembers") {
+            onComponentInputChange({target:{name, value: Number(value)}});
         } else {
-            if(name === "totalHouseholdIncome" || name === "houseHoldIncomePastYear" || name === "totalSupportMembers") {
-                onComponentInputChange({target:{name, value: Number(value)}});
-            } else {
-                onComponentInputChange(event);
-            }
+            onComponentInputChange(event);
         }
+
     }
     const handleCheckboxChange = () => {
         setIsIncomeVerified(!isIncomeVerified);
@@ -105,15 +85,16 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="singleMaleHeadOfHousehold">Is applicant single head of household?</label>
+                <label htmlFor="singleHeadOfHouseHold">Is applicant single head of household?</label>
                 <select
-                    id="singleMaleHeadOfHousehold"
-                    name="headOfHousehold"
+                    id="singleHeadOfHouseHold"
+                    name="singleHeadOfHouseHold"
+                    value={formData?.houseHoldIncome?.singleHeadOfHouseHold??'No'}
                     onChange={handleInputChange}
                 >
-                    <option value={'neither'}>No, Applicant not Head of Household</option>
-                    <option value={'singleMaleHeadOfHousehold'}>Yes, Male Head of Household</option>
-                    <option value={'singleFemaleHeadOfHousehold'}>Yes, Single Female Head of Household</option>
+                    <option value={'No'}>No, Applicant not Head of Household</option>
+                    <option value={'Yes-male'}>Yes, Male Head of Household</option>
+                    <option value={'Yes-female'}>Yes, Single Female Head of Household</option>
                 </select>
             </div>
             <div className={styles.componentWrapper}>
