@@ -138,7 +138,7 @@ import EditApplicationComponent from "./EditApplicationComponent";
                                 </div>
                                 <div className="flex flex-col items-start">
                                     <div className="whitespace-nowrap flex-1">
-                                        <p className=""><span className={"font-bold"}>Experiencing Homelessness:</span> {item.isHomeless ? 'Yes' : 'No'}</p>
+                                        <p className=""><span className={"font-bold"}>Experiencing Homelessness:</span> {item.homelessness.isHomeless ? 'Yes' : 'No'}</p>
                                     </div>
                                     <div className="whitespace-nowrap flex-1">
                                         <p className={"font-bold"}>Address:</p>
@@ -151,7 +151,7 @@ import EditApplicationComponent from "./EditApplicationComponent";
                                 </div>
                                 <div className="flex flex-col items-start">
                                     <div className="whitespace-nowrap flex-1">
-                                        <p><span className={"font-bold"}>Rent {'>'}1 Month Behind:</span> {item.isMoreThanMonthBehind ? 'Yes' : 'No'}</p>
+                                        <p><span className={"font-bold"}>Rent {'>'}1 Month Behind:</span> {item.homeAddress.isMoreThanMonthBehind ? 'Yes' : 'No'}</p>
 
                                     </div>
                                     <div className="whitespace-nowrap flex-1">
