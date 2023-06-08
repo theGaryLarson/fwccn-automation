@@ -21,7 +21,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
     }
 
     function isHomeless() {
-        return formData?.homelessness?.isHomeless??false;
+        return formData?.homelessness?.isHomeless ?? false;
     }
 
     return (
