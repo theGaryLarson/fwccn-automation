@@ -84,7 +84,7 @@ import ActionTakenComponent from "./ActionTakenComponent";
                                                         className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded`}
                                                         type="button"
                                                 >
-                                                    {isActionView ? `SHOW OVERVIEW` : `SHOW ACTION TAKEN`}
+                                                    {isActionView ? `SHOW SUMMARY` : `SHOW ACTION TAKEN`}
                                                 </button>
                                             )
                                         }
