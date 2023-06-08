@@ -18,7 +18,10 @@ const form_data_defaults = {
             checkStreet2: '',
             checkCity: '',
             checkZip: ''
-        }
+        },
+        motelLocation: '',
+        motelDurationDays: '',
+        motelCost: ''
     }, // end add to schema
     helpRequested: 'rent',
     licensePlate: 'CBY-2970',
