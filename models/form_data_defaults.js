@@ -4,6 +4,22 @@ const form_data_defaults = {
     status: 'PENDING',
     referredBy: 'Mercy House',
     interviewer: 'Jane Doe',
+    actionTaken: {  //todo add to schema
+        secondInterviewer: '',
+        amountPromised: 0,
+        amountGivenToday: 0,
+        checkDate: '',
+        checkMadeOutTo: '',
+        checkNumber: 0,
+        rentBalanceOwed: 0,
+        gasVoucherAmount: 0,
+        checkAddress: {
+            checkStreet1: '',
+            checkStreet2: '',
+            checkCity: '',
+            checkZip: ''
+        }
+    }, // end add to schema
     helpRequested: 'rent',
     licensePlate: 'CBY-2970',
     licensePlateState: 'WA',
