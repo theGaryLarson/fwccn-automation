@@ -23,7 +23,7 @@ export default function  AssistanceNeedComponent({formData, onComponentInputChan
                 <select
                     id="rent"
                     name="helpRequested"
-                    value={formData.helpRequested}
+                    value={formData?.helpRequested}
                     onChange={handleInputChange}
                 >
                     <option value={'rent'}>Rent Assistance</option>
@@ -32,13 +32,13 @@ export default function  AssistanceNeedComponent({formData, onComponentInputChan
 
                 </select>
             </div>
-            { formData.helpRequested === "rent" &&
+            { formData?.helpRequested === "rent" &&
                 (<div className={styles.componentWrapper} >
                     <label htmlFor="isMoreThanMonthBehind">Are you more than a month behind on the rent?</label>
                     <select
                         id="isMoreThanMonthBehind"
                         name="isMoreThanMonthBehind"
-                        value={formData?.homeAddress?.isMoreThanMonthBehind.toString()??'false'}
+                        value={formData?.homeAddress?.isMoreThanMonthBehind?.toString()??'false'}
                         onChange={handleInputChange}
                     >
                         <option value={'false'}>No</option>
