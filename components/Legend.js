@@ -1,7 +1,7 @@
 import React from 'react';
 import Swatch from "./Swatch";
 
-const Legend = () => {
+export default function Legend() {
     return (
         <div>
             <h2 className="mr-8 text-center mb-1 font-bold">Status Color Code</h2>
@@ -13,7 +13,6 @@ const Legend = () => {
                 <Swatch className="bg-orange-300" label="NO-RETURN"/>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default Legend;
