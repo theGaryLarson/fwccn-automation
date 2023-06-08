@@ -18,7 +18,6 @@ function ApplicantForm(props) {
     function handleInputChange(event) {
         //todo: modify Applicant model here
         const {name, value} = event.target;
-
         const newData = updateFormData(formData, name, value);
         setFormData(newData);
 
