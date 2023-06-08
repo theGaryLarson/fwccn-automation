@@ -12,7 +12,7 @@ export default function ActionTakenComponent(props) {
     //todo state for each input
 
     const handleInputChange = (event) => {
-
+        //todo: handle editable information: check info & address license plate number
     }
 
     const handleCheckboxChange = (event) => {
@@ -56,10 +56,10 @@ export default function ActionTakenComponent(props) {
         <div>
             <h2 className={'text-center w-full font-bold'}>ACTION TAKEN</h2>
             <div className="grid grid-cols-2 grid-rows-2 gap-2 h-full">
-                    <div className={'flex-1 font-bold '}>
+                    <div className={'flex-1'}>
                         <h2 className={'font-bold bg-green-300 '}>{item.helpRequested === 'rent' ? 'RENT' : (item.helpRequested === 'gasoline' ? 'GAS' : 'BUS')}</h2>
                         <div>
-                            <label htmlFor={'amount-promised'}>Amount Promised:</label>
+                            <label htmlFor={'amount-promised'}><span className={'font-medium'}>Amount Promised:</span></label>
                             <input
                                 type={"text"}
                                 id={'amount-promised'}
@@ -70,7 +70,7 @@ export default function ActionTakenComponent(props) {
                                 className={'bg-yellow-200'}
                             />
                             <div>
-                                <label htmlFor={'amount-given'}>Amount Given Today:</label>
+                                <label htmlFor={'amount-given'}><span className={'font-medium'}>Amount Given Today:</span></label>
                                 <input
                                     type={"text"}
                                     id={'amount-given'}
@@ -83,7 +83,7 @@ export default function ActionTakenComponent(props) {
                                 { item.helpRequested === 'rent' &&
                                     (
                                         <div>
-                                            <label htmlFor={'balance-owed'}>Rent Balance Owed Receipt:</label>
+                                            <label htmlFor={'balance-owed'}><span className={'font-medium'}>Rent Balance Owed Receipt:</span></label>
                                             <input
                                                 type={"text"}
                                                 id={'balance-owed'}
@@ -99,7 +99,7 @@ export default function ActionTakenComponent(props) {
                                 { item.helpRequested === 'gasoline' &&
                                     (
                                         <div>
-                                            <label htmlFor={'licensePlate'}>License Plate Number:</label>
+                                            <label htmlFor={'licensePlate'}><span className={'font-medium'}>License Plate Number:</span></label>
                                             <input
                                                 type={"text"}
                                                 id={'licensePlate'}
@@ -113,6 +113,53 @@ export default function ActionTakenComponent(props) {
                                     )
                                 }
                             </div>
+
+                            { item.helpRequested !== 'rent' &&
+                                (
+                                    <div>
+                                        <h2 className={'mt-4 w-full border-t border-black pt-1 font-bold'}>Motel</h2>
+                                        <div className={'flex flex-row-3'}>
+                                            <div className={'flex-1'}>
+                                                <label htmlFor={'motelLocation'} className={'whitespace-nowrap mr-4'}>
+                                                    Arrangements-Where?:</label>
+                                                <input
+                                                    type={"text"}
+                                                    id={'motelLocation'}
+                                                    name={'motelLocation'}
+                                                    // value={''}
+                                                    placeholder={'Name of hotel'}
+                                                    // onChange={handleInputChange}
+                                                    className={'bg-yellow-200'}
+                                                />
+                                            </div>
+                                            <div className={'flex-1'}>
+                                                <label htmlFor={'motelDurationDays'} className={'ml-2'}>How long?:</label>
+                                                <input
+                                                    type={"text"}
+                                                    id={'motelDurationDays'}
+                                                    name={'motelDurationDays'}
+                                                    // value={''}
+                                                    placeholder={'Number of days in hotel'}
+                                                    // onChange={handleInputChange}
+                                                    className={'bg-yellow-200 ml-2'}
+                                                />
+                                            </div>
+                                            <div className={'flex-1'}>
+                                                <label htmlFor={'motelCost'} className={'ml-2 whitespace-nowrap'}>Cost:</label>
+                                                <input
+                                                    type={"text"}
+                                                    id={'motelCost'}
+                                                    name={'motelCost'}
+                                                    // value={''}
+                                                    placeholder={'Cost of hotel'}
+                                                    // onChange={handleInputChange}
+                                                    className={'bg-yellow-200 ml-2 w-40'}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            }
                         </div>
                     </div>
                 <div className={'flex-1 font-bold '}>
