@@ -14,9 +14,7 @@ export default function ActionTakenComponent(props) {
     const handleInputChange = (event) => {
 
     }
-    if (!checkDate || checkDate === '') {
-        setCheckDate(dateFormatNYears(createTimeStamp(), 0))
-    }
+
     const handleCheckboxChange = (event) => {
         const { name } = event.target
 
@@ -208,7 +206,7 @@ export default function ActionTakenComponent(props) {
                                     type={"text"}
                                     id={'checkDate'}
                                     name={'checkDate'}
-                                    value={checkDate}
+                                    value={item?.actionTaken?.checkDate??dateFormatNYears(createTimeStamp(), 0)}
                                     className={'ml-2'}
                                     readOnly={true}
 
