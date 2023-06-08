@@ -14,16 +14,16 @@ export default function NeedSummaryComponent(props) {
     useEffect( () => {
         if (!isEmptyObject(focusedItem)) {
             setText(text)
-            setHasChildren(focusedItem.children.hasChildrenUnder18)
-            setHasAdults((focusedItem.otherAdults.isOtherAdultsAtResidence))
+            setHasChildren(focusedItem?.children?.hasChildrenUnder18??false)
+            setHasAdults((focusedItem?.otherAdults?.isOtherAdultsAtResidence??false))
         }
     },[setText, setHasChildren, text, firstItem, focusedItem,] )
 
-    function handleStatusChange(event) {
-        const {value} = event.target
-        focusedItem.status = value
-        // setStatus(value)
-    }
+    // function handleStatusChange(event) {
+    //     const {value} = event.target
+    //     focusedItem.status = value
+    //     // setStatus(value)
+    // }
     const toggleTextAreaSize = (textAreaRef) => {
         setIsTextAreaCollapsed(!isTextAreaCollapsed);
         const textarea = textAreaRef.current;
