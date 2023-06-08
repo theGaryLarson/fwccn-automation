@@ -133,7 +133,7 @@ function ApplicantForm(props) {
                                 type="submit"
                                 className={styles.submitButton}
                             >
-                                Submit
+                                SAVE RECORD
                             </button>
                         </div>
                     )
@@ -155,7 +155,7 @@ function ApplicantForm(props) {
                                 }}
                                 className={styles.submitButton}
                             >
-                                Update Form
+                                UPDATE RECORD
                             </button>
                         </div>
                     )
