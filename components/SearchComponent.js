@@ -66,7 +66,6 @@ export default function SearchComponent(props) {
                         <option value={'addressSearch'}>Street Address</option>
                     </select>
                 </div>
-                {/*TODO: render separate divs based on selection*/}
                 {
                     !isAddress && (
                         <div className={`${styles.componentWrapper}`}>
