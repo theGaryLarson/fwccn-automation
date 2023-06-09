@@ -17,6 +17,7 @@ const form_data_defaults = {
             checkStreet1: '',
             checkStreet2: '',
             checkCity: '',
+            checkState: '',
             checkZip: ''
         },
         motelLocation: '',
@@ -26,7 +27,7 @@ const form_data_defaults = {
     helpRequested: 'rent',
     licensePlate: 'CBY-2970',
     licensePlateState: 'WA',
-    isBusPrimaryTransport: true, //todo add to schema
+    isBusPrimaryTransport: true,
     reasonForNeed: 'behind on rent',
     futurePlans: 'increased hours at work over summer',
     fName: 'May',
