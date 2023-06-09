@@ -74,15 +74,17 @@ import ActionTakenComponent from "./ActionTakenComponent";
                             <div className={'w-full bg-blue-200 mt-4 p-4 '}>
                                 <p className="text-center text-xl">{`${item.fName} ${item.lName}`} </p>
                                 <p className={"font-bold italic text-center"}>Applicant</p>
+                                <p className={"font-bold italic text-center text-blue-200 mb-0"}>item_id: {item._id}</p>
                             </div>
                             <div>
                                 <div>
                                     <div className="flex justify-end space-x-4 mb-4 mt-4">
-                                        { (item.status === 'APPROVED' || item.status === "APPROVED-OVERRIDE") && //todo: show if status is APPROVED or APPROVED-OVERRIDE
+                                        { (item.status === 'APPROVED' || item.status === "APPROVED-OVERRIDE") &&
                                             (
                                                 <button onClick={showActionView}
-                                                        className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded`}
+                                                        className={`${ !showForm ? 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' : 'py-2 px-4 bg-gray-200 font-bold text-gray-900 border-gray-950'} `}
                                                         type="button"
+                                                        disabled={showForm}
                                                 >
                                                     {isActionView ? `SHOW SUMMARY` : `SHOW ACTION TAKEN`}
                                                 </button>
@@ -111,10 +113,10 @@ import ActionTakenComponent from "./ActionTakenComponent";
                                     </div>
                                 </div>
                             </div>
-                            { isActionView ?
+                            { isActionView && !showForm ?
                                 (
                                     <ActionTakenComponent item={item} updateItem={updateItem}></ActionTakenComponent>
-                                ) :
+                                ) : ( !showForm &&
                                 (
                                     <div className="grid grid-cols-2 grid-rows-2 gap-4">
                                         <div className="flex flex-col items-start">
@@ -210,9 +212,9 @@ import ActionTakenComponent from "./ActionTakenComponent";
                                             </div>
                                         </div>
                                     </div>
-                                )
+                                ))
                             }
-                            { !showForm &&
+                            { !showForm && !isActionView &&
                                 (
                                     <NeedSummaryComponent focusedItem={item} firstItem={firstItem}/>
                                 )
