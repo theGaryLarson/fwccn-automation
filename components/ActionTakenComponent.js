@@ -7,12 +7,40 @@ export default function ActionTakenComponent(props) {
     const [isAddressVerified, setIsAddressVerified] = useState(item?.homeAddress?.verified ?? false);
     const [isIncomeVerified, setIsIncomeVerified] = useState(item?.houseHoldIncome?.isIncomeVerified ?? false)
     const [isLicenseVerified, setIsLicenseVerified] = useState(item?.idSource?.isValidLicense ?? false)
-
-    const [checkDate, setCheckDate] = useState(item?.actionTaken?.checkDate ?? undefined)
-    //todo state for each input
-
+    const [isBusVerified, setIsBusVerified] = useState(item?.isBusPrimaryTransport ?? false)
+    const checkAddressFields = ['checkStreet1', 'checkStreet2', 'checkCity', 'checkState', 'checkZip']
     const handleInputChange = (event) => {
         //todo: handle editable information: check info & address license plate number
+        const {name, value } = event.target;
+        if (name === 'licensePlate') {
+            const updatedLicensePlate = {
+                ...item,
+                licensePlate: value
+            }
+            updateItem(updatedLicensePlate)
+        } else if (checkAddressFields.includes(name)) {
+            const updatedAddress = {
+                ...item,
+                actionTaken: {
+                    ...item.actionTaken,
+                    checkAddress: {
+                        ...item.actionTaken.checkAddress,
+                        [name]: value
+                    }
+                }
+            }
+            updateItem(updatedAddress);
+
+        } else {
+            const updatedActionTaken = {
+                ...item,
+                actionTaken: {
+                    ...item.actionTaken,
+                    [name]: value
+                }
+            }
+            updateItem(updatedActionTaken)
+        }
     }
 
     const handleCheckboxChange = (event) => {
@@ -48,122 +76,95 @@ export default function ActionTakenComponent(props) {
                 }
             }
             updateItem(updatedLicense);
-            console.log("item.idSource.isValidLicense: ", updatedLicense.idSource.isValidLicense)
+        } else if (name === 'isBusPrimaryTransport') {
+            setIsBusVerified(!isBusVerified);
+            const updatedBus = {
+                ...item,
+                isBusPrimaryTransport: !isBusVerified
+            }
+            updateItem(updatedBus);
+        } else {
+            //do nothing
         }
+        console.log("CkBxName: ", name)
     };
-
     return (
         <div>
             <h2 className={'text-center w-full font-bold'}>ACTION TAKEN</h2>
-            <div className="grid grid-cols-2 grid-rows-2 gap-2 h-full">
-                    <div className={'flex-1'}>
-                        <h2 className={'font-bold bg-green-300 '}>{item.helpRequested === 'rent' ? 'RENT' : (item.helpRequested === 'gasoline' ? 'GAS' : 'BUS')}</h2>
+            <div className="grid grid-cols-2 grid-rows-1 gap-2 h-full">
+                <div className={'flex-1'}>
+                    <h2 className={'font-bold bg-green-300 pl-2 mb-2'}>{item.helpRequested === 'rent' ? 'RENT' : (item.helpRequested === 'gasoline' ? 'GAS' : 'BUS')}</h2>
+                    <div>
+                        <label htmlFor={'amountPromised'}><span className={'font-medium'}>Amount Promised:</span></label>
+                        <input
+                            type={"text"}
+                            id={'amountPromised'}
+                            name={'amountPromised'}
+                            value={item?.actionTaken?.amountPromised??''}
+                            placeholder={'$0.00'}
+                            onChange={handleInputChange}
+                            className={'bg-yellow-200'}
+                        />
                         <div>
-                            <label htmlFor={'amount-promised'}><span className={'font-medium'}>Amount Promised:</span></label>
+                            <label htmlFor={'amountGivenToday'}><span className={'font-medium'}>Amount Given Today:</span></label>
                             <input
                                 type={"text"}
-                                id={'amount-promised'}
-                                name={'amount-promised'}
-                                // value={''}
+                                id={'amountGivenToday'}
+                                name={'amountGivenToday'}
+                                value={item?.actionTaken?.amountGivenToday}
                                 placeholder={'$0.00'}
-                                // onChange={handleInputChange}
+                                onChange={handleInputChange}
                                 className={'bg-yellow-200'}
                             />
-                            <div>
-                                <label htmlFor={'amount-given'}><span className={'font-medium'}>Amount Given Today:</span></label>
-                                <input
-                                    type={"text"}
-                                    id={'amount-given'}
-                                    name={'amount-given'}
-                                    // value={''}
-                                    placeholder={'$0.00'}
-                                    // onChange={handleInputChange}
-                                    className={'bg-yellow-200'}
-                                />
-                                { item.helpRequested === 'rent' &&
-                                    (
-                                        <div>
-                                            <label htmlFor={'balance-owed'}><span className={'font-medium'}>Rent Balance Owed Receipt:</span></label>
-                                            <input
-                                                type={"text"}
-                                                id={'balance-owed'}
-                                                name={'balance-owed'}
-                                                // value={''}
-                                                placeholder={'$0.00'}
-                                                // onChange={handleInputChange}
-                                                className={'bg-yellow-200'}
-                                            />
-                                        </div>
-                                    )
-                                }
-                                { item.helpRequested === 'gasoline' &&
-                                    (
-                                        <div>
-                                            <label htmlFor={'licensePlate'}><span className={'font-medium'}>License Plate Number:</span></label>
-                                            <input
-                                                type={"text"}
-                                                id={'licensePlate'}
-                                                name={'licensePlate'}
-                                                value={item?.licensePlate??''}
-                                                placeholder={'Verify Plate Number'}
-                                                onChange={handleInputChange}
-                                                className={'bg-yellow-200'}
-                                            />
-                                        </div>
-                                    )
-                                }
-                            </div>
-
-                            { item.helpRequested !== 'rent' &&
+                            { item.helpRequested === 'rent' &&
                                 (
                                     <div>
-                                        <h2 className={'mt-4 w-full border-t border-black pt-1 font-bold'}>Motel</h2>
-                                        <div className={'flex flex-row-3'}>
-                                            <div className={'flex-1'}>
-                                                <label htmlFor={'motelLocation'} className={'whitespace-nowrap mr-4'}>
-                                                    Arrangements-Where?:</label>
-                                                <input
-                                                    type={"text"}
-                                                    id={'motelLocation'}
-                                                    name={'motelLocation'}
-                                                    // value={''}
-                                                    placeholder={'Name of hotel'}
-                                                    // onChange={handleInputChange}
-                                                    className={'bg-yellow-200'}
-                                                />
-                                            </div>
-                                            <div className={'flex-1'}>
-                                                <label htmlFor={'motelDurationDays'} className={'ml-2'}>How long?:</label>
-                                                <input
-                                                    type={"text"}
-                                                    id={'motelDurationDays'}
-                                                    name={'motelDurationDays'}
-                                                    // value={''}
-                                                    placeholder={'Number of days in hotel'}
-                                                    // onChange={handleInputChange}
-                                                    className={'bg-yellow-200 ml-2'}
-                                                />
-                                            </div>
-                                            <div className={'flex-1'}>
-                                                <label htmlFor={'motelCost'} className={'ml-2 whitespace-nowrap'}>Cost:</label>
-                                                <input
-                                                    type={"text"}
-                                                    id={'motelCost'}
-                                                    name={'motelCost'}
-                                                    // value={''}
-                                                    placeholder={'Cost of hotel'}
-                                                    // onChange={handleInputChange}
-                                                    className={'bg-yellow-200 ml-2 w-40'}
-                                                />
-                                            </div>
-                                        </div>
+                                        <label htmlFor={'rentBalanceOwed'}><span className={'font-medium'}>Rent Balance Owed Receipt:</span></label>
+                                        <input
+                                            type={"text"}
+                                            id={'rentBalanceOwed'}
+                                            name={'rentBalanceOwed'}
+                                            value={item?.actionTaken?.rentBalanceOwed}
+                                            placeholder={'$0.00'}
+                                            onChange={handleInputChange}
+                                            className={'bg-yellow-200'}
+                                        />
+                                    </div>
+                                )
+                            }
+                            { item.helpRequested === 'gasoline' &&
+                                (
+                                    <div>
+                                        <label htmlFor={'licensePlate'}><span className={'font-medium'}>License Plate Number:</span></label>
+                                        <input
+                                            type={"text"}
+                                            id={'licensePlate'}
+                                            name={'licensePlate'}
+                                            value={item?.licensePlate}
+                                            placeholder={'Verify Plate Number'}
+                                            onChange={handleInputChange}
+                                            className={'bg-yellow-200'}
+                                        />
                                     </div>
                                 )
                             }
                         </div>
+
                     </div>
-                <div className={'flex-1 font-bold '}>
-                    <h2 className={'font-bold bg-green-300 '}>VERIFICATION</h2>
+                </div>
+                {/*end first grid here*/}
+                <div className={'flex-1'}>
+                    <h2 className={'font-bold bg-green-300 pl-2 mb-2'}>VERIFICATION</h2>
+                    <label htmlFor="secondInterviewer" className="mt-2"><span className={'font-medium'}>Second Interviewer:</span> </label>
+                    <input
+                        type="text"
+                        id="secondInterviewer"
+                        name="secondInterviewer"
+                        value={item?.actionTaken?.secondInterviewer??''}
+                        placeholder='Second Interviewer for Approval'
+                        onChange={handleInputChange}
+                        className="bg-yellow-200 w-full"
+                    />
                     {/*conditonal rendering based on help requested*/}
                     {   item.helpRequested === 'rent' &&
                         (
@@ -229,36 +230,158 @@ export default function ActionTakenComponent(props) {
                             </div>
                         )
                     }
+                    { item.helpRequested === 'busTicket' &&
+                        (
+                            <div>
+                                <input
+                                    type="checkbox"
+                                    id="isBusPrimaryTransport"
+                                    name="isBusPrimaryTransport"
+                                    className="hidden"
+                                    onChange={handleCheckboxChange}
+                                />
+                                <label htmlFor="isBusPrimaryTransport" className="flex items-center mt-4 select-none">
+                                        <span className={` 
+                                            mr-2 border rounded border-gray-400
+                                            w-5 h-5 flex items-center justify-center
+                                             ${isBusVerified ? 'bg-green-500' : 'bg-white'}`}>
+                                            {isBusVerified && '✓'}
+                                        </span>
+                                    <span className='font-bold'>Bus Primary Transport</span>
+                                </label>
+                            </div>
+                        )
+                    }
                 </div>
-                <div className={'flex-1 border-t border-black w-full mt-2'}>
-                    <h2 className={'font-bold'}>CHECK INFORMATION</h2>
+            </div>
+            { item.helpRequested !== 'rent' &&
+                (
+                    <div>
+                        <h2 className={'mt-4 w-full border-t border-black pt-1 font-bold'}>Motel</h2>
+                        <div className={'flex flex-row-3'}>
+                            <div className={'flex-1'}>
+                                <label htmlFor={'motelLocation'} className={'whitespace-nowrap mr-4'}>
+                                    Arrangements-Where?:</label>
+                                <input
+                                    type={"text"}
+                                    id={'motelLocation'}
+                                    name={'motelLocation'}
+                                    value={item?.actionTaken?.motelLocation??''}
+                                    placeholder={'Name of hotel'}
+                                    onChange={handleInputChange}
+                                    className={'bg-yellow-200'}
+                                />
+                            </div>
+                            <div className={'flex-1'}>
+                                <label htmlFor={'motelDurationDays'} className={'ml-2'}>How long?:</label>
+                                <input
+                                    type={"text"}
+                                    id={'motelDurationDays'}
+                                    name={'motelDurationDays'}
+                                    value={item?.actionTaken?.motelDurationDays??''}
+                                    placeholder={'Number of days in hotel'}
+                                    onChange={handleInputChange}
+                                    className={'bg-yellow-200 ml-2'}
+                                />
+                            </div>
+                            <div className={'flex-1'}>
+                                <label htmlFor={'motelCost'} className={'ml-2 whitespace-nowrap'}>Cost:</label>
+                                <input
+                                    type={"text"}
+                                    id={'motelCost'}
+                                    name={'motelCost'}
+                                    value={item?.actionTaken?.motelCost??''}
+                                    placeholder={'Cost of hotel'}
+                                    onChange={handleInputChange}
+                                    className={'bg-yellow-200 ml-2 w-40'}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
+            <div className={'grid grid-cols-2 grid-rows-1 gap-2'}>
+                <div className={'flex-1 border-t border-black w-full mt-4'}>
+                    <h2 className={'font-bold pt-2'}>CHECK INFORMATION</h2>
                     <div className={'w-full'}>
                         <label htmlFor={'checkMadeOutTo'}>PAY TO THE ORDER OF:</label>
                         <input
                             type={"text"}
                             id={'checkMadeOutTo'}
                             name={'checkMadeOutTo'}
-                            // value={''}
+                            value={item?.actionTaken?.checkMadeOutTo??''}
                             placeholder={'PAY TO THE ORDER OF ...'}
-                            // onChange={handleInputChange}
+                            onChange={handleInputChange}
+                            className={'bg-yellow-200 w-full'}
+                        />
+                    </div>
+                    <div className={'w-full'}>
+                        <h2 className={'font-bold mt-2'}>CHECK ADDRESS</h2>
+                        <label htmlFor={'checkStreet1'}>Street1:</label>
+                        <input
+                            type={"text"}
+                            id={'checkStreet1'}
+                            name={'checkStreet1'}
+                            value={item?.actionTaken?.checkAddress?.checkStreet1}
+                            placeholder={'123 Oak St.'}
+                            onChange={handleInputChange}
+                            className={'bg-yellow-200 w-full'}
+                        />
+                        <label htmlFor={'checkStreet2'}>Street2:</label>
+                        <input
+                            type={"text"}
+                            id={'checkStreet2'}
+                            name={'checkStreet2'}
+                            value={item?.actionTaken?.checkAddress?.checkStreet2}
+                            placeholder={'Apt. 100'}
+                            onChange={handleInputChange}
+                            className={'bg-yellow-200 w-full'}
+                        />
+                        <label htmlFor={'checkCity'}>City:</label>
+                        <input
+                            type={"text"}
+                            id={'checkCity'}
+                            name={'checkCity'}
+                            value={item?.actionTaken?.checkAddress?.checkCity}
+                            placeholder={'Tacoma'}
+                            onChange={handleInputChange}
+                            className={'bg-yellow-200 w-full'}
+                        />
+                        <label htmlFor={'checkState'}>State:</label>
+                        <input
+                            type={"text"}
+                            id={'checkState'}
+                            name={'checkState'}
+                            value={item?.actionTaken?.checkAddress?.checkState}
+                            placeholder={'WA'}
+                            onChange={handleInputChange}
+                            className={'bg-yellow-200 w-full'}
+                        />
+                        <label htmlFor={'checkZip'}>Zip:</label>
+                        <input
+                            type={"text"}
+                            id={'checkZip'}
+                            name={'checkZip'}
+                            value={item?.actionTaken?.checkAddress?.checkZip}
+                            placeholder={'98105'}
+                            onChange={handleInputChange}
                             className={'bg-yellow-200 w-full'}
                         />
                     </div>
                 </div>
-                <div className={'flex-1 border-t border-black w-full  mt-2'}>
+                <div className={'flex-1 border-t border-black w-full mt-4 pt-2'}>
                     <div>
-                        <div>
+                        <div className={'flex-grow'}>
                             <label htmlFor={'checkDate'} className={'font-medium'}>CHECK DATE:</label>
-                                <input
-                                    type={"text"}
-                                    id={'checkDate'}
-                                    name={'checkDate'}
-                                    value={item?.actionTaken?.checkDate??dateFormatNYears(createTimeStamp(), 0)}
-                                    className={'ml-2'}
-                                    readOnly={true}
+                            <input
+                                type={"date"}
+                                id={'checkDate'}
+                                name={'checkDate'}
+                                value={item?.actionTaken?.checkDate??''}
+                                onChange={handleInputChange}
+                                className={'ml-2 bg-yellow-200'}
 
-                                />
-
+                            />
                         </div>
                         <div>
                             <label htmlFor={'checkNumber'}>CHECK NUMBER:</label>
@@ -266,20 +389,16 @@ export default function ActionTakenComponent(props) {
                                 type={"number"}
                                 id={'checkNumber'}
                                 name={'checkNumber'}
-                                // value={''}
+                                value={item?.actionTaken?.checkNumber??''}
                                 placeholder={'ENTER CHECK NUMBER'}
-                                // onChange={handleInputChange}
+                                onChange={handleInputChange}
                                 className={'bg-yellow-200 w-full'}
                             />
                         </div>
-
-
-                    </div>
-                    <div>
-
                     </div>
                 </div>
             </div>
+
         </div>
     )
 }
