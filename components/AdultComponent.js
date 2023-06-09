@@ -58,7 +58,6 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                     }
                 }
             });
-            //todo: check to see if i should update adults state here
             setAdults({
                 target: {
                     name: 'otherAdults',
@@ -215,7 +214,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                             </div>
                             { (adult?.relationshipToAdult === "relative" || adult?.relationshipToAdult === "other") && (
                                 <div className={`${styles.componentWrapper}`}>
-                                    <label htmlFor={"relationDetails"}>Relationship Details</label> {/* todo: conditional if relative "Relation Details"*/}
+                                    <label htmlFor={"relationDetails"}>Relationship Details</label>
                                     <textarea
                                         id={"relationDetails"}
                                         name={"relationDetails"}
