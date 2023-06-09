@@ -12,11 +12,9 @@ import {createTimeStamp} from "../../lib/util";
 
 function ApplicantForm(props) {
     const { item, updateApplicant, onUpdate } = props
-    // todo: import Applicant model and modify with useState [applicant, setApplicant]
     const [formData, setFormData] = useState(item??form_data_defaults);
     const [isDataLoaded, setIsDataLoaded] = useState(false);
     function handleInputChange(event) {
-        //todo: modify Applicant model here
         const {name, value} = event.target;
         const newData = updateFormData(formData, name, value);
         setFormData(newData);
@@ -64,7 +62,6 @@ function ApplicantForm(props) {
     async function handleSubmit(event) {
         event.preventDefault();
         formData.timestamp = createTimeStamp();
-        // todo: validate each input using input attributes
         await fetch("/api/add", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
