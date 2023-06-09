@@ -6,7 +6,7 @@ export default function RequirementCheckComponent(props) {
     const {  queryObject  } = props;
     const [data, setData] = useState({});
     const [firstItem, setFirstItem] = useState(undefined)
-    const [ focusedItem, setFocusedItem ] = useState({}) //todo: change state to undefined and could remove helper function in NeedsSummary
+    const [ focusedItem, setFocusedItem ] = useState({})
 
     useEffect(() => {
         async function fetchRequirementsCheckData() {
@@ -39,14 +39,12 @@ export default function RequirementCheckComponent(props) {
         return <div>Loading...</div>;
     }
 
+    //question: I used these to suppress warnings because it was working. Is this okay? (see next 3 comments)
 
-    // todo: refactor these returns and render logic to be more generalized for flexibility
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const ids = useMemo(() => data.stateIdDuplicates ? Object.values(data.stateIdDuplicates.records) : [], [data]);
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const addresses = useMemo(() => data.addressDuplicates ? Object.values(data.addressDuplicates.records) : [], [data]);
-
-
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
