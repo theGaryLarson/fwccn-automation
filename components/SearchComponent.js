@@ -34,7 +34,6 @@ export default function SearchComponent(props) {
     }
     const handleSubmit = (event) => {
         event.preventDefault();
-        let queryParams
         if (isAddress) {
             setParentQueryObject( {
                 homeStreet1: street1,
