@@ -96,9 +96,7 @@ import ActionTakenComponent from "./ActionTakenComponent";
                                             type="button"
                                             onClick={async () => {
                                                 await updateApplicant(item).then(r => {
-                                                        if (updateItem) {
-                                                            updateItem(r.record);
-                                                        }
+                                                    updateItem(r.record);
                                                 });
                                             }}
                                         >
