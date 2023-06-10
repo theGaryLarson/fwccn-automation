@@ -12,24 +12,99 @@ const applicantSchema = new Schema({
     },
     status: {
         type: String,
-        enum: ['PENDING', 'APPROVED', 'DENIED', 'APPROVED-OVERRIDE', 'NO-RETURN'],
-        default: 'PENDING',
-        required: true
+        enum: ['', 'PENDING', 'APPROVED', 'DENIED', 'APPROVED-OVERRIDE', 'NO-RETURN'],
+        default: 'PENDING'
+    },
+    referredBy: {
+        type: String,
+        default: '',
+    },
+    actionTaken: {
+        type: {
+            secondInterviewer: {
+                type: String,
+                default: ''
+            },
+            actionNotes: {
+                type: String,
+                default: ''
+            },
+            amountPromised: {
+                type: String,
+                default: ''
+            },
+            amountGivenToday: {
+                type: String,
+                default: ''
+            },
+            checkDate: {
+                type: String
+            },
+            checkMadeOutTo: {
+                type: String,
+                default: ''
+            },
+            checkNumber: {
+                type: Number,
+                default: 0
+            },
+            rentBalanceOwed: {
+                type: Number,
+                default: 0
+            },
+            gasVoucherAmount: {
+                type: Number,
+                default: ''
+            },
+            checkAddress: {
+                type: {
+                    checkStreet1: {
+                        type: String,
+                        default: ''
+                    },
+                    checkStreet2: {
+                        type: String,
+                        default: ''
+                    },
+                    checkCity: {
+                        type: String,
+                        default: ''
+                    },
+                    checkState: {
+                        type: String,
+                        default: ''
+                    },
+                    checkZip: {
+                        type: String,
+                        default: ''
+                    }
+                },
+                default: {}
+            },
+            motelLocation: {
+                type: String,
+                default: ''
+            },
+            motelDurationDays: {
+                type: String,
+                default: ''
+            },
+            motelCost: {
+                type: String,
+                default: ''
+            }
+        },
+        default: {}
     },
     interviewer: {
         type: String,
         default: '',
         required: true
     },
-    referredBy: {
-        type: String,
-        default: '',
-    },
     helpRequested: {
         type: String,
-        enum: ['rent', 'gasoline', 'busTicket'],
-        default: 'rent',
-        required: true
+        enum: ['', 'rent', 'gasoline', 'busTicket'],
+        default: 'rent'
     },
     licensePlate: {
         type: String,
@@ -37,7 +112,7 @@ const applicantSchema = new Schema({
     },
     licensePlateState: {
         type: String,
-        default: '',
+        default: 'WA',
         match: [/[A-Z]{2}/, 'Must enter 2-letter abbreviation for the state']
     },
     isBusPrimaryTransport: {
@@ -46,19 +121,16 @@ const applicantSchema = new Schema({
     },
     reasonForNeed: {
         type: String,
-        default: '',
-        required: true
+        default: ''
     },
     futurePlans: {
         type: String,
-        default: '',
-        required: true
+        default: ''
     },
     fName: {
         type: String,
-        default: '',
         minlength: [2, "Your first name must be at least 2 characters long."],
-        required: true,
+        required: true
     },
     middleInitial: {
         type: String,
@@ -71,30 +143,30 @@ const applicantSchema = new Schema({
     },
     applicantGender: {
         type: String,
-        default: '',
-        required: true
+        default: 'female',
     },
     otherNames: {
         hasOtherNames: {
             type: Boolean,
-            default: false,
-            required: true
+            default: false
         },
         additionalNames: {
-            type:[{
-                otherFirstName: {
-                    type: String,
-                    default: ''
-                },
-                otherMiddleInitial: {
-                    type: String,
-                    default: ''
-                },
-                otherLastName: {
-                    type: String,
-                    default: ''
+            type:[
+                {
+                    otherFirstName: {
+                        type: String,
+                        default: ''
+                    },
+                    otherMiddleInitial: {
+                        type: String,
+                        default: ''
+                    },
+                    otherLastName: {
+                        type: String,
+                        default: ''
+                    }
                 }
-            }],
+            ],
             default: []
         }
 
@@ -112,14 +184,13 @@ const applicantSchema = new Schema({
         required: true
     },
     phone: {
-        type: String, //todo: look at this if continue getting errors might need to be a string
-        default: '0000000000',
+        type: String,
+        default: '',
         match: [/^[0-9]{10}/, 'Enter 10 digit phone number exclude any additional characters']
     },
     disabled: {
         type: Boolean,
-        default: false,
-        required: true
+        default: false
     },
     idSource:{
         type: {
@@ -147,23 +218,22 @@ const applicantSchema = new Schema({
             },
             isValidLicense: {
                 type: Boolean,
-                required: true
+                default: false
             }
         },
-        default: {
-            driverLicenseOrId: '',
-            expDate: '',
-            idStateIssued: '',
-            socialSecLastFour: 0,
-            isValidLicense: false
-        },
+        // default: {
+        //     driverLicenseOrId: '',
+        //     expDate: '',
+        //     idStateIssued: '',
+        //     socialSecLastFour: 0,
+        //     isValidLicense: false
+        // },
         required: true
     },
     homelessness: {
         isHomeless: {
             type: Boolean,
-            default: false,
-            required: true,
+            default: false
         },
         durationXpHomelessness: {
             type: Number,
@@ -365,8 +435,7 @@ const applicantSchema = new Schema({
 
         isOtherAdultsAtResidence: {
             type: Boolean,
-            default: false,
-            required: true
+            default: false
         },
         adults: {
             type: [
@@ -428,57 +497,57 @@ const applicantSchema = new Schema({
     },
     homeAddress: {
         type: {
-                homeStreet1: {
-                    type: String,
-                    required: function () {
-                        return this.parent().helpRequested === 'rent';
-                    }
-                },
-                homeStreet2: {
-                    type: String
-                },
-                homeCity: {
-                    type: String,
-                    required: function () {
-                        return this.parent().helpRequested === 'rent';
-                    }
-                },
-                homeState: {
-                    type: String,
-                        match: [/[A-Z]{2}/, 'Enter 2-letter abbreviation for state'],
-                    required: function () {
-                        return this.parent().helpRequested === 'rent';
-                    }
-                },
-                homeZip: {
-                    type: Number,
-                    default: undefined,
-                    validate: [
-                        {
-                            validator: function(v) {
-                                if (v != null) return /^\d{5}(?:-\d{4})?$/.test(v.toString());
-                            },
-                            message: 'Enter zip code in the following format ##### or #####-####'
-                        },
-                    ],
-                    required: function () {
-                        return this.parent().helpRequested === 'rent';
-                    }
-                },
-                isMoreThanMonthBehind: {
-                    type: Boolean,
-                    default:false,
-                    required: function () {
-                        return this.parent().helpRequested === 'rent';
-                    }
-                },
-                verified: {
-                    type: Boolean,
-                    default: false,
-                    required: function () {
-                        return this.parent().helpRequested === 'rent';
-                    }
+            homeStreet1: {
+                type: String,
+                required: function () {
+                    return this.parent().helpRequested === 'rent';
                 }
+            },
+            homeStreet2: {
+                type: String
+            },
+            homeCity: {
+                type: String,
+                required: function () {
+                    return this.parent().helpRequested === 'rent';
+                }
+            },
+            homeState: {
+                type: String,
+                match: [/[A-Z]{2}/, 'Enter 2-letter abbreviation for state'],
+                required: function () {
+                    return this.parent().helpRequested === 'rent';
+                }
+            },
+            homeZip: {
+                type: Number,
+                default: undefined,
+                validate: [
+                    {
+                        validator: function(v) {
+                            if (v != null) return /^\d{5}(?:-\d{4})?$/.test(v.toString());
+                        },
+                        message: 'Enter zip code in the following format ##### or #####-####'
+                    },
+                ],
+                required: function () {
+                    return this.parent().helpRequested === 'rent';
+                }
+            },
+            isMoreThanMonthBehind: {
+                type: Boolean,
+                default:false,
+                required: function () {
+                    return this.parent().helpRequested === 'rent';
+                }
+            },
+            verified: {
+                type: Boolean,
+                default: false,
+                required: function () {
+                    return this.parent().helpRequested === 'rent';
+                }
+            }
 
         }
     },
@@ -527,7 +596,7 @@ const applicantSchema = new Schema({
         landLordPhone: {
             type: String,
             default: '0000000000', // todo: make sure phone numbers are the same. String is preferred if doesn't break form
-                match: [/^[0-9]{10}/, 'Enter 10 digit phone number. Exclue any additional characters'],
+            match: [/^[0-9]{10}/, 'Enter 10 digit phone number. Exclue any additional characters'],
         },
         landLordAddress: {
             landLordStreet1: {
@@ -539,8 +608,9 @@ const applicantSchema = new Schema({
                 default: '',
             },
             landLordState: {
-              type: String,
-              match: [/[A-Z]{2}/, 'Please enter 2-letter abbreviation for state'],
+                type: String,
+                match: [/[A-Z]{2}/, 'Please enter 2-letter abbreviation for state'],
+                default: ''
             },
             landLordCity: {
                 type: String,
@@ -604,12 +674,10 @@ const applicantSchema = new Schema({
                 {
                     name: {
                         type: String,
-                        default: "no income",
                         required: true
                     },
                     peopleCount: {
                         type: Number,
-                        default: 0,
                         required: true
                     }
                 }
@@ -618,8 +686,7 @@ const applicantSchema = new Schema({
         },
         isIncomeVerified: {
             type: Boolean,
-            default: false,
-            required: true
+            default: false
         }
     },
     race: {
