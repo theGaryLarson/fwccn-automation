@@ -1,18 +1,19 @@
 const form_data_defaults = {
-    timestamp: String,
+    timestamp: '',
     // 5 states PENDING, APPROVED, DENIED, APPROVED-OVERRIDE, NO-RETURN
     status: 'PENDING',
-    referredBy: 'Mercy House',
-    interviewer: 'Jane Doe',
-    actionTaken: {  //todo add to schema
+    referredBy: '',
+    interviewer: '',
+    actionTaken: {
         secondInterviewer: '',
-        amountPromised: 0,
-        amountGivenToday: 0,
+        actionNotes: '',
+        amountPromised: '',
+        amountGivenToday: '',
         checkDate: '',
         checkMadeOutTo: '',
-        checkNumber: 0,
-        rentBalanceOwed: 0,
-        gasVoucherAmount: 0,
+        checkNumber: '',
+        rentBalanceOwed: '',
+        gasVoucherAmount: '',
         checkAddress: {
             checkStreet1: '',
             checkStreet2: '',
@@ -21,147 +22,129 @@ const form_data_defaults = {
             checkZip: ''
         },
         motelLocation: '',
-        motelDurationDays: '',
-        motelCost: ''
-    }, // end add to schema
+        motelDurationDays: 0,
+        motelCost: 0
+    },
     helpRequested: 'rent',
-    licensePlate: 'CBY-2970',
+    licensePlate: '',
     licensePlateState: 'WA',
-    isBusPrimaryTransport: true,
-    reasonForNeed: 'behind on rent',
-    futurePlans: 'increased hours at work over summer',
-    fName: 'May',
-    middleInitial: 'D',
-    lName: 'Madeline',
+    isBusPrimaryTransport: false,
+    reasonForNeed: '',
+    futurePlans: '',
+    fName: '',
+    middleInitial: '',
+    lName: '',
     otherNames: {
-        hasOtherNames: true,
+        hasOtherNames: false,
         additionalNames: [
-            {
-                otherFirstName: 'Bob',
-                otherMiddleInitial: '',
-                otherLastName: 'Ross'
-            }
+            // {
+            //     otherFirstName: 'Bob',
+            //     otherMiddleInitial: '',
+            //     otherLastName: 'Ross'
+            // }
         ]
     },
-    applicantGender: 'Male',
-    applicantAge: '33',
-    phone: '9876543210',
+    applicantGender: '',
+    applicantAge: '',
+    phone: '',
     disabled: false,
     idSource: {
-        driverLicenseOrId: 'FGSLTWHGHOBS316',
-        expDate: '2028-10-05',
-        idStateIssued: 'WA',
-        socialSecLastFour: '7777',
+        driverLicenseOrId: '',
+        expDate: '',
+        idStateIssued: '',
+        socialSecLastFour: '',
         isValidLicense: false
     },
     homelessness: {
-        isHomeless: true,
-        durationXpHomelessness: 5, // fixme: this is required for schema to validate correctly
-        placeStayedRecently: 'friend\'s house',
-        whyHomeless: 'jobless',
+        isHomeless: false,
+        durationXpHomelessness: 0, // fixme: this is required for schema to validate correctly
+        placeStayedRecently: '',
+        whyHomeless: '',
         tempAddress: {
-            street1: '123 Gospel Way',
+            street1: '',
             street2: '',
-            city: 'Federal Way',
-            state: 'WA',
-            zip: '98106'
+            city: '',
+            state: '',
+            zip: ''
         }
     },
     children: {
-        hasChildrenUnder18: true,
+        hasChildrenUnder18: false,
         kids: [
             {
-                gender: 'female',
-                age: 14,
-                school: 'Tacoma School',
-                schoolDistrict: 'Tacoma School District',
-                relationshipToApplicant: 'daughter'
-            },
-            {
-                gender: 'male',
-                age: 9,
-                school: 'Tacoma School',
-                schoolDistrict: 'Tacoma School District',
-                relationshipToApplicant: 'son'
+                gender: '',
+                age: 0,
+                school: '',
+                schoolDistrict: '',
+                relationshipToApplicant: ''
             }
         ],
-        boysCount: 1,
-        girlsCount: 1,
-        boysAges: [9],
-        girlsAges: [14],
-        relationsToApplicant: ['daughter'],
-        schoolDistricts: ['Tacoma School District', 'Tacoma School District'],
-        schools: ['Tacoma School', 'Tacoma School']
+        boysCount: 0,
+        girlsCount: 0,
+        boysAges: [],
+        girlsAges: [],
+        relationsToApplicant: [],
+        schoolDistricts: [],
+        schools: []
     },
     otherAdults: {
-        isOtherAdultsAtResidence: true,
+        isOtherAdultsAtResidence: false,
         adults: [
-                    {
-                        adultFName: 'John',
-                        adultMiddleInitial: '',
-                        adultLName: 'Doe',
-                        adultGender: 'Male',
-                        adultAge: '33',
-                        relationshipToAdult: 'spouse',
-                        relationDetails: ''
-                    },
-                    {
-                        adultFName: 'John',
-                        adultMiddleInitial: '',
-                        adultLName: 'Doe',
-                        adultGender: 'Male',
-                        adultAge: '33',
-                        relationshipToAdult: 'relative',
-                        relationDetails: 'step-brother'
-                    }
+            {
+                adultFName: '',
+                adultMiddleInitial: '',
+                adultLName: '',
+                adultGender: '',
+                adultAge: 0,
+                relationshipToAdult: '',
+                relationDetails: ''
+            }
         ]
     },
     homeAddress: {
-        homeStreet1: '123 oak st',
-        homeStreet2: 'Apt. 100',
-        homeCity: 'Tacoma',
-        homeState: 'WA',
-        homeZip: '98142',
+        homeStreet1: '',
+        homeStreet2: '',
+        homeCity: '',
+        homeState: '',
+        homeZip: '',
         isMoreThanMonthBehind: false,
-        verified: true
+        verified: false
     },
     rentAssistance: {
-        hasRentAssistance: true,
-        monthlyRentPaidByApplicant: 300,
-        hasSection8Assistance: true,
-        monthlyRentPaidBySection8: 650,
+        hasRentAssistance: false,
+        monthlyRentPaidByApplicant: 0, //todo possibly change to 0
+        hasSection8Assistance: false,
+        monthlyRentPaidBySection8: 0,
         otherAssistance: [
-            {
-                rentAssistanceProgram: 'Second Chances',
-                amountPaidByProgram: 25
-            }
+            // {
+            //     rentAssistanceProgram: '',
+            //     amountPaidByProgram: 0
+            // }
         ]
 
 
     },
     landLord: {
-        fullName: 'Nikki Rofland',
-        landLordPhone: '1234567890',
+        fullName: '',
+        landLordPhone: '',
         landLordAddress: {
-            landLordStreet1: '321 Main St',
+            landLordStreet1: '',
             landLordStreet2: '',
-            landLordCity: 'Seattle',
-            landLordState: 'WA',
-            landLordZip: '98101'
+            landLordCity: '',
+            landLordState: '',
+            landLordZip: ''
         }
     },
     houseHoldIncome: {
-        totalHouseholdIncome: 850,
-        houseHoldIncomePastYear: 10200,
-        totalSupportMembers: 3,
+        totalHouseholdIncome: 0,
+        houseHoldIncomePastYear: 0,
+        totalSupportMembers: 0,
         singleHeadOfHouseHold: 'No', // states: 'No', 'Yes-male', 'Yes-female'
-        // singleMaleHeadOfHousehold: false,
-        // singleFemaleHeadOfHousehold: true,
-        incomeSituation: "getting laid off in one week. A month behind.",
+        incomeSituation: '',
         incomeSources: [
             {
                 name: "Job(s)",
-                peopleCount: 1
+                peopleCount: 0
             },
             {
                 name: "Unemployment",
@@ -189,14 +172,14 @@ const form_data_defaults = {
             },
             {
                 name: "Food Stamps",
-                peopleCount: 2
+                peopleCount: 0
             },
             {
                 name: "State Medical",
                 peopleCount: 0
             },
         ],
-        isIncomeVerified: true
+        isIncomeVerified: false
     },
     race: {
         americanIndianOrAlaskaNative: 0,
@@ -205,7 +188,7 @@ const form_data_defaults = {
         otherRace: 0,
         blackAfricanAmerican: 0,
         multiRacial: 0,
-        latinoAmericanHispanic: 4,
+        latinoAmericanHispanic: 0,
         unknown: 0,
         nativeAmericanPacificIslander: 0
     },
