@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 
 
 export default function ActionTakenComponent(props) {
@@ -7,6 +7,8 @@ export default function ActionTakenComponent(props) {
     const [isIncomeVerified, setIsIncomeVerified] = useState(item?.houseHoldIncome?.isIncomeVerified ?? false)
     const [isLicenseVerified, setIsLicenseVerified] = useState(item?.idSource?.isValidLicense ?? false)
     const [isBusVerified, setIsBusVerified] = useState(item?.isBusPrimaryTransport ?? false)
+    const [isTxtAreaCollapsed, setIsTxtAreaCollapsed] = useState(true);
+    const actionNotesRef = useRef(null);
     const checkAddressFields = ['checkStreet1', 'checkStreet2', 'checkCity', 'checkState', 'checkZip']
     const handleInputChange = (event) => {
         //todo: handle editable information: check info & address license plate number
@@ -85,8 +87,27 @@ export default function ActionTakenComponent(props) {
         } else {
             //do nothing
         }
-        console.log("CkBxName: ", name)
     };
+
+    const toggleTextAreaSize = (textAreaRef) => {
+        setIsTxtAreaCollapsed(!isTxtAreaCollapsed);
+        const textarea = textAreaRef.current;
+
+        if (isTxtAreaCollapsed) {
+            textarea.style.height = "250px";
+            textarea.style.height = `${textarea.scrollHeight}px`;
+        } else {
+            textarea.style.height = "250px";
+
+            const textareaOffset = textarea.getBoundingClientRect().top + window.scrollY - 40;
+
+            window.scrollTo({
+                top: textareaOffset,
+                behavior: "smooth",
+            });
+        }
+    };
+
     return (
         <div>
             <h2 className={'text-center w-full font-bold'}>ACTION TAKEN</h2>
@@ -256,7 +277,7 @@ export default function ActionTakenComponent(props) {
             { item.helpRequested !== 'rent' &&
                 (
                     <div>
-                        <h2 className={'mt-4 w-full border-t border-black pt-1 font-bold'}>Motel</h2>
+                        <h2 className={'mt-4 w-full border-t border-black pt-1 font-bold'}>MOTEL <span className={'font-medium font-normal'}>(optional)</span></h2>
                         <div className={'flex flex-row-3'}>
                             <div className={'flex-1'}>
                                 <label htmlFor={'motelLocation'} className={'whitespace-nowrap mr-4'}>
@@ -393,6 +414,17 @@ export default function ActionTakenComponent(props) {
                                 onChange={handleInputChange}
                                 className={'bg-yellow-200 w-full'}
                             />
+                            <label htmlFor={'actionNotes'} className={'font-medium'}>Notes</label>
+                            <textarea
+                                id="actionNotes"
+                                name="actionNotes"
+                                value={item?.actionTaken?.actionNotes}
+                                className="h-[250px] bg-blue-50 border-indigo-700 border-2 w-full p-2 pt-1  resize-none"
+                                onClick={() => toggleTextAreaSize(actionNotesRef)}
+                                onChange={handleInputChange}
+                                ref={actionNotesRef}
+                            />
+
                         </div>
                     </div>
                 </div>
