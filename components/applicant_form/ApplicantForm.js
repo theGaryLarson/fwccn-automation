@@ -15,11 +15,17 @@ function ApplicantForm(props) {
     const { item, updateApplicant, onUpdate } = props
     const [formData, setFormData] = useState(item??form_data_defaults);
     const [isDataLoaded, setIsDataLoaded] = useState(false);
+
+    useEffect( () => {
+        if (item) {
+            onUpdate(item)
+        }
+    }, [onUpdate, item, formData]);
+
     function handleInputChange(event) {
         const {name, value} = event.target;
-        const newData = updateFormData(formData, name, value);
+        const newData = updateFormData({...formData}, name, value);
         setFormData(newData);
-
     }
 
     function updateFormData(formData, name, value) {
@@ -33,33 +39,16 @@ function ApplicantForm(props) {
                 return {...formData, [key]: value};
             }
 
-            if (typeof currentValue === 'object') {
+            if ( currentValue && typeof currentValue === 'object') {
                 const updatedValue = updateFormData(currentValue, name, value);
                 if (updatedValue !== currentValue) {
                     return {...formData, [key]: updatedValue};
                 }
             }
         }
-
         return formData;
     }
 
-    // These methods update changes as soon as they are made rather than on the next render which happens by default
-    // Will be great for validation and the final commit to the database.
-    useEffect(() => {
-
-    }, [formData]);
-
-    useEffect( () => {
-
-        if (item && !formData) { // needed to add !formData to get rid of infinite loop
-            console.log('useEffect: ', formData)
-            setFormData({
-
-
-            })
-        }
-    }, [item, formData])
     async function handleSubmit(event) {
         event.preventDefault();
         formData.timestamp = createTimeStamp();
@@ -143,7 +132,6 @@ function ApplicantForm(props) {
                                 onClick={ async ()  => {
                                     await updateApplicant(formData)
                                         .then(r => {
-                                            console.log("apiResponseMesg: ", r.record)
                                             if (onUpdate) {
                                                 onUpdate(r.record);
                                             }
