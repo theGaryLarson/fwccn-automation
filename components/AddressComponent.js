@@ -84,7 +84,7 @@ export default function AddressComponent({ title, formData, onComponentInputChan
                     type="text"
                     id="homeState"
                     name="homeState"
-                    placeholder="Tacoma"
+                    placeholder="WA"
                     pattern = '[A-Z]{2}'
                     title = 'Enter 2-letter state abbreviation'
                     value={formData.homeAddress.homeState}
