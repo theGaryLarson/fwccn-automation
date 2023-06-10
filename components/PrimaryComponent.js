@@ -9,7 +9,7 @@ import {useState} from "react";
 // applicant contact and identifying information
 export default function PrimaryComponent(props) {
     const  { formData, onComponentInputChange } = props
-    const [isLicenseVerified, setIsLicenseVerified] = useState(formData.idSource?.isValidLicense ?? false)
+    const [isLicenseVerified, setIsLicenseVerified] = useState(formData?.idSource?.isValidLicense ?? false)
     const [isBusPrimaryTransport, setIsBusPrimaryTransport] = useState(formData?.isBusPrimaryTransport ?? false)
     const handleInputChange = (event) => {
         onComponentInputChange(event)
@@ -50,7 +50,7 @@ export default function PrimaryComponent(props) {
                     id="f-name-input"
                     name="fName"
                     placeholder="Larry"
-                    value={formData.fName}
+                    value={formData?.fName??''}
                     onChange={handleInputChange}
                     required
                 />
@@ -62,7 +62,7 @@ export default function PrimaryComponent(props) {
                     id="middle-initial-input"
                     name="middleInitial"
                     placeholder="M"
-                    value={formData.middleInitial}
+                    value={formData?.middleInitial??''}
                     onChange={handleInputChange}
                 />
             </div>
@@ -73,7 +73,7 @@ export default function PrimaryComponent(props) {
                     id="l-name-input"
                     name="lName"
                     placeholder="Garson"
-                    value={formData.lName}
+                    value={formData?.lName??''}
                     onChange={handleInputChange}
                     required
                 />
@@ -83,7 +83,7 @@ export default function PrimaryComponent(props) {
                 <select
                     id={"applicantGender"}
                     name="applicantGender"
-                    value={formData.applicantGender}
+                    value={formData?.applicantGender??'Female'}
                     onChange={handleInputChange}
                     required
                 >
@@ -98,7 +98,7 @@ export default function PrimaryComponent(props) {
                     type="text"
                     id={"applicantAge"}
                     name="applicantAge"
-                    value={formData.applicantAge}
+                    value={formData?.applicantAge??''}
                     onChange={handleInputChange}
                     required
                 />
@@ -122,7 +122,7 @@ export default function PrimaryComponent(props) {
                 <select
                     id="has-disability"
                     name="disabled"
-                    value={formData.disabled}
+                    value={formData?.disabled??'no'}
                     onChange={handleInputChange}
                 >
                     <option value={"false"}>no</option>
@@ -145,7 +145,7 @@ export default function PrimaryComponent(props) {
             </div>
             <div className={`border-2 border-gray-600 p-4 box mt-4 `}>
                 <div className={styles.componentWrapper}>
-                    <label htmlFor="identification">{formData.helpRequested === 'gasoline' ? 'Driver\'s License:' : 'State Identification Or License:'}</label>
+                    <label htmlFor="identification">{formData?.helpRequested??'' === 'gasoline' ? 'Driver\'s License:' : 'State Identification Or License:'}</label>
                     <input
                         type="text"
                         id="identification"
@@ -182,7 +182,7 @@ export default function PrimaryComponent(props) {
                         required
                     />
                 </div>
-                {formData.helpRequested === 'gasoline' && (<div>
+                {(formData?.helpRequested??'' === 'gasoline') && (<div>
                     <div className={styles.componentWrapper}>
                         <label htmlFor="licensePlate">License Plate Number:</label>
                         <input
