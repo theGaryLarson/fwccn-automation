@@ -144,8 +144,9 @@ export default function PrimaryComponent(props) {
                 />
             </div>
             <div className={`border-2 border-gray-600 p-4 box mt-4 `}>
+                <h1>State Identification</h1>
                 <div className={styles.componentWrapper}>
-                    <label htmlFor="identification">{formData?.helpRequested??'' === 'gasoline' ? 'Driver\'s License:' : 'State Identification Or License:'}</label>
+                    <label htmlFor="identification">{formData?.helpRequested === 'gasoline' ? 'Driver\'s License:' : 'State Identification Or License:'}</label>
                     <input
                         type="text"
                         id="identification"
@@ -182,7 +183,7 @@ export default function PrimaryComponent(props) {
                         required
                     />
                 </div>
-                {(formData?.helpRequested??'' === 'gasoline') && (<div>
+                {(formData?.helpRequested === 'gasoline') && (<div>
                     <div className={styles.componentWrapper}>
                         <label htmlFor="licensePlate">License Plate Number:</label>
                         <input
