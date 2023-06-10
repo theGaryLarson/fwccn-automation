@@ -6,7 +6,6 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
     const [adultCount, setAdultCount] = useState(0);
     const [adults, setAdults] = useState(formData?.otherAdults?.adults??[])
     const [isOtherAdults, setIsOtherAdults] = useState(formData?.otherAdults?.isOtherAdultsAtResidence??false);
-    console.log("isOtherAdults: ", isOtherAdults)
     const handleInputChange = (event, index) => {
         const { name, value } = event.target;
 
