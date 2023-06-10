@@ -52,7 +52,7 @@ export default function  AssistanceNeedComponent({formData, onComponentInputChan
                     id={`explanation-of-need`}
                     name="reasonForNeed"
                     placeholder="Brief explanation of why requesting FWCCN services"
-                    value={formData.reasonForNeed}
+                    value={formData?.reasonForNeed}
                     onChange={handleInputChange}
                 />
             </div>
@@ -62,7 +62,7 @@ export default function  AssistanceNeedComponent({formData, onComponentInputChan
                     id="futurePlans"
                     name="futurePlans"
                     placeholder="Brief summary of applicants plans for the future."
-                    value={formData.futurePlans}
+                    value={formData?.futurePlans}
                     onChange={handleInputChange}
                 />
             </div>
@@ -73,7 +73,7 @@ export default function  AssistanceNeedComponent({formData, onComponentInputChan
                     id='referred-by'
                     name="referredBy"
                     placeholder="Person or agency that referred applicant (if any)"
-                    value={formData.referredBy}
+                    value={formData?.referredBy}
                     onChange={handleInputChange}
                 />
             </div>
