@@ -38,7 +38,7 @@ export default function  AssistanceNeedComponent({formData, onComponentInputChan
                     <select
                         id="isMoreThanMonthBehind"
                         name="isMoreThanMonthBehind"
-                        value={formData?.homeAddress?.isMoreThanMonthBehind?.toString()??'false'}
+                        value={formData?.homeAddress?.isMoreThanMonthBehind?.toString()}
                         onChange={handleInputChange}
                     >
                         <option value={'false'}>No</option>
