@@ -1,5 +1,5 @@
 const form_data_auto_fill_test = {
-    timestamp: String,
+    timestamp: '',
     // 5 states PENDING, APPROVED, DENIED, APPROVED-OVERRIDE, NO-RETURN
     status: 'PENDING',
     referredBy: 'Mercy House',
