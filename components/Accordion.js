@@ -79,7 +79,7 @@ import ActionTakenComponent from "./ActionTakenComponent";
                             <div>
                                 <div>
                                     <div className="flex justify-end space-x-4 mb-4 mt-4">
-                                        { (item.status === 'APPROVED' || item.status === "APPROVED-OVERRIDE") &&
+                                        { (item.status === 'APPROVED' || item.status === 'APPROVED-OVERRIDE' || item.status === 'DENIED') &&
                                             (
                                                 <button onClick={showActionView}
                                                         className={`${ !showForm ? 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' : 'py-2 px-4 bg-gray-200 font-bold text-gray-900 border-gray-950'} `}
