@@ -94,9 +94,6 @@ function ApplicantForm(props) {
                 <div className={`${styles.componentWrapper} border-2 border-black p-4 box m-4`}>
                     <PrimaryComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
-                {/*<div className={`${styles.inputWrapper} border-2 border-black p-4 box m-4`}>*/}
-                {/*    <IncomeComponent formData={formData} onComponentInputChange={handleInputChange}/>*/}
-                {/*</div>*/}
                 <div className={`${styles.componentWrapper} border-2 border-black p-4 box m-4`}>
                     <ChildComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
