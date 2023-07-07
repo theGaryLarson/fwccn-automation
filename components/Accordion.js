@@ -100,7 +100,7 @@ import ActionTakenComponent from "./ActionTakenComponent";
                                                 });
                                             }}
                                         >
-                                            UPDATE RECORD
+                                            SAVE CHANGES
                                         </button>)}
                                         <button onClick={toggleShowForm}
                                                 className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded`}
@@ -217,7 +217,7 @@ import ActionTakenComponent from "./ActionTakenComponent";
                                     <NeedSummaryComponent focusedItem={item} firstItem={firstItem}/>
                                 )
                             }
-                            <div >
+                            <div>
                                 <div>
                                     {showForm && <EditApplicationComponent item={item} onUpdate={updateItem} updateApplicant={updateApplicant} />}
                                     { showForm &&
