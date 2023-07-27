@@ -18,6 +18,7 @@ export default function RequirementCheckComponent(props) {
                     },
                     body: JSON.stringify(queryObject),
                 });
+                console.log("QUERY OBJ: ", queryObject)
                 if (response.ok) {
                     return await response.json();
                 } else {
