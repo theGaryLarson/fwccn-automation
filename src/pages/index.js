@@ -4,8 +4,6 @@ import {useState} from "react";
 // import getConfig from "next/config"
 
 export default function Home() {
-    // const {serverRuntimeConfig} = getConfig()
-    // console.log(serverRuntimeConfig.ipAddress)
     const [records, setRecords] = useState([]);
     //todo: this works opposite than what it should. Fix if time
     const [isLookUp, setIsLookUp]  = useState(false)
