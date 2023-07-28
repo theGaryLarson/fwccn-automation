@@ -6,6 +6,7 @@ const form_data_defaults = {
     interviewer: '',
     actionTaken: {
         secondInterviewer: '',
+        fundSource: 'ARPA',
         actionNotes: '',
         amountPromised: '',
         amountGivenToday: '',

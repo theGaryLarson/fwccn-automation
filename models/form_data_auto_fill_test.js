@@ -6,6 +6,7 @@ const form_data_auto_fill_test = {
     interviewer: 'Jane Doe',
     actionTaken: {  //todo add to schema
         secondInterviewer: '',
+        fundSource: '',
         amountPromised: 0,
         amountGivenToday: 0,
         checkDate: '',
