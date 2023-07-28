@@ -2,8 +2,7 @@ import SearchComponent from "./SearchComponent";
 import DecisionDetailsComponent from "./DecisionDetailsComponent";
 import { useState } from "react";
 
-export default function EditReviewComponent(props) {
-    // const {records, setRecords} = props
+export default function EditReviewComponent() {
     const [queryObject, setQueryObject] = useState("")
 
  return (
