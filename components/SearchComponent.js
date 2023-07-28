@@ -1,18 +1,37 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import styles from "../components/applicant_form/ApplicantForm.module.css"
 
 
 export default function SearchComponent(props) {
-    const {setParentQueryObject, parentHandleSubmit } = props
-    const[isAddress, setIsAddress] = useState(false);
-    const [searchChoice, setSearchChoice] = useState("idSearch");
-    const [stateId, setStateId] = useState("")
-    const [street1, setStreet1] = useState("")
-    const [street2, setStreet2] = useState("")
-    const [homeZip, setHomeZip] = useState("")
+    const {setParentQueryObject} = props
+    const [isViewAll, setIsViewAll] = useState(false);
+    const [isAddress, setIsAddress] = useState(false);
+    const [isIdSearch, setIsIdSearch] = useState(false);
+    const [isNameSearch, setIsNameSearch] = useState(true);
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [lastFour, setLastFour] = useState("");
+    const [stateId, setStateId] = useState("");
+    const [street1, setStreet1] = useState("");
+    const [street2, setStreet2] = useState("");
+    const [homeZip, setHomeZip] = useState("");
 
-    // useEffect(() => {}, [searchChoice]);
+    useEffect(() => {
 
+        }, [isNameSearch, isAddress, isIdSearch, isViewAll]
+    );
+
+    const updateFirstName = (event) => {
+        setFirstName(event.target.value);
+    }
+
+    const updateLastName = (event) => {
+        setLastName(event.target.value);
+    }
+
+    const updateLastFour = (event) => {
+        setLastFour(event.target.value);
+    }
 
     const updateStateId = (event) => {
         setStateId(event.target.value)
@@ -29,26 +48,38 @@ export default function SearchComponent(props) {
         setHomeZip(event.target.value)
     }
     const upDateSearchChoice = (event) => {
-        setSearchChoice(event.target.value)
-        setIsAddress(event.target.value === "addressSearch")
+        setIsNameSearch(event.target.value === "nameSearch");
+        setIsIdSearch(event.target.value === "idSearch");
+        setIsAddress(event.target.value === "addressSearch");
+        setIsViewAll(event.target.value === "viewAll");
+
     }
     const handleSubmit = (event) => {
         event.preventDefault();
+        if (isViewAll) {
+            setParentQueryObject( {
+                retrieveAll: "yes"
+            });
+        }
+        if (isNameSearch) {
+            setParentQueryObject( {
+                firstName: firstName,
+                lastName: lastName,
+                lastFour: lastFour
+            });
+        }
+        if (isIdSearch) {
+            setParentQueryObject( {
+                driverLicenseOrId: stateId
+            });
+        }
         if (isAddress) {
             setParentQueryObject( {
                 homeStreet1: street1,
                 homeStreet2: street2,
                 homeZip: homeZip
-            })
-
-        } else {
-
-            setParentQueryObject( {
-                driverLicenseOrId: stateId
-            })
-
+            });
         }
-        // parentHandleSubmit(isAddress)
     }
     return (
         <div className={`${styles.componentWrapper} border-2 border-black p-4 box m-4`}>
@@ -61,12 +92,49 @@ export default function SearchComponent(props) {
                         name="searchParameters"
                         onChange={upDateSearchChoice}
                     >
+                        <option value={'nameSearch'}>Name & Last Four</option>
                         <option value={'idSearch'}>State ID</option>
                         <option value={'addressSearch'}>Street Address</option>
+                        <option value={'viewAll'}>Review All Applications</option>
                     </select>
                 </div>
                 {
-                    !isAddress && (
+                    isNameSearch && (
+                        <div className={`${styles.componentWrapper}`}>
+                            <h1>Enter Name & Last Four</h1>
+
+                            <input
+                                type='text'
+                                id={'first-name'}
+                                name={'first-name'}
+                                className={`mt-1`}
+                                placeholder={' Enter First Name'}
+                                onChange={updateFirstName}
+                                value={firstName}
+                            />
+                            <input
+                                type='text'
+                                id={'last-name'}
+                                name={'last-name'}
+                                className={`mt-1`}
+                                placeholder={' Enter Last Name'}
+                                onChange={updateLastName}
+                                value={lastName}
+                            />
+                            <input
+                                type='text'
+                                id={'last-four'}
+                                name={'last-four'}
+                                className={`mt-1`}
+                                placeholder={' Last Four of Social Security'}
+                                onChange={updateLastFour}
+                                value={lastFour}
+                            />
+                        </div>
+                    )
+                }
+                {
+                    isIdSearch && (
                         <div className={`${styles.componentWrapper}`}>
                             <label htmlFor={'driverLicenseOrId'}> Search by State ID</label>
                             <input
@@ -94,7 +162,6 @@ export default function SearchComponent(props) {
                                 placeholder={' Enter Street Address'}
                                 onChange={updateStreet1}
                                 value={street1}
-                                required
                             />
                             <input
                                 type='text'
