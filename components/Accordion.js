@@ -54,10 +54,21 @@ import ActionTakenComponent from "./ActionTakenComponent";
             setIsActionView(!isActionView)
         }
         function handleStatusChange(event) {
-            const {value} = event.target
+            const {value} = event.target;
             setItem( {
                 ...item,
                 status: value
+            })
+        }
+        function handleFundSourceChange(event) {
+            const {value} = event.target;
+            setItem( {
+                ...item,
+                actionTaken: {
+                    ...item.actionTaken,
+                    fundSource: value
+                }
+
             })
         }
 
@@ -144,14 +155,14 @@ import ActionTakenComponent from "./ActionTakenComponent";
                                             </div>
                                         </div>
                                         <div className="flex flex-col items-start">
-                                            <div className="whitespace-nowrap flex-1">
-                                                <label htmlFor={"status-edit"} className={"font-bold "}>Status:</label>
+                                            <div className="w-full text-blue-900 p-2 rounded border border-blue-300 whitespace-nowrap flex-1 mb-2 ">
+                                                <label htmlFor={"status-edit"} className={"font-bold mr-0 "}>Status:</label>
                                                 <select
                                                     id={"status-edit"}
                                                     name={"status-edit"}
                                                     value={item.status}
                                                     onChange={handleStatusChange}
-                                                    className={`text-center w-full ml-4`}
+                                                    className={`ml-10`}
                                                 >
                                                     <option value={"PENDING"}>PENDING</option>
                                                     <option value={"APPROVED"}>APPROVED</option>
@@ -159,6 +170,22 @@ import ActionTakenComponent from "./ActionTakenComponent";
                                                     <option value={"DENIED"}>DENIED</option>
                                                     <option value={"NO-RETURN"}>NO-RETURN</option>
                                                 </select>
+                                            </div>
+                                            <div className="w-full text-blue-900 p-2 rounded border border-red-300 whitespace-nowrap flex-1">
+                                                <div className={'flex justify-between'}><label htmlFor={"status-edit"} className={"font-bold text-red-800"}>Funded
+                                                    By:</label>
+                                                    <select
+                                                        id={"status-edit"}
+                                                        name={"status-edit"}
+                                                        value={item.actionTaken.fundSource}
+                                                        onChange={handleFundSourceChange}
+                                                        className={`flex-1 ml-2`}
+                                                    >
+                                                        <option value={""}></option>
+                                                        <option value={"ARPA"}>ARPA</option>
+
+                                                    </select>
+                                                </div>
                                             </div>
                                             <div className="whitespace-nowrap flex-1">
                                                 <p className=""><span
