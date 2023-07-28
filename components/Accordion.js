@@ -162,7 +162,7 @@ import ActionTakenComponent from "./ActionTakenComponent";
                                                     name={"status-edit"}
                                                     value={item.status}
                                                     onChange={handleStatusChange}
-                                                    className={`ml-10`}
+                                                    className={`flex-1 ml-12`}
                                                 >
                                                     <option value={"PENDING"}>PENDING</option>
                                                     <option value={"APPROVED"}>APPROVED</option>
@@ -171,9 +171,11 @@ import ActionTakenComponent from "./ActionTakenComponent";
                                                     <option value={"NO-RETURN"}>NO-RETURN</option>
                                                 </select>
                                             </div>
-                                            <div className="w-full text-blue-900 p-2 rounded border border-red-300 whitespace-nowrap flex-1">
-                                                <div className={'flex justify-between'}><label htmlFor={"status-edit"} className={"font-bold text-red-800"}>Funded
-                                                    By:</label>
+                                            <div className="w-full text-red-900 p-2 rounded border border-red-300 whitespace-nowrap flex-1">
+                                                <div className={'flex justify-between'}>
+                                                    <label htmlFor={"status-edit"} className={"font-bold text-red-800"}>
+                                                        Funded By:
+                                                    </label>
                                                     <select
                                                         id={"status-edit"}
                                                         name={"status-edit"}
