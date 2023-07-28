@@ -25,6 +25,10 @@ const applicantSchema = new Schema({
                 type: String,
                 default: ''
             },
+            fundSource: {
+              type: String,
+              default: ''
+            },
             actionNotes: {
                 type: String,
                 default: ''
