@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+
+import React, {useEffect, useState} from "react";
 import { dateFormatNYears } from "../lib/util";
 import NeedSummaryComponent from "./NeedSummaryComponent";
 import EditApplicationComponent from "./EditApplicationComponent";
@@ -10,6 +11,10 @@ import ActionTakenComponent from "./ActionTakenComponent";
         const [showForm, setShowForm] = useState(false);
         const [item, setItem] = useState(initialItem);
         const [isActionView, setIsActionView] = useState(false);
+
+        useEffect(() => {
+            setItem(initialItem)
+        }, [initialItem])
 
         const  updateApplicant = async (editedItem) => {
             try {
@@ -32,9 +37,9 @@ import ActionTakenComponent from "./ActionTakenComponent";
             }
         }
 
-       const updateItem = (updatedItem) => {
+        const updateItem = (updatedItem) => {
            setItem(updatedItem)
-       }
+        }
         const toggleAccordion = () => {
             setIsOpen(!isOpen);
         };
@@ -79,7 +84,7 @@ import ActionTakenComponent from "./ActionTakenComponent";
                             <div>
                                 <div>
                                     <div className="flex justify-end space-x-4 mb-4 mt-4">
-                                        { (item.status === 'APPROVED' || item.status === 'APPROVED-OVERRIDE' || item.status === 'DENIED') &&
+                                        { (item.status === 'NO-RETURN' || item.status === 'APPROVED' || item.status === 'APPROVED-OVERRIDE' || item.status === 'DENIED') &&
                                             (
                                                 <button onClick={showActionView}
                                                         className={`${ !showForm ? 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' : 'py-2 px-4 bg-gray-200 font-bold text-gray-900 border-gray-950'} `}
