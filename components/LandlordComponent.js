@@ -66,6 +66,17 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                 />
             </div>
             <div className={styles.componentWrapper}>
+                <label htmlFor="landlord-state">Landlord State</label>
+                <input
+                    type="text"
+                    id="landlord-state"
+                    name="landLordState"
+                    placeholder="WA"
+                    value={formData?.landLord?.landLordAddress?.landLordState??''}
+                    onChange={handleInputChange}
+                />
+            </div>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="landlord-zip">Landlord Zip Code</label>
                 <input
                     type="number"
