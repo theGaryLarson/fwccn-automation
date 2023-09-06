@@ -158,7 +158,7 @@ import ActionTakenComponent from "./ActionTakenComponent";
                                             <div className="w-full text-blue-900 p-2 rounded border border-blue-300 whitespace-nowrap flex-1 mb-2 ">
                                                 <label htmlFor={"status-edit"} className={"font-bold mr-0 "}>Status:</label>
                                                 <select
-                                                    id={"status-edit"}
+                                                    id={"status-edit-1"}
                                                     name={"status-edit"}
                                                     value={item.status}
                                                     onChange={handleStatusChange}
@@ -173,7 +173,7 @@ import ActionTakenComponent from "./ActionTakenComponent";
                                             </div>
                                             <div className="w-full text-red-900 p-2 rounded border border-red-300 whitespace-nowrap flex-1">
                                                 <div className={'flex justify-between'}>
-                                                    <label htmlFor={"status-edit"} className={"font-bold text-red-800"}>
+                                                    <label htmlFor={"status-edit-2"} className={"font-bold text-red-800"}>
                                                         Funded By:
                                                     </label>
                                                     <select
