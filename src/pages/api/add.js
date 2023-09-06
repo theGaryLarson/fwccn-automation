@@ -8,10 +8,7 @@ import Applicant from "../../../models/applicant_schema";
  */
 export default async function addApplicant(req, res) {
     await connectMongo();
-    console.log('CONNECTED TO MONGO');
-    console.log('CREATING DOCUMENT FOR ' + req.body.data.fName.toUpperCase());
     const applicant = await Applicant.create(req.body.data);
-    console.log('CREATED DOCUMENT');
     res.json(applicant);
 
 }
