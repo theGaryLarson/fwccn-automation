@@ -38,12 +38,12 @@ export default async function validateApplicantRecord(req, res) {
     if (homeZip && homeZip !== "") {
         condition["homeAddress.homeZip"] = homeZip;
     }
-    console.log("qry", condition);
+    // console.log("qry", condition);
     // Find applicants based on the built condition
     if (retrieveAll === "yes" || Object.keys(condition).length > 0) {
-        const duplicateRecords = await Applicant.find(condition).exec();
-        duplicateRecords.sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp))
-        res.json(duplicateRecords);
+        const retrievedRecords = await Applicant.find(condition).exec();
+        retrievedRecords.sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp))
+        res.json(retrievedRecords);
     } else {
         res.json([])
     }
