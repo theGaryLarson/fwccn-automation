@@ -36,7 +36,7 @@ export default function RequirementCheckComponent(props) {
     }, [queryObject]);
     const records = useMemo(() =>  responseData, [responseData]);
     useEffect(() => {
-        if (responseData.length > 0) {
+        if (responseData?.length > 0) {
             setFirstItem(responseData[0]);
         }
     }, [records]);
@@ -48,12 +48,12 @@ export default function RequirementCheckComponent(props) {
             </div>
             <div className={` w-full border-2 border-gray-600 p-4 box mt-4 mb-4`}>
                 <h1 className={"flex items-center justify-center font-bold"}>
-                    {records.length > 0 && 'Submission History'}
-                    {records.length < 1 && 'No Record of Applicant or Address'}
+                    {records?.length > 0 && 'Submission History'}
+                    {records?.length < 1 && 'No Record of Applicant or Address'}
                 </h1>
                 {/*ids && */(
                     <div className={"w-full"}>
-                        { records.length > 0 && records.map((item, index) => {
+                        { records?.length > 0 && records.map((item, index) => {
                                 return (<Accordion setItemFocus={setFocusedItem} key={index} initialItem={item}
                                                    firstItem={firstItem}/>)
                             }
