@@ -44,6 +44,15 @@ export default function ActionTakenComponent(props) {
         }
     }
 
+    const handleDateOfService = (event) => {
+        const { value } = event.target;
+        const updatedDateOfService = {
+            ...item,
+            dateOfService: value
+        }
+        updateItem(updatedDateOfService)
+    }
+
     const handleCheckboxChange = (event) => {
         const { name } = event.target
 
@@ -185,7 +194,17 @@ export default function ActionTakenComponent(props) {
                         onChange={handleInputChange}
                         className="bg-yellow-200 w-full"
                     />
-                    {/*conditonal rendering based on help requested*/}
+                    <label htmlFor="dateOfService" className="mt-2"><span className={'font-medium'}>Date of Service:</span> </label>
+                    <input
+                        type="date"
+                        id="dateOfService"
+                        name="dateOfService"
+                        value={item?.dateOfService??''}
+                        placeholder='Second Interviewer for Approval'
+                        onChange={handleDateOfService}
+                        className="bg-yellow-200 w-full"
+                    />
+                    {/*conditional rendering based on help requested*/}
                     {   item.helpRequested === 'rent' &&
                         (
                             <div>
