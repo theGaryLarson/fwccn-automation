@@ -87,7 +87,6 @@ function ApplicantForm(props) {
                         placeholder='Interviewer first and last name'
                         value={formData?.interviewer??''}
                         onChange={handleInputChange}
-                        required
                     />
                 </div>
                 <div className={`${styles.componentWrapper} border-2 border-black p-4 box m-4`}>
