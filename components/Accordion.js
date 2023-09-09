@@ -27,15 +27,15 @@ import {toast} from "react-toastify";
                     body: JSON.stringify(editedItem)
                 });
                 if (response.ok) {
-                    toast.success('Data Updated Successfully!')
+                    toast.success(` ${editedItem.fName + ' ' + editedItem.lName} \'s Application updated successfully!`)
                     return await response.json();
                 } else {
-                    console.error(`Error updating item for state id#: ${editedItem.idSource?.driverLicenseOrId ?? ''} `, response.status);
+                    console.error(`Error updating item for object id#: ${editedItem._id } `, response.status);
                     toast.error(`Error updating ${editedItem.fName + ' ' + editedItem.lName + '\'s application \n Object ID: ' + editedItem._id}`)
                 }
 
             } catch (e) {
-                console.error(`Error updating item for state id#: ${editedItem.idSource?.driverLicenseOrId ?? ''}\n `, e);
+                console.error(`Error updating item for object id#: ${editedItem._id } `, e);
                 toast.error(`Error updating ${editedItem.fName + ' ' + editedItem.lName + '\'s application \n Object ID: ' + editedItem._id}`)
                 return null;
             }
