@@ -1,5 +1,6 @@
 const form_data_defaults = {
     timestamp: '',
+    dateOfService: '',
     // 5 states PENDING, APPROVED, DENIED, APPROVED-OVERRIDE, NO-RETURN
     status: 'PENDING',
     referredBy: '',
