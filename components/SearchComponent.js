@@ -4,10 +4,10 @@ import styles from "../components/applicant_form/ApplicantForm.module.css"
 
 export default function SearchComponent(props) {
     const {setParentQueryObject} = props
-    const [isViewAll, setIsViewAll] = useState(false);
+    const [isViewAll, setIsViewAll] = useState(true);
     const [isAddress, setIsAddress] = useState(false);
     const [isIdSearch, setIsIdSearch] = useState(false);
-    const [isNameSearch, setIsNameSearch] = useState(true);
+    const [isNameSearch, setIsNameSearch] = useState(false);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [lastFour, setLastFour] = useState("");
@@ -92,10 +92,10 @@ export default function SearchComponent(props) {
                         name="searchParameters"
                         onChange={upDateSearchChoice}
                     >
+                        <option value={'viewAll'}>Review All Applications</option>
                         <option value={'nameSearch'}>Name & Last Four</option>
                         <option value={'idSearch'}>State ID</option>
                         <option value={'addressSearch'}>Street Address</option>
-                        <option value={'viewAll'}>Review All Applications</option>
                     </select>
                 </div>
                 {
