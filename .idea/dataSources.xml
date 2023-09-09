@@ -5,14 +5,14 @@
       <driver-ref>mongo</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
-      <jdbc-url>mongodb+srv://cluster0.ry4tk.mongodb.net/fwccn_applicants?retryWrites=true&amp;w=majority</jdbc-url>
+      <jdbc-url>mongodb+srv://cluster0.ry4tk.mongodb.net/</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
     <data-source source="LOCAL" name="fwccn_applicants@localhost [2]" uuid="6283f8dd-d42a-4e3f-8647-b48a537597b7">
       <driver-ref>mongo</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
-      <jdbc-url>mongodb://localhost:27017/fwccn_applicants</jdbc-url>
+      <jdbc-url>mongodb://localhost:27017/</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

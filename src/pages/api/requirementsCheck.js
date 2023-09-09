@@ -42,7 +42,19 @@ export default async function validateApplicantRecord(req, res) {
     // Find applicants based on the built condition
     if (retrieveAll === "yes" || Object.keys(condition).length > 0) {
         const retrievedRecords = await Applicant.find(condition).exec();
-        retrievedRecords.sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp))
+        retrievedRecords.sort((a, b) => {
+            const dateA = new Date(a.dateOfService);
+            const dateB = new Date(b.dateOfService);
+
+            if (isNaN(dateA)) {
+                return -1; // or some other logic to handle invalid dates
+            }
+            if (isNaN(dateB)) {
+                return 1; // or some other logic to handle invalid dates
+            }
+
+            return dateB - dateA;
+        });
         res.json(retrievedRecords);
     } else {
         res.json([])
