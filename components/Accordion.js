@@ -4,6 +4,7 @@ import { dateFormatNYears } from "../lib/util";
 import NeedSummaryComponent from "./NeedSummaryComponent";
 import EditApplicationComponent from "./EditApplicationComponent";
 import ActionTakenComponent from "./ActionTakenComponent";
+import {toast} from "react-toastify";
 
     function Accordion(props) {
         const { initialItem, setItemFocus, firstItem } = props;
@@ -26,13 +27,16 @@ import ActionTakenComponent from "./ActionTakenComponent";
                     body: JSON.stringify(editedItem)
                 });
                 if (response.ok) {
+                    toast.success('Data Updated Successfully!')
                     return await response.json();
                 } else {
                     console.error(`Error updating item for state id#: ${editedItem.idSource?.driverLicenseOrId ?? ''} `, response.status);
+                    toast.error(`Error updating ${editedItem.fName + ' ' + editedItem.lName + '\'s application \n Object ID: ' + editedItem._id}`)
                 }
 
             } catch (e) {
                 console.error(`Error updating item for state id#: ${editedItem.idSource?.driverLicenseOrId ?? ''}\n `, e);
+                toast.error(`Error updating ${editedItem.fName + ' ' + editedItem.lName + '\'s application \n Object ID: ' + editedItem._id}`)
                 return null;
             }
         }
