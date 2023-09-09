@@ -13,8 +13,24 @@ import {createTimeStamp} from "../../lib/util";
 import {toast} from "react-toastify";
 
 function ApplicantForm(props) {
+    const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
     const { item, updateApplicant, onUpdate } = props
     const [formData, setFormData] = useState(item??form_data_defaults);
+
+    useEffect(() => {
+        const handleBeforeUnload = (event) => {
+            if (hasUnsavedChanges) {
+                event.preventDefault();
+                event.returnValue = '';
+            }
+        };
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, [hasUnsavedChanges]);
 
     useEffect( () => {
         if (item) {
@@ -23,12 +39,14 @@ function ApplicantForm(props) {
     }, [onUpdate, item, formData]);
 
     function handleInputChange(event) {
+        setHasUnsavedChanges(true);
         const {name, value} = event.target;
         const newData = updateFormData({...formData}, name, value);
         setFormData(newData);
     }
 
     function updateFormData(formData, name, value) {
+        setHasUnsavedChanges(true);
         const keys = Object.keys(formData);
         for (let i = 0; i < keys.length; i++) {
             const key = keys[i];
@@ -64,6 +82,7 @@ function ApplicantForm(props) {
                 // Check if application was created successfully
                 if (data && data._id) {
                     toast.success('Application created successfully!')
+                    setHasUnsavedChanges(false);
                 } else {
                     // If data is not valid, display a toast error
                     toast.error('Error creating client\'s application');
@@ -130,7 +149,7 @@ function ApplicantForm(props) {
                                 onClick={ async ()  => {
                                     await updateApplicant(formData)
                                         .then(r => {
-                                            if (onUpdate) {
+                                            if (onUpdate && r) {
                                                 onUpdate(r.record);
                                             }
                                         })
