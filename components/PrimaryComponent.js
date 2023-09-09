@@ -114,7 +114,6 @@ export default function PrimaryComponent(props) {
                     pattern="[0-9]{10}"
                     title="Please enter 10 digit phone number. (e.g. 1234567890)"
                     onChange={handleInputChange}
-                    required
                 />
             </div>
             <div className={styles.componentWrapper}>
