@@ -10,11 +10,11 @@ import AdultComponent from "../AdultComponent";
 import AssistanceNeedComponent from "../AssistanceNeedComponent";
 import TotalIncomeSupportComponent from "../TotalIncomeSupportComponent";
 import {createTimeStamp} from "../../lib/util";
+import {toast} from "react-toastify";
 
 function ApplicantForm(props) {
     const { item, updateApplicant, onUpdate } = props
     const [formData, setFormData] = useState(item??form_data_defaults);
-    const [isDataLoaded, setIsDataLoaded] = useState(false);
 
     useEffect( () => {
         if (item) {
@@ -61,15 +61,17 @@ function ApplicantForm(props) {
         })
             .then((response) => response.json())
             .then((data) => {
-                //check if data was loaded successfully
+                // Check if application was created successfully
                 if (data && data._id) {
-                    setIsDataLoaded(true);
+                    toast.success('Application created successfully!')
+                } else {
+                    // If data is not valid, display a toast error
+                    toast.error('Error creating client\'s application');
                 }
-
-        })
+            })
             .catch((error) => {
-                console.error("Error loading data:", error)
-                setIsDataLoaded(false);
+                console.error("Error creating application. Error: ", error);
+                toast.error('Error creating client\'s application');
             });
     }
 
@@ -142,16 +144,7 @@ function ApplicantForm(props) {
                         </div>
                     )
                 }
-
-
             </form>
-            {/*todo: fix how submission message is rendered*/}
-            {isDataLoaded && (
-                <div>Data loaded successfully!</div>
-            )}
-            {/*{!isDataLoaded && (*/}
-            {/*    <div>Error loading data. Please try again.</div>*/}
-            {/*)}*/}
         </div>
     );
 }
