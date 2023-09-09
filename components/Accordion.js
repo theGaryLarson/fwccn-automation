@@ -214,13 +214,24 @@ import ActionTakenComponent from "./ActionTakenComponent";
                                                 </p>
                                             </div>
                                             <div className="whitespace-nowrap flex-1">
-                                                <p className={"font-bold"}>Address:</p>
+                                                <p className={"font-bold"}>{item?.homelessness.isHomeless ? 'Temporary ': ''}Address:</p>
                                             </div>
-                                            <div
-                                                className=" w-full flex-1 leading-tight px-2 pt-2 pb-2 rounded border-2 bg-blue-100 border-indigo-700">
-                                                <p className="ml-2">{item.homeAddress.homeStreet1}</p>
-                                                <p className="ml-2">{item.homeAddress.homeStreet2}</p>
-                                                <p className="ml-2">{item.homeAddress.homeCity + " " + item.homeAddress.homeState + ", " + item.homeAddress.homeZip}</p>
+                                            <div className="w-full flex-1 leading-tight px-2 pt-2 pb-2 rounded border-2 bg-blue-100 border-indigo-700">
+                                                {
+                                                    !item?.homelessness.isHomeless ? (
+                                                        <>
+                                                            <p className="ml-2">{item.homeAddress.homeStreet1}</p>
+                                                            <p className="ml-2">{item.homeAddress.homeStreet2}</p>
+                                                            <p className="ml-2">{item.homeAddress.homeCity + " " + item.homeAddress.homeState + ", " + item.homeAddress.homeZip}</p>
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            <p className="ml-2">{item.homelessness.tempAddress.street1}</p>
+                                                            <p className="ml-2">{item.homelessness.tempAddress.street2}</p>
+                                                            <p className="ml-2">{item.homelessness.tempAddress.city + " " + item.homelessness.tempAddress.state + ", " + item.homelessness.tempAddress.zip}</p>
+                                                        </>
+                                                    )
+                                                }
                                             </div>
                                         </div>
                                         <div className="flex flex-col items-start">
