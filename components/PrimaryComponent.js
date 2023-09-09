@@ -100,6 +100,8 @@ export default function PrimaryComponent(props) {
                     name="applicantAge"
                     value={formData?.applicantAge??''}
                     onChange={handleInputChange}
+                    pattern="\d*"
+                    title="Please enter a valid number"
                     required
                 />
             </div>
