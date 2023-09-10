@@ -197,6 +197,11 @@ const applicantSchema = new Schema({
         default: '',
         match: [/^[0-9]{10}/, 'Enter 10 digit phone number exclude any additional characters']
     },
+    email: {
+        type: String,
+        default: '',
+        match: [/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, 'Enter a valid email address']
+    },
     disabled: {
         type: Boolean,
         default: false
