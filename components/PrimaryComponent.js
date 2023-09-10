@@ -119,6 +119,19 @@ export default function PrimaryComponent(props) {
                 />
             </div>
             <div className={styles.componentWrapper}>
+                <label htmlFor="applicant-email">Email:</label>
+                <input
+                    type="text"
+                    id="applicant-email"
+                    name="email"
+                    placeholder=" applicantName@domain.com"
+                    value={formData?.email?? ''}
+                    pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+                    title="Please enter a valid email"
+                    onChange={handleInputChange}
+                />
+            </div>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="has-disability">Do you suffer from a disability?</label>
                 <select
                     id="has-disability"
