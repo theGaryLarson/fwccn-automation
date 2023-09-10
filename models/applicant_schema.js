@@ -108,7 +108,7 @@ const applicantSchema = new Schema({
     interviewer: {
         type: String,
         default: '',
-        required: true
+        required: false
     },
     helpRequested: {
         type: String,
