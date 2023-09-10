@@ -46,14 +46,24 @@ export default async function validateApplicantRecord(req, res) {
             const dateA = new Date(a.dateOfService);
             const dateB = new Date(b.dateOfService);
 
-            if (isNaN(dateA)) {
-                return -1; // or some other logic to handle invalid dates
+            if (isNaN(Date.parse(a.dateOfService))) {
+                return -1;
             }
-            if (isNaN(dateB)) {
-                return 1; // or some other logic to handle invalid dates
+            if (isNaN(Date.parse(b.dateOfService))) {
+                return 1;
             }
 
-            return dateB - dateA;
+            // Primary sorting by dateOfService
+            const dateDifference = dateB - dateA;
+            if (dateDifference !== 0) {
+                return dateDifference;
+            }
+
+            // Secondary sorting by timestamp
+            const timestampA = new Date(a.timestamp);
+            const timestampB = new Date(b.timestamp);
+
+            return timestampB - timestampA;
         });
         res.json(retrievedRecords);
     } else {
