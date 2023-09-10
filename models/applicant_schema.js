@@ -679,6 +679,10 @@ const applicantSchema = new Schema({
             type: String,
             default: "No"
         },
+        incomeLevel: {
+            type: String,
+            required: true
+        },
         incomeSituation: {
             type: String,
             default: ""
