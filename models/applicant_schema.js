@@ -610,7 +610,7 @@ const applicantSchema = new Schema({
         landLordPhone: {
             type: String,
             default: '0000000000', // todo: make sure phone numbers are the same. String is preferred if doesn't break form
-            match: [/^[0-9]{10}/, 'Enter 10 digit phone number. Exclue any additional characters'],
+            match: [/^[0-9]{10}/, 'Enter 10 digit phone number. Exclude any additional characters'],
         },
         landLordAddress: {
             landLordStreet1: {
