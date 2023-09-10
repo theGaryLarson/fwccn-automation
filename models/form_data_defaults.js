@@ -49,6 +49,7 @@ const form_data_defaults = {
     applicantGender: '',
     applicantAge: '',
     phone: '',
+    email: '',
     disabled: false,
     idSource: {
         driverLicenseOrId: '',
@@ -142,6 +143,7 @@ const form_data_defaults = {
         houseHoldIncomePastYear: 0,
         totalSupportMembers: 0,
         singleHeadOfHouseHold: 'No', // states: 'No', 'Yes-male', 'Yes-female'
+        incomeLevel: 'moderate',
         incomeSituation: '',
         incomeSources: [
             {
@@ -184,15 +186,19 @@ const form_data_defaults = {
         isIncomeVerified: false
     },
     race: {
-        americanIndianOrAlaskaNative: 0,
         whiteOrCaucasian: 0,
-        asianAsianAmerican: 0,
-        otherRace: 0,
         blackAfricanAmerican: 0,
-        multiRacial: 0,
+        asianAsianAmerican: 0,
+        americanIndianOrAlaskaNative: 0,
+        nativeHawaiianPacificIslander: 0,
         latinoAmericanHispanic: 0,
-        unknown: 0,
-        nativeAmericanPacificIslander: 0
+        americanIndianOrAlaskaNativeAndWhite: 0,
+        asianAsianAmericanAndWhite: 0,
+        blackAfricanAmericanAndWhite: 0,
+        americanIndianOrAlaskaNativeAndBlackAfricanAmerican: 0,
+        otherRace: 0,
+        multiRacial: 0,
+        unknown: 0
     },
 }
 

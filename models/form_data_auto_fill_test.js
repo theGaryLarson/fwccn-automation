@@ -48,6 +48,7 @@ const form_data_auto_fill_test = {
     applicantGender: 'Male',
     applicantAge: '33',
     phone: '9876543210',
+    email: 'test@email.com',
     disabled: false,
     idSource: {
         driverLicenseOrId: 'FGSLTWHGHOBS316',
@@ -157,8 +158,7 @@ const form_data_auto_fill_test = {
         houseHoldIncomePastYear: 10200,
         totalSupportMembers: 3,
         singleHeadOfHouseHold: 'No', // states: 'No', 'Yes-male', 'Yes-female'
-        // singleMaleHeadOfHousehold: false,
-        // singleFemaleHeadOfHousehold: true,
+        incomeLevel: 'extremely low', // states: moderate, low, extremely low
         incomeSituation: "getting laid off in one week. A month behind.",
         incomeSources: [
             {
@@ -201,15 +201,19 @@ const form_data_auto_fill_test = {
         isIncomeVerified: true
     },
     race: {
-        americanIndianOrAlaskaNative: 0,
-        whiteOrCaucasian: 0,
-        asianAsianAmerican: 0,
-        otherRace: 0,
+        whiteOrCaucasian: 1,
         blackAfricanAmerican: 0,
+        asianAsianAmerican: 0,
+        americanIndianOrAlaskaNative: 0,
+        nativeHawaiianPacificIslander: 0,
+        latinoAmericanHispanic: 0,
+        americanIndianOrAlaskaNativeAndWhite: 0,
+        asianAsianAmericanAndWhite: 0,
+        blackAfricanAmericanAndWhite: 0,
+        americanIndianOrAlaskaNativeAndBlackAfricanAmerican: 0,
+        otherRace: 0,
         multiRacial: 0,
-        latinoAmericanHispanic: 4,
-        unknown: 0,
-        nativeAmericanPacificIslander: 0
+        unknown: 0
     },
 }
 
