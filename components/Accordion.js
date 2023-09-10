@@ -144,21 +144,31 @@ import {toast} from "react-toastify";
                                         <div className="flex flex-col items-start">
                                             <div className="whitespace-nowrap flex-1">
                                                 <p className=""><span
-                                                    className={"font-bold"}>Help Requested:</span> {item.helpRequested}</p>
+                                                    className={"font-bold"}>Help Requested:</span> {item?.helpRequested}</p>
                                             </div>
                                             <div className="whitespace-nowrap flex-1">
                                                 <p className=""><span
-                                                    className={"font-bold"}>State ID:</span> {item.idSource.driverLicenseOrId}
+                                                    className={"font-bold"}>State ID:</span> {item?.idSource?.driverLicenseOrId}
                                                 </p>
                                             </div>
                                             <div className="whitespace-nowrap flex-1">
                                                 <p className=""><span
-                                                    className={"font-bold"}>SSN Last Four:</span> {item.idSource.socialSecLastFour}
+                                                    className={"font-bold"}>SSN Last Four:</span> {item?.idSource?.socialSecLastFour}
                                                 </p>
                                             </div>
                                             <div className="whitespace-nowrap flex-1">
                                                 <p className=""><span
-                                                    className={"font-bold"}>Has Disability:</span> {item.disabled ? 'Yes' : 'No'}
+                                                    className={"font-bold"}>Has Disability:</span> {item?.disabled ? 'Yes' : 'No'}
+                                                </p>
+                                            </div>
+                                            <div className="whitespace-nowrap flex-1">
+                                                <p className=""><span
+                                                    className={"font-bold"}>Phone Number:</span> {item?.phone ? item.phone.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3') : ''}
+                                                </p>
+                                            </div>
+                                            <div className="whitespace-nowrap flex-1">
+                                                <p className=""><span
+                                                    className={"font-bold"}>Email:</span> {item?.email }
                                                 </p>
                                             </div>
                                         </div>
@@ -168,7 +178,7 @@ import {toast} from "react-toastify";
                                                 <select
                                                     id={"status-edit-1"}
                                                     name={"status-edit"}
-                                                    value={item.status}
+                                                    value={item?.status}
                                                     onChange={handleStatusChange}
                                                     className={`flex-1 ml-12`}
                                                 >
@@ -187,7 +197,7 @@ import {toast} from "react-toastify";
                                                     <select
                                                         id={"status-edit"}
                                                         name={"status-edit"}
-                                                        value={item.actionTaken.fundSource}
+                                                        value={item?.actionTaken?.fundSource}
                                                         onChange={handleFundSourceChange}
                                                         className={`flex-1 ml-2`}
                                                     >
@@ -199,34 +209,34 @@ import {toast} from "react-toastify";
                                             </div>
                                             <div className="whitespace-nowrap flex-1">
                                                 <p className=""><span
-                                                    className={"font-bold"}>Interviewed By:</span> {item.interviewer}</p>
+                                                    className={"font-bold"}>Interviewed By:</span> {item?.interviewer}</p>
                                             </div>
                                             <div className="whitespace-nowrap flex-1">
                                                 <p className=""><span
-                                                    className={"font-bold"}>Date of Service:</span> {item.dateOfService}</p>
+                                                    className={"font-bold"}>Date of Service:</span> {item?.dateOfService}</p>
                                             </div>
                                             <div className="whitespace-nowrap flex-1">
                                                 <p className=""><span
-                                                    className={"font-bold"}>Referred By:</span> {item.referredBy}</p>
+                                                    className={"font-bold"}>Referred By:</span> {item?.referredBy}</p>
                                             </div>
                                             <div className="whitespace-nowrap flex-1"></div>
                                         </div>
                                         <div className="flex flex-col items-start">
                                             <div className="whitespace-nowrap flex-1">
                                                 <p className=""><span
-                                                    className={"font-bold"}>Experiencing Homelessness:</span> {item.homelessness.isHomeless ? 'Yes' : 'No'}
+                                                    className={"font-bold"}>Experiencing Homelessness:</span> {item?.homelessness.isHomeless ? 'Yes' : 'No'}
                                                 </p>
                                             </div>
                                             <div className="whitespace-nowrap flex-1">
-                                                <p className={"font-bold"}>{item?.homelessness.isHomeless ? 'Temporary ': ''}Address:</p>
+                                                <p className={"font-bold"}>{item?.homelessness?.isHomeless ? 'Temporary ': ''}Address:</p>
                                             </div>
                                             <div className="w-full flex-1 leading-tight px-2 pt-2 pb-2 rounded border-2 bg-blue-100 border-indigo-700">
                                                 {
-                                                    !item?.homelessness.isHomeless ? (
+                                                    !item?.homelessness?.isHomeless ? (
                                                         <>
-                                                            <p className="ml-2">{item.homeAddress.homeStreet1}</p>
-                                                            <p className="ml-2">{item.homeAddress.homeStreet2}</p>
-                                                            <p className="ml-2">{item.homeAddress.homeCity + " " + item.homeAddress.homeState + ", " + item.homeAddress.homeZip}</p>
+                                                            <p className="ml-2">{item?.homeAddress?.homeStreet1}</p>
+                                                            <p className="ml-2">{item?.homeAddress?.homeStreet2}</p>
+                                                            <p className="ml-2">{item?.homeAddress?.homeCity + " " + item?.homeAddress?.homeState + ", " + item?.homeAddress?.homeZip}</p>
                                                         </>
                                                     ) : (
                                                         <>
