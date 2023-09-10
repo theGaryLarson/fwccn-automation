@@ -708,37 +708,7 @@ const applicantSchema = new Schema({
         }
     },
     race: {
-        americanIndianOrAlaskaNative: {
-            type: Number,
-            default: 0,
-            validate: {
-                validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
-                },
-                message: 'Must enter a non-negative number'
-            }
-        },
         whiteOrCaucasian: {
-            type: Number,
-            default: 0,
-            validate: {
-                validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
-                },
-                message: 'Must enter a non-negative number'
-            }
-        },
-        asianAsianAmerican: {
-            type: Number,
-            default: 0,
-            validate: {
-                validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
-                },
-                message: 'Must enter a non-negative number'
-            }
-        },
-        otherRace: {
             type: Number,
             default: 0,
             validate: {
@@ -758,7 +728,27 @@ const applicantSchema = new Schema({
                 message: 'Must enter a non-negative number'
             }
         },
-        multiRacial: {
+        asianAsianAmerican: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
+        americanIndianOrAlaskaNative: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
+        nativeHawaiianPacificIslander: {
             type: Number,
             default: 0,
             validate: {
@@ -778,6 +768,66 @@ const applicantSchema = new Schema({
                 message: 'Must enter a non-negative number'
             }
         },
+        americanIndianOrAlaskaNativeAndWhite: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
+        asianAsianAmericanAndWhite: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
+        blackAfricanAmericanAndWhite: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
+        americanIndianOrAlaskaNativeAndBlackAfricanAmerican: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
+        otherRace: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
+        multiRacial: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
         unknown: {
             type: Number,
             default: 0,
@@ -788,16 +838,7 @@ const applicantSchema = new Schema({
                 message: 'Must enter a non-negative number'
             }
         },
-        nativeAmericanPacificIslander: {
-            type: Number,
-            default: 0,
-            validate: {
-                validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
-                },
-                message: 'Must enter a non-negative number'
-            }
-        },
+
     }
 });
 
