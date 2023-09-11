@@ -57,11 +57,10 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                     placeholder="$0000.00"
                     value={formData?.houseHoldIncome?.totalHouseholdIncome??undefined}
                     onChange={handleInputChange}
-                    required
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="houseHoldIncomePastYear">Monthly Income Last 12 Months:</label>
+                <label htmlFor="houseHoldIncomePastYear">Annual Income (Past 12 months - regardless of current situation):</label>
                 <input
                     type="number"
                     id="houseHoldIncomePastYear"
@@ -69,7 +68,6 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                     placeholder="$0000.00"
                     value={formData?.houseHoldIncome?.houseHoldIncomePastYear??''}
                     onChange={handleInputChange}
-                    required
                 />
             </div>
             <div className={styles.componentWrapper}>
@@ -81,11 +79,10 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                     placeholder="3"
                     value={formData?.houseHoldIncome?.totalSupportMembers??''}
                     onChange={handleInputChange}
-                    required
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="singleHeadOfHouseHold">Is applicant single head of household?</label>
+                <label htmlFor="singleHeadOfHouseHold">Is the applicant the single head of household?</label>
                 <select
                     id="singleHeadOfHouseHold"
                     name="singleHeadOfHouseHold"
