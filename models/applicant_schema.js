@@ -41,11 +41,11 @@ const applicantSchema = new Schema({
                 default: ''
             },
             amountPromised: {
-                type: String,
+                type: Number,
                 default: ''
             },
             amountGivenToday: {
-                type: String,
+                type: Number,
                 default: ''
             },
             checkDate: {
@@ -683,6 +683,11 @@ const applicantSchema = new Schema({
             default: "No"
         },
         incomeLevel: {
+            type: String,
+            required: false,
+            default: ""
+        },
+        percentOfAnnualAmi: {
             type: String,
             required: false,
             default: ""
