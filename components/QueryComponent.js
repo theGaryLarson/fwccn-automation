@@ -2,7 +2,7 @@ import React, {useEffect, useMemo, useState} from "react";
 import Accordion from "./Accordion";
 import Legend from "./Legend";
 
-export default function RequirementCheckComponent(props) {
+export default function QueryComponent(props) {
     const {  queryObject  } = props;
     const [responseData, setResponseData] = useState({});
     const [firstItem, setFirstItem] = useState(undefined)
@@ -11,7 +11,7 @@ export default function RequirementCheckComponent(props) {
     useEffect(() => {
         async function fetchRequirementsCheckData() {
             try {
-                const response = await fetch(`api/requirementsCheck`, {
+                const response = await fetch(`api/searchQuery`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
