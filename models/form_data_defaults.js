@@ -74,13 +74,13 @@ const form_data_defaults = {
     children: {
         hasChildrenUnder18: false,
         kids: [
-            {
-                gender: '',
-                age: 0,
-                school: '',
-                schoolDistrict: '',
-                relationshipToApplicant: ''
-            }
+            // {
+            //     gender: '',
+            //     age: 0,
+            //     school: '',
+            //     schoolDistrict: '',
+            //     relationshipToApplicant: ''
+            // }
         ],
         boysCount: 0,
         girlsCount: 0,
@@ -93,15 +93,15 @@ const form_data_defaults = {
     otherAdults: {
         isOtherAdultsAtResidence: false,
         adults: [
-            {
-                adultFName: '',
-                adultMiddleInitial: '',
-                adultLName: '',
-                adultGender: '',
-                adultAge: 0,
-                relationshipToAdult: '',
-                relationDetails: ''
-            }
+            // {
+            //     adultFName: '',
+            //     adultMiddleInitial: '',
+            //     adultLName: '',
+            //     adultGender: '',
+            //     adultAge: 0,
+            //     relationshipToAdult: '',
+            //     relationDetails: ''
+            // }
         ]
     },
     homeAddress: {
@@ -139,11 +139,11 @@ const form_data_defaults = {
         }
     },
     houseHoldIncome: {
-        totalHouseholdIncome: 0,
-        houseHoldIncomePastYear: 0,
-        totalSupportMembers: 0,
+        totalHouseholdIncome: '',
+        houseHoldIncomePastYear: '',
+        totalSupportMembers: '',
         singleHeadOfHouseHold: 'No', // states: 'No', 'Yes-male', 'Yes-female'
-        incomeLevel: 'moderate',
+        incomeLevel: 'n',
         incomeSituation: '',
         incomeSources: [
             {
