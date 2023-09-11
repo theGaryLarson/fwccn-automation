@@ -120,7 +120,9 @@ import {toast} from "react-toastify";
                                             type="button"
                                             onClick={async () => {
                                                 await updateApplicant(item).then(r => {
-                                                    updateItem(r.record);
+                                                    if (r?.record) {
+                                                        updateItem(r.record);
+                                                    }
                                                 });
                                             }}
                                         >
