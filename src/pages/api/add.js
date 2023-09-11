@@ -1,6 +1,6 @@
 import connectMongo from "../../../lib/connectMongo";
 import Applicant from "../../../models/applicant_schema";
-import { medianIncomeData } from "../../../models/medianIncomeData";
+import { getIncomeCategory } from "../../../models/monthlyMedianIncomeData";
 
 /**
  *
@@ -8,9 +8,19 @@ import { medianIncomeData } from "../../../models/medianIncomeData";
  * @param {import('next').NextApiResponse} res
  */
 export default async function addApplicant(req, res) {
-    console.log(req.body.data.totalHouseholdIncome.incomeLevel);
+    const application = req.body.data;
+    const year = new Date(application.timestamp.slice(0, 10)).getFullYear();
+    const monthlyHouseholdIncome = application.houseHoldIncome.totalHouseholdIncome;
+    const familySize = application.houseHoldIncome.totalSupportMembers;
+    console.log(year, monthlyHouseholdIncome, familySize);
+    if ( monthlyHouseholdIncome && familySize) {
+        application.houseHoldIncome = {
+            ...application.houseHoldIncome,
+            incomeLevel: getIncomeCategory(year, monthlyHouseholdIncome, familySize),
+        };
+    }
     await connectMongo();
-    const applicant = await Applicant.create(req.body.data);
+    const applicant = await Applicant.create(application);
     res.json(applicant);
 
 }

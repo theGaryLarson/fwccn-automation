@@ -1,5 +1,6 @@
 import connectMongo from "../../../lib/connectMongo";
 import Applicant from "../../../models/applicant_schema";
+import {getIncomeCategory} from "../../../models/monthlyMedianIncomeData";
 
 /**
 *
@@ -14,23 +15,30 @@ export default async function getAndUpdateOneRecord(req, res) {
     await connectMongo();
     const { _id } = req.body;
     const updateData = req.body;
-    console.log("_id: ", _id);
-    const condition = { "_id": _id };
 
     try {
-        const existingRecord = await Applicant.findOne(condition);
+        // Fetch the existing record to calculate the new income level
+        const existingRecord = await Applicant.findById(_id);
         if (!existingRecord) {
             return res.status(404).json({ message: "Record not found", error: true });
         }
 
-        const updatedRecord = {
-            ...existingRecord._doc,
-            ...updateData
-        };
-        const updateResult = await Applicant.updateOne(condition, updatedRecord);
+        // Calculate the new income level
+        const year = new Date(updateData.timestamp.slice(0, 10)).getFullYear();
+        const monthlyHouseholdIncome = updateData.houseHoldIncome.totalHouseholdIncome;
+        const familySize = updateData.houseHoldIncome.totalSupportMembers;
+        console.log('familySize', familySize, 'year: ', year, "monthlyIncome: ", monthlyHouseholdIncome);
+        if (familySize && monthlyHouseholdIncome) {
+            updateData.houseHoldIncome = {
+                ...updateData.houseHoldIncome,
+                incomeLevel: getIncomeCategory(year, monthlyHouseholdIncome, familySize),
+            };
+        }
 
-        if (updateResult.nModified === 0) {
-            return res.status(400).json({ message: "No changes were made", error: true });
+
+        const updatedRecord = await Applicant.findByIdAndUpdate(_id, updateData, { new: true });
+        if (!updatedRecord) {
+            return res.status(400).json({ message: "No changes were made", error: true, record: 'none' });
         }
 
         res.json({ message: "Record updated successfully", record: updatedRecord });
@@ -39,4 +47,5 @@ export default async function getAndUpdateOneRecord(req, res) {
         res.status(500).json({ message: "An error occurred while updating the record", error: true, details: error.message });
     }
 }
+
 
