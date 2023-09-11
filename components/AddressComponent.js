@@ -43,7 +43,7 @@ export default function AddressComponent({ title, formData, onComponentInputChan
                 </label>
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="street-1">Street1:</label>
+                <label htmlFor="street-1">Street1 *:</label>
                 <input
                     type="text"
                     id="street-1"
@@ -56,7 +56,7 @@ export default function AddressComponent({ title, formData, onComponentInputChan
 
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="street-2">Street2:</label>
+                <label htmlFor="street-2">Street2 *:</label>
                 <input
                     type="text"
                     id="street-2"
@@ -67,7 +67,7 @@ export default function AddressComponent({ title, formData, onComponentInputChan
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="city">City:</label>
+                <label htmlFor="city">City *:</label>
                 <input
                     type="text"
                     id="city"
@@ -79,7 +79,7 @@ export default function AddressComponent({ title, formData, onComponentInputChan
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="homeState">State:</label>
+                <label htmlFor="homeState">State *:</label>
                 <input
                     type="text"
                     id="homeState"
@@ -94,7 +94,7 @@ export default function AddressComponent({ title, formData, onComponentInputChan
             </div>
 
             <div className={styles.componentWrapper}>
-                <label htmlFor="zipCode">Zip Code:</label>
+                <label htmlFor="zipCode">Zip Code *:</label>
                 <input
                     type="number"
                     id="zipCode"
