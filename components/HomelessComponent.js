@@ -42,7 +42,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
             </div>
             { isHomeless() && <div>
                 <div className={styles.componentWrapper}>
-                    <label htmlFor="placeStayedRecently">Where have you stayed recently?</label>
+                    <label htmlFor="placeStayedRecently">Where have you stayed recently? *</label>
                     <input
                         type="text"
                         id="placeStayedRecently"
@@ -69,7 +69,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                     />
                 </div>
                 <div className={styles.componentWrapper}>
-                    <label htmlFor="whyHomeless">Why are you experiencing homelessness?</label>
+                    <label htmlFor="whyHomeless">Why are you experiencing homelessness? *</label>
                     <textarea
                         id="whyHomeless"
                         name="whyHomeless"
@@ -91,8 +91,8 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         placeholder="123 Main St."
                         value={formData?.homelessness?.tempAddress?.street1 ?? ''}
                         onChange={handleInputChange}
-                        required={(formData?.homelessness?.isHomeless ?? 'false') === 'true'}
-                        disabled={(formData?.homelessness?.isHomeless ?? 'true' )=== 'false'}
+                        required={false}
+                        disabled={(formData?.homelessness?.isHomeless ?? true )=== false}
                     />
                 </div>
                 <div className={styles.componentWrapper}>
@@ -104,11 +104,11 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         placeholder="Apt. 100"
                         value={formData?.homelessness?.tempAddress?.street2 ?? ''}
                         onChange={handleInputChange}
-                        disabled={!formData?.homelessness?.isHomeless??'false' === 'false'}
+                        // disabled={!formData?.homelessness?.isHomeless??'false' === 'false'}
                     />
                 </div>
                 <div className={styles.componentWrapper}>
-                    <label htmlFor="city">City:</label>
+                    <label htmlFor="city">City *:</label>
                     <input
                         type="text"
                         id="city"
@@ -121,7 +121,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                     />
                 </div>
                 <div className={styles.componentWrapper}>
-                    <label htmlFor="state">State:</label>
+                    <label htmlFor="state">State *:</label>
                     <input
                         type="text"
                         id="state"
@@ -134,7 +134,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                     />
                 </div>
                 <div className={styles.componentWrapper}>
-                    <label htmlFor="zip">ZIP code:</label>
+                    <label htmlFor="zip">ZIP code *:</label>
                     <input
                         type="text"
                         id="zip"
