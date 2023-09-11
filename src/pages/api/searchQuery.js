@@ -6,7 +6,7 @@ import Applicant from "../../../models/applicant_schema";
  * @param {import('next').NextApiRequest} req
  * @param {import('next').NextApiResponse} res
  */
-export default async function validateApplicantRecord(req, res) {
+export default async function updateApplicantRecord(req, res) {
     if (req.method !== "POST") {
         return res.status(405).end();
     }
