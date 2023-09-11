@@ -144,7 +144,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
         <div>
             <h1>Child Information</h1>
             <div className={styles.componentWrapper}>
-                <label htmlFor="children">{'Is there children living at applicant\'s residence?'}</label>
+                <label htmlFor="children">{'Are there children living at the applicant\'s residence?'}</label>
                 <select
                     className={'mb-4'}
                     id="children"
