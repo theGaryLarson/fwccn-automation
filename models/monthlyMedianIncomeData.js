@@ -7,17 +7,32 @@ export const getIncomeCategory = (year, monthlyHouseholdIncome, familySize) => {
     return categorizeByPercentOfMedianIncome(percentage);
 };
 
+export const getKingAnnualIncomeCategory = (year, annualHouseholdIncome, familySize) => {
+    if (Number.isNaN(year) || Number.isNaN(annualHouseholdIncome) || Number.isNaN(familySize)) {
+        throw new Error('Requires a valid year, family size and totalHouseholdIncome')
+    }
+    const percentage = getPercentOfKingAMI(year, familySize, annualHouseholdIncome);
+    return categorizeByPercentOfMedianIncome(percentage);
+};
+
 function getMedianIncome(year, familySize) {
-    if( familySize > 19 || year < 2016) {
-        throw new Error('Year must be 2016 or later and family size must be less than 20.')
+    if(year < 2016) {
+        throw new Error('Year must be 2016 or later.')
     }
     if (familySize > 10) {
-        const additionalFamilyMembers = familySize % 10;
+        const additionalFamilyMembers = familySize - 10;
         const costPerAdditionalMember = monthlyMedianIncomeData[year]['additional'];
         return costPerAdditionalMember * additionalFamilyMembers + monthlyMedianIncomeData[year][10];
     } else {
         return monthlyMedianIncomeData[year][familySize];
     }
+}
+
+function getKingCountyMedianIncome(year, familySize) {
+    if( familySize > 10 || year < 2023) {
+        throw new Error('Year must be 2023 and family size must be less than 11.')
+    }
+    return monthlyMedianIncomeData[year][familySize];
 }
 
 function categorizeByPercentOfMedianIncome(percentage) {
@@ -31,12 +46,33 @@ function categorizeByPercentOfMedianIncome(percentage) {
     } else if (percentage <= 80) {
         return "moderate";
     } else {
-        return "above moderate";
+        return "ineligible";
     }
 }
 
-function getPercentOfMedianIncome(totalHouseholdIncome, medianIncome) {
-    return totalHouseholdIncome/medianIncome * 100;
+export const getPercentOfKingAMI = (year, familySize, annualHouseholdIncome) => {
+    const annualMedianIncome = kingAnnualAMI[year][familySize];
+    return annualHouseholdIncome / annualMedianIncome * 100;
+}
+
+function getPercentOfMedianIncome(monthlyHouseholdIncome, monthlyMedianIncome) {
+    return monthlyHouseholdIncome / monthlyMedianIncome * 100;
+}
+
+// https://communities-rise.org/king-county-hud-income-eligibility/
+const kingAnnualAMI = {
+    '2023': {
+        "1": "88312.50",
+        "2": "100937.50",
+        "3": "113562.50",
+        "4": "126125",
+        "5": "136250",
+        "6": "146312.50",
+        "7": "156437.50",
+        "8": "166500",
+        "9": "176625",
+        "10": "186687.50"
+    }
 }
 
 // https://www.dshs.wa.gov/esa/eligibility-z-manual-ea-z/state-median-income-chart
