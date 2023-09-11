@@ -3,7 +3,6 @@ import {
     model,
     models
 } from 'mongoose';
-//TODO: remove default values where required is true
 const applicantSchema = new Schema({
     timestamp: {
         type: String,
@@ -470,7 +469,7 @@ const applicantSchema = new Schema({
                             return this.parent().isOtherAdultsAtResidence === true;
                         }
                     },
-                    adultAge: { //todo: require min age of 18
+                    adultAge: {
                         type: Number,
                         validate: {
                             validator: function(v) {
@@ -492,7 +491,7 @@ const applicantSchema = new Schema({
                     relationDetails: {
                         type: String,
                         default: "",
-                        required: function () { //todo : test inputs
+                        required: function () {
                             return (this.parent().relationshipToAdult === "relative" || this.parent().relationshipToAdult === 'other')
                         }
                     }
@@ -604,7 +603,7 @@ const applicantSchema = new Schema({
         },
         landLordPhone: {
             type: String,
-            default: '0000000000', // todo: make sure phone numbers are the same. String is preferred if doesn't break form
+            default: '0000000000',
             match: [/^[0-9]{10}/, 'Enter 10 digit phone number. Exclude any additional characters'],
         },
         landLordAddress: {
