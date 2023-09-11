@@ -5,7 +5,7 @@ const form_data_auto_fill_test = {
     status: 'PENDING',
     referredBy: 'Mercy House',
     interviewer: 'Jane Doe',
-    actionTaken: {  //todo add to schema
+    actionTaken: {
         secondInterviewer: '',
         fundSource: '',
         amountPromised: 0,
