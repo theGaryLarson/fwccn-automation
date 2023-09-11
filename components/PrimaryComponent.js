@@ -44,7 +44,7 @@ export default function PrimaryComponent(props) {
         <div>
             <h1>Applicant Information</h1>
             <div className={styles.componentWrapper}>
-                <label htmlFor="f-name-input">First Name:</label>
+                <label htmlFor="f-name-input">First Name *:</label>
                 <input
                     type="text"
                     id="f-name-input"
@@ -67,7 +67,7 @@ export default function PrimaryComponent(props) {
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="l-name-input">Last Name:</label>
+                <label htmlFor="l-name-input">Last Name *:</label>
                 <input
                     type="text"
                     id="l-name-input"
@@ -93,7 +93,7 @@ export default function PrimaryComponent(props) {
             </div>
 
             <div className={styles.componentWrapper}>
-                <label htmlFor={"applicantAge"}>Applicant Age:</label>
+                <label htmlFor={"applicantAge"}>Applicant Age *:</label>
                 <input
                     type="text"
                     id={"applicantAge"}
@@ -144,7 +144,7 @@ export default function PrimaryComponent(props) {
                 </select>
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="social-sec-input">Social Security Last Four:</label>
+                <label htmlFor="social-sec-input">Social Security Last Four *:</label>
                 <input
                     type="text"
                     id="social-sec-input"
@@ -168,7 +168,6 @@ export default function PrimaryComponent(props) {
                         placeholder="WDGARSOLM197PD"
                         value={formData?.idSource?.driverLicenseOrId ?? ''}
                         onChange={handleInputChange}
-                        required
                     />
                 </div>
                 <div className={styles.componentWrapper}>
@@ -182,7 +181,6 @@ export default function PrimaryComponent(props) {
                         title='Please enter 2 letter abbreviation for state. (e.g. WA)'
                         value={formData?.idSource?.idStateIssued ?? ''}
                         onChange={handleInputChange}
-                        required
                     />
                 </div>
                 <div className={styles.componentWrapper}>
@@ -192,14 +190,13 @@ export default function PrimaryComponent(props) {
                         id="id-expiration-date"
                         name="expDate"
                         placeholder="WDLARSOGM197PD"
-                        value={formData?.idSource?.expDate.slice(0, 10) ?? undefined} // must slice for data to load correctly needs YYY-MM-DD format
+                        value={formData?.idSource?.expDate?.slice(0, 10) ?? undefined} // must slice for data to load correctly needs YYY-MM-DD format
                         onChange={handleInputChange}
-                        required
                     />
                 </div>
                 {(formData?.helpRequested === 'gasoline') && (<div>
                     <div className={styles.componentWrapper}>
-                        <label htmlFor="licensePlate">License Plate Number:</label>
+                        <label htmlFor="licensePlate">License Plate Number *:</label>
                         <input
                             type="text"
                             id="licensePlate"
@@ -210,7 +207,7 @@ export default function PrimaryComponent(props) {
                             required
                         />
                         <div className={styles.componentWrapper}>
-                            <label htmlFor="licensePlateState">{'Which state issued license plate?'}</label>
+                            <label htmlFor="licensePlateState">{'Which state issued the license plate? *'}</label>
                             <input
                                 type="text"
                                 id="licensePlateState"
