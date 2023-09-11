@@ -182,11 +182,10 @@ const applicantSchema = new Schema({
     },
     applicantAge: {
         type: Number,
-        default: 0,
         min: [18, "You must be 18 years or older to apply"],
         validate: { // custom validator
-            validator: function(value) {
-                return !isNaN(value);
+            validator: function(v) {
+                return !isNaN(v);
             },
             message: "Your age must be a number",
         } , // end validate
@@ -210,15 +209,15 @@ const applicantSchema = new Schema({
         type: {
             driverLicenseOrId: {
                 type: String,
-                required: true
+                required: false
             },
             expDate: {
                 type: Date,
-                required: true
+                required: false
             },
             idStateIssued: {
                 type: String,
-                match: [/[A-Z]{2}/, "Enter 2-letter state abbreviation"]
+                match: [/^([A-Z]{2}|)$/, "Enter 2-letter state abbreviation"]
             },
             socialSecLastFour: {
                 type: Number,
@@ -235,13 +234,6 @@ const applicantSchema = new Schema({
                 default: false
             }
         },
-        // default: {
-        //     driverLicenseOrId: '',
-        //     expDate: '',
-        //     idStateIssued: '',
-        //     socialSecLastFour: 0,
-        //     isValidLicense: false
-        // },
         required: true
     },
     homelessness: {
@@ -647,30 +639,39 @@ const applicantSchema = new Schema({
     houseHoldIncome: {
         totalHouseholdIncome: {
             type: Number,
-            required: true,
+            required: false,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if(v) {
+                        return /^\d*[0-9]\d*$/.test(v.toString());
+                    }
+                    return true;
                 },
                 message: 'Must enter a non-negative number'
             }
         },
         houseHoldIncomePastYear: {
             type: Number,
-            required: true,
+            required: false,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if(v) {
+                        return /^\d*[0-9]\d*$/.test(v.toString());
+                    }
+                    return true;
                 },
                 message: 'Must enter a non-negative number'
             }
         },
         totalSupportMembers: {
             type: Number,
-            required: true,
+            required: false,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if(v) {
+                        return /^\d*[0-9]\d*$/.test(v.toString());
+                    }
+                    return true;
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -681,7 +682,8 @@ const applicantSchema = new Schema({
         },
         incomeLevel: {
             type: String,
-            required: true
+            required: false,
+            default: ""
         },
         incomeSituation: {
             type: String,
