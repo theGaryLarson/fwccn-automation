@@ -89,7 +89,7 @@ import {toast} from "react-toastify";
                             <div>
                                 <p>{item.fName + ' ' + item.lName + " #" + item.idSource.socialSecLastFour}</p>
                                 <p>{'Date of Service: ' + dateFormatNYears(item.dateOfService, 0)}</p>
-                                <p className='text-gray-500'>{ 'Submitted: ' + dateFormatNYears(item.timestamp.slice(0, 9), 0) }</p>
+                                <p className='text-gray-500'>{ 'Submitted: ' + dateFormatNYears(item?.timestamp.slice(0, 10), 0) }</p>
                             </div>
                          </span>
                     </button>
