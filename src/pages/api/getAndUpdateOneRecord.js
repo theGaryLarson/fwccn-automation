@@ -1,6 +1,9 @@
 import connectMongo from "../../../lib/connectMongo";
 import Applicant from "../../../models/applicant_schema";
-import {getIncomeCategory} from "../../../models/monthlyMedianIncomeData";
+import {
+    getKingAnnualIncomeCategory,
+    getPercentOfKingAMI
+} from "../../../models/monthlyMedianIncomeData";
 
 /**
 *
@@ -25,13 +28,14 @@ export default async function getAndUpdateOneRecord(req, res) {
 
         // Calculate the new income level
         const year = new Date(updateData.timestamp.slice(0, 10)).getFullYear();
-        const monthlyHouseholdIncome = updateData.houseHoldIncome.totalHouseholdIncome;
+        const annualHouseholdIncome = updateData.houseHoldIncome.houseHoldIncomePastYear;
         const familySize = updateData.houseHoldIncome.totalSupportMembers;
-        console.log('familySize', familySize, 'year: ', year, "monthlyIncome: ", monthlyHouseholdIncome);
-        if (familySize && monthlyHouseholdIncome) {
+        // console.log('familySize', familySize, 'year: ', year, "monthlyIncome: ", annualHouseholdIncome);
+        if (familySize && annualHouseholdIncome) {
             updateData.houseHoldIncome = {
                 ...updateData.houseHoldIncome,
-                incomeLevel: getIncomeCategory(year, monthlyHouseholdIncome, familySize),
+                incomeLevel: getKingAnnualIncomeCategory(year, annualHouseholdIncome, familySize),
+                percentOfAnnualAmi: getPercentOfKingAMI(year, familySize, annualHouseholdIncome)
             };
         }
 
