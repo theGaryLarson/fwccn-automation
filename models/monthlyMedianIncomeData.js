@@ -1,9 +1,49 @@
-// https://www.dshs.wa.gov/esa/eligibility-z-manual-ea-z/state-median-income-chart
+export const getIncomeCategory = (year, monthlyHouseholdIncome, familySize) => {
+    if (Number.isNaN(year) || Number.isNaN(monthlyHouseholdIncome) || Number.isNaN(familySize)) {
+        throw new Error('Requires a valid year, family size and totalHouseholdIncome')
+    }
+    const medianIncome = getMedianIncome(year, familySize);
+    const percentage = getPercentOfMedianIncome(monthlyHouseholdIncome, medianIncome);
+    return categorizeByPercentOfMedianIncome(percentage);
+};
 
-export const medianIncomeData = {
+function getMedianIncome(year, familySize) {
+    if( familySize > 19 || year < 2016) {
+        throw new Error('Year must be 2016 or later and family size must be less than 20.')
+    }
+    if (familySize > 10) {
+        const additionalFamilyMembers = familySize % 10;
+        const costPerAdditionalMember = monthlyMedianIncomeData[year]['additional'];
+        return costPerAdditionalMember * additionalFamilyMembers + monthlyMedianIncomeData[year][10];
+    } else {
+        return monthlyMedianIncomeData[year][familySize];
+    }
+}
+
+function categorizeByPercentOfMedianIncome(percentage) {
+    if (!percentage || Number.isNaN(percentage)) {
+        throw new Error('Must enter percentage and percentage must be an integer')
+    }
+    if (percentage <= 30) {
+        return "extremely low";
+    } else if (percentage <= 50) {
+        return "low";
+    } else if (percentage <= 80) {
+        return "moderate";
+    } else {
+        return "above moderate";
+    }
+}
+
+function getPercentOfMedianIncome(totalHouseholdIncome, medianIncome) {
+    return totalHouseholdIncome/medianIncome * 100;
+}
+
+// https://www.dshs.wa.gov/esa/eligibility-z-manual-ea-z/state-median-income-chart
+export const monthlyMedianIncomeData = {
     "2023": {
-        1: 4915,
-        2: 6428,
+        "1": 4915,
+        "2": 6428,
         "3": 7940,
         "4": 9453,
         "5": 10965,
