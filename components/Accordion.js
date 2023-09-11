@@ -221,6 +221,10 @@ import {toast} from "react-toastify";
                                                 <p className=""><span
                                                     className={"font-bold"}>Referred By:</span> {item?.referredBy}</p>
                                             </div>
+                                            <div className="whitespace-nowrap flex-1">
+                                                <p className=""><span
+                                                    className={"font-bold"}>Income Level:</span> {item?.houseHoldIncome?.incomeLevel?? "-"}</p>
+                                            </div>
                                             <div className="whitespace-nowrap flex-1"></div>
                                         </div>
                                         <div className="flex flex-col items-start">
