@@ -115,7 +115,7 @@ const form_data_defaults = {
     },
     rentAssistance: {
         hasRentAssistance: false,
-        monthlyRentPaidByApplicant: 0, //todo possibly change to 0
+        monthlyRentPaidByApplicant: 0,
         hasSection8Assistance: false,
         monthlyRentPaidBySection8: 0,
         otherAssistance: [
