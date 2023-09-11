@@ -1,6 +1,10 @@
 import connectMongo from "../../../lib/connectMongo";
 import Applicant from "../../../models/applicant_schema";
-import { getIncomeCategory } from "../../../models/monthlyMedianIncomeData";
+import {
+    getIncomeCategory,
+    getKingAnnualIncomeCategory,
+    getPercentOfKingAMI
+} from "../../../models/monthlyMedianIncomeData";
 
 /**
  *
@@ -10,13 +14,14 @@ import { getIncomeCategory } from "../../../models/monthlyMedianIncomeData";
 export default async function addApplicant(req, res) {
     const application = req.body.data;
     const year = new Date(application.timestamp.slice(0, 10)).getFullYear();
-    const monthlyHouseholdIncome = application.houseHoldIncome.totalHouseholdIncome;
+    const annualHouseholdIncome = application.houseHoldIncome.houseHoldIncomePastYear;
     const familySize = application.houseHoldIncome.totalSupportMembers;
-    console.log(year, monthlyHouseholdIncome, familySize);
-    if ( monthlyHouseholdIncome && familySize) {
+    console.log('familySize', familySize, 'year: ', year, "monthlyIncome: ", annualHouseholdIncome);
+    if (familySize && annualHouseholdIncome) {
         application.houseHoldIncome = {
             ...application.houseHoldIncome,
-            incomeLevel: getIncomeCategory(year, monthlyHouseholdIncome, familySize),
+            incomeLevel: getKingAnnualIncomeCategory(year, annualHouseholdIncome, familySize),
+            percentOfAnnualAmi: getPercentOfKingAMI(year, familySize, annualHouseholdIncome)
         };
     }
     await connectMongo();
