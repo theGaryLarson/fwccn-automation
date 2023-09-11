@@ -158,7 +158,8 @@ const form_data_auto_fill_test = {
         houseHoldIncomePastYear: 10200,
         totalSupportMembers: 3,
         singleHeadOfHouseHold: 'No', // states: 'No', 'Yes-male', 'Yes-female'
-        incomeLevel: 'extremely low', // states: moderate, low, extremely low
+        incomeLevel: 'extremely low', // states: moderate <80%, low <50%, extremely low <30%
+        percentOfAnnualAmi: '30', //calculate on update and on save
         incomeSituation: "getting laid off in one week. A month behind.",
         incomeSources: [
             {

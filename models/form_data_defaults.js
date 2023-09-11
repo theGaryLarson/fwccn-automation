@@ -143,7 +143,8 @@ const form_data_defaults = {
         houseHoldIncomePastYear: '',
         totalSupportMembers: '',
         singleHeadOfHouseHold: 'No', // states: 'No', 'Yes-male', 'Yes-female'
-        incomeLevel: 'n',
+        incomeLevel: '',
+        percentOfAnnualAmi: '',
         incomeSituation: '',
         incomeSources: [
             {
