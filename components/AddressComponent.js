@@ -107,11 +107,11 @@ export default function AddressComponent({ title, formData, onComponentInputChan
             </div>
             <Link
                 className="text-blue-500 hover:text-blue-700 underline"
-                href={"https://atip.piercecountywa.gov/app/parcelSearch/search"}
+                href={"https://gismaps.kingcounty.gov/parcelviewer2/"}
                 target={"_blank"}
                 rel="noopener noreferrer"
             >
-                Parcel Viewer
+                King County Parcel Viewer
             </Link>
         </div>
     );
