@@ -1,4 +1,4 @@
-import RequirementCheckComponent from "./RequirementCheckComponent";
+import QueryComponent from "./QueryComponent";
 import NeedSummaryComponent from "./NeedSummaryComponent";
 import {useEffect, useState} from "react";
 
@@ -7,7 +7,7 @@ export default function DecisionDetailsComponent(props) {
 
     return (
             <div>
-                <RequirementCheckComponent queryObject={queryObject}  />
+                <QueryComponent queryObject={queryObject}  />
             </div>
     )
 }
