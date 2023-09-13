@@ -855,11 +855,11 @@ applicantSchema.pre('save', function(next) {
     if (this.dateOfService && this.dateOfService.trim()) {
         // Parse dateOfService as a local date (without time component)
         const dateComponents = this.dateOfService.split('-').map(Number);
-        this.serviceDate = new Date(Date.UTC(dateComponents[0], dateComponents[1] - 1, dateComponents[2]));
+        this.serviceDate = new Date(dateComponents[0], dateComponents[1] - 1, dateComponents[2]);
     } else if (this.timestamp && this.timestamp.trim()) {
-        // Parse dateOfService as a local date (without time component)
-        const dateComponents = this.timestamp.split('-').map(Number);
-        this.serviceDate = new Date(Date.UTC(dateComponents[0], dateComponents[1] - 1, dateComponents[2]));
+        // Parse timestamp as a local date (without time component)
+        const dateComponents = this.timestamp.split(' ')[0].split('-').map(Number);
+        this.serviceDate = new Date(dateComponents[0], dateComponents[1] - 1, dateComponents[2]);
     } else {
         this.serviceDate = undefined;
     }
@@ -872,18 +872,18 @@ applicantSchema.pre('findOneAndUpdate', function(next) {
     if (update.dateOfService && update.dateOfService.trim()) {
         // Parse dateOfService as a local date (without time component)
         const dateComponents = update.dateOfService.split('-').map(Number);
-        console.log(dateComponents);
-        update.serviceDate = new Date(Date.UTC(dateComponents[0], dateComponents[1] - 1, dateComponents[2]));
+        update.serviceDate = new Date(dateComponents[0], dateComponents[1] - 1, dateComponents[2]);
     } else if (update.timestamp && update.timestamp.trim()) {
-        // Parse dateOfService as a local date (without time component)
-        const dateComponents = update.timestamp.slice(0, 10).split('-').map(Number);
-        update.serviceDate = new Date(Date.UTC(dateComponents[0], dateComponents[1] - 1, dateComponents[2]));
+        // Parse timestamp as a local date (without time component)
+        const dateComponents = update.timestamp.split(' ')[0].split('-').map(Number);
+        update.serviceDate = new Date(dateComponents[0], dateComponents[1] - 1, dateComponents[2]);
     } else {
         update.serviceDate = undefined;
     }
 
     next();
 });
+
 
 const Applicant = models.Applicant || model('Applicant', applicantSchema, process.env.MONGO_DB_COL);
 export default Applicant;
