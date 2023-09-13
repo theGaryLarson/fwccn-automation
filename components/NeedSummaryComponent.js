@@ -49,53 +49,110 @@ export default function NeedSummaryComponent(props) {
                 (
                     <div>
                         <div className={`flex flex-col w-full `}>
-
+                            <div className={"flex flex-col w-full items-center"}>
+                                <p className="font-bold bg-gray-700 text-white mt-2 mb-2 text-center w-full" >Need Summary</p>
+                                <textarea
+                                    id="reasonForNeed"
+                                    name="reasonForNeed"
+                                    value={focusedItem.reasonForNeed}
+                                    className="h-[150px] bg-blue-50 border-indigo-700 w-full p-4 pt-1  resize-none"
+                                    onClick={() => toggleTextAreaSize(reasonForNeedRef)}
+                                    ref={reasonForNeedRef}
+                                    readOnly
+                                />
+                            </div>
                             <div className={"w-full"}>
                                 {/* List of children relationships */}
-                                <h2 className="w-full m-0 font-bold bg-gray-700 text-white mt-2 mb-2 text-center">{hasChildren ? 'Child Relationships:' : 'No Children'}</h2>
-                                <ul className="w-full">
-                                    {hasChildren && focusedItem.children.relationsToApplicant?.map((relationship, index) => (
-                                        <li className="pl-4 w-full text-left" key={index}>
-                                            <span>
-                                                <span className={"font-medium"}>Relation:</span> {relationship}
-                                                <span className={"font-medium"}> Age: </span> {focusedItem.children.kids[index].age}
-                                            </span>
-
-                                        </li>
-                                    ))}
-                                </ul>
+                                <h2 className="w-full m-0 font-bold bg-gray-700 text-white mt-2 mb-2 text-center">{hasChildren ? 'Children In Household:' : 'No Children In Household'}</h2>
+                                { hasChildren && (<table className="w-full">
+                                    <thead>
+                                    <tr>
+                                    <th className="text-left pl-4">Relation</th>
+                                    <th className="text-left">Age</th>
+                                        <th className="text-left">School</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        {hasChildren && focusedItem.children.relationsToApplicant?.map((relationship, index) => (
+                                            <tr key={index}>
+                                                <td className="pl-4 border-t py-2">{relationship}</td>
+                                                <td className="border-t py-2">{focusedItem.children.kids[index].age}</td>
+                                                <td className="border-t py-2">{focusedItem.children.kids[index].school}</td>
+                                            </tr>
+                                        ))}
+                                        {hasChildren && (
+                                            <tr>
+                                                <td className="pl-4 border-t py-2 font-medium">Total Children</td>
+                                                <td className="border-t py-2 font-medium">{focusedItem.children.relationsToApplicant?.length}</td>
+                                            </tr>
+                                        )}
+                                    </tbody>
+                                </table>)}
                             </div>
                             <div className={"w-full"}>
-                                <h2 className="w-full m-0 font-bold bg-gray-700 text-white mt-2 mb-2 text-center">{hasAdults ? 'Adult Relationships:' : 'No Other Adults'}</h2>
-                                <ul className=" w-full ">
-                                    { hasAdults && focusedItem.otherAdults.adults?.map((adult, index) => {
+                                <h2 className="w-full m-0 font-bold bg-gray-700 text-white mt-2 mb-2 text-center">{hasAdults ? ' Additional Adult\'s In Household:' : 'No Additional Adults In Household'}</h2>
+                                {hasAdults && (<table className="w-full">
+                                    <thead>
+                                    <tr>
+                                        <th className="text-left pl-4">Name</th>
+                                        <th className="text-left">Relationship</th>
+                                        <th className="text-left">Age</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {hasAdults && focusedItem.otherAdults.adults?.map((adult, index) => {
+                                        const {relationshipToAdult, relationDetails, adultAge} = adult;
+                                        const isOther = relationshipToAdult.toLowerCase() === 'other';
+                                        let relationDetail = isOther ? relationDetails : relationshipToAdult;
+                                        if (!relationDetail) relationDetail = "no entry";
+
                                         return (
-                                            <li className="pl-4 w-full text-left" key={index}>
-                                                <span className="font-medium">Relation:</span>
-                                                {
-                                                    adult.relationshipToAdult.toLowerCase() === 'relative' ?
-                                                        <span> {adult.relationDetails} <span className="font-medium">Age:</span> {adult.adultAge}</span>
-                                                        :
-                                                        <span> {adult.relationshipToAdult} <span className="font-medium">Age:</span> {adult.adultAge}</span>
-                                                }
-                                            </li>
-                                        )
+                                            <tr key={index}>
+                                                <td className="pl-4 border-t py-2">{adult.adultFName} {adult.adultLName}</td>
+                                                <td className="border-t py-2">{relationDetail}</td>
+                                                <td className="border-t py-2">{adultAge}</td>
+                                            </tr>
+                                        );
                                     })}
-                                </ul>
+                                    {hasAdults && (
+                                        <tr>
+                                            <td className="pl-4 border-t py-2 font-medium">Total Adults</td>
+                                            <td className="border-t py-2 font-medium">{focusedItem?.otherAdults?.adults?.length}</td>
+                                        </tr>
+                                    )}
+                                    </tbody>
+                                </table>)}
                             </div>
+                            <div className={"w-full"}>
+                                <h2 className="w-full m-0 font-bold bg-gray-700 text-white mt-2 mb-2 text-center">
+                                    {focusedItem.otherNames.hasOtherNames ? "Applicant's Other Names:" : 'No Other Names Recorded'}
+                                </h2>
+                                {focusedItem.otherNames.hasOtherNames && (
+                                    <table className="w-full">
+                                        <thead>
+                                        <tr>
+                                            <th className="text-left pl-4">First Name</th>
+                                            <th className="text-left">Last Name</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {focusedItem.otherNames.additionalNames?.map((name, index) => (
+                                            <tr key={index}>
+                                                <td className="pl-4 border-t py-2">{name.otherFirstName}</td>
+                                                <td className="border-t py-2">{name.otherLastName}</td>
+                                            </tr>
+                                        ))}
+                                        <tr>
+                                            <td className="pl-4 border-t py-2 font-medium">Total Names</td>
+                                            <td className="border-t py-2 font-medium" colSpan="2">{focusedItem?.otherNames?.additionalNames?.length}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                )}
+                            </div>
+
                         </div>
-                        <div className={"flex flex-col w-full items-center"}>
-                            <p className="font-bold bg-gray-700 text-white mt-2 mb-2 text-center w-full" >Need Summary</p>
-                            <textarea
-                                id="reasonForNeed"
-                                name="reasonForNeed"
-                                value={focusedItem.reasonForNeed}
-                                className="h-[150px] bg-blue-50 border-indigo-700 w-full p-4 pt-1  resize-none"
-                                onClick={() => toggleTextAreaSize(reasonForNeedRef)}
-                                ref={reasonForNeedRef}
-                                readOnly
-                            />
-                        </div>
+
                         <div className={"flex flex-col w-full items-center"}>
                             <p className="font-bold bg-gray-700 text-white mb-2 text-center w-full">Future Plans</p>
                             <textarea
