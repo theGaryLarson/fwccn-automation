@@ -1,11 +1,6 @@
 import connectMongo from "../../../lib/connectMongo";
 import Applicant from "../../../models/applicant_schema";
 
-/**
- *
- * @param {import('next').NextApiRequest} req
- * @param {import('next').NextApiResponse} res
- */
 export default async function updateApplicantRecord(req, res) {
     if (req.method !== "POST") {
         return res.status(405).end();
@@ -14,34 +9,55 @@ export default async function updateApplicantRecord(req, res) {
     const { retrieveAll, firstName, lastName, lastFour, driverLicenseOrId, homeStreet1, homeStreet2, homeZip } = req.body;
 
     // Build our search condition
-    const condition = {};
+    const condition = [];
+    const nameConditions = [];
+    const otherConditions = {};
 
     if (firstName && firstName !== "") {
-        condition["fName"] = firstName;
+        nameConditions.push({ "$or": [
+                { "fName": { $regex: new RegExp(`^${firstName}$`, 'i') } },
+                { "otherNames.additionalNames.otherFirstName": { $regex: new RegExp(`^${firstName}$`, 'i') } },
+                { "otherAdults.adults.adultFName": { $regex: new RegExp(`^${firstName}$`, 'i') } },
+            ]});
     }
+
     if (lastName && lastName !== "") {
-        condition["lName"] = lastName;
+        nameConditions.push({ "$or": [
+                { "lName": { $regex: new RegExp(`^${lastName}$`, 'i') } },
+                { "otherNames.additionalNames.otherLastName": { $regex: new RegExp(`^${lastName}$`, 'i') } },
+                { "otherAdults.adults.adultLName": { $regex: new RegExp(`^${lastName}$`, 'i') } }, // New condition
+            ]});
     }
+
+    if (nameConditions.length > 0) {
+        otherConditions["$and"] = nameConditions;
+    }
+
     if (lastFour && lastFour !== "") {
-        condition["idSource.socialSecLastFour"] = lastFour;
+        otherConditions["idSource.socialSecLastFour"] = lastFour;
     }
     if (driverLicenseOrId && driverLicenseOrId !== "") {
-        condition["idSource.driverLicenseOrId"] = driverLicenseOrId;
+        otherConditions["idSource.driverLicenseOrId"] = driverLicenseOrId;
     }
 
     if (homeStreet1 && homeStreet1 !== "") {
-        condition["homeAddress.homeStreet1"] = homeStreet1;
+        otherConditions["homeAddress.homeStreet1"] = homeStreet1;
     }
     if (homeStreet2 && homeStreet2 !== "") {
-        condition["homeAddress.homeStreet2"] = homeStreet2;
+        otherConditions["homeAddress.homeStreet2"] = homeStreet2;
     }
     if (homeZip && homeZip !== "") {
-        condition["homeAddress.homeZip"] = homeZip;
+        otherConditions["homeAddress.homeZip"] = homeZip;
     }
-    // console.log("qry", condition);
+
+    if (Object.keys(otherConditions).length > 0) {
+        condition.push(otherConditions);
+    }
+
     // Find applicants based on the built condition
-    if (retrieveAll === "yes" || Object.keys(condition).length > 0) {
-        const retrievedRecords = await Applicant.find(condition).exec();
+    if (retrieveAll === "yes" || condition.length > 0) {
+        const query = retrieveAll === "yes" ? {} : { "$and": condition };
+        const retrievedRecords = await Applicant.find(query).exec();
         retrievedRecords.sort((a, b) => {
             const dateA = new Date(a.dateOfService);
             const dateB = new Date(b.dateOfService);
@@ -70,4 +86,3 @@ export default async function updateApplicantRecord(req, res) {
         res.json([])
     }
 }
-
