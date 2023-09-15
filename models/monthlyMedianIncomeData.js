@@ -46,7 +46,7 @@ function categorizeByPercentOfMedianIncome(percentage) {
     } else if (percentage <= 80) {
         return "moderate";
     } else {
-        return "ineligible";
+        return "above moderate";
     }
 }
 
