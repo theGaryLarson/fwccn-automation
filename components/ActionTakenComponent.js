@@ -53,6 +53,18 @@ export default function ActionTakenComponent(props) {
         updateItem(updatedDateOfService)
     }
 
+    const handlePromiseFilled = (event) => {
+        const {value} = event.target;
+        const updatedPromiseFilled = {
+            ...item,
+            actionTaken: {
+                ...item.actionTaken,
+                promiseFilled: value
+            }
+        }
+        updateItem(updatedPromiseFilled);
+    }
+
     const handleCheckboxChange = (event) => {
         const { name } = event.target
 
@@ -194,14 +206,13 @@ export default function ActionTakenComponent(props) {
                         onChange={handleInputChange}
                         className="bg-yellow-200 w-full"
                     />
-                    <label htmlFor="dateOfService" className="mt-2"><span className={'font-medium'}>Date of Service:</span> </label>
+                    <label htmlFor="promiseFilled" className="mt-2"><span className={'font-medium'}>Date Promise Filled:</span> </label>
                     <input
                         type="date"
-                        id="dateOfService"
-                        name="dateOfService"
-                        value={item?.dateOfService??''}
-                        placeholder='Second Interviewer for Approval'
-                        onChange={handleDateOfService}
+                        id="promiseFilled"
+                        name="promiseFilled"
+                        value={item?.actionTaken?.promiseFilled.slice(0, 10)??''}
+                        onChange={handlePromiseFilled}
                         className="bg-yellow-200 w-full"
                     />
                     {/*conditional rendering based on help requested*/}
