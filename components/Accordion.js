@@ -224,7 +224,15 @@ import {toast} from "react-toastify";
                                             <div className="whitespace-nowrap flex-1">
                                                 <p className=""><span
                                                     className={"font-bold"}>Percent of AMI:</span> {item?.houseHoldIncome?.percentOfAnnualAmi !== undefined
-                                                    ? (parseFloat(item.houseHoldIncome.percentOfAnnualAmi).toFixed(1) + "%")
+                                                    ? (
+                                                        <>
+                                                            {parseFloat(item.houseHoldIncome.percentOfAnnualAmi).toFixed(1) + "%"}
+                                                            {parseFloat(item.houseHoldIncome.percentOfAnnualAmi) > 40 ?
+                                                                <span className="text-red-500 italic ml-1 font-bold">{'Ineligible > 40%'}</span>
+                                                                : <span className="text-green-500 italic ml-1 font-bold">{'Eligible < 40%'}</span>
+                                                            }
+                                                        </>
+                                                    )
                                                     : "-"}</p>
                                             </div>
                                             <div className="whitespace-nowrap flex-1">
