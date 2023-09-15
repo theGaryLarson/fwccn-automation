@@ -43,6 +43,19 @@ export default function AddressComponent({ title, formData, onComponentInputChan
                 </label>
             </div>
             <div className={styles.componentWrapper}>
+                <label htmlFor="aptName">Apartment Name:</label>
+                <input
+                    type="text"
+                    id="aptName"
+                    name="aptName"
+                    placeholder="Apartment Name"
+                    value={formData?.homeAddress?.aptName ?? ''}
+                    onChange={handleInputChange}
+                    className={'pl-1'}
+                />
+
+            </div>
+            <div className={styles.componentWrapper}>
                 <label htmlFor="street-1">Street1 *:</label>
                 <input
                     type="text"
@@ -57,7 +70,7 @@ export default function AddressComponent({ title, formData, onComponentInputChan
 
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="street-2">Street2 *:</label>
+                <label htmlFor="street-2">Street2:</label>
                 <input
                     type="text"
                     id="street-2"
