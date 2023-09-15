@@ -199,7 +199,7 @@ const applicantSchema = new Schema({
             },
             message: "Your age must be a number",
         } , // end validate
-        required: true
+        required: false // TODO: set back to true when done importing data
     },
     phone: {
         type: String,
@@ -513,6 +513,10 @@ const applicantSchema = new Schema({
     },
     homeAddress: {
         type: {
+            aptName: {
+                type: String,
+                required: false
+            },
             homeStreet1: {
                 type: String,
                 required: function () {
