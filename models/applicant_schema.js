@@ -876,6 +876,190 @@ const applicantSchema = new Schema({
             }
         },
 
+    },
+    maleAgeRange: {
+        zeroToFive: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
+        sixToTwelve: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
+        thirteenToSeventeen: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
+        eighteenToTwentyFour: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
+        twentyFiveToThirtyFour: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
+        thirtyFiveToFiftyFour: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
+        fiftyFiveToSeventyFour: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
+        seventyFiveToEightyFour: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
+        eightyFivePlus: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        }
+    },
+    femaleAgeRange: {
+        zeroToFive: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
+        sixToTwelve: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
+        thirteenToSeventeen: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
+        eighteenToTwentyFour: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
+        twentyFiveToThirtyFour: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
+        thirtyFiveToFiftyFour: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
+        fiftyFiveToSeventyFour: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
+        seventyFiveToEightyFour: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
+        eightyFivePlus: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        }
     }
 });
 
