@@ -122,6 +122,7 @@ const form_data_auto_fill_test = {
         ]
     },
     homeAddress: {
+        aptName: 'Buena Casa',
         homeStreet1: '123 oak st',
         homeStreet2: 'Apt. 100',
         homeCity: 'Tacoma',
