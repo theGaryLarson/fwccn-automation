@@ -4,7 +4,7 @@ import form_data_auto_fill_test from "../../models/form_data_auto_fill_test";
 import form_data_defaults from "../../models/form_data_defaults";
 import PrimaryComponent from "../PrimaryComponent";
 import LandlordComponent from "../LandlordComponent";
-import RaceComponent from "../RaceComponent";
+import DemographicComponent from "../DemographicComponent";
 import ChildComponent from "../ChildComponent";
 import AdultComponent from "../AdultComponent";
 import AssistanceNeedComponent from "../AssistanceNeedComponent";
@@ -40,7 +40,8 @@ function ApplicantForm(props) {
 
     function handleInputChange(event) {
         setHasUnsavedChanges(true);
-        const {name, value} = event.target;
+        const { name, value } = event.target;
+        console.log(name, value);
         const newData = updateFormData({...formData}, name, value);
         setFormData(newData);
     }
@@ -52,7 +53,6 @@ function ApplicantForm(props) {
             const key = keys[i];
 
             const currentValue = formData[key];
-
             if (key === name) {
                 return {...formData, [key]: value};
             }
@@ -98,7 +98,7 @@ function ApplicantForm(props) {
         <div className={"mt-4"}>
             <form onSubmit={handleSubmit}>
                 <div className={`${styles.componentWrapper} border-2 border-black p-4 box m-4`}>
-                    <label htmlFor='interviewer'>Interviewer Name:</label>
+                    <label htmlFor='interviewer'>Interviewer Name *:</label>
                     <input
                         type='text'
                         id='interviewer'
@@ -125,7 +125,7 @@ function ApplicantForm(props) {
                     <TotalIncomeSupportComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
                 <div className={`${styles.componentWrapper} border-2 border-black p-4 box m-4`}>
-                    <RaceComponent formData={formData} onComponentInputChange={handleInputChange}/>
+                    <DemographicComponent formData={formData} onComponentInputChange={handleInputChange}/>
                 </div>
                 <div className={`${styles.componentWrapper} border-2 border-black p-4 box m-4`}>
                     <LandlordComponent formData={formData} onComponentInputChange={handleInputChange}/>
