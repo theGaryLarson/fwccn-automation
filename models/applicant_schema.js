@@ -40,6 +40,10 @@ const applicantSchema = new Schema({
                 type: String,
                 default: ''
             },
+            promiseFilled: {
+                type: Date,
+                default: undefined
+            },
             amountPromised: {
                 type: Number,
                 default: ''
@@ -56,6 +60,10 @@ const applicantSchema = new Schema({
                 default: ''
             },
             checkNumber: {
+                type: Number,
+                default: 0
+            },
+            checkAmount: {
                 type: Number,
                 default: 0
             },
