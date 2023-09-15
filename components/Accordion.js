@@ -237,7 +237,7 @@ import {toast} from "react-toastify";
                                             </div>
                                             <div className="whitespace-nowrap flex-1">
                                                 <p className=""><span
-                                                    className={"font-bold"}>Income Level:</span> {item?.houseHoldIncome?.incomeLevel?? "-"}</p>
+                                                    className={"font-bold"}>ARPA Income Category:</span> {item?.houseHoldIncome?.incomeLevel?? "-"}</p>
                                             </div>
                                             <div className="whitespace-nowrap flex-1"></div>
                                         </div>
