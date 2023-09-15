@@ -315,7 +315,7 @@ export default function ActionTakenComponent(props) {
                     }
                 </div>
             </div>
-            { item.helpRequested !== 'rent' &&
+            {
                 (
                     <div>
                         <h2 className={'mt-4 w-full border-t border-black pt-1 font-bold'}>MOTEL <span className={'font-medium font-normal'}>(optional)</span></h2>
