@@ -225,6 +225,7 @@ export default function ActionTakenComponent(props) {
                         onChange={handlePromiseFilled}
                         className="bg-yellow-200 w-full"
                     />
+                    <h1 className='font-bold mt-4'>Required Verifications</h1>
                     {/*conditional rendering based on help requested*/}
                     {   item.helpRequested === 'rent' &&
                         (
@@ -244,7 +245,7 @@ export default function ActionTakenComponent(props) {
                                              ${isAddressVerified ? 'bg-green-500' : 'bg-white'}`}>
                                             {isAddressVerified && '✓'}
                                         </span>
-                                        <span className='font-bold'>Lease Checked</span>
+                                        <span className='font-bold'>Lease Verified</span>
                                     </label>
                                 </div>
                                 <div>
