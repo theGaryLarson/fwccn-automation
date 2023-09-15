@@ -455,6 +455,16 @@ export default function ActionTakenComponent(props) {
                                 onChange={handleInputChange}
                                 className={'bg-yellow-200 w-full'}
                             />
+                            <label htmlFor={'checkAmount'}>CHECK AMOUNT:</label>
+                            <input
+                                type={"number"}
+                                id={'checkAmount'}
+                                name={'checkAmount'}
+                                value={item?.actionTaken?.checkAmount??''}
+                                placeholder={'ENTER CHECK AMOUNT'}
+                                onChange={handleInputChange}
+                                className={'bg-yellow-200 w-full'}
+                            />
                             <label htmlFor={'actionNotes'} className={'font-medium'}>Notes</label>
                             <textarea
                                 id="actionNotes"
