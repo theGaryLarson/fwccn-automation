@@ -8,12 +8,14 @@ const form_data_defaults = {
     actionTaken: {
         secondInterviewer: '',
         fundSource: 'ARPA',
+        promiseFilled: '',
         actionNotes: '',
         amountPromised: 0,
         amountGivenToday: 0,
         checkDate: '',
         checkMadeOutTo: '',
         checkNumber: '',
+        checkAmount: 0,
         rentBalanceOwed: 0,
         gasVoucherAmount: 0,
         checkAddress: {
@@ -186,7 +188,9 @@ const form_data_defaults = {
         ],
         isIncomeVerified: false
     },
-    race: {
+    demographics: {
+        totalMales: 0,
+        totalFemales: 0,
         whiteOrCaucasian: 0,
         blackAfricanAmerican: 0,
         asianAsianAmerican: 0,
@@ -201,6 +205,28 @@ const form_data_defaults = {
         multiRacial: 0,
         unknown: 0
     },
+    maleAgeRange: {
+        zeroToFive: 0,
+        sixToTwelve: 0,
+        thirteenToSeventeen: 0,
+        eighteenToTwentyFour: 0,
+        twentyFiveToThirtyFour: 0,
+        thirtyFiveToFiftyFour: 0,
+        fiftyFiveToSeventyFour: 0,
+        seventyFiveToEightyFour: 0,
+        eightyFivePlus: 0
+    },
+    femaleAgeRange: {
+        zeroToFive: 0,
+        sixToTwelve: 0,
+        thirteenToSeventeen: 0,
+        eighteenToTwentyFour: 0,
+        twentyFiveToThirtyFour: 0,
+        thirtyFiveToFiftyFour: 0,
+        fiftyFiveToSeventyFour: 0,
+        seventyFiveToEightyFour: 0,
+        eightyFivePlus: 0
+    }
 }
 
 export default form_data_defaults;

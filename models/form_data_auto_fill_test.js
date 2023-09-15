@@ -8,11 +8,13 @@ const form_data_auto_fill_test = {
     actionTaken: {
         secondInterviewer: '',
         fundSource: '',
+        promiseFilled: '',
         amountPromised: 0,
         amountGivenToday: 0,
         checkDate: '',
         checkMadeOutTo: '',
         checkNumber: 0,
+        checkAmount: 0,
         rentBalanceOwed: 0,
         gasVoucherAmount: 0,
         checkAddress: {
@@ -201,7 +203,9 @@ const form_data_auto_fill_test = {
         ],
         isIncomeVerified: true
     },
-    race: {
+    demographics: {
+        totalMales: 0,
+        totalFemales: 0,
         whiteOrCaucasian: 1,
         blackAfricanAmerican: 0,
         asianAsianAmerican: 0,
@@ -216,6 +220,28 @@ const form_data_auto_fill_test = {
         multiRacial: 0,
         unknown: 0
     },
+    maleAgeRange: {
+        zeroToFive: 0,
+        sixToTwelve: 0,
+        thirteenToSeventeen: 0,
+        eighteenToTwentyFour: 0,
+        twentyFiveToThirtyFour: 0,
+        thirtyFiveToFiftyFour: 0,
+        fiftyFiveToSeventyFour: 0,
+        seventyFiveToEightyFour: 0,
+        eightyFivePlus: 0
+    },
+    femaleAgeRange: {
+        zeroToFive: 0,
+        sixToTwelve: 0,
+        thirteenToSeventeen: 0,
+        eighteenToTwentyFour: 0,
+        twentyFiveToThirtyFour: 0,
+        thirtyFiveToFiftyFour: 0,
+        fiftyFiveToSeventyFour: 0,
+        seventyFiveToEightyFour: 0,
+        eightyFivePlus: 0
+    }
 }
 
 export default form_data_auto_fill_test;
