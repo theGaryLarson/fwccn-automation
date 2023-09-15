@@ -724,7 +724,27 @@ const applicantSchema = new Schema({
             default: false
         }
     },
-    race: {
+    demographics: {
+        totalMales: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
+        totalFemales: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
+        },
         whiteOrCaucasian: {
             type: Number,
             default: 0,
