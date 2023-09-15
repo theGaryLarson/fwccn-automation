@@ -135,6 +135,16 @@ export default function ActionTakenComponent(props) {
             <div className="grid grid-cols-2 grid-rows-1 gap-2 h-full">
                 <div className={'flex-1'}>
                     <h2 className={'font-bold bg-green-300 pl-2 mb-2'}>{item.helpRequested === 'rent' ? 'RENT' : (item.helpRequested === 'gasoline' ? 'GAS' : 'BUS')}</h2>
+                    <label htmlFor="dateOfService" className="mt-2"><span className={'font-medium'}>Date of Service:</span> </label>
+                    <input
+                        type="date"
+                        id="dateOfService"
+                        name="dateOfService"
+                        value={item?.dateOfService??''}
+                        placeholder='Second Interviewer for Approval'
+                        onChange={handleDateOfService}
+                        className="bg-yellow-200 w-full"
+                    />
                     <div>
                         <label htmlFor={'amountPromised'}><span className={'font-medium'}>Amount Promised:</span></label>
                         <input
