@@ -47,7 +47,7 @@ function transformRecord2023(r) {
         lName: r['LNAME'],
         applicantGender: '[EXCEL 2023 ENTRY. NO DATA]',
         applicantAge: undefined,
-        phone: r['REMARKS/TELE. #'],
+        phone: r['REMARKS/TELE. #'] ? r['REMARKS/TELE. #']?.split('-')[0] + r['REMARKS/TELE. #']?.split('-')[1] + r['REMARKS/TELE. #']?.split('-')[2] : '',
         idSource: {
             ...templateRecord23.idSource,
             driverLicenseOrId: r['ID'] ? r['ID'] : '[EXCEL 2023 ENTRY. NO DATA]',
