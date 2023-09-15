@@ -76,14 +76,14 @@ export default function IncomeSourcesComponent({ formData, onComponentInputChang
                         value={incomeSource.name}
                         onChange={(event) => handleIncomeSourceChange(event, index)}
                         placeholder="Enter income source"
-                        className="mr-2 mb-2"
+                        className="mr-2 mb-2 pl-1"
                     />
                     <input
                         type="number"
                         value={incomeSource.peopleCount}
                         onChange={(event) => handleIncomeAmountChange(event, index)}
                         placeholder="Enter Number People"
-                        className="mr-2 mb-2"
+                        className="mr-2 mb-2 pl-1"
                     />
                     <button type="button" className={`${styles.removeButton} mb-2`} onClick={() => removeIncomeSource(index)}>Remove</button>
                 </div>

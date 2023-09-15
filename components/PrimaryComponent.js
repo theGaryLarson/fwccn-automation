@@ -52,6 +52,7 @@ export default function PrimaryComponent(props) {
                     placeholder="Larry"
                     value={formData?.fName??''}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                     required
                 />
             </div>
@@ -64,6 +65,7 @@ export default function PrimaryComponent(props) {
                     placeholder="M"
                     value={formData?.middleInitial??''}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                 />
             </div>
             <div className={styles.componentWrapper}>
@@ -75,6 +77,7 @@ export default function PrimaryComponent(props) {
                     placeholder="Garson"
                     value={formData?.lName??''}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                     required
                 />
             </div>
@@ -85,6 +88,7 @@ export default function PrimaryComponent(props) {
                     name="applicantGender"
                     value={formData?.applicantGender??'Female'}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                     required
                 >
                     <option value="Female">Female</option>
@@ -100,6 +104,7 @@ export default function PrimaryComponent(props) {
                     name="applicantAge"
                     value={formData?.applicantAge??''}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                     pattern="\d*"
                     title="Please enter a valid number"
                     required
@@ -116,6 +121,7 @@ export default function PrimaryComponent(props) {
                     pattern="[0-9]{10}"
                     title="Please enter 10 digit phone number. (e.g. 1234567890)"
                     onChange={handleInputChange}
+                    className={'pl-1'}
                 />
             </div>
             <div className={styles.componentWrapper}>
@@ -129,6 +135,7 @@ export default function PrimaryComponent(props) {
                     pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
                     title="Please enter a valid email"
                     onChange={handleInputChange}
+                    className={'pl-1'}
                 />
             </div>
             <div className={styles.componentWrapper}>
@@ -154,6 +161,7 @@ export default function PrimaryComponent(props) {
                     title="Enter only the last four digits of applicant's social security number (e.g. 1234)"
                     value={formData?.idSource?.socialSecLastFour ?? ''} // must drill down to nested object
                     onChange={handleInputChange}
+                    className={'pl-1'}
                     required
                 />
             </div>
@@ -168,6 +176,7 @@ export default function PrimaryComponent(props) {
                         placeholder="WDGARSOLM197PD"
                         value={formData?.idSource?.driverLicenseOrId ?? ''}
                         onChange={handleInputChange}
+                        className={'pl-1'}
                     />
                 </div>
                 <div className={styles.componentWrapper}>
@@ -181,6 +190,7 @@ export default function PrimaryComponent(props) {
                         title='Please enter 2 letter abbreviation for state. (e.g. WA)'
                         value={formData?.idSource?.idStateIssued ?? ''}
                         onChange={handleInputChange}
+                        className={'pl-1'}
                     />
                 </div>
                 <div className={styles.componentWrapper}>
@@ -192,6 +202,7 @@ export default function PrimaryComponent(props) {
                         placeholder="WDLARSOGM197PD"
                         value={formData?.idSource?.expDate?.slice(0, 10) ?? undefined} // must slice for data to load correctly needs YYY-MM-DD format
                         onChange={handleInputChange}
+                        className={'pl-1'}
                     />
                 </div>
                 {(formData?.helpRequested === 'gasoline') && (<div>
@@ -204,6 +215,7 @@ export default function PrimaryComponent(props) {
                             placeholder="CBY2970"
                             value={formData?.licensePlate ?? ''}
                             onChange={handleInputChange}
+                            className={'pl-1'}
                             required
                         />
                         <div className={styles.componentWrapper}>
@@ -217,6 +229,7 @@ export default function PrimaryComponent(props) {
                                 title='Please enter 2 letter abbreviation for state. (e.g. WA)'
                                 value={formData?.licensePlateState ?? ''}
                                 onChange={handleInputChange}
+                                className={'pl-1'}
                                 required
                             />
                         </div>
@@ -225,7 +238,7 @@ export default function PrimaryComponent(props) {
                                 type="checkbox"
                                 id="isValidLicense"
                                 name="isValidLicense"
-                                className="hidden"
+                                className="hidden pl-1"
                                 onChange={handleCheckboxChange}
                             />
                             <label htmlFor="isValidLicense" className="flex items-center mt-4 select-none">

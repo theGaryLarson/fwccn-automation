@@ -107,7 +107,7 @@ export default function SearchComponent(props) {
                                 type='text'
                                 id={'first-name'}
                                 name={'first-name'}
-                                className={`mt-1`}
+                                className={`mt-1 pl-1`}
                                 placeholder={' Enter First Name'}
                                 onChange={updateFirstName}
                                 value={firstName}
@@ -116,7 +116,7 @@ export default function SearchComponent(props) {
                                 type='text'
                                 id={'last-name'}
                                 name={'last-name'}
-                                className={`mt-1`}
+                                className={`mt-1 pl-1`}
                                 placeholder={' Enter Last Name'}
                                 onChange={updateLastName}
                                 value={lastName}
@@ -125,7 +125,7 @@ export default function SearchComponent(props) {
                                 type='text'
                                 id={'last-four'}
                                 name={'last-four'}
-                                className={`mt-1`}
+                                className={`mt-1 pl-1`}
                                 placeholder={' Last Four of Social Security'}
                                 onChange={updateLastFour}
                                 value={lastFour}
@@ -143,6 +143,7 @@ export default function SearchComponent(props) {
                                 name={'driverLicenseOrId'}
                                 placeholder={'Enter State ID'}
                                 onChange={updateStateId}
+                                className={'pl-1'}
                                 value={stateId}
                                 required
                             />
@@ -158,7 +159,7 @@ export default function SearchComponent(props) {
                                 type='text'
                                 id={'street1'}
                                 name={'street1'}
-                                className={`mt-1`}
+                                className={`mt-1 pl-1`}
                                 placeholder={' Enter Street Address'}
                                 onChange={updateStreet1}
                                 value={street1}
@@ -167,7 +168,7 @@ export default function SearchComponent(props) {
                                 type='text'
                                 id={'street2'}
                                 name={'street2'}
-                                className={`mt-1`}
+                                className={`mt-1 pl-1`}
                                 placeholder={' Enter Apartment # (optional)'}
                                 onChange={updateStreet2}
                                 value={street2}
@@ -176,7 +177,7 @@ export default function SearchComponent(props) {
                                 type='text'
                                 id={'zip'}
                                 name={'zip'}
-                                className={`mt-1`}
+                                className={`mt-1 pl-1`}
                                 placeholder={' Enter Zip Code (optional)'}
                                 onChange={updateHomeZip}
                                 value={homeZip}

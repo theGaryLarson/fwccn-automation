@@ -214,7 +214,8 @@ const form_data_defaults = {
         thirtyFiveToFiftyFour: 0,
         fiftyFiveToSeventyFour: 0,
         seventyFiveToEightyFour: 0,
-        eightyFivePlus: 0
+        eightyFivePlus: 0,
+        unknown: 0
     },
     femaleAgeRange: {
         zeroToFive: 0,
@@ -225,7 +226,8 @@ const form_data_defaults = {
         thirtyFiveToFiftyFour: 0,
         fiftyFiveToSeventyFour: 0,
         seventyFiveToEightyFour: 0,
-        eightyFivePlus: 0
+        eightyFivePlus: 0,
+        unknown: 0
     }
 }
 

@@ -61,6 +61,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                     name="whiteOrCaucasian"
                     value={formData?.demographics?.whiteOrCaucasian??0}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                     required
                 />
             </div>
@@ -72,6 +73,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                     name="blackAfricanAmerican"
                     value={formData?.demographics?.blackAfricanAmerican??0}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                     required
                 />
             </div>
@@ -83,6 +85,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                     name="asianAsianAmerican"
                     value={formData?.demographics?.asianAsianAmerican??0}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                     required
                 />
             </div>
@@ -94,6 +97,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                     name="americanIndianOrAlaskaNative"
                     value={formData?.demographics?.americanIndianOrAlaskaNative??0}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                     required
                 />
             </div>
@@ -105,6 +109,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                     name="nativeHawaiianPacificIslander"
                     value={formData?.demographics?.nativeHawaiianPacificIslander??0}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                     required
                 />
             </div>
@@ -116,6 +121,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                     name="latinoAmericanHispanic"
                     value={formData?.demographics?.latinoAmericanHispanic??0}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                     required
                 />
             </div>
@@ -127,6 +133,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                     name="americanIndianOrAlaskaNativeAndWhite"
                     value={formData?.demographics?.americanIndianOrAlaskaNativeAndWhite??0}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                     required
                 />
             </div>
@@ -138,6 +145,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                     name="asianAsianAmericanAndWhite"
                     value={formData?.demographics?.asianAsianAmericanAndWhite??0}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                     required
                 />
             </div>
@@ -149,6 +157,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                     name="blackAfricanAmericanAndWhite"
                     value={formData?.demographics?.blackAfricanAmericanAndWhite??0}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                     required
                 />
             </div>
@@ -160,6 +169,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                     name="americanIndianOrAlaskaNativeAndBlackAfricanAmerican"
                     value={formData?.demographics?.americanIndianOrAlaskaNativeAndBlackAfricanAmerican??0}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                     required
                 />
             </div>
@@ -171,6 +181,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                     name="otherRace"
                     value={formData?.demographics?.otherRace??0}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                     required
                 />
             </div>
@@ -182,6 +193,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                     name="multiRacial"
                     value={formData?.demographics?.multiRacial??0}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                     required
                 />
             </div>
@@ -193,6 +205,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                     name="unknown"
                     value={formData?.demographics?.unknown??0}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                     required
                 />
             </div>

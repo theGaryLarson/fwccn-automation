@@ -17,6 +17,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                     placeholder="Zhāng Jìng"
                     value={formData?.landLord?.fullName??''}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                 />
             </div>
             <div className={styles.componentWrapper}>
@@ -30,6 +31,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                     pattern = "^[0-9]{10}$"
                     title = "Enter phone numbers in the following format ##########"
                     onChange={handleInputChange}
+                    className={'pl-1'}
                 />
             </div>
             <div className={styles.componentWrapper}>
@@ -41,6 +43,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                     placeholder="123 Main St"
                     value={formData?.landLord?.landLordAddress?.landLordStreet1??''}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                 />
             </div>
             <div className={styles.componentWrapper}>
@@ -52,6 +55,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                     placeholder="Apt. 100"
                     value={formData?.landLord?.landLordAddress?.landLordStreet2??''}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                 />
             </div>
             <div className={styles.componentWrapper}>
@@ -63,6 +67,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                     placeholder="Seattle"
                     value={formData?.landLord?.landLordAddress?.landLordCity??''}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                 />
             </div>
             <div className={styles.componentWrapper}>
@@ -74,6 +79,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                     placeholder="WA"
                     value={formData?.landLord?.landLordAddress?.landLordState??''}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                 />
             </div>
             <div className={styles.componentWrapper}>
@@ -85,6 +91,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                     placeholder="98101"
                     value={formData?.landLord?.landLordAddress?.landLordZip??''}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                 />
             </div>
         </div>

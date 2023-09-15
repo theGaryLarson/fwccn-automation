@@ -126,6 +126,7 @@ export default function OtherLastNamesComponent({formData, onComponentInputChang
                                     placeholder="Larry"
                                     value={otherName?.otherFirstName}
                                     onChange={(event) => handleInputChange(event, index)}
+                                    className={'pl-1'}
                                 />
                             </div>
                             <div className={styles.componentWrapper}>
@@ -137,6 +138,7 @@ export default function OtherLastNamesComponent({formData, onComponentInputChang
                                     placeholder="M"
                                     value={otherName?.otherMiddleInitial}
                                     onChange={(event) => handleInputChange(event, index)}
+                                    className={'pl-1'}
                                 />
                             </div>
                             <div className={styles.componentWrapper}>
@@ -148,6 +150,7 @@ export default function OtherLastNamesComponent({formData, onComponentInputChang
                                     placeholder="Garson"
                                     value={otherName?.otherLastName}
                                     onChange={(event) => handleInputChange(event, index)}
+                                    className={'pl-1'}
                                 />
                             </div>
                         </div>

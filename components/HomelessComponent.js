@@ -48,7 +48,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         id="placeStayedRecently"
                         name="placeStayedRecently"
                         placeholder="Friend, Shelter, etc."
-                        className={'mb-4'}
+                        className={'mb-4 pl-1'}
                         value={formData?.homelessness?.placeStayedRecently??''}
                         onChange={handleInputChange}
                         required={isHomeless()}
@@ -64,6 +64,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         placeholder="12"
                         value={formData?.homelessness?.durationXpHomelessness??0}
                         onChange={handleInputChange}
+                        className={'pl-1'}
                         required={isHomeless()}
                         disabled={!isHomeless()}
                     />
@@ -74,9 +75,10 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         id="whyHomeless"
                         name="whyHomeless"
                         placeholder="Brief explanation of what lead to applicant being homeless"
-                        className={'mb-4'}
+                        className={'mb-4 p-2'}
                         value={formData?.homelessness?.whyHomeless??''}
                         onChange={handleInputChange}
+
                         required={isHomeless()}
                         disabled={!isHomeless()}
                     />
@@ -91,6 +93,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         placeholder="123 Main St."
                         value={formData?.homelessness?.tempAddress?.street1 ?? ''}
                         onChange={handleInputChange}
+                        className={'pl-1'}
                         required={false}
                         disabled={(formData?.homelessness?.isHomeless ?? true )=== false}
                     />
@@ -104,6 +107,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         placeholder="Apt. 100"
                         value={formData?.homelessness?.tempAddress?.street2 ?? ''}
                         onChange={handleInputChange}
+                        className={'pl-1'}
                         // disabled={!formData?.homelessness?.isHomeless??'false' === 'false'}
                     />
                 </div>
@@ -116,6 +120,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         placeholder="Tacoma"
                         value={formData?.homelessness?.tempAddress?.city??''}
                         onChange={handleInputChange}
+                        className={'pl-1'}
                         required={formData?.homelessness?.isHomeless??'true' === 'true'}
                         disabled={!formData?.homelessness?.isHomeless??'false' === 'false'}
                     />
@@ -129,6 +134,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         placeholder="WA"
                         value={formData?.homelessness?.tempAddress?.state??''}
                         onChange={handleInputChange}
+                        className={'pl-1'}
                         required={formData?.homelessness?.isHomeless??'false' === 'true'}
                         disabled={!formData?.homelessness?.isHomeless??'false' === 'false'}
                     />
@@ -142,6 +148,7 @@ export default function HomelessnessComponent({formData, onComponentInputChange}
                         placeholder="98101"
                         value={formData?.homelessness?.tempAddress?.zip??''}
                         onChange={handleInputChange}
+                        className={'pl-1'}
                         required={formData?.homelessness?.isHomeless??'false' === 'true'}
                         disabled={!formData?.homelessness?.isHomeless??'false' === 'false'}
                     />

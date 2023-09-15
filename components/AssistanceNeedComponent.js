@@ -75,6 +75,7 @@ export default function  AssistanceNeedComponent({formData, onComponentInputChan
                     placeholder="Person or agency that referred applicant (if any)"
                     value={formData?.referredBy}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                 />
             </div>
         </div>

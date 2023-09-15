@@ -32,7 +32,7 @@ export default function AddressComponent({ title, formData, onComponentInputChan
                 <input
                     type="checkbox"
                     id="landLordIsVerified"
-                    className="hidden"
+                    className="hidden pl-1"
                     onChange={handleCheckboxChange}
                 />
                 <label htmlFor="landLordIsVerified" className="flex items-center mt-4 select-none">
@@ -51,6 +51,7 @@ export default function AddressComponent({ title, formData, onComponentInputChan
                     placeholder="12345 Oak St."
                     value={formData.homeAddress.homeStreet1}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                     required
                 />
 
@@ -64,6 +65,7 @@ export default function AddressComponent({ title, formData, onComponentInputChan
                     placeholder="Apt. 100"
                     value={formData.homeAddress.homeStreet2}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                 />
             </div>
             <div className={styles.componentWrapper}>
@@ -75,6 +77,7 @@ export default function AddressComponent({ title, formData, onComponentInputChan
                     placeholder="Tacoma"
                     value={formData.homeAddress.homeCity}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                     required
                 />
             </div>
@@ -89,6 +92,7 @@ export default function AddressComponent({ title, formData, onComponentInputChan
                     title = 'Enter 2-letter state abbreviation'
                     value={formData.homeAddress.homeState}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                     required
                 />
             </div>
@@ -102,6 +106,7 @@ export default function AddressComponent({ title, formData, onComponentInputChan
                     placeholder="98422"
                     value={formData.homeAddress.homeZip} // must drill down to nested object
                     onChange={handleInputChange}
+                    className={'pl-1'}
                     required
                 />
             </div>

@@ -11,6 +11,7 @@ function AgeComponent({ formData, genderRange, handleInputChange }) {
         { label: '55-74', key: 'fiftyFiveToSeventyFour' },
         { label: '75-84', key: 'seventyFiveToEightyFour' },
         { label: '85+', key: 'eightyFivePlus' },
+        { label: 'unknown', key: 'unknown' },
     ];
 
     const onHandleInputChange = (event) => {
@@ -30,7 +31,7 @@ function AgeComponent({ formData, genderRange, handleInputChange }) {
         <div className=" ">
             {ageRanges.map((range) => (
                 <div key={range.key} className="flex w-full">
-                    <label className={'w-12 font-bold'} htmlFor={`${genderRange}${range.key}`}>{range.label}</label>
+                    <label className={'w-20 font-bold text-right pr-1'} htmlFor={`${genderRange}${range.key}`}>{range.label}</label>
                     <input
                         type="number"
                         id={`${genderRange}-${range.key}`}

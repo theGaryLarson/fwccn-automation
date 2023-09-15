@@ -106,6 +106,7 @@ function ApplicantForm(props) {
                         placeholder='Interviewer first and last name'
                         value={formData?.interviewer??''}
                         onChange={handleInputChange}
+                        className={'pl-1'}
                         required
                     />
                 </div>

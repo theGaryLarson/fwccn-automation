@@ -186,6 +186,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                                 name='age'
                                 value={child?.age??undefined}
                                 onChange={(event) => handleInputChange(event, index)}
+                                className={'pl-1'}
                                 required
                             />
                         </div>
@@ -197,6 +198,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                                 name={`school`}
                                 value={child?.school??''}
                                 onChange={(event) => handleInputChange(event, index)}
+                                className={'pl-1'}
                                 required
                             />
                         </div>
@@ -208,6 +210,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                                 name={`schoolDistrict`}
                                 value={child?.schoolDistrict??''}
                                 onChange={(event) => handleInputChange(event, index)}
+                                className={'pl-1'}
                                 required
                             />
                         </div>
@@ -217,7 +220,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                                 type="text"
                                 id={`kidRelationship-${index}`}
                                 name={`relationshipToApplicant`}
-                                className={'mb-4'}
+                                className={'mb-4 pl-1'}
                                 value={child?.relationshipToApplicant??''}
                                 onChange={(event) => handleInputChange(event, index)}
                                 required

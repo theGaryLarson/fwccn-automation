@@ -205,16 +205,17 @@ const form_data_defaults = {
         multiRacial: 0,
         unknown: 0
     },
-    maleAgeRange: {
-        zeroToFive: 0,
-        sixToTwelve: 0,
-        thirteenToSeventeen: 0,
-        eighteenToTwentyFour: 0,
-        twentyFiveToThirtyFour: 0,
-        thirtyFiveToFiftyFour: 0,
-        fiftyFiveToSeventyFour: 0,
-        seventyFiveToEightyFour: 0,
-        eightyFivePlus: 0
+    maleAgeRange: { // these have the same names as female may be easiest to change the headers
+        zeroToFive: 0, // 0 to 5
+        sixToTwelve: 0, // 6 to 12
+        thirteenToSeventeen: 0, // 13 to 17
+        eighteenToTwentyFour: 0, // 18 to 24
+        twentyFiveToThirtyFour: 0, // 25 to 34
+        thirtyFiveToFiftyFour: 0, // 35 to 54
+        fiftyFiveToSeventyFour: 0, // 55 to 74
+        seventyFiveToEightyFour: 0, // 75 to 84
+        eightyFivePlus: 0,
+        unknown: 0
     },
     femaleAgeRange: {
         zeroToFive: 0,
@@ -225,7 +226,8 @@ const form_data_defaults = {
         thirtyFiveToFiftyFour: 0,
         fiftyFiveToSeventyFour: 0,
         seventyFiveToEightyFour: 0,
-        eightyFivePlus: 0
+        eightyFivePlus: 0,
+        unknown: 0
     }
 }
 

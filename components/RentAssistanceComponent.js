@@ -122,13 +122,14 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
                     name="monthlyRentPaidByApplicant"
                     value={formData?.rentAssistance?.monthlyRentPaidByApplicant??''}
                     onChange={(event) => handleInputChange(event, null)}
+                    className={'pl-1'}
                     required
                 />
             </div>
             <div className={styles.componentWrapper}>
                 <label htmlFor="hasRentAssistance">{'Do you receive any form of rent assistance?'}</label>
                 <select
-                    className={'mb-4'}
+                    className={'mb-4 pl-1'}
                     id="hasRentAssistance"
                     name="hasRentAssistance"
                     value={formData?.rentAssistance?.hasRentAssistance?.toString()??''}
@@ -178,6 +179,7 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
                                 name="rentAssistanceProgram"
                                 value={rentAssistance?.rentAssistanceProgram??''} //assigned from map does not map to formData
                                 onChange={(event) => handleInputChange(event, index)}
+                                className={'pl-1'}
                                 required
                             />
                         </div>
@@ -189,6 +191,7 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
                                 name='amountPaidByProgram'
                                 value={rentAssistance?.amountPaidByProgram??undefined} //assigned from map does not map to formData
                                 onChange={(event) => handleInputChange(event, index)}
+                                className={'pl-1'}
                                 required
                             />
                         </div>

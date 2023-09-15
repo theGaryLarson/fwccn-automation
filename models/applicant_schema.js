@@ -967,6 +967,16 @@ const applicantSchema = new Schema({
                 },
                 message: 'Must enter a non-negative number'
             }
+        },
+        unknown: {
+            type: Number,
+            default: 0,
+            validate: {
+                validator: function(v) {
+                    return /^\d*[0-9]\d*$/.test(v.toString());
+                },
+                message: 'Must enter a non-negative number'
+            }
         }
     },
     femaleAgeRange: {

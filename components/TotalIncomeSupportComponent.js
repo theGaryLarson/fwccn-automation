@@ -38,11 +38,11 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                 <input
                     type="checkbox"
                     id="isIncomeVerified"
-                    className="hidden"
+                    className="hidden pl-1"
                     onChange={handleCheckboxChange}
                 />
                 <label htmlFor="isIncomeVerified" className="flex items-center mt-4 select-none">
-                <span className={` ${isIncomeVerified ? 'bg-green-500' : 'bg-white'} mr-2 border rounded border-gray-400 w-5 h-5 flex items-center justify-center `}>
+                <span className={`${isIncomeVerified ? 'bg-green-500' : 'bg-white'} mr-2 border rounded border-gray-400 w-5 h-5 flex items-center justify-center `}>
                     {isIncomeVerified && '✓'}
                 </span>
                     <span className='font-bold'> Income Verified</span>
@@ -57,6 +57,7 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                     placeholder="$0000.00"
                     value={formData?.houseHoldIncome?.totalHouseholdIncome??undefined}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                 />
             </div>
             <div className={styles.componentWrapper}>
@@ -68,6 +69,7 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                     placeholder="$0000.00"
                     value={formData?.houseHoldIncome?.houseHoldIncomePastYear??''}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                 />
             </div>
             <div className={styles.componentWrapper}>
@@ -79,6 +81,7 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                     placeholder="3"
                     value={formData?.houseHoldIncome?.totalSupportMembers??''}
                     onChange={handleInputChange}
+                    className={'pl-1'}
                 />
             </div>
             <div className={styles.componentWrapper}>
@@ -102,6 +105,7 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                     placeholder="Brief explanation to clarify income situation"
                     value={formData?.houseHoldIncome?.incomeSituation??''}
                     onChange={handleInputChange}
+                    className={'p-2'}
                 />
             </div>
             <IncomeSourcesComponent formData={formData} onComponentInputChange={onComponentInputChange}/>

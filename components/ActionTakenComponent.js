@@ -143,7 +143,7 @@ export default function ActionTakenComponent(props) {
                         value={item?.dateOfService??''}
                         placeholder='Second Interviewer for Approval'
                         onChange={handleDateOfService}
-                        className="bg-yellow-200 w-full"
+                        className="bg-yellow-200 w-full pl-1"
                     />
                     <div>
                         <label htmlFor={'amountPromised'}><span className={'font-medium'}>Amount Promised:</span></label>
@@ -154,7 +154,7 @@ export default function ActionTakenComponent(props) {
                             value={item?.actionTaken?.amountPromised??''}
                             placeholder={'$0.00'}
                             onChange={handleInputChange}
-                            className={'bg-yellow-200'}
+                            className={'bg-yellow-200 pl-1'}
                         />
                         <div>
                             <label htmlFor={'amountGivenToday'}><span className={'font-medium'}>Amount Given Today:</span></label>
@@ -165,7 +165,7 @@ export default function ActionTakenComponent(props) {
                                 value={item?.actionTaken?.amountGivenToday}
                                 placeholder={'$0.00'}
                                 onChange={handleInputChange}
-                                className={'bg-yellow-200'}
+                                className={'bg-yellow-200 pl-1'}
                             />
                             { item.helpRequested === 'rent' &&
                                 (
@@ -178,7 +178,7 @@ export default function ActionTakenComponent(props) {
                                             value={item?.actionTaken?.rentBalanceOwed}
                                             placeholder={'$0.00'}
                                             onChange={handleInputChange}
-                                            className={'bg-yellow-200'}
+                                            className={'bg-yellow-200 pl-1'}
                                         />
                                     </div>
                                 )
@@ -194,7 +194,7 @@ export default function ActionTakenComponent(props) {
                                             value={item?.licensePlate}
                                             placeholder={'Verify Plate Number'}
                                             onChange={handleInputChange}
-                                            className={'bg-yellow-200'}
+                                            className={'bg-yellow-200 pl-1'}
                                         />
                                     </div>
                                 )
@@ -214,16 +214,16 @@ export default function ActionTakenComponent(props) {
                         value={item?.actionTaken?.secondInterviewer??''}
                         placeholder='Second Interviewer for Approval'
                         onChange={handleInputChange}
-                        className="bg-yellow-200 w-full"
+                        className="bg-yellow-200 w-full pl-1"
                     />
                     <label htmlFor="promiseFilled" className="mt-2"><span className={'font-medium'}>Date Promise Filled:</span> </label>
                     <input
                         type="date"
                         id="promiseFilled"
                         name="promiseFilled"
-                        value={item?.actionTaken?.promiseFilled.slice(0, 10)??''}
+                        value={item?.actionTaken?.promiseFilled?.slice(0, 10)??''}
                         onChange={handlePromiseFilled}
-                        className="bg-yellow-200 w-full"
+                        className="bg-yellow-200 w-full pl-1"
                     />
                     <h1 className='font-bold mt-4'>Required Verifications</h1>
                     {/*conditional rendering based on help requested*/}
@@ -298,7 +298,7 @@ export default function ActionTakenComponent(props) {
                                     type="checkbox"
                                     id="isBusPrimaryTransport"
                                     name="isBusPrimaryTransport"
-                                    className="hidden"
+                                    className="hidden pl-1"
                                     onChange={handleCheckboxChange}
                                 />
                                 <label htmlFor="isBusPrimaryTransport" className="flex items-center mt-4 select-none">
@@ -330,7 +330,7 @@ export default function ActionTakenComponent(props) {
                                     value={item?.actionTaken?.motelLocation??''}
                                     placeholder={'Name of hotel'}
                                     onChange={handleInputChange}
-                                    className={'bg-yellow-200'}
+                                    className={'bg-yellow-200 pl-1'}
                                 />
                             </div>
                             <div className={'flex-1'}>
@@ -342,7 +342,7 @@ export default function ActionTakenComponent(props) {
                                     value={item?.actionTaken?.motelDurationDays??''}
                                     placeholder={'Number of days in hotel'}
                                     onChange={handleInputChange}
-                                    className={'bg-yellow-200 ml-2'}
+                                    className={'bg-yellow-200 ml-2 pl-1'}
                                 />
                             </div>
                             <div className={'flex-1'}>
@@ -354,7 +354,7 @@ export default function ActionTakenComponent(props) {
                                     value={item?.actionTaken?.motelCost??''}
                                     placeholder={'Cost of hotel'}
                                     onChange={handleInputChange}
-                                    className={'bg-yellow-200 ml-2 w-40'}
+                                    className={'bg-yellow-200 ml-2 w-40 pl-1'}
                                 />
                             </div>
                         </div>
@@ -373,7 +373,7 @@ export default function ActionTakenComponent(props) {
                             value={item?.actionTaken?.checkMadeOutTo??''}
                             placeholder={'PAY TO THE ORDER OF ...'}
                             onChange={handleInputChange}
-                            className={'bg-yellow-200 w-full'}
+                            className={'bg-yellow-200 w-full pl-1'}
                         />
                     </div>
                     <div className={'w-full'}>
@@ -386,7 +386,7 @@ export default function ActionTakenComponent(props) {
                             value={item?.actionTaken?.checkAddress?.checkStreet1}
                             placeholder={'123 Oak St.'}
                             onChange={handleInputChange}
-                            className={'bg-yellow-200 w-full'}
+                            className={'bg-yellow-200 w-full pl-1'}
                         />
                         <label htmlFor={'checkStreet2'}>Street2:</label>
                         <input
@@ -396,7 +396,7 @@ export default function ActionTakenComponent(props) {
                             value={item?.actionTaken?.checkAddress?.checkStreet2}
                             placeholder={'Apt. 100'}
                             onChange={handleInputChange}
-                            className={'bg-yellow-200 w-full'}
+                            className={'bg-yellow-200 w-full pl-1'}
                         />
                         <label htmlFor={'checkCity'}>City:</label>
                         <input
@@ -406,7 +406,7 @@ export default function ActionTakenComponent(props) {
                             value={item?.actionTaken?.checkAddress?.checkCity}
                             placeholder={'Tacoma'}
                             onChange={handleInputChange}
-                            className={'bg-yellow-200 w-full'}
+                            className={'bg-yellow-200 w-full pl-1'}
                         />
                         <label htmlFor={'checkState'}>State:</label>
                         <input
@@ -416,7 +416,7 @@ export default function ActionTakenComponent(props) {
                             value={item?.actionTaken?.checkAddress?.checkState}
                             placeholder={'WA'}
                             onChange={handleInputChange}
-                            className={'bg-yellow-200 w-full'}
+                            className={'bg-yellow-200 w-full pl-1'}
                         />
                         <label htmlFor={'checkZip'}>Zip:</label>
                         <input
@@ -426,7 +426,7 @@ export default function ActionTakenComponent(props) {
                             value={item?.actionTaken?.checkAddress?.checkZip}
                             placeholder={'98105'}
                             onChange={handleInputChange}
-                            className={'bg-yellow-200 w-full'}
+                            className={'bg-yellow-200 w-full pl-1'}
                         />
                     </div>
                 </div>
@@ -440,7 +440,7 @@ export default function ActionTakenComponent(props) {
                                 name={'checkDate'}
                                 value={item?.actionTaken?.checkDate??''}
                                 onChange={handleInputChange}
-                                className={'ml-2 bg-yellow-200'}
+                                className={'ml-2 bg-yellow-200 pl-1'}
 
                             />
                         </div>
@@ -453,7 +453,7 @@ export default function ActionTakenComponent(props) {
                                 value={item?.actionTaken?.checkNumber??''}
                                 placeholder={'ENTER CHECK NUMBER'}
                                 onChange={handleInputChange}
-                                className={'bg-yellow-200 w-full'}
+                                className={'bg-yellow-200 w-full pl-1'}
                             />
                             <label htmlFor={'checkAmount'}>CHECK AMOUNT:</label>
                             <input
@@ -463,7 +463,7 @@ export default function ActionTakenComponent(props) {
                                 value={item?.actionTaken?.checkAmount??''}
                                 placeholder={'ENTER CHECK AMOUNT'}
                                 onChange={handleInputChange}
-                                className={'bg-yellow-200 w-full'}
+                                className={'bg-yellow-200 w-full pl-1'}
                             />
                             <label htmlFor={'actionNotes'} className={'font-medium'}>Notes</label>
                             <textarea

@@ -145,6 +145,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                                     name="adultFName"
                                     value={adult?.adultFName ?? ''}
                                     onChange={(event) => handleInputChange(event, index)}
+                                    className={'pl-1'}
                                     required
                                 />
                             </div>
@@ -156,6 +157,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                                     name="adultMiddleInitial"
                                     value={adult?.adultMiddleInitial ?? ''}
                                     onChange={(event) => handleInputChange(event, index)}
+                                    className={'pl-1'}
                                 />
                             </div>
                             <div className={styles.componentWrapper}>
@@ -166,6 +168,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                                     name="adultLName"
                                     value={adult?.adultLName ?? ''}
                                     onChange={(event) => handleInputChange(event, index)}
+                                    className={'pl-1'}
                                     required
                                 />
                             </div>
@@ -177,6 +180,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                                     name="adultAge"
                                     value={adult?.adultAge ?? ''}
                                     onChange={(event) => handleInputChange(event, index)}
+                                    className={'pl-1'}
                                     required
                                 />
                             </div>
@@ -219,6 +223,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                                         name={"relationDetails"}
                                         value={adult?.relationDetails}
                                         onChange={(event) => handleInputChange(event, index)}
+                                        className={'p-2'}
                                         required
                                     />
                                 </div> )
