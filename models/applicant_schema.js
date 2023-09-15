@@ -1,8 +1,5 @@
-import {
-    Schema,
-    model,
-    models
-} from 'mongoose';
+import {model, models, Schema} from 'mongoose';
+
 const applicantSchema = new Schema({
     timestamp: {
         type: String,
@@ -1089,6 +1086,9 @@ applicantSchema.pre('save', function(next) {
     } else {
         this.serviceDate = undefined;
     }
+    if (this.actionTaken.promiseFilled && this.actionTaken.promiseFilled.trim()) {
+        this.actionTaken.promiseFilled = this.actionTaken.promiseFilled.replace('T00', 'T07');
+    }
     next();
 });
 
@@ -1106,7 +1106,9 @@ applicantSchema.pre('findOneAndUpdate', function(next) {
     } else {
         update.serviceDate = undefined;
     }
-
+    if (update.actionTaken.promiseFilled && update.actionTaken.promiseFilled.trim()) {
+        update.actionTaken.promiseFilled = update.actionTaken.promiseFilled.replace('T00', 'T07');
+    }
     next();
 });
 
