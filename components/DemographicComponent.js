@@ -9,24 +9,27 @@ export default function DemographicComponent({formData, onComponentInputChange }
     }
     return (
         <div>
-            <h1>Demographic Information</h1>
+            <h1 className={'mb-8 text-lg'}>Demographic Information</h1>
+            <h1 className={'mb-4'}>Age Ranges</h1>
             <div className={'flex h-10 justify-between mb-4'}>
-                <div className='flex flex-col'><label htmlFor="totalMales">Total Males In Household:</label>
+                <div className='flex flex-col'><label className={'font-bold'} htmlFor="totalMales">Total Males In Household</label>
                     <input
                         type="number"
                         id="totalMales"
                         name="totalMales"
                         value={formData?.demographics?.totalMales ?? 0}
                         onChange={handleInputChange}
+                        className={'pl-1'}
                         required
                     /></div>
-                <div className='flex flex-col'><label htmlFor="totalFemales">Total Females In Household</label>
+                <div className='flex flex-col '><label className={'font-bold'} htmlFor="totalFemales">Total Females In Household</label>
                     <input
                         type="number"
                         id="totalFemales"
                         name="totalFemales"
                         value={formData?.demographics?.totalFemales ?? 0}
                         onChange={handleInputChange}
+                        className={'pl-1'}
                         required
                     />
                 </div>
@@ -49,7 +52,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                     />
                 </div>
             </div>
-
+            <h1 className={'mb-4 mt-4'}>Ethnicity</h1>
             <div className={styles.componentWrapper}>
                 <label htmlFor="whiteOrCaucasian">White/Caucasian</label>
                 <input
