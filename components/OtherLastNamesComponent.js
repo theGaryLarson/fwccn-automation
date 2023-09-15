@@ -3,7 +3,6 @@ import {useState} from "react";
 import style from "./AdultComponent.module.css";
 import { ordinalNumber } from "../lib/util";
 
-// applicant race information
 export default function OtherLastNamesComponent({formData, onComponentInputChange }) {
     const [hasOtherNames, setHasOtherNames] = useState(formData?.otherNames?.hasOtherNames ?? false)
     const [otherNames, setOtherNames] = useState(formData?.otherNames?.additionalNames ?? [])
