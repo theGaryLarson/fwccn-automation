@@ -39,3 +39,7 @@ next-env.d.ts
 /.idea/jsLibraryMappings.xml
 /.idea/sqldialects.xml
 /.env.production
+/xlsx/2023-Data-FWCCN.csv
+/xlsx/2018-23 FWCCN data.xlsx
+/xlsx/model2023.js
+/xlsx/model2023.js
