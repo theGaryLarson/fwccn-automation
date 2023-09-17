@@ -132,7 +132,7 @@ function transformRecord2023(r) {
  const transformedData2023 = data.map( clientRecord => {
      return transformRecord2023(clientRecord);
 });
-fs.writeFileSync('transformedData2023.js', JSON.stringify(transformedData2023, null, 2))
+fs.writeFileSync('transformedData2023.json', JSON.stringify(transformedData2023, null, 2))
 
 
 
