@@ -87,9 +87,9 @@ import {toast} from "react-toastify";
                     >
                          <span className="font-bold">
                             <div>
-                                <p>{item.fName + ' ' + item.lName + " #" + item.idSource.socialSecLastFour}</p>
-                                <p>{'Date of Service: ' + dateFormatNYears(item.dateOfService, 0)}</p>
-                                <p className='text-gray-500'>{ 'Submitted: ' + dateFormatNYears(item?.timestamp.slice(0, 10), 0) }</p>
+                                <p>{item.fName + ' ' + item.lName + " #" + item?.idSource.socialSecLastFour}</p>
+                                <p>{'Date of Service: ' + dateFormatNYears(item.dateOfService, 0) }</p>
+                                <p className='text-gray-500'>{ /*item?.timestamp ?*/ 'Submitted: ' /*+ dateFormatNYears(item?.timestamp.slice(0, 10), 0) : 'Submitted: '*/}</p>
                             </div>
                          </span>
                     </button>
@@ -236,7 +236,8 @@ import {toast} from "react-toastify";
                                                                     }
                                                                 </>
                                                             )
-                                                            : " -"
+                                                            // handles the insertion of hard coded AMI from excel imports
+                                                            : (item?.houseHoldIncome?.percentOfAnnualAmi ? " " + item?.houseHoldIncome?.percentOfAnnualAmi + "%" : " -")
                                                     }
                                                 </p>
                                             </div>
