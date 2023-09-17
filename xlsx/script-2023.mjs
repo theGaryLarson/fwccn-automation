@@ -25,7 +25,7 @@ function transformRecord2023(r) {
         timestamp: createTimeStamp(),
         // DO NOT HAVE ENOUGH INFO TO DETERMINE DENIED/NO-RETURN OPTED FOR NO-RETURN LESS NEGATIVE CONNOTATION
         status: r['PROMISE FILLED'] ? 'APPROVED' : 'NO-RETURN',
-        dateOfService: r['DATE OF SERVICE'],
+        dateOfService: r['DATE OF SERVICE']?.toISOString().split('T')[0],
         actionTaken: {
             ...templateRecord23.actionTaken,
             promiseFilled: r['PROMISE FILLED'],
