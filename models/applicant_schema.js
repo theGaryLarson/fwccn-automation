@@ -1077,7 +1077,7 @@ const applicantSchema = new Schema({
 applicantSchema.pre('save', function(next) {
     if (this.dateOfService && this.dateOfService.trim()) {
         // Parse dateOfService as a local date (without time component)
-        const dateComponents = this.dateOfService.split('-').map(Number);
+        const dateComponents = this.dateOfService.split('T')[0].split('-').map(Number);
         this.serviceDate = new Date(dateComponents[0], dateComponents[1] - 1, dateComponents[2]);
     } else if (this.timestamp && this.timestamp.trim()) {
         // Parse timestamp as a local date (without time component)
