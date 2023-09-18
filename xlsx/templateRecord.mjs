@@ -1,14 +1,14 @@
-const templateRecord23 ={
+const templateRecord ={
     timestamp: '',
     dateOfService: '', // DATE OF SERVICE HERE
-                       // 5 states PENDING, APPROVED, DENIED, APPROVED-OVERRIDE, NO-RETURN
-    status: 'PENDING',
+    serviceDate: undefined,
+    status: 'PENDING', // 5 states PENDING, APPROVED, DENIED, APPROVED-OVERRIDE, NO-RETURN
     referredBy: '',
     interviewer: '',
     actionTaken: {
         secondInterviewer: '',
         fundSource: '',
-        actionNotes: '2023 EXCEL IMPORT\n NO INCOME SOURCES \n NO INTERVIEWER RECORD \n VERIFICATION ASSUMED\n DISABLED is set to false by default. NO ENTRY', // AMT RENT PAID, AMT GAS, AMT MOTEL, AMT BUS are all prepended with <HEADER>: value
+        actionNotes: '2021 EXCEL IMPORT\n\tNO INCOME SOURCE DATA\n\tNO INTERVIEWER RECORD DATA\n VERIFICATION ASSUMED BASED ON PROMISE FILLED\n\t\n\tNEED SUMMARY DOES NOT DISPLAY KIDS/OTHER ADULTS SEE DEMOGRAPHICS IN FORM PAGE', // AMT RENT PAID, AMT GAS, AMT MOTEL, AMT BUS are all prepended with <HEADER>: value
         promiseFilled: '', // PROMISE FILLED HERE
         amountPromised: 0, // PROMISE AMT. header here
         amountGivenToday: 0,
@@ -33,8 +33,8 @@ const templateRecord23 ={
     licensePlate: '',
     licensePlateState: 'WA',
     isBusPrimaryTransport: false,
-    reasonForNeed: '[EXCEL 2023 ENTRY. NO DATA]',
-    futurePlans: '[EXCEL 2023 ENTRY. NO DATA]',
+    reasonForNeed: '[EXCEL 2021 ENTRY. NO DATA]',
+    futurePlans: '[EXCEL 2021 ENTRY. NO DATA]',
     fName: '', // FNAME header
     middleInitial: '', // MI header
     lName: '', // LNAME header
@@ -48,10 +48,10 @@ const templateRecord23 ={
             // }
         ]
     },
-    applicantGender: '[EXCEL 2023 ENTRY. NO DATA]',
+    applicantGender: '[NO DATA]',
     applicantAge: undefined,
     phone: '', // REMARKS/TELE. #
-    email: '[EXCEL 2023 ENTRY. NO DATA]',
+    email: '[NO DATA]',
     disabled: false,
     idSource: {
         driverLicenseOrId: '', // ID header goes here
@@ -63,11 +63,11 @@ const templateRecord23 ={
     homelessness: {
         isHomeless: false, // HMLS -> mark true
         durationXpHomelessness: 0,
-        placeStayedRecently: '[EXCEL 2023 ENTRY. NO DATA]',
-        whyHomeless: '[EXCEL 2023 ENTRY. NO DATA.]', // ADDRESS
+        placeStayedRecently: '[EXCEL 2021 ENTRY. NO DATA]',
+        whyHomeless: '[EXCEL 2021 ENTRY. NO DATA.]', // ADDRESS
         tempAddress: {
             street1: '',
-            street2: '[EXCEL 2023 ENTRY. TRANSFER FROM STREET1 FIELD.]',
+            street2: ' ',
             city: '',
             state: 'WA',
             zip: ''
@@ -109,7 +109,7 @@ const templateRecord23 ={
     homeAddress: {
         aptName: '', // APT/MOTEL NAME
         homeStreet1: '', // ADDRESS
-        homeStreet2: '[EXCEL 2023 ENTRY. TRANSFER FROM STREET1 FIELD.]',
+        homeStreet2: undefined,
         homeCity: '', // CITY
         homeState: 'WA',
         homeZip: '', // ZIP
@@ -132,10 +132,10 @@ const templateRecord23 ={
         fullName: '',
         landLordPhone: '',
         landLordAddress: {
-            landLordStreet1: '[EXCEL 2023 ENTRY. NO DATA.]',
-            landLordStreet2: '[EXCEL 2023 ENTRY. NO DATA.]',
-            landLordCity: '[EXCEL 2023 ENTRY. NO DATA.]',
-            landLordState: '[EXCEL 2023 ENTRY. NO DATA.]',
+            landLordStreet1: '[EXCEL 2021 ENTRY. NO DATA.]',
+            landLordStreet2: '[EXCEL 2021 ENTRY. NO DATA.]',
+            landLordCity: '[EXCEL 2021 ENTRY. NO DATA.]',
+            landLordState: '[EXCEL 2021 ENTRY. NO DATA.]',
             landLordZip: undefined
         }
     },
@@ -143,13 +143,13 @@ const templateRecord23 ={
         totalHouseholdIncome: undefined,
         houseHoldIncomePastYear: undefined,
         totalSupportMembers: undefined,
-        singleHeadOfHouseHold: 'No', // states: 'No', 'Yes-male', 'Yes-female'
+        singleHeadOfHouseHold: 'NO-DATA', // states: 'No', 'Yes-male', 'Yes-female'
         incomeLevel: '', //INC BELOW 30  or INC BELOW 40
         percentOfAnnualAmi: undefined,
-        incomeSituation: '[EXCEL 2023. NO DATA. SEE DEMOGRAPHICS FOR HOUSEHOLD SIZE]',
+        incomeSituation: '[EXCEL 2021. NO DATA. SEE DEMOGRAPHICS FOR HOUSEHOLD SIZE]',
         incomeSources: [
             {
-                name: "[EXCEL 2023. NO DATA]",
+                name: "[EXCEL 2021. NO DATA]",
                 peopleCount: 0
             }
         ],
@@ -198,4 +198,4 @@ const templateRecord23 ={
     }
 }
 
-export default templateRecord23
+export default templateRecord
