@@ -89,12 +89,13 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                 <select
                     id="singleHeadOfHouseHold"
                     name="singleHeadOfHouseHold"
-                    value={formData?.houseHoldIncome?.singleHeadOfHouseHold??'No'}
+                    value={formData?.houseHoldIncome?.singleHeadOfHouseHold??'NO-DATA'}
                     onChange={handleInputChange}
                 >
                     <option value={'No'}>No, Applicant not Single</option>
-                    <option value={'Yes-male'}>Yes, Single Male Head of Household</option>
                     <option value={'Yes-female'}>Yes, Single Female Head of Household</option>
+                    <option value={'Yes-male'}>Yes, Single Male Head of Household</option>
+                    <option value={'NO-DATA'}>NO DATA. IMPORTED FROM EXCEL</option>
                 </select>
             </div>
             <div className={styles.componentWrapper}>
