@@ -260,10 +260,10 @@ import {toast} from "react-toastify";
                                                 {
                                                     !item?.homelessness?.isHomeless ? (
                                                         <>
-                                                            <p className="ml-1">{item?.homeAddress?.aptName}</p>
-                                                            <p className="ml-1">{item?.homeAddress?.homeStreet1}</p>
-                                                            <p className="ml-1">{item?.homeAddress?.homeStreet2}</p>
-                                                            <p className="ml-1">{item?.homeAddress?.homeCity + " " + item?.homeAddress?.homeState + ", " + item?.homeAddress?.homeZip}</p>
+                                                            <p className="ml-1">{ item?.homeAddress?.aptName ? item?.homeAddress?.aptName : ''}</p>
+                                                            <p className="ml-1">{ item?.homeAddress?.homeStreet1 ? item?.homeAddress?.homeStreet1 : ''}</p>
+                                                            <p className="ml-1">{item?.homeAddress?.homeStreet2 ? item?.homeAddress?.homeStreet2 : ''}</p>
+                                                            <p className="ml-1">{item?.homeAddress?.homeCity && item?.homeAddress?.homeZip ? item?.homeAddress?.homeCity + " " + item?.homeAddress?.homeState + ", " + item?.homeAddress?.homeZip : ''}</p>
                                                         </>
                                                     ) : (
                                                         <>
