@@ -61,6 +61,18 @@ export default function NeedSummaryComponent(props) {
                                     readOnly
                                 />
                             </div>
+                            <div className={"flex flex-col w-full items-center"}>
+                                <p className="font-bold bg-gray-700 text-white mb-2 text-center w-full">Future Plans</p>
+                                <textarea
+                                    id="future-plans"
+                                    name="future-plans"
+                                    value={focusedItem.futurePlans}
+                                    className="h-[150px] bg-blue-50 border-indigo-700 w-full p-4 pt-1  resize-none"
+                                    onClick={() => toggleTextAreaSize(futurePlansRef)}
+                                    ref={futurePlansRef}
+                                    readOnly
+                                />
+                            </div>
                             <div className={"w-full"}>
                                 {/* List of children relationships */}
                                 <h2 className="w-full m-0 font-bold bg-gray-700 text-white mt-2 mb-2 text-center">{hasChildren ? 'Children In Household:' : 'No Children In Household'}</h2>
