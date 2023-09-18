@@ -8,7 +8,7 @@ const applicantSchema = new Schema({
     },
     dateOfService: {
         type: String,
-        match: [/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/, 'Format must be YYYY-MM-DD HH:MM:SS'],
+         // match: [/^\d{4}-\d{2}-\d{2}$/, 'Format must be YYYY-MM-DD'],
         required: false
     },
     serviceDate: {
