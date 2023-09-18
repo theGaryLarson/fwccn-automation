@@ -237,7 +237,7 @@ import {toast} from "react-toastify";
                                                                 </>
                                                             )
                                                             // handles the insertion of hard coded AMI from excel imports
-                                                            : (item?.houseHoldIncome?.percentOfAnnualAmi ? " " + item?.houseHoldIncome?.percentOfAnnualAmi + "%" : " -")
+                                                            : (item?.houseHoldIncome?.percentOfAnnualAmi ? " " + item?.houseHoldIncome?.percentOfAnnualAmi + "%" : "NO DATA.")
                                                     }
                                                 </p>
                                             </div>
