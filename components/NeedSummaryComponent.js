@@ -162,20 +162,6 @@ export default function NeedSummaryComponent(props) {
                                     </table>
                                 )}
                             </div>
-
-                        </div>
-
-                        <div className={"flex flex-col w-full items-center"}>
-                            <p className="font-bold bg-gray-700 text-white mb-2 text-center w-full">Future Plans</p>
-                            <textarea
-                                id="future-plans"
-                                name="future-plans"
-                                value={focusedItem.futurePlans}
-                                className="h-[150px] bg-blue-50 border-indigo-700 w-full p-4 pt-1  resize-none"
-                                onClick={() => toggleTextAreaSize(futurePlansRef)}
-                                ref={futurePlansRef}
-                                readOnly
-                            />
                         </div>
                     </div>
                 )
