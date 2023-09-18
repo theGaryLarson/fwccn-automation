@@ -689,7 +689,7 @@ const applicantSchema = new Schema({
         },
         singleHeadOfHouseHold: {
             type: String,
-            default: "No"
+            default: "NO-DATA"
         },
         incomeLevel: {
             type: String,
