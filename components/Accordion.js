@@ -87,14 +87,14 @@ import {toast} from "react-toastify";
                     >
                          <span className="font-bold">
                             <div>
-                                <p>
+                                <div>
                                     {item.fName ? item.fName : ''}
                                     {item.lName ? ' ' + item.lName : ''}
-                                    {item?.idSource?.driverLicenseOrId && !item?.idSource?.socialSecLastFour ? <><br />ID: {item?.idSource?.driverLicenseOrId}</> : ''}
-                                </p>
-                                <p>
-                                    {item.dateOfService ? <><hr className={' mt-2 border-1 border-black h-0.5'} />Date of Service: {new Date(item.dateOfService).toUTCString().slice(0, 16)}</> : <><hr />Date of Service: Awaiting Service</>}
-                                </p>
+                                    {item?.idSource?.socialSecLastFour ? ' #' + `${item?.idSource?.socialSecLastFour}` : (item?.idSource?.driverLicenseOrId ? <p>ID: {item?.idSource?.driverLicenseOrId}</p> : '')}
+                                </div>
+                                <div>
+                                    {item.dateOfService ? <div className={'mt-2'}>Date of Service: {new Date(item.dateOfService).toUTCString().slice(0, 16)}</div> : <div className={'mt-2'}>Date of Service: Awaiting Service</div>}
+                                </div>
 
                                 <p className='text-gray-500'>{ 'Submitted: ' + dateFormatNYears(item?.timestamp.slice(0, 10), 0) }</p>
                             </div>
