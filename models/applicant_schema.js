@@ -1097,7 +1097,7 @@ applicantSchema.pre('findOneAndUpdate', function(next) {
 
     if (update.dateOfService && update.dateOfService.trim()) {
         // Parse dateOfService as a local date (without time component)
-        const dateComponents = update.dateOfService.split('-').map(Number);
+        const dateComponents = update.dateOfService.split('T')[0].split('-').map(Number);
         update.serviceDate = new Date(dateComponents[0], dateComponents[1] - 1, dateComponents[2]);
     } else if (update.timestamp && update.timestamp.trim()) {
         // Parse timestamp as a local date (without time component)
