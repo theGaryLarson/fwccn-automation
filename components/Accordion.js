@@ -87,9 +87,13 @@ import {toast} from "react-toastify";
                     >
                          <span className="font-bold">
                             <div>
-                                <p>{item.fName + ' ' + item.lName + " #" + item?.idSource.socialSecLastFour}</p>
                                 <p>
-                                    {item.dateOfService ? 'Date of Service: ' + new Date(item.dateOfService).toUTCString().slice(0, 16) : (item.status === 'NO-RETURN' ? 'DATE OF SERVICE: NO-RETURN' : 'Date of Service: Awaiting Service')}
+                                    {item.fName ? item.fName : ''}
+                                    {item.lName ? ' ' + item.lName : ''}
+                                    {item?.idSource?.driverLicenseOrId && !item?.idSource?.socialSecLastFour ? <><br />ID: {item?.idSource?.driverLicenseOrId}</> : ''}
+                                </p>
+                                <p>
+                                    {item.dateOfService ? <><hr className={' mt-2 border-1 border-black h-0.5'} />Date of Service: {new Date(item.dateOfService).toUTCString().slice(0, 16)}</> : <><hr />Date of Service: Awaiting Service</>}
                                 </p>
 
                                 <p className='text-gray-500'>{ 'Submitted: ' + dateFormatNYears(item?.timestamp.slice(0, 10), 0) }</p>
