@@ -45,7 +45,7 @@ export default function Home() {
                         name={'report-chart'}
                         type="button"
                         className={'text-black px-4 rounded hover:bg-gray-300 border-2 hover:border-black'}
-                        onClick={() => window.open("https://charts.mongodb.com/charts-project-0-frmcq/public/dashboards/2bc17abc-2b75-4475-9476-bc335f4ff256", "_blank", "noopener,noreferrer")}
+                        onClick={() => window.open("https://charts.mongodb.com/charts-project-0-dksjn/public/dashboards/65075121-56a9-4840-8318-58afe3a7b94f", "_blank", "noopener,noreferrer")}
                     >
                         Open Charts
                     </button>
