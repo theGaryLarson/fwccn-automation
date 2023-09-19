@@ -9,54 +9,46 @@ export default async function updateApplicantRecord(req, res) {
     const { retrieveAll, firstName, lastName, lastFour, driverLicenseOrId, homeStreet1, homeStreet2, homeZip } = req.body;
 
     // Build our search condition
-    const condition = [];
+    const condition = { $and: []};
     const nameConditions = [];
-    const otherConditions = {};
 
-    if (firstName && firstName !== "") {
+    if (firstName) {
         nameConditions.push({ "$or": [
                 { "fName": { $regex: new RegExp(`^${firstName}$`, 'i') } },
                 { "otherNames.additionalNames.otherFirstName": { $regex: new RegExp(`^${firstName}$`, 'i') } },
                 { "otherAdults.adults.adultFName": { $regex: new RegExp(`^${firstName}$`, 'i') } },
             ]});
     }
-
-    if (lastName && lastName !== "") {
+    if (lastName) {
         nameConditions.push({ "$or": [
                 { "lName": { $regex: new RegExp(`^${lastName}$`, 'i') } },
                 { "otherNames.additionalNames.otherLastName": { $regex: new RegExp(`^${lastName}$`, 'i') } },
                 { "otherAdults.adults.adultLName": { $regex: new RegExp(`^${lastName}$`, 'i') } }, // New condition
             ]});
     }
-
     if (nameConditions.length > 0) {
-        otherConditions["$and"] = nameConditions;
+        condition.$and.push({ $and: nameConditions });
     }
-
-    if (lastFour && lastFour !== "") {
-        otherConditions["idSource.socialSecLastFour"] = lastFour;
+    if (lastFour) {
+        condition.$and.push({ "idSource.socialSecLastFour": lastFour });
     }
-    if (driverLicenseOrId && driverLicenseOrId !== "") {
-        otherConditions["idSource.driverLicenseOrId"] = driverLicenseOrId;
+    if (driverLicenseOrId) {
+        condition.$and.push({ "idSource.driverLicenseOrId": driverLicenseOrId });
     }
-
-    if (homeStreet1 && homeStreet1 !== "") {
-        otherConditions["homeAddress.homeStreet1"] = homeStreet1;
+    if (homeStreet1) {
+        condition.$and.push({ "homeAddress.homeStreet1": homeStreet1 });
     }
-    if (homeStreet2 && homeStreet2 !== "") {
-        otherConditions["homeAddress.homeStreet2"] = homeStreet2;
+    if (homeStreet2) {
+        condition.$and.push({ "homeAddress.homeStreet2": homeStreet2 });
     }
-    if (homeZip && homeZip !== "") {
-        otherConditions["homeAddress.homeZip"] = homeZip;
-    }
-
-    if (Object.keys(otherConditions).length > 0) {
-        condition.push(otherConditions);
+    if (homeZip) {
+        condition.$and.push({ "homeAddress.homeZip": homeZip });
     }
 
     // Find applicants based on the built condition
-    if (retrieveAll === "yes" || condition.length > 0) {
-        const query = retrieveAll === "yes" ? {} : { "$and": condition };
+    if (retrieveAll === "yes" || condition.$and.length > 0) {
+        const query = retrieveAll === "yes" ? {} : condition;
+        console.log('Query:', JSON.stringify(query, null, 2));
         const retrievedRecords = await Applicant.find(query).exec();
         retrievedRecords.sort((a, b) => {
 
