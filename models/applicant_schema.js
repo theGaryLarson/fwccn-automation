@@ -227,7 +227,7 @@ const applicantSchema = new Schema({
                 match: [/^([A-Z]{2}|)$/, "Enter 2-letter state abbreviation"]
             },
             socialSecLastFour: {
-                type: Number,
+                type: String, //fixme may need to change back to Number
                 validate: {
                     validator: function (v) {
                         return /[0-9]{4}/.test(v.toString());
