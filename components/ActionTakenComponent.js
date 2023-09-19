@@ -140,7 +140,7 @@ export default function ActionTakenComponent(props) {
                         type="date"
                         id="dateOfService"
                         name="dateOfService"
-                        value={item?.dateOfService.split('T')[0]??''}
+                        value={item?.dateOfService?.split('T')[0]??''}
                         placeholder='Second Interviewer for Approval'
                         onChange={handleDateOfService}
                         className="bg-yellow-200 w-full pl-1"
