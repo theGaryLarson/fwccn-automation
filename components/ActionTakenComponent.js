@@ -318,7 +318,7 @@ export default function ActionTakenComponent(props) {
             {
                 (
                     <div>
-                        <h2 className={'mt-4 w-full border-t border-black pt-1 font-bold'}>MOTEL <span className={'font-medium font-normal'}>(optional)</span></h2>
+                        <h2 className={'mt-4 w-full border-t border-black pt-1 font-bold'}>MOTEL <span className={'font-normal'}>(optional)</span></h2>
                         <div className={'flex flex-row-3'}>
                             <div className={'flex-1'}>
                                 <label htmlFor={'motelLocation'} className={'whitespace-nowrap mr-4'}>
