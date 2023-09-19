@@ -59,6 +59,15 @@ export default async function updateApplicantRecord(req, res) {
         const query = retrieveAll === "yes" ? {} : { "$and": condition };
         const retrievedRecords = await Applicant.find(query).exec();
         retrievedRecords.sort((a, b) => {
+
+            // Place records with 'NO-RETURN' status at the bottom
+            if (a.status === 'NO-RETURN' && b.status !== 'NO-RETURN') {
+                return 1;
+            }
+            if (b.status === 'NO-RETURN' && a.status !== 'NO-RETURN') {
+                return -1;
+            }
+
             const dateA = new Date(a.dateOfService);
             const dateB = new Date(b.dateOfService);
 
