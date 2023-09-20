@@ -4,8 +4,6 @@ import {fileURLToPath} from 'url'
 import fs from 'fs';
 import templateRecord from "./templateRecord.mjs";
 
-
-
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
@@ -41,7 +39,9 @@ function readAndTransformData(filename, year) {
             timestamp: createTimeStamp(),
             // DO NOT HAVE ENOUGH INFO TO DETERMINE DENIED/NO-RETURN OPTED FOR NO-RETURN LESS NEGATIVE CONNOTATION
             status: r['CHECK #'] ? 'APPROVED' : 'NO-RETURN',
-            dateOfService: dateOfService,
+            dateOfService: {
+                $date: dateOfService
+            },
             serviceDate: new Date(dateOfService),
             actionTaken: {
                 ...templateRecord.actionTaken,
