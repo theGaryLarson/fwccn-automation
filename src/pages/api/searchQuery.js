@@ -48,7 +48,6 @@ export default async function updateApplicantRecord(req, res) {
     // Find applicants based on the built condition
     if (retrieveAll === "yes" || condition.$and.length > 0) {
         const query = retrieveAll === "yes" ? {} : condition;
-        console.log('Query:', JSON.stringify(query, null, 2));
         const retrievedRecords = await Applicant.find(query).exec();
         retrievedRecords.sort((a, b) => {
 
