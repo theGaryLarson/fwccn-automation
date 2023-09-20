@@ -69,7 +69,7 @@ function readAndTransformData(filename, year) {
             idSource: {
                 ...templateRecord.idSource,
                 driverLicenseOrId: r['ID']?.length > 4 ? r['ID'] : `[EXCEL ${year} ENTRY. NO DATA]`,
-                isValidLicense: r['SERVICE'] === 'GAS',
+                isValidLicense: r['SERVICE']?.trim() === 'GAS',
                 socialSecLastFour: typeof r['ID'] === 'number' ? r['ID'] : "",
             },
             homelessness: {
