@@ -29,7 +29,7 @@ export default function  AssistanceNeedComponent({formData, onComponentInputChan
                     <option value={'rent'}>Rent Assistance</option>
                     <option value={'gasoline'}>Gas Voucher</option>
                     <option value={'busTicket'}>Bus Ticket</option>
-                    <option value={'motel'}>Bus Ticket</option>
+                    <option value={'motel'}>Motel</option>
 
                 </select>
             </div>
