@@ -119,7 +119,7 @@ const applicantSchema = new Schema({
     },
     helpRequested: {
         type: String,
-        enum: ['', 'rent', 'gasoline', 'busTicket'],
+        enum: ['', 'rent', 'gasoline', 'busTicket', 'motel'],
         default: 'rent'
     },
     licensePlate: {
