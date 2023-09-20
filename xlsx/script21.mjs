@@ -95,7 +95,7 @@ function readAndTransformData(filename, year) {
                 homeStreet1: r['ADDRESS'],
                 homeCity: r['CITY'],
                 homeZip: r['ZIP'],
-                verified: !!r['CHECK #'] && r['SERVICE'] === 'RENT'
+                verified: !!r['CHECK #'] && r['SERVICE']?.trim() === 'RENT'
             } : {},
             landLord: {
                 ...templateRecord.landLord,
