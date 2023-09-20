@@ -48,3 +48,5 @@ next-env.d.ts
 /xlsx/2021-Data-FWCCN.xlsx
 /xlsx/transformedData2021.json
 /xlsx/fwccn.2021.applicants.json
+/xlsx/2020-Data-FWCCN.xlsx
+/xlsx/transformedData2020.json
