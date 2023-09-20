@@ -77,7 +77,7 @@ function readAndTransformData(filename, year) {
                 isHomeless: !!r['HMLS'],
                 tempAddress: !!r['HMLS'] ? {
                     ...templateRecord.homelessness.tempAddress,
-                    street1: r['APT/MOTEL NAME'],
+                    street1: r['APT/MOTEL NAME']?.trim(),
                     street2: r['ADDRESS']?.trim(),
                     city: r['CITY']?.trim(),
                     zip: r['ZIP']
