@@ -25,7 +25,7 @@ function readAndTransformData(filename, year) {
         }
 
         const transformedRecord = transformRecord(clientRecord, dateOfService);
-        previousDateOfService = transformedRecord.dateOfService;
+        previousDateOfService = null; // transformedRecord.dateOfService
         return transformedRecord;
     });
     fs.writeFileSync(`transformedData${year}.json`, JSON.stringify(transformedData, null, 2))
@@ -40,15 +40,15 @@ function readAndTransformData(filename, year) {
             ...templateRecord,
             timestamp: createTimeStamp(),
             // DO NOT HAVE ENOUGH INFO TO DETERMINE DENIED/NO-RETURN OPTED FOR NO-RETURN LESS NEGATIVE CONNOTATION
-            status: r['AMT'] && (r['SERVICE']?.trim() === 'BUS' || r['SERVICE']?.trim() === 'GAS') ? 'APPROVED' : (r['CHECK #'] ? 'APPROVED' : 'NO-RETURN'),
+            status: r['AMT']  ?  'APPROVED' : 'NO-RETURN',
             dateOfService: dateOfService,
             serviceDate: {
                $date: dateOfService // 2020 has a lot of missing CHECK # and DATE OF SERVICE fields
             },
             actionTaken: {
                 ...templateRecord.actionTaken,
-                actionNotes: r['NOTES'] ? r['NOTES'] + templateRecord.actionTaken.actionNotes : templateRecord.actionTaken.actionNotes,
-                promiseFilled: r['DATE OF SERVICE'],
+                actionNotes: r['NOTES'] ? '2020 EXCEL IMPORT\n\n' + r['NOTES'] + '\n\n' + templateRecord.actionTaken.actionNotes : templateRecord.actionTaken.actionNotes,
+                promiseFilled: r['PROMISE FILLED'],
                 amountPromised: r['PROMISE AMT.'],
                 checkNumber: r['CHECK #'],
                 checkAmount: r['AMT'],
@@ -56,8 +56,8 @@ function readAndTransformData(filename, year) {
                 motelDurationDays: r["TOTAL NIGHTS"] ? r["TOTAL NIGHTS"] : '',
 
             },
-            helpRequested: r['SERVICE']?.trim() === 'RENT' ? 'rent' : (r['SERVICE']?.trim() === 'GAS' ? 'gasoline' : (r['SERVICE']?.trim() === 'BUS' ? 'busTicket' : '')),
-            licensePlate: r['SERVICE']?.trim() === 'GAS' ? `[EXCEL ${year} ENTRY. NO DATA]` : '',
+            helpRequested: r['SERVICE']?.trim() === 'RENT' ? 'rent' : (r['SERVICE']?.trim() === 'GAS' ? 'gasoline' : (r['SERVICE']?.trim() === 'BUS' ? 'busTicket' : (r['SERVICE']?.trim() === 'MOTEL' ? 'motel' : ''))),
+            licensePlate: r['SERVICE']?.trim() === 'GAS' ? `[ NO DATA ]` : '',
             licensePlateState: r['SERVICE']?.trim() === 'GAS' ? 'WA' : '',
             isBusPrimaryTransport: r['SERVICE']?.trim() === 'BUS',
             reasonForNeed: `[EXCEL ${year} ENTRY. NO DATA]`,
@@ -70,9 +70,9 @@ function readAndTransformData(filename, year) {
             phone: `[NO DATA]`, // r['REMARKS/TELE. #'] ? r['REMARKS/TELE. #']?.split('-')[0] + r['REMARKS/TELE. #']?.split('-')[1] + r['REMARKS/TELE. #']?.split('-')[2] : '',
             idSource: {
                 ...templateRecord.idSource,
-                driverLicenseOrId: r['ID']?.toString().length > 4 ? r['ID'] : `[EXCEL ${year} ENTRY. NO DATA]`,
+                driverLicenseOrId: r['ID']?.length > 4 ? r['ID'] : `[EXCEL ${year} ENTRY. NO DATA]`,
                 isValidLicense: r['SERVICE']?.trim() === 'GAS',
-                socialSecLastFour: typeof r['ID'] === 'number' && String(r['ID']).length <= 4 ? String(r['ID']).padStart(4, '0') : "",
+                socialSecLastFour: typeof r['ID'] === 'number' && String(r['ID']).length <= 4 ? String(r['ID']).padStart(4, '0') : '',
             },
             homelessness: {
                 ...templateRecord.homelessness,
