@@ -92,8 +92,8 @@ import {toast} from "react-toastify";
                                     {item.lName ? ' ' + item.lName : ''}
                                     {item?.idSource?.socialSecLastFour ? ' #' + `${item?.idSource?.socialSecLastFour}` : (item?.idSource?.driverLicenseOrId ? <p>ID: {item?.idSource?.driverLicenseOrId}</p> : '')}
                                 </div>
-                                <div>
-                                    {item.dateOfService ? <div className={'mt-2'}>Date of Service: {new Date(item.dateOfService).toUTCString().slice(0, 16)}</div> : <div className={'mt-2'}>Date of Service: Awaiting Service</div>}
+                                <div className={'mt-2'}>
+                                   Date of Service: {item?.dateOfService ? new Date(item?.dateOfService).toUTCString().slice(0, 16) : (new Date(item?.dateOfService).getTime() <= new Date("2023-09-05").getTime() ? '[ NO-DATA ]' : 'Awaiting Service') }
                                 </div>
 
                                 <p className='text-gray-500'>{ 'Submitted: ' + dateFormatNYears(item?.timestamp.slice(0, 10), 0) }</p>
