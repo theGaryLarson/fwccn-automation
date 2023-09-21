@@ -52,3 +52,9 @@ next-env.d.ts
 /xlsx/transformedData2020.json
 /xlsx/2023-Data-FWCCN.xlsx
 /xlsx/2018-2019-Data-FWCCN.xlsx
+/xlsx/csv/2018-2019-Data-FWCCN.csv
+/xlsx/csv/2020-Data-FWCCN.csv
+/xlsx/csv/2021-Data-FWCCN.csv
+/xlsx/csv/2022-Data-FWCCN.csv
+/xlsx/csv/2023-Data-FWCCN.csv
+/xlsx/transformedData2018-2019.json
