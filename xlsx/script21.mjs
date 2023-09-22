@@ -16,7 +16,9 @@ function readAndTransformData(filename, year) {
 
     let previousDateOfService = null;
     const transformedData = data.map((clientRecord, index) => {
-        let dateOfService = clientRecord['DATE OF SERVICE'];
+        let dateOfService = clientRecord['DATE OF SERVICE'] ?
+            adjustForTimeZone(clientRecord['DATE OF SERVICE'])
+            : adjustForTimeZone('1492-10-12');
 
         if (!dateOfService && index > 0) {
             dateOfService = null; // previousDateOfService
