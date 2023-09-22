@@ -93,7 +93,22 @@ import {toast} from "react-toastify";
                                     {item?.idSource?.socialSecLastFour ? ' #' + `${item?.idSource?.socialSecLastFour}` : (item?.idSource?.driverLicenseOrId ? <p>ID: {item?.idSource?.driverLicenseOrId}</p> : '')}
                                 </div>
                                 <div className={'mt-2'}>
-                                   Date of Service: {item?.dateOfService ? new Date(item?.dateOfService).toUTCString().slice(0, 16) : (new Date(item?.dateOfService).getTime() <= new Date("2023-09-05").getTime() ? '[ NO-DATA ]' : 'Awaiting Service') }
+                                   Date of Service: {
+                                    item?.dateOfService
+                                        ? (
+                                            // oldest date imported is Oct 23 2018. A filler date of Oct 12 1492 is used
+                                            // where no data was submitted. This allows MongoDB charts to correctly filter dates
+                                            // as there cannot be any null or empty date values due to them causing errors.
+                                            new Date(item?.dateOfService).getTime() < new Date("2018-10-23").getTime()
+                                                ? '[ NO-DATA ]'
+                                                : new Date(item?.dateOfService).toUTCString().slice(0, 16)
+                                        )
+                                        : (
+                                            item?.dateOfService === ""
+                                                ? 'Awaiting Service'
+                                                : '[ NO-DATA ]'
+                                        )
+                                }
                                 </div>
 
                                 <p className='text-gray-500'>{ 'Submitted: ' + dateFormatNYears(item?.timestamp.slice(0, 10), 0) }</p>
