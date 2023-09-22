@@ -17,3 +17,5 @@ git reset --hard origin/main
 call npm ci
 call npm run build
 call npm run start
+
+pause
