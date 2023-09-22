@@ -1,3 +1,15 @@
+
+export function adjustForTimeZone(date) {
+    // Get the timezone offset in minutes and convert it to hours
+    const offsetHours = new Date(date).getTimezoneOffset() / 60;
+
+    // Adjust for Pacific Time (PT), which is UTC-7 or UTC-8
+    const adjustedHours = offsetHours === 420 ? 7 : 8;
+
+    // Format the date to ISO string and replace the hour part
+    return date.toISOString().replace(/T\d{2}/, `T${String(adjustedHours).padStart(2, '0')}`);
+}
+
 const templateRecord ={
     timestamp: '',
     dateOfService: '', // DATE OF SERVICE HERE
@@ -33,8 +45,8 @@ const templateRecord ={
     licensePlate: '',
     licensePlateState: 'WA',
     isBusPrimaryTransport: false,
-    reasonForNeed: '[EXCEL 2020 ENTRY. NO DATA]',
-    futurePlans: '[EXCEL 2020 ENTRY. NO DATA]',
+    reasonForNeed: '[EXCEL 2023 ENTRY. NO DATA]',
+    futurePlans: '[EXCEL 2023 ENTRY. NO DATA]',
     fName: '', // FNAME header
     middleInitial: '', // MI header
     lName: '', // LNAME header
@@ -63,8 +75,8 @@ const templateRecord ={
     homelessness: {
         isHomeless: false, // HMLS -> mark true
         durationXpHomelessness: 0,
-        placeStayedRecently: '[EXCEL 2020 ENTRY. NO DATA]',
-        whyHomeless: '[EXCEL 2020 ENTRY. NO DATA.]', // ADDRESS
+        placeStayedRecently: '[EXCEL 2023 ENTRY. NO DATA]',
+        whyHomeless: '[EXCEL 2023 ENTRY. NO DATA.]', // ADDRESS
         tempAddress: {
             street1: '',
             street2: ' ',
@@ -132,10 +144,10 @@ const templateRecord ={
         fullName: '',
         landLordPhone: '',
         landLordAddress: {
-            landLordStreet1: '[EXCEL 2020 ENTRY. NO DATA.]',
-            landLordStreet2: '[EXCEL 2020 ENTRY. NO DATA.]',
-            landLordCity: '[EXCEL 2020 ENTRY. NO DATA.]',
-            landLordState: '[EXCEL 2020 ENTRY. NO DATA.]',
+            landLordStreet1: '[EXCEL 2023 ENTRY. NO DATA.]',
+            landLordStreet2: '[EXCEL 2023 ENTRY. NO DATA.]',
+            landLordCity: '[EXCEL 2023 ENTRY. NO DATA.]',
+            landLordState: '[EXCEL 2023 ENTRY. NO DATA.]',
             landLordZip: undefined
         }
     },
@@ -146,10 +158,10 @@ const templateRecord ={
         singleHeadOfHouseHold: 'NO-DATA', // states: 'No', 'Yes-male', 'Yes-female', 'NO-DATA'
         incomeLevel: '', //INC BELOW 30  or INC BELOW 40
         percentOfAnnualAmi: undefined,
-        incomeSituation: '[EXCEL 2020. NO DATA. SEE DEMOGRAPHICS FOR HOUSEHOLD SIZE]',
+        incomeSituation: '[EXCEL 2023. NO DATA. SEE DEMOGRAPHICS FOR HOUSEHOLD SIZE]',
         incomeSources: [
             {
-                name: "[EXCEL 2020. NO DATA]",
+                name: "[EXCEL 2023. NO DATA]",
                 peopleCount: 0
             }
         ],
