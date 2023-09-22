@@ -23,7 +23,6 @@
     "wait-on": "7.0.1"
   },
   "devDependencies": {
-    "@faker-js/faker": "7.6.0",
-    "xlsx": "0.18.5"
+    "@faker-js/faker": "7.6.0"
   }
 }
