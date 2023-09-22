@@ -1079,7 +1079,12 @@ applicantSchema.pre('save', function(next) {
         // Parse dateOfService as a local date (without time component)
         const dateComponents = this.dateOfService.split('T')[0].split('-').map(Number);
         this.serviceDate = new Date(dateComponents[0], dateComponents[1] - 1, dateComponents[2]);
-    } else if (this.timestamp && this.timestamp.trim()) {
+    } else if (this.timestamp && this.timestamp.trim()
+        // Doing this because there is a lot of dates not entered but still need to filter them in mongodb charts for reporting
+        // which requires no dates to be null. I used 10-12-1492 as a filler date.
+        // This ensures that serviceDate does not get populated with this date.
+        // Currently the displayed date if set to this filler date in UI displays [ NO-DATA ]
+        && new Date(this.timestamp).getTime() > new Date("2018-01-01").getTime()) {
         // Parse timestamp as a local date (without time component)
         const dateComponents = this.timestamp.split(' ')[0].split('-').map(Number);
         this.serviceDate = new Date(dateComponents[0], dateComponents[1] - 1, dateComponents[2]);
@@ -1087,7 +1092,7 @@ applicantSchema.pre('save', function(next) {
         this.serviceDate = undefined;
     }
     if (this.actionTaken.promiseFilled && this.actionTaken.promiseFilled.trim()) {
-        this.actionTaken.promiseFilled = this.actionTaken.promiseFilled.replace('T00', 'T07');
+        this.actionTaken.promiseFilled = this.actionTaken.promiseFilled.replace('T00', 'T08');
     }
     next();
 });
@@ -1095,19 +1100,25 @@ applicantSchema.pre('save', function(next) {
 applicantSchema.pre('findOneAndUpdate', function(next) {
     const update = this.getUpdate();
 
-    if (update.dateOfService && update.dateOfService.trim()) {
+    if (update.dateOfService && update.dateOfService.trim()
+        && new Date(update.dateOfService).getTime() > new Date("2018-01-01").getTime()) {
         // Parse dateOfService as a local date (without time component)
         const dateComponents = update.dateOfService.split('T')[0].split('-').map(Number);
         update.serviceDate = new Date(dateComponents[0], dateComponents[1] - 1, dateComponents[2]);
-    } else if (update.timestamp && update.timestamp.trim()) {
+    } else if (update.timestamp && update.timestamp.trim()
+        // Doing this because there is a lot of dates not entered but still need to filter them in mongodb charts for reporting
+        // which requires no dates to be null. I used 10-12-1492 as a filler date.
+        // This ensures that serviceDate does not get populated with this date.
+        // Currently, the Date of Service date if set to this filler date in UI displays [ NO-DATA ]
+        && new Date(update.timestamp).getTime() > new Date("2018-01-01").getTime()) {
         // Parse timestamp as a local date (without time component)
         const dateComponents = update.timestamp.split(' ')[0].split('-').map(Number);
         update.serviceDate = new Date(dateComponents[0], dateComponents[1] - 1, dateComponents[2]);
     } else {
-        update.serviceDate = undefined;
+        // do nothing update.serviceDate = undefined;
     }
     if (update.actionTaken.promiseFilled && update.actionTaken.promiseFilled.trim()) {
-        update.actionTaken.promiseFilled = update.actionTaken.promiseFilled.replace('T00', 'T07');
+        update.actionTaken.promiseFilled = update.actionTaken.promiseFilled.replace('T00', 'T08');
     }
     next();
 });
