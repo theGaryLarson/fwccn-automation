@@ -45,7 +45,7 @@ function readAndTransformData(filename, year) {
             status: (r['RENT'] && r['AMT RENT PAID'] > 0) || (r['GAS'] && r['AMT GAS'] > 0) || (r['MOTEL'] && r['AMT MOTEL']) || (r['BUS'] && r['AMT BUS'] > 0)  ? 'APPROVED' : 'NO-RETURN',
             dateOfService: dateOfService,
             serviceDate: {
-                $date: r['PROMISE FILLED'] ? r['PROMISE FILLED'] : dateOfService
+                $date: dateOfService
             },
             actionTaken: {
                 ...templateRecord.actionTaken,
