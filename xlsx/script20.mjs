@@ -2,7 +2,7 @@ import path, {dirname} from 'path';
 import xlsx from 'xlsx';
 import {fileURLToPath} from 'url'
 import fs from 'fs';
-import templateRecord from "./templateRecord.mjs";
+import templateRecord, {adjustForTimeZone} from "./templateRecord.mjs";
 
 
 
@@ -18,7 +18,9 @@ function readAndTransformData(filename, year) {
 
     let previousDateOfService = null;
     const transformedData = data.map((clientRecord, index) => {
-        let dateOfService = clientRecord['DATE OF SERVICE'];
+        let dateOfService = clientRecord['DATE OF SERVICE'] ?
+            adjustForTimeZone(clientRecord['DATE OF SERVICE'])
+            : new Date('1492-10-12').toISOString().replace(/T\d{2}/, 'T08');
 
         if (!dateOfService && index > 0) {
             dateOfService = null; // previousDateOfService;
