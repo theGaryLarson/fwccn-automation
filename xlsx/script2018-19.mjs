@@ -69,7 +69,7 @@ function readAndTransformData(filename, year) {
             phone: `[NO DATA]`, // r['REMARKS/TELE. #'] ? r['REMARKS/TELE. #']?.split('-')[0] + r['REMARKS/TELE. #']?.split('-')[1] + r['REMARKS/TELE. #']?.split('-')[2] : '',
             idSource: {
                 ...templateRecord.idSource,
-                driverLicenseOrId: r['ID']?.length > 4 ? r['ID'] : `[EXCEL ${year} ENTRY. NO DATA]`,
+                driverLicenseOrId: r['ID']?.length > 4 ? r['ID'] : `[ NO ENTRY ]`,
                 isValidLicense: r['SERVICE']?.trim() === 'GAS',
                 socialSecLastFour: typeof r['ID'] === 'number' && String(r['ID']).length <= 4 ? String(r['ID']).padStart(4, '0') : '',
             },
