@@ -22,9 +22,9 @@ function readAndTransformData(filename, year) {
             adjustForTimeZone(clientRecord['DATE OF SERVICE'])
             : new Date('1492-10-12').toISOString().replace(/T\d{2}/, 'T08');
 
-        if (!dateOfService && index > 0) {
-            dateOfService = null; // previousDateOfService;
-        }
+        // if (!dateOfService && index > 0) {
+        //     dateOfService = null; // previousDateOfService;
+        // }
 
         const transformedRecord = transformRecord(clientRecord, dateOfService);
         previousDateOfService = null; // transformedRecord.dateOfService
