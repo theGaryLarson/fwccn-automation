@@ -237,7 +237,7 @@ import {toast} from "react-toastify";
                                             </div>
                                             <div className="whitespace-nowrap flex-1">
                                                 <p className=""><span
-                                                    className={"font-bold"}>Date of Service:</span> {item?.dateOfService?.split('T')[0]}</p>
+                                                    className={"font-bold"}>Date of Service:</span> {item?.dateOfService ? item?.dateOfService?.split('T')[0] : '[ NO DATA ]'}</p>
                                             </div>
                                             <div className="whitespace-nowrap flex-1">
                                                 <p className=""><span
