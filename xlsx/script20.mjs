@@ -49,7 +49,7 @@ function readAndTransformData(filename, year) {
             },
             actionTaken: {
                 ...templateRecord.actionTaken,
-                actionNotes: r['NOTES'] ? '2020 EXCEL IMPORT\n\n' + r['NOTES'] + '\n\n' + templateRecord.actionTaken.actionNotes : templateRecord.actionTaken.actionNotes,
+                actionNotes: r['NOTES'] ? '2020 EXCEL IMPORT\n\n' + r['NOTES'] + '\n\n' + templateRecord.actionTaken.actionNotes : '2020 EXCEL IMPORT\n\n' + templateRecord.actionTaken.actionNotes,
                 promiseFilled: r['PROMISE FILLED'],
                 amountPromised: r['PROMISE AMT.'],
                 checkNumber: r['CHECK #'],
