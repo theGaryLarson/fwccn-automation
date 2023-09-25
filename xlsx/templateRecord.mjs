@@ -20,7 +20,12 @@ const templateRecord ={
     actionTaken: {
         secondInterviewer: '',
         fundSource: '',
-        actionNotes: 'NO INCOME SOURCE DATA\n\nNEED SUMMARY DOES NOT DISPLAY KIDS OR OTHER ADULTS SEE DEMOGRAPHICS IN FORM PAGE\n\nNO INTERVIEWER RECORDED\n\nSTATUS ASSUMED BASED ON AMT. PAID FIELD\n\nVERIFICATION ASSUMED BASED ON AMT PAID. IF IT IS PAID ASSUMED THEY WERE VERIFIED.', // AMT RENT PAID, AMT GAS, AMT MOTEL, AMT BUS are all prepended with <HEADER>: value
+        actionNotes: 'NO INCOME SOURCE DATA. AMI SET BASED ON INC BELOW 30 OR INC BELOW 40 COLUMNS' +
+            '\n\nNEED SUMMARY DOES NOT DISPLAY CHILDREN FOR IMPORTED DATA.\nSEE DEMOGRAPHICS IN FORM PAGE (CLICK SHOW FORM).' +
+            '\n\nNO INTERVIEWER RECORDED FOR IMPORTED DATA.' +
+            '\n\nSTATUS: APPROVED. ASSUMED BASED ON CHECK # PRESENT FOR RENT.' +
+            '\n\nBUS, GAS, MOTEL APPROVED IF EXCEL DATA HAS AMT COLUMN GREATER THAN ZERO.' +
+            '\n\nVERIFICATION ASSUMED BASED ON APPROVAL.',
         promiseFilled: '', // PROMISE FILLED HERE
         amountPromised: 0, // PROMISE AMT. header here
         amountGivenToday: 0,
@@ -45,8 +50,8 @@ const templateRecord ={
     licensePlate: '',
     licensePlateState: 'WA',
     isBusPrimaryTransport: false,
-    reasonForNeed: '[EXCEL 2023 ENTRY. NO DATA]',
-    futurePlans: '[EXCEL 2023 ENTRY. NO DATA]',
+    reasonForNeed: '[EXCEL 2022 ENTRY. NO DATA]',
+    futurePlans: '[EXCEL 2022 ENTRY. NO DATA]',
     fName: '', // FNAME header
     middleInitial: '', // MI header
     lName: '', // LNAME header
@@ -68,15 +73,15 @@ const templateRecord ={
     idSource: {
         driverLicenseOrId: '', // ID header goes here
         expDate: '', // is not entered
-        idStateIssued: 'WA', // "WA" by default
+        idStateIssued: '', // "WA" by default
         socialSecLastFour: '',
         isValidLicense: false
     },
     homelessness: {
         isHomeless: false, // HMLS -> mark true
         durationXpHomelessness: 0,
-        placeStayedRecently: '[EXCEL 2023 ENTRY. NO DATA]',
-        whyHomeless: '[EXCEL 2023 ENTRY. NO DATA.]', // ADDRESS
+        placeStayedRecently: '[EXCEL 2022 ENTRY. NO DATA]',
+        whyHomeless: '[EXCEL 2022 ENTRY. NO DATA.]', // ADDRESS
         tempAddress: {
             street1: '',
             street2: ' ',
@@ -144,10 +149,10 @@ const templateRecord ={
         fullName: '',
         landLordPhone: '',
         landLordAddress: {
-            landLordStreet1: '[EXCEL 2023 ENTRY. NO DATA.]',
-            landLordStreet2: '[EXCEL 2023 ENTRY. NO DATA.]',
-            landLordCity: '[EXCEL 2023 ENTRY. NO DATA.]',
-            landLordState: '[EXCEL 2023 ENTRY. NO DATA.]',
+            landLordStreet1: '[EXCEL 2022 ENTRY. NO DATA.]',
+            landLordStreet2: '[EXCEL 2022 ENTRY. NO DATA.]',
+            landLordCity: '[EXCEL 2022 ENTRY. NO DATA.]',
+            landLordState: '[EXCEL 2022 ENTRY. NO DATA.]',
             landLordZip: undefined
         }
     },
@@ -158,10 +163,10 @@ const templateRecord ={
         singleHeadOfHouseHold: 'NO-DATA', // states: 'No', 'Yes-male', 'Yes-female', 'NO-DATA'
         incomeLevel: '', //INC BELOW 30  or INC BELOW 40
         percentOfAnnualAmi: undefined,
-        incomeSituation: '[EXCEL 2023. NO DATA. SEE DEMOGRAPHICS FOR HOUSEHOLD SIZE]',
+        incomeSituation: '[EXCEL 2022. NO DATA. SEE DEMOGRAPHICS FOR HOUSEHOLD SIZE]',
         incomeSources: [
             {
-                name: "[EXCEL 2023. NO DATA]",
+                name: "[EXCEL 2022. NO DATA]",
                 peopleCount: 0
             }
         ],
