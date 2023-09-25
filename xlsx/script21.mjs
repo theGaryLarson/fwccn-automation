@@ -18,7 +18,7 @@ function readAndTransformData(filename, year) {
     const transformedData = data.map((clientRecord, index) => {
         let dateOfService = clientRecord['DATE OF SERVICE'] ?
             adjustForTimeZone(clientRecord['DATE OF SERVICE'])
-            : adjustForTimeZone('1492-10-12');
+            : new Date('1492-10-12').toISOString().replace(/T\d{2}/, 'T12');
 
         if (!dateOfService && index > 0) {
             dateOfService = null; // previousDateOfService
@@ -40,7 +40,11 @@ function readAndTransformData(filename, year) {
             ...templateRecord,
             timestamp: createTimeStamp(),
             // DO NOT HAVE ENOUGH INFO TO DETERMINE DENIED/NO-RETURN OPTED FOR NO-RETURN LESS NEGATIVE CONNOTATION
-            status: r['SERVICE']?.trim() === 'RENT' && r['AMT'] || r['AMT'] ? 'APPROVED' : 'NO-RETURN',
+            status: r['SERVICE'].trim() === 'RENT' && r['CHECK #']
+                ? 'APPROVED'
+                : ((r['SERVICE']?.trim() === 'GAS' || r['SERVICE']?.trim() === 'BUS' || r['SERVICE']?.trim() === 'MOTEL') && r['AMT'] > 0
+                    ? 'APPROVED'
+                    : 'NO-RETURN'),
             dateOfService: dateOfService,
             serviceDate: {
                 $date: dateOfService
@@ -59,7 +63,7 @@ function readAndTransformData(filename, year) {
             helpRequested: r['SERVICE']?.trim() === 'RENT' ? 'rent' : (r['SERVICE']?.trim() === 'GAS' ? 'gasoline' : (r['SERVICE']?.trim() === 'BUS' ? 'busTicket' : (r['SERVICE']?.trim() === 'MOTEL' ? 'motel' : ''))),
             licensePlate: r['SERVICE']?.trim() === 'GAS' ? `[ NO DATA ]` : '',
             licensePlateState: r['SERVICE']?.trim() === 'GAS' ? 'WA' : '',
-            isBusPrimaryTransport: r['SERVICE']?.trim() === 'BUS',
+            isBusPrimaryTransport: r['SERVICE']?.trim() === 'BUS' && !!r['AMT'],
             reasonForNeed: `[EXCEL ${year} ENTRY. NO DATA]`,
             futurePlans: `[EXCEL ${year} ENTRY. NO DATA]`,
             fName: r['FNAME'],
@@ -71,7 +75,7 @@ function readAndTransformData(filename, year) {
             idSource: {
                 ...templateRecord.idSource,
                 driverLicenseOrId: r['ID']?.length > 4 ? r['ID'] : `[EXCEL ${year} ENTRY. NO DATA]`,
-                isValidLicense: r['SERVICE']?.trim() === 'GAS',
+                isValidLicense: r['SERVICE']?.trim() === 'GAS' && !!r['AMT'],
                 socialSecLastFour: typeof r['ID'] === 'number' && String(r['ID']).length <= 4 ? String(r['ID']).padStart(4, '0') : '',
             },
             homelessness: {
@@ -106,7 +110,9 @@ function readAndTransformData(filename, year) {
             houseHoldIncome: {
                 ...templateRecord.houseHoldIncome,
                 percentOfAnnualAmi: r['INC BELOW 30'] ? Number(29) : (r['INC BELOW 40'] ? Number(39) : ''),
-                isIncomeVerified: !!r['CHECK #'],
+                isIncomeVerified: (r['CHECK #'] && r['SERVICE']?.trim() === 'RENT')
+                    || ((r['SERVICE']?.trim() === 'GAS' || r['SERVICE']?.trim() === 'BUS' || r['SERVICE']?.trim() === 'MOTEL')
+                        && !!r['AMT']),
                 incomeLevel: r['INC BELOW 30'] ? 'extremely low' : (r['INC BELOW 40'] ? 'low' : 'NO-DATA')
             },
             maleAgeRange: {

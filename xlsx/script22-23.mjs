@@ -9,7 +9,7 @@ import templateRecord, {adjustForTimeZone} from "./templateRecord.mjs";
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-readAndTransformData('FWCCN', '2022')
+readAndTransformData('FWCCN', '2023')
 function readAndTransformData(filename, year) {
     const filePath = path.resolve(__dirname, `${year}-Data-${filename}.xlsx`);
     const workbook = xlsx.readFile(filePath, {cellDates: true});
@@ -17,10 +17,10 @@ function readAndTransformData(filename, year) {
     const data = xlsx.utils.sheet_to_json(workbook.Sheets[sheetNames[0]])
 
     let previousDateOfService = null;
-    const transformedData = data.map((clientRecord, index) => {
+    const transformedData = data.map((clientRecord) => {
         let dateOfService = clientRecord['DATE OF SERVICE'] ?
             adjustForTimeZone(clientRecord['DATE OF SERVICE'])
-            : new Date('1492-10-12').toISOString().replace(/T\d{2}/, 'T08');
+            : new Date('1492-10-12').toISOString().replace(/T\d{2}/, 'T12');
 
         // if (!dateOfService && index > 0) {
         //     dateOfService = null; // previousDateOfService
@@ -42,7 +42,12 @@ function readAndTransformData(filename, year) {
             ...templateRecord,
             timestamp: createTimeStamp(),
             // DO NOT HAVE ENOUGH INFO TO DETERMINE DENIED/NO-RETURN OPTED FOR NO-RETURN LESS NEGATIVE CONNOTATION
-            status: (r['RENT'] && r['AMT RENT PAID'] > 0) || (r['GAS'] && r['AMT GAS'] > 0) || (r['MOTEL'] && r['AMT MOTEL']) || (r['BUS'] && r['AMT BUS'] > 0)  ? 'APPROVED' : 'NO-RETURN',
+            status: (r['RENT'] && r['CHECK #'])
+            || (r['GAS'] && r['AMT GAS'] > 0)
+            || (r['MOTEL'] && r['AMT MOTEL'] > 0)
+            || (r['BUS'] && r['AMT BUS'] > 0)
+                ? 'APPROVED'
+                : 'NO-RETURN',
             dateOfService: dateOfService,
             serviceDate: {
                 $date: dateOfService
@@ -52,29 +57,37 @@ function readAndTransformData(filename, year) {
                 promiseFilled: r['PROMISE FILLED'],
                 amountPromised: r['PROMISE AMT.'],
                 checkNumber: r['CHECK #'],
-                checkAmount: r['RENT'] ? r['AMT RENT PAID'] : (r['GAS'] ? r['AMT GAS'] : (r['MOTEL'] ? r['AMT MOTEL'] : (r['BUS'] ? r['AMT BUS'] : 0))),
+                checkAmount: (!!r['RENT'] && r['AMT RENT PAID'] > 0)
+                    ? r['AMT RENT PAID']
+                    : (!!r['GAS'] && r['AMT GAS'] > 0
+                        ? r['AMT GAS']
+                        : (!!r['MOTEL'] && r['AMT MOTEL'] > 0
+                            ? r['AMT MOTEL']
+                            : (!!r['BUS'] && r['AMT BUS'] > 0
+                                ? r['AMT BUS']
+                                : 0))),
                 motelLocation: r["MOTEL"] ? r["MOTEL"] : '',
                 motelDurationDays: r["MOTEL"] ? r["TOTAL NIGHTS"] : '',
                 actionNotes: r['NOTES']
                     ? '2023 EXCEL IMPORT\n\n' + r['NOTES'] + '\n\n' + templateRecord.actionTaken.actionNotes
                     : '2023 EXCEL IMPORT\n\n' + templateRecord.actionTaken.actionNotes
             },
-            helpRequested: r['RENT'] ? 'rent' : (r['GAS'] ? 'gasoline' : (r['MOTEL'] ? 'motel' : (r['BUS'] ? 'busTicket' : ''))),
+            helpRequested: r['RENT'] && r['AMT RENT PAID'] > 0 ? 'rent' : (r['GAS'] && r['AMT GAS'] > 0 ? 'gasoline' : (r['MOTEL'] && r['AMT MOTEL'] > 0 ? 'motel' : (r['BUS'] && r['AMT BUS'] > 0 ? 'busTicket' : ''))),
             licensePlate: r['GAS'] ? `[EXCEL ${year} ENTRY. NO DATA]` : '',
             licensePlateState: r['GAS'] ? 'WA' : '',
-            isBusPrimaryTransport: !!r['BUS'],
+            isBusPrimaryTransport: !!r['BUS'] && !!r['AMT BUS'],
             reasonForNeed: `[EXCEL ${year} ENTRY. NO DATA]`,
             futurePlans: `[EXCEL ${year} ENTRY. NO DATA]`,
             fName: r['FNAME'] ? r['FNAME'] : '',
             middleInitial: r['MI'],
-            lName: r['LNAME'],
+            lName: r['LNAME'] ? r['LNAME'] : '',
             applicantGender: `[EXCEL ${year} ENTRY. NO DATA]`,
             applicantAge: undefined,
             phone: r['REMARKS/TELE. #'] ? r['REMARKS/TELE. #']?.split('-')[0] + r['REMARKS/TELE. #']?.split('-')[1] + r['REMARKS/TELE. #']?.split('-')[2] : '',
             idSource: {
                 ...templateRecord.idSource,
                 driverLicenseOrId: r['ID']?.toString().length > 4 ? r['ID'].toString().toUpperCase() : `[EXCEL ${year} ENTRY. NO DATA]`,
-                isValidLicense: r['SERVICE']?.trim() === 'GAS',
+                isValidLicense: !!r['GAS'] && !!r['AMT GAS'],
                 socialSecLastFour: typeof r['ID'] === 'number' && String(r['ID']).length <= 4 ? String(r['ID']).padStart(4, '0') : '',
             },
             homelessness: {
@@ -109,7 +122,10 @@ function readAndTransformData(filename, year) {
             houseHoldIncome: {
                 ...templateRecord.houseHoldIncome,
                 percentOfAnnualAmi: r['INC BELOW 30'] ? Number(29) : (r['INC BELOW 40'] ? Number(39) : ''),
-                isIncomeVerified: !!r['PROMISE FILLED'],
+                isIncomeVerified: (!!r['RENT'] && !!r['CHECK #'])
+                    || !!(r['GAS'] && r['AMT GAS'] > 0)
+                    || !!(r['MOTEL'] && r['AMT MOTEL'] > 0)
+                    || !!(r['BUS'] && r['AMT BUS'] > 0),
                 incomeLevel: r['INC BELOW 30'] ? 'extremely low' : (r['INC BELOW 40'] ? 'low' : 'NO-DATA')
             },
             maleAgeRange: {

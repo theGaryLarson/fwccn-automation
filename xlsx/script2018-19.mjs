@@ -15,10 +15,10 @@ function readAndTransformData(filename, year) {
     const data = xlsx.utils.sheet_to_json(workbook.Sheets[sheetNames[0]])
 
     let previousDateOfService = null;
-    const transformedData = data.map((clientRecord, index) => {
+    const transformedData = data.map((clientRecord) => {
         let dateOfService = clientRecord['DATE OF SERVICE'] ?
             adjustForTimeZone(clientRecord['DATE OF SERVICE'])
-            : adjustForTimeZone('1492-10-12');
+            : new Date('1492-10-12').toISOString().replace(/T\d{2}/, 'T12');
         // if (!dateOfService && index > 0) {
         //     dateOfService = null; // previousDateOfService;
         // }
@@ -39,14 +39,18 @@ function readAndTransformData(filename, year) {
             ...templateRecord,
             timestamp: createTimeStamp(),
             // DO NOT HAVE ENOUGH INFO TO DETERMINE DENIED/NO-RETURN OPTED FOR NO-RETURN LESS NEGATIVE CONNOTATION
-            status: r['AMT'] ? 'APPROVED' : 'NO-RETURN',
+            status: r['SERVICE']?.trim() === 'RENT' && r['CHECK #']
+                ? 'APPROVED'
+                : ((r['SERVICE']?.trim() === 'GAS' || r['SERVICE']?.trim() === 'BUS' || r['SERVICE']?.trim() === 'MOTEL') && r['AMT'] > 0
+                    ? 'APPROVED'
+                    : 'NO-RETURN'),
             dateOfService: dateOfService,
             serviceDate: {
                $date: dateOfService
             },
             actionTaken: {
                 ...templateRecord.actionTaken,
-                actionNotes: r['NOTES'] ?  '2020 EXCEL IMPORT\n\n' + r['NOTES'] + '\n\n' + templateRecord.actionTaken.actionNotes : '2020 EXCEL IMPORT\n\n' + templateRecord.actionTaken.actionNotes,
+                actionNotes: r['NOTES'] ?  '2018-19 EXCEL IMPORT\n\n' + r['NOTES'] + '\n\n' + templateRecord.actionTaken.actionNotes : '2018-19 EXCEL IMPORT\n\n' + templateRecord.actionTaken.actionNotes,
                 promiseFilled: r['PROMISE FILLED'],
                 amountPromised: r['PROMISE AMT.'],
                 checkNumber: r['CHECK #'],
@@ -105,7 +109,9 @@ function readAndTransformData(filename, year) {
             houseHoldIncome: {
                 ...templateRecord.houseHoldIncome,
                 percentOfAnnualAmi: r['INC BELOW 30'] ? Number(29) : (r['INC BELOW 40'] ? Number(39) : ''),
-                isIncomeVerified: !!r['CHECK #'],
+                isIncomeVerified: (!!r['CHECK #'] && r['SERVICE']?.trim() === 'RENT')
+                    || ((r['SERVICE']?.trim() === 'GAS' || r['SERVICE']?.trim() === 'BUS' || r['SERVICE']?.trim() === 'MOTEL')
+                        && !!r['AMT']),
                 incomeLevel: r['INC BELOW 30'] ? 'extremely low' : (r['INC BELOW 40'] ? 'low' : 'NO-DATA')
             },
             maleAgeRange: {
