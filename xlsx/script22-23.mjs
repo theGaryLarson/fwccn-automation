@@ -42,7 +42,7 @@ function readAndTransformData(filename, year) {
             ...templateRecord,
             timestamp: createTimeStamp(),
             // DO NOT HAVE ENOUGH INFO TO DETERMINE DENIED/NO-RETURN OPTED FOR NO-RETURN LESS NEGATIVE CONNOTATION
-            status: (r['RENT'] && r['CHECK #'])
+            status: (r['RENT'] && r['CHECK #'] && r['AMT RENT PAID'] > 0)
             || (r['GAS'] && r['AMT GAS'] > 0)
             || (r['MOTEL'] && r['AMT MOTEL'] > 0)
             || (r['BUS'] && r['AMT BUS'] > 0)
