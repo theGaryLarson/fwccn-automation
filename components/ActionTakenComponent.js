@@ -134,7 +134,21 @@ export default function ActionTakenComponent(props) {
             <h2 className={'text-center w-full font-bold'}>ACTION TAKEN</h2>
             <div className="grid grid-cols-2 grid-rows-1 gap-2 h-full">
                 <div className={'flex-1'}>
-                    <h2 className={'font-bold bg-green-300 pl-2 mb-2'}>{item.helpRequested === 'rent' ? 'RENT' : (item.helpRequested === 'gasoline' ? 'GAS' : 'BUS')}</h2>
+                    <h2 className={'font-bold bg-green-300 pl-2 mb-2'}>
+                        {item?.helpRequested === 'rent'
+                            ? 'RENT'
+                            : (item?.helpRequested === 'gasoline'
+                                    ? 'GAS'
+                                    : (item?.helpRequested === 'motel'
+                                            ? 'MOTEL'
+                                            : (item?.helpRequested === 'busTicket'
+                                                    ? 'BUS'
+                                                    : 'SERVICE TYPE NOT RECORDED'
+                                            )
+                                    )
+                            )
+                        }
+                    </h2>
                     <label htmlFor="dateOfService" className="mt-2"><span className={'font-medium'}>Date of Service:</span> </label>
                     <input
                         type="date"
@@ -316,9 +330,9 @@ export default function ActionTakenComponent(props) {
                 </div>
             </div>
             {
-                (
+                item?.helpRequested === 'motel' && (
                     <div>
-                        <h2 className={'mt-4 w-full border-t border-black pt-1 font-bold'}>MOTEL <span className={'font-normal'}>(optional)</span></h2>
+                        <h2 className={'mt-4 w-full border-t border-black pt-1 font-bold'}>MOTEL</h2>
                         <div className={'flex flex-row-3'}>
                             <div className={'flex-1'}>
                                 <label htmlFor={'motelLocation'} className={'whitespace-nowrap mr-4'}>
@@ -334,7 +348,7 @@ export default function ActionTakenComponent(props) {
                                 />
                             </div>
                             <div className={'flex-1'}>
-                                <label htmlFor={'motelDurationDays'} className={'ml-2'}>How long?:</label>
+                                <label htmlFor={'motelDurationDays'} className={'ml-2'}>How many days?:</label>
                                 <input
                                     type={"text"}
                                     id={'motelDurationDays'}
@@ -351,7 +365,7 @@ export default function ActionTakenComponent(props) {
                                     type={"text"}
                                     id={'motelCost'}
                                     name={'motelCost'}
-                                    value={item?.actionTaken?.motelCost??''}
+                                    value={ item?.helpRequested === "motel" && (item?.actionTaken?.checkAmount??'')}
                                     placeholder={'Cost of hotel'}
                                     onChange={handleInputChange}
                                     className={'bg-yellow-200 ml-2 w-40 pl-1'}
@@ -362,121 +376,137 @@ export default function ActionTakenComponent(props) {
                 )
             }
             <div className={'grid grid-cols-2 grid-rows-1 gap-2'}>
-                <div className={'flex-1 border-t border-black w-full mt-4'}>
-                    <h2 className={'font-bold pt-2'}>CHECK INFORMATION</h2>
-                    <div className={'w-full'}>
-                        <label htmlFor={'checkMadeOutTo'}>PAY TO THE ORDER OF:</label>
-                        <input
-                            type={"text"}
-                            id={'checkMadeOutTo'}
-                            name={'checkMadeOutTo'}
-                            value={item?.actionTaken?.checkMadeOutTo??''}
-                            placeholder={'PAY TO THE ORDER OF ...'}
-                            onChange={handleInputChange}
-                            className={'bg-yellow-200 w-full pl-1'}
-                        />
-                    </div>
-                    <div className={'w-full'}>
-                        <h2 className={'font-bold mt-2'}>CHECK ADDRESS</h2>
-                        <label htmlFor={'checkStreet1'}>Street1:</label>
-                        <input
-                            type={"text"}
-                            id={'checkStreet1'}
-                            name={'checkStreet1'}
-                            value={item?.actionTaken?.checkAddress?.checkStreet1}
-                            placeholder={'123 Oak St.'}
-                            onChange={handleInputChange}
-                            className={'bg-yellow-200 w-full pl-1'}
-                        />
-                        <label htmlFor={'checkStreet2'}>Street2:</label>
-                        <input
-                            type={"text"}
-                            id={'checkStreet2'}
-                            name={'checkStreet2'}
-                            value={item?.actionTaken?.checkAddress?.checkStreet2}
-                            placeholder={'Apt. 100'}
-                            onChange={handleInputChange}
-                            className={'bg-yellow-200 w-full pl-1'}
-                        />
-                        <label htmlFor={'checkCity'}>City:</label>
-                        <input
-                            type={"text"}
-                            id={'checkCity'}
-                            name={'checkCity'}
-                            value={item?.actionTaken?.checkAddress?.checkCity}
-                            placeholder={'Tacoma'}
-                            onChange={handleInputChange}
-                            className={'bg-yellow-200 w-full pl-1'}
-                        />
-                        <label htmlFor={'checkState'}>State:</label>
-                        <input
-                            type={"text"}
-                            id={'checkState'}
-                            name={'checkState'}
-                            value={item?.actionTaken?.checkAddress?.checkState}
-                            placeholder={'WA'}
-                            onChange={handleInputChange}
-                            className={'bg-yellow-200 w-full pl-1'}
-                        />
-                        <label htmlFor={'checkZip'}>Zip:</label>
-                        <input
-                            type={"text"}
-                            id={'checkZip'}
-                            name={'checkZip'}
-                            value={item?.actionTaken?.checkAddress?.checkZip}
-                            placeholder={'98105'}
-                            onChange={handleInputChange}
-                            className={'bg-yellow-200 w-full pl-1'}
-                        />
-                    </div>
-                </div>
-                <div className={'flex-1 border-t border-black w-full mt-4 pt-2'}>
-                    <div>
-                        <div className={'flex-grow'}>
-                            <label htmlFor={'checkDate'} className={'font-medium'}>CHECK DATE:</label>
+                { item?.helpRequested === 'rent' &&
+                    <div className={'flex-1 border-t border-black w-full mt-4'}>
+                        <h2 className={'font-bold pt-2'}>CHECK INFORMATION</h2>
+                        <div className={'w-full'}>
+                            <label htmlFor={'checkMadeOutTo'}>PAY TO THE ORDER OF:</label>
                             <input
-                                type={"date"}
-                                id={'checkDate'}
-                                name={'checkDate'}
-                                value={item?.actionTaken?.checkDate??''}
-                                onChange={handleInputChange}
-                                className={'ml-2 bg-yellow-200 pl-1'}
-
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor={'checkNumber'}>CHECK NUMBER:</label>
-                            <input
-                                type={"number"}
-                                id={'checkNumber'}
-                                name={'checkNumber'}
-                                value={item?.actionTaken?.checkNumber??''}
-                                placeholder={'ENTER CHECK NUMBER'}
+                                type={"text"}
+                                id={'checkMadeOutTo'}
+                                name={'checkMadeOutTo'}
+                                value={item?.actionTaken?.checkMadeOutTo ?? ''}
+                                placeholder={'PAY TO THE ORDER OF ...'}
                                 onChange={handleInputChange}
                                 className={'bg-yellow-200 w-full pl-1'}
                             />
-                            <label htmlFor={'checkAmount'}>CHECK AMOUNT:</label>
+                        </div>
+                        <div className={'w-full'}>
+                            <h2 className={'font-bold mt-2'}>CHECK ADDRESS</h2>
+                            <label htmlFor={'checkStreet1'}>Street1:</label>
+                            <input
+                                type={"text"}
+                                id={'checkStreet1'}
+                                name={'checkStreet1'}
+                                value={item?.actionTaken?.checkAddress?.checkStreet1}
+                                placeholder={'123 Oak St.'}
+                                onChange={handleInputChange}
+                                className={'bg-yellow-200 w-full pl-1'}
+                            />
+                            <label htmlFor={'checkStreet2'}>Street2:</label>
+                            <input
+                                type={"text"}
+                                id={'checkStreet2'}
+                                name={'checkStreet2'}
+                                value={item?.actionTaken?.checkAddress?.checkStreet2}
+                                placeholder={'Apt. 100'}
+                                onChange={handleInputChange}
+                                className={'bg-yellow-200 w-full pl-1'}
+                            />
+                            <label htmlFor={'checkCity'}>City:</label>
+                            <input
+                                type={"text"}
+                                id={'checkCity'}
+                                name={'checkCity'}
+                                value={item?.actionTaken?.checkAddress?.checkCity}
+                                placeholder={'Tacoma'}
+                                onChange={handleInputChange}
+                                className={'bg-yellow-200 w-full pl-1'}
+                            />
+                            <label htmlFor={'checkState'}>State:</label>
+                            <input
+                                type={"text"}
+                                id={'checkState'}
+                                name={'checkState'}
+                                value={item?.actionTaken?.checkAddress?.checkState}
+                                placeholder={'WA'}
+                                onChange={handleInputChange}
+                                className={'bg-yellow-200 w-full pl-1'}
+                            />
+                            <label htmlFor={'checkZip'}>Zip:</label>
+                            <input
+                                type={"text"}
+                                id={'checkZip'}
+                                name={'checkZip'}
+                                value={item?.actionTaken?.checkAddress?.checkZip}
+                                placeholder={'98105'}
+                                onChange={handleInputChange}
+                                className={'bg-yellow-200 w-full pl-1'}
+                            />
+                        </div>
+                    </div>
+                }
+                <div className={'flex-1 border-t border-black w-full mt-4 pt-2'}>
+                    <div>
+                        { item?.helpRequested === 'rent' &&
+                            (
+                                <>
+                                    <div className={'flex-grow'}>
+                                        <label htmlFor={'checkDate'} className={'font-medium'}>CHECK DATE:</label>
+                                        <input
+                                            type={"date"}
+                                            id={'checkDate'}
+                                            name={'checkDate'}
+                                            value={item?.actionTaken?.checkDate ?? ''}
+                                            onChange={handleInputChange}
+                                            className={'ml-2 bg-yellow-200 pl-1'}
+
+                                        />
+                                    </div>
+                                </>
+                            )
+                        }
+                        <div>
+                            {item?.helpRequested === 'rent' && (
+                                <>
+                                    <label htmlFor={'checkNumber'}>CHECK NUMBER:</label>
+                                    <input
+                                        type={"number"}
+                                        id={'checkNumber'}
+                                        name={'checkNumber'}
+                                        value={item?.actionTaken?.checkNumber ?? ''}
+                                        placeholder={'ENTER CHECK NUMBER'}
+                                        onChange={handleInputChange}
+                                        className={'bg-yellow-200 w-full pl-1'}
+                                    />
+                                </>
+                            )}
+                            <label htmlFor={'checkAmount'}>
+                                { item?.helpRequested !== 'rent'
+                                    ? 'VOUCHER AMOUNT:'
+                                    : 'CHECK AMOUNT:'}
+                            </label>
                             <input
                                 type={"number"}
                                 id={'checkAmount'}
                                 name={'checkAmount'}
                                 value={item?.actionTaken?.checkAmount??''}
-                                placeholder={'ENTER CHECK AMOUNT'}
+                                placeholder={'ENTER ' + (item?.helpRequested !== 'rent' ? 'VOUCHER' : 'CHECK ')  + ' AMOUNT'}
                                 onChange={handleInputChange}
                                 className={'bg-yellow-200 w-full pl-1'}
                             />
-                            <label htmlFor={'actionNotes'} className={'font-medium'}>Notes</label>
-                            <textarea
-                                id="actionNotes"
-                                name="actionNotes"
-                                value={item?.actionTaken?.actionNotes}
-                                className="h-[250px] bg-blue-50 border-indigo-700 border-2 w-full p-2 pt-1  resize-none"
-                                onClick={() => toggleTextAreaSize(actionNotesRef)}
-                                onChange={handleInputChange}
-                                ref={actionNotesRef}
-                            />
 
                         </div>
+                        <label htmlFor={'actionNotes'} className={'font-medium'}>Notes</label>
+                        <textarea
+                            id="actionNotes"
+                            name="actionNotes"
+                            value={item?.actionTaken?.actionNotes}
+                            className="h-[250px] bg-blue-50 border-indigo-700 border-2 w-full p-2 pt-1  resize-none"
+                            onClick={() => toggleTextAreaSize(actionNotesRef)}
+                            onChange={handleInputChange}
+                            ref={actionNotesRef}
+                        />
                     </div>
                 </div>
             </div>
