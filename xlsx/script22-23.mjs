@@ -72,7 +72,15 @@ function readAndTransformData(filename, year) {
                     ? '2023 EXCEL IMPORT\n\n' + r['NOTES'] + '\n\n' + templateRecord.actionTaken.actionNotes
                     : '2023 EXCEL IMPORT\n\n' + templateRecord.actionTaken.actionNotes
             },
-            helpRequested: r['RENT'] && r['AMT RENT PAID'] > 0 ? 'rent' : (r['GAS'] && r['AMT GAS'] > 0 ? 'gasoline' : (r['MOTEL'] && r['AMT MOTEL'] > 0 ? 'motel' : (r['BUS'] && r['AMT BUS'] > 0 ? 'busTicket' : ''))),
+            helpRequested: r['RENT']
+                ? 'rent'
+                : (r['GAS']
+                    ? 'gasoline'
+                    : (r['MOTEL']
+                        ? 'motel'
+                        : (r['BUS']
+                            ? 'busTicket'
+                            : ''))),
             licensePlate: r['GAS'] ? `[EXCEL ${year} ENTRY. NO DATA]` : '',
             licensePlateState: r['GAS'] ? 'WA' : '',
             isBusPrimaryTransport: !!r['BUS'] && !!r['AMT BUS'],
