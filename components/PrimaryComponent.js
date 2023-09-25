@@ -151,7 +151,7 @@ export default function PrimaryComponent(props) {
                 </select>
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="social-sec-input">Social Security Last Four *:</label>
+                <label htmlFor="social-sec-input">Social Security Last Four:</label>
                 <input
                     type="text"
                     id="social-sec-input"
@@ -162,7 +162,6 @@ export default function PrimaryComponent(props) {
                     value={formData?.idSource?.socialSecLastFour ?? ''} // must drill down to nested object
                     onChange={handleInputChange}
                     className={'pl-1'}
-                    required
                 />
             </div>
             <div className={`border-2 border-gray-600 p-4 box mt-4 `}>
