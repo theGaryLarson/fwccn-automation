@@ -144,7 +144,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
         <div>
             <h1>Child Information</h1>
             <div className={styles.componentWrapper}>
-                <label htmlFor="children">{'Are there children living at the applicant\'s residence?'}</label>
+                <label htmlFor="children">{'Are there minor children living at the applicant\'s residence?'}</label>
                 <select
                     className={'mb-4'}
                     id="children"
@@ -172,7 +172,6 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                                 name="gender"
                                 value={child?.gender??'female'}
                                 onChange={(event) => handleInputChange(event, index)}
-                                required
                             >
                                 <option value="female">Female</option>
                                 <option value="male">Male</option>
@@ -187,7 +186,6 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                                 value={child?.age??undefined}
                                 onChange={(event) => handleInputChange(event, index)}
                                 className={'pl-1'}
-                                required
                             />
                         </div>
                         <div className={styles.componentWrapper}>
@@ -199,7 +197,6 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                                 value={child?.school??''}
                                 onChange={(event) => handleInputChange(event, index)}
                                 className={'pl-1'}
-                                required
                             />
                         </div>
                         <div className={styles.componentWrapper}>
@@ -211,7 +208,6 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                                 value={child?.schoolDistrict??''}
                                 onChange={(event) => handleInputChange(event, index)}
                                 className={'pl-1'}
-                                required
                             />
                         </div>
                         <div className={styles.componentWrapper}>
@@ -223,7 +219,6 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                                 className={'mb-4 pl-1'}
                                 value={child?.relationshipToApplicant??''}
                                 onChange={(event) => handleInputChange(event, index)}
-                                required
                             />
                         </div>
                     </div>
