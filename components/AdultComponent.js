@@ -76,7 +76,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
             adultLName: "",
             adultGender: "",
             adultAge: 0,
-            relationshipToAdult: "",
+            relationshipToAdult: "undisclosed",
             relationDetails: ""
         };
 
