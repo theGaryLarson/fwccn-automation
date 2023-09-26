@@ -189,7 +189,6 @@ const applicantSchema = new Schema({
     },
     applicantAge: {
         type: Number,
-        min: [18, "You must be 18 years or older to apply"],
         validate: { // custom validator
             validator: function(v) {
                 return !isNaN(v);
@@ -296,16 +295,10 @@ const applicantSchema = new Schema({
             type: [
                 {
                     gender: {
-                        type: String,
-                        required: function () {
-                            return this.parent().hasChildrenUnder18 === true;
-                        }
+                        type: String
                     },
                     age: {
-                        type: Number,
-                        required: function () {
-                            return this.parent().hasChildrenUnder18 === true;
-                        }
+                        type: Number
                     },
                     school: {
                         type: String
@@ -314,19 +307,10 @@ const applicantSchema = new Schema({
                         type: String
                     },
                     relationshipToApplicant: {
-                        type: String,
-                        required: function () {
-                            return this.parent().hasChildrenUnder18 === true;
-                        }
+                        type: String
                     }
                 }
-            ],
-            default: function () {
-                if (this.parent().hasChildrenUnder18 === true) {
-                    return [];
-                }
-                return undefined;
-            }
+            ]
         },
         boysCount: {
             type: Number,
