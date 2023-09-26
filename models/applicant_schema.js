@@ -234,14 +234,14 @@ const applicantSchema = new Schema({
                     },
                     message: 'Enter only the last 4 digits of applicant\'s social security number'
                 },
-                required: true
+                required: false
             },
             isValidLicense: {
                 type: Boolean,
                 default: false
             }
         },
-        required: true
+        required: false
     },
     homelessness: {
         isHomeless: {
@@ -710,15 +710,15 @@ const applicantSchema = new Schema({
                 {
                     name: {
                         type: String,
-                        required: true
+                        required: false
                     },
                     peopleCount: {
                         type: Number,
-                        required: true
+                        required: false
                     }
                 }
             ],
-            required: true
+            required: false
         },
         isIncomeVerified: {
             type: Boolean,
