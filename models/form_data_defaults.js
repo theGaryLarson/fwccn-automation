@@ -57,7 +57,7 @@ const form_data_defaults = {
         driverLicenseOrId: '',
         expDate: '',
         idStateIssued: '',
-        socialSecLastFour: '',
+        socialSecLastFour: undefined,
         isValidLicense: false
     },
     homelessness: {
