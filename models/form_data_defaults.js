@@ -107,7 +107,7 @@ const form_data_defaults = {
         ]
     },
     homeAddress: {
-        aptName: 'Buena Casa',
+        aptName: '',
         homeStreet1: '',
         homeStreet2: '',
         homeCity: '',
