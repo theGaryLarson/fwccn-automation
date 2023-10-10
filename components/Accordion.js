@@ -13,68 +13,66 @@ function Accordion(props) {
     const [item, setItem] = useState(initialItem);
     const [isActionView, setIsActionView] = useState(false);
 
-        useEffect(() => {
-            setItem(initialItem)
-        }, [initialItem])
+    useEffect(() => {
+        setItem(initialItem)
+    }, [initialItem])
 
-        const  updateApplicant = async (editedItem) => {
-            try {
-                const response = await fetch(`api/getAndUpdateOneRecord`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(editedItem)
-                });
-                if (response.ok) {
-                    toast.success(` ${editedItem.fName + ' ' + editedItem.lName} \'s Application updated successfully!`)
-                    return await response.json();
-                } else {
-                    console.error(`Error updating item for object id#: ${editedItem._id } `, response.status);
-                    toast.error(`Error updating ${editedItem.fName + ' ' + editedItem.lName + '\'s application \n Object ID: ' + editedItem._id}`)
-                }
-
-            } catch (e) {
-                console.error(`Error updating item for object id#: ${editedItem._id } `, e);
+    const  updateApplicant = async (editedItem) => {
+        try {
+            const response = await fetch(`api/getAndUpdateOneRecord`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(editedItem)
+            });
+            if (response.ok) {
+                toast.success(` ${editedItem.fName + ' ' + editedItem.lName} \'s Application updated successfully!`)
+                return await response.json();
+            } else {
+                console.error(`Error updating item for object id#: ${editedItem._id } `, response.status);
                 toast.error(`Error updating ${editedItem.fName + ' ' + editedItem.lName + '\'s application \n Object ID: ' + editedItem._id}`)
-                return null;
             }
-        }
 
-        const updateItem = (updatedItem) => {
-           setItem(updatedItem)
+        } catch (e) {
+            console.error(`Error updating item for object id#: ${editedItem._id } `, e);
+            toast.error(`Error updating ${editedItem.fName + ' ' + editedItem.lName + '\'s application \n Object ID: ' + editedItem._id}`)
+            return null;
         }
-        const toggleAccordion = () => {
-            setIsOpen(!isOpen);
-        };
-        const handleFocus = () => {
-            setItemFocus(item)
-        }
-        const toggleShowForm = () => {
-            setShowForm(!showForm);
-        }
+    }
 
-        const showActionView = () => {
-            setIsActionView(!isActionView)
-        }
-        function handleStatusChange(event) {
-            const {value} = event.target;
-            setItem( {
-                ...item,
-                status: value
-            })
-        }
-        function handleFundSourceChange(event) {
-            const {value} = event.target;
-            setItem( {
-                ...item,
-                actionTaken: {
-                    ...item.actionTaken,
-                    fundSource: value
-                }
+    const updateItem = (updatedItem) => {
+       setItem(updatedItem)
+    }
 
-            })
-        }
+    const handleFocus = () => {
+        setItemFocus(item)
+    }
+    const toggleShowForm = () => {
+        setShowForm(!showForm);
+    }
+
+    const showActionView = () => {
+        setIsActionView(!isActionView)
+    }
+    function handleStatusChange(event) {
+        const {value} = event.target;
+        setItem( {
+            ...item,
+            status: value
+        })
+    }
+    function handleFundSourceChange(event) {
+        const {value} = event.target;
+        setItem( {
+            ...item,
+            actionTaken: {
+                ...item.actionTaken,
+                fundSource: value
+            }
+
+        })
+    }
 
     const confirmDelete = (item) => {
         const userConfirmed = window.confirm(`Are you sure you want to delete the record for ${ item?.fName } ${ item?.lName }?\nSubmission Date: ${ item?.timestamp }`);
