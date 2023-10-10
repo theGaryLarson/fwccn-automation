@@ -76,7 +76,38 @@ function Accordion(props) {
             })
         }
 
-        return (
+    const confirmDelete = (item) => {
+        const userConfirmed = window.confirm(`Are you sure you want to delete the record for ${ item?.fName } ${ item?.lName }?\nSubmission Date: ${ item?.timestamp }`);
+        if (userConfirmed) {
+            console.log('confirmed');
+            deleteRecord(item);
+        }
+    }
+
+    const deleteRecord = async (item) => {
+        try {
+            console.log("delete: ", item._id);
+            const response = await fetch(`../api/delete`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    data: item._id,
+                }),
+            });
+            if (response.ok) {
+                toast.success(`Successfully deleted the record for ${item.fName} ${item.lName}.`);
+                removeDeletedItem(item._id);
+            } else {
+                toast.error(`Failed to delete the record for ${item.fName} ${item.lName}.`);
+            }
+        } catch (error) {
+            console.error(`Error deleting record: ${error}`);
+            toast.error(`An error occurred while deleting the record for ${item.fName} ${item.lName}.`);
+        }
+    };
+
+
+    return (
             <div onClick={handleFocus}>
                 <div className={`flex flex-col items-center`}>
                     <button
@@ -112,6 +143,18 @@ function Accordion(props) {
                                 </div>
 
                                 <p className='text-gray-500'>{ 'Submitted: ' + dateFormatNYears(item?.timestamp.slice(0, 10), 0) }</p>
+                                <div className='flex justify-between'>
+                                    <div className='bg-red-500 hover:bg-red-700 text-white w-20 rounded border-black border-2'>
+                                        <button
+                                            onClick={() => confirmDelete(item)}>Delete
+                                        </button>
+                                    </div>
+                                    <div className='bg-blue-500 hover:bg-blue-700 w-40 text-white rounded border-black border-2'>
+                                        <button
+                                            onClick={() => setIsOpen(!isOpen)}>{!isOpen ? `Show Details` : `Hide Details`}
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                          </span>
                     </button>
