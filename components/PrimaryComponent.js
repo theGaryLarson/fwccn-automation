@@ -97,7 +97,7 @@ export default function PrimaryComponent(props) {
             </div>
 
             <div className={styles.componentWrapper}>
-                <label htmlFor={"applicantAge"}>Applicant Age *:</label>
+                <label htmlFor={"applicantAge"}>Applicant Age:</label>
                 <input
                     type="text"
                     id={"applicantAge"}
@@ -107,7 +107,6 @@ export default function PrimaryComponent(props) {
                     className={'pl-1'}
                     pattern="\d*"
                     title="Please enter a valid number"
-                    required
                 />
             </div>
             <div className={styles.componentWrapper}>
