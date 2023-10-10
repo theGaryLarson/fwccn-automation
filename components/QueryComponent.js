@@ -41,6 +41,11 @@ export default function QueryComponent(props) {
         }
     }, [records]);
 
+    const removeDeletedItem = (deletedItemId) => {
+        const updatedData = responseData.filter(item => item._id !== deletedItemId);
+        setResponseData(updatedData);
+    };
+
     return (
         <div>
             <div className={` w-full border-2 border-gray-600 p-4 box mt-4 mb-4`}>
