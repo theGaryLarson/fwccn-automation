@@ -56,7 +56,7 @@ export default function AddressComponent({ title, formData, onComponentInputChan
 
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="street-1">Street1 *:</label>
+                <label htmlFor="street-1">Street1:</label>
                 <input
                     type="text"
                     id="street-1"
@@ -65,7 +65,6 @@ export default function AddressComponent({ title, formData, onComponentInputChan
                     value={formData.homeAddress.homeStreet1}
                     onChange={handleInputChange}
                     className={'pl-1'}
-                    required
                 />
 
             </div>
@@ -82,7 +81,7 @@ export default function AddressComponent({ title, formData, onComponentInputChan
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="city">City *:</label>
+                <label htmlFor="city">City:</label>
                 <input
                     type="text"
                     id="city"
@@ -91,11 +90,10 @@ export default function AddressComponent({ title, formData, onComponentInputChan
                     value={formData.homeAddress.homeCity}
                     onChange={handleInputChange}
                     className={'pl-1'}
-                    required
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="homeState">State *:</label>
+                <label htmlFor="homeState">State:</label>
                 <input
                     type="text"
                     id="homeState"
@@ -106,12 +104,11 @@ export default function AddressComponent({ title, formData, onComponentInputChan
                     value={formData.homeAddress.homeState}
                     onChange={handleInputChange}
                     className={'pl-1'}
-                    required
                 />
             </div>
 
             <div className={styles.componentWrapper}>
-                <label htmlFor="zipCode">Zip Code *:</label>
+                <label htmlFor="zipCode">Zip Code:</label>
                 <input
                     type="number"
                     id="zipCode"
@@ -120,7 +117,6 @@ export default function AddressComponent({ title, formData, onComponentInputChan
                     value={formData.homeAddress.homeZip} // must drill down to nested object
                     onChange={handleInputChange}
                     className={'pl-1'}
-                    required
                 />
             </div>
             <Link

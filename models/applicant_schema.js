@@ -500,25 +500,19 @@ const applicantSchema = new Schema({
             },
             homeStreet1: {
                 type: String,
-                required: function () {
-                    return this.parent().helpRequested === 'rent';
-                }
+                required: false
             },
             homeStreet2: {
                 type: String
             },
             homeCity: {
                 type: String,
-                required: function () {
-                    return this.parent().helpRequested === 'rent';
-                }
+                required: false
             },
             homeState: {
                 type: String,
                 match: [/[A-Z]{2}/, 'Enter 2-letter abbreviation for state'],
-                required: function () {
-                    return this.parent().helpRequested === 'rent';
-                }
+                required: false
             },
             homeZip: {
                 type: Number,
@@ -531,23 +525,19 @@ const applicantSchema = new Schema({
                         message: 'Enter zip code in the following format ##### or #####-####'
                     },
                 ],
-                required: function () {
+                required: false/*function () {
                     return this.parent().helpRequested === 'rent';
-                }
+                }*/
             },
             isMoreThanMonthBehind: {
                 type: Boolean,
                 default:false,
-                required: function () {
-                    return this.parent().helpRequested === 'rent';
-                }
+                required: false
             },
             verified: {
                 type: Boolean,
                 default: false,
-                required: function () {
-                    return this.parent().helpRequested === 'rent';
-                }
+                required: false
             }
 
         }
