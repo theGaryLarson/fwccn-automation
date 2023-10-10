@@ -6,12 +6,12 @@ import EditApplicationComponent from "./EditApplicationComponent";
 import ActionTakenComponent from "./ActionTakenComponent";
 import {toast} from "react-toastify";
 
-    function Accordion(props) {
-        const { initialItem, setItemFocus, firstItem } = props;
-        const [isOpen, setIsOpen] = useState(false);
-        const [showForm, setShowForm] = useState(false);
-        const [item, setItem] = useState(initialItem);
-        const [isActionView, setIsActionView] = useState(false);
+function Accordion(props) {
+    const { initialItem, setItemFocus, firstItem, removeDeletedItem } = props;
+    const [isOpen, setIsOpen] = useState(false);
+    const [showForm, setShowForm] = useState(false);
+    const [item, setItem] = useState(initialItem);
+    const [isActionView, setIsActionView] = useState(false);
 
         useEffect(() => {
             setItem(initialItem)
