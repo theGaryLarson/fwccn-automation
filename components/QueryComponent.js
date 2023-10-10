@@ -60,7 +60,7 @@ export default function QueryComponent(props) {
                     <div className={"w-full"}>
                         { records?.length > 0 && records.map((item, index) => {
                                 return (<Accordion setItemFocus={setFocusedItem} key={index} initialItem={item}
-                                                   firstItem={firstItem}/>)
+                                                   firstItem={firstItem} removeDeletedItem={removeDeletedItem}/>)
                             }
                         )}
                     </div>
