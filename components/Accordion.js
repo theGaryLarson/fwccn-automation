@@ -108,9 +108,7 @@ function Accordion(props) {
     return (
             <div onClick={handleFocus}>
                 <div className={`flex flex-col items-center`}>
-                    <button
-                        type="button"
-                        onClick={toggleAccordion}
+                    <div
                         className={` rounded m-1 mb-0 p-2 w-full text-center ${item.status === 'APPROVED' || item.status === 'APPROVED-OVERRIDE' ? ' bg-green-300 border-black border-2' :
                             (item.status === "PENDING" ? 'bg-gray-300 border-black border-2' : (item.status === 'NO-RETURN' ? ' bg-orange-300 border-black border-2' : ' bg-red-300 border-black border-2'))}`}
                     >
@@ -139,7 +137,6 @@ function Accordion(props) {
                                         )
                                 }
                                 </div>
-
                                 <p className='text-gray-500'>{ 'Submitted: ' + dateFormatNYears(item?.timestamp.slice(0, 10), 0) }</p>
                                 <div className='flex justify-between'>
                                     <div className='bg-red-500 hover:bg-red-700 text-white w-20 rounded border-black border-2'>
@@ -155,7 +152,7 @@ function Accordion(props) {
                                 </div>
                             </div>
                          </span>
-                    </button>
+                    </div>
                     {isOpen && (
                         <div className={'w-full'}>
                             <div className={'w-full bg-blue-200 mt-4 p-4 '}>
