@@ -137,7 +137,7 @@ function Accordion(props) {
                                         )
                                 }
                                 </div>
-                                <p className='text-gray-500'>{ 'Submitted: ' + dateFormatNYears(item?.timestamp.slice(0, 10), 0) }</p>
+                                <p className='text-gray-500'>{ 'Date of Entry: ' + dateFormatNYears(item?.timestamp.slice(0, 10), 0) }</p>
                                 <div className='flex justify-between'>
                                     <div className='bg-red-500 hover:bg-red-700 text-white w-20 rounded border-black border-2'>
                                         <button
