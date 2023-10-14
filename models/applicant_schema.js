@@ -195,7 +195,8 @@ const applicantSchema = new Schema({
             },
             message: "Your age must be a number",
         } , // end validate
-        required: false // TODO: set back to true when done importing data
+        required: false,
+        default: ''
     },
     phone: {
         type: String,
@@ -227,12 +228,6 @@ const applicantSchema = new Schema({
             },
             socialSecLastFour: {
                 type: String,
-                validate: {
-                    validator: function (v) {
-                        return /[0-9]{4}/.test(v.toString());
-                    },
-                    message: 'Enter only the last 4 digits of applicant\'s social security number'
-                },
                 required: false
             },
             isValidLicense: {
@@ -496,27 +491,32 @@ const applicantSchema = new Schema({
         type: {
             aptName: {
                 type: String,
-                required: false
+                required: false,
+                default: ''
             },
             homeStreet1: {
                 type: String,
-                required: false
+                required: false,
+                default: ''
             },
             homeStreet2: {
-                type: String
+                type: String,
+                default: ''
             },
             homeCity: {
                 type: String,
-                required: false
+                required: false,
+                default: ''
             },
             homeState: {
                 type: String,
                 match: [/[A-Z]{2}/, 'Enter 2-letter abbreviation for state'],
-                required: false
+                required: false,
+                default: 'WA'
             },
             homeZip: {
                 type: Number,
-                default: undefined,
+                default: 0,
                 validate: [
                     {
                         validator: function(v) {
@@ -525,9 +525,7 @@ const applicantSchema = new Schema({
                         message: 'Enter zip code in the following format ##### or #####-####'
                     },
                 ],
-                required: false/*function () {
-                    return this.parent().helpRequested === 'rent';
-                }*/
+                required: false,
             },
             isMoreThanMonthBehind: {
                 type: Boolean,
@@ -633,7 +631,8 @@ const applicantSchema = new Schema({
                     return true;
                 },
                 message: 'Must enter a non-negative number'
-            }
+            },
+            default: 0
         },
         houseHoldIncomePastYear: {
             type: Number,
@@ -646,7 +645,8 @@ const applicantSchema = new Schema({
                     return true;
                 },
                 message: 'Must enter a non-negative number'
-            }
+            },
+            default: 0
         },
         totalSupportMembers: {
             type: Number,
@@ -659,7 +659,8 @@ const applicantSchema = new Schema({
                     return true;
                 },
                 message: 'Must enter a non-negative number'
-            }
+            },
+            default: 0
         },
         singleHeadOfHouseHold: {
             type: String,
