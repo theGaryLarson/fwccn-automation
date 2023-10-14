@@ -57,7 +57,7 @@ const form_data_defaults = {
         driverLicenseOrId: '',
         expDate: '',
         idStateIssued: '',
-        socialSecLastFour: undefined,
+        socialSecLastFour: '',
         isValidLicense: false
     },
     homelessness: {
@@ -69,7 +69,7 @@ const form_data_defaults = {
             street1: '',
             street2: '',
             city: '',
-            state: '',
+            state: 'WA',
             zip: ''
         }
     },
@@ -111,7 +111,7 @@ const form_data_defaults = {
         homeStreet1: '',
         homeStreet2: '',
         homeCity: '',
-        homeState: '',
+        homeState: 'WA',
         homeZip: '',
         isMoreThanMonthBehind: false,
         verified: false
@@ -181,11 +181,7 @@ const form_data_defaults = {
             {
                 name: "Food Stamps",
                 peopleCount: 0
-            },
-            {
-                name: "State Medical",
-                peopleCount: 0
-            },
+            }
         ],
         isIncomeVerified: false
     },
