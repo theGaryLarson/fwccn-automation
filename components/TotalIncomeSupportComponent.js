@@ -95,7 +95,7 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                     <option value={'No'}>No, Applicant not Single</option>
                     <option value={'Yes-female'}>Yes, Single Female Head of Household</option>
                     <option value={'Yes-male'}>Yes, Single Male Head of Household</option>
-                    <option value={'NO-DATA'}>NO DATA. IMPORTED FROM EXCEL</option>
+                    <option value={'NO-DATA'}>NO DATA.</option>
                 </select>
             </div>
             <div className={styles.componentWrapper}>
