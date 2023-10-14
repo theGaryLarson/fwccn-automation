@@ -156,7 +156,7 @@ export default function PrimaryComponent(props) {
                     id="social-sec-input"
                     name="socialSecLastFour" // same name as json object
                     placeholder="1234"
-                    pattern='^[0-9]{4}'
+                    pattern='^[0-9]{4}$'
                     title="Enter only the last four digits of applicant's social security number (e.g. 1234)"
                     value={formData?.idSource?.socialSecLastFour ?? ''} // must drill down to nested object
                     onChange={handleInputChange}
