@@ -1,6 +1,5 @@
 import connectMongo from "../../../lib/connectMongo";
 import Applicant from "../../../models/applicant_schema";
-import {regexReplacer} from "../../../lib/util";
 
 export default async function updateApplicantRecord(req, res) {
     if (req.method !== "POST") {
