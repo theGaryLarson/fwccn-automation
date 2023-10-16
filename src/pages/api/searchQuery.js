@@ -1,5 +1,6 @@
 import connectMongo from "../../../lib/connectMongo";
 import Applicant from "../../../models/applicant_schema";
+import {regexReplacer} from "../../../lib/util";
 
 export default async function updateApplicantRecord(req, res) {
     if (req.method !== "POST") {
@@ -14,16 +15,16 @@ export default async function updateApplicantRecord(req, res) {
 
     if (firstName) {
         nameConditions.push({ "$or": [
-                { "fName": { $regex: new RegExp(`^${firstName}$`, 'i') } },
-                { "otherNames.additionalNames.otherFirstName": { $regex: new RegExp(`^${firstName}$`, 'i') } },
-                { "otherAdults.adults.adultFName": { $regex: new RegExp(`^${firstName}$`, 'i') } },
+                { "fName": { $regex: new RegExp(`${firstName}`, 'i') } },
+                { "otherNames.additionalNames.otherFirstName": { $regex: new RegExp(`${firstName}`, 'i') } },
+                { "otherAdults.adults.adultFName": { $regex: new RegExp(`${firstName}`, 'i') } },
             ]});
     }
     if (lastName) {
         nameConditions.push({ "$or": [
-                { "lName": { $regex: new RegExp(`^${lastName}$`, 'i') } },
-                { "otherNames.additionalNames.otherLastName": { $regex: new RegExp(`^${lastName}$`, 'i') } },
-                { "otherAdults.adults.adultLName": { $regex: new RegExp(`^${lastName}$`, 'i') } }, // New condition
+                { "lName": { $regex: new RegExp(`${lastName}`, 'i') } },
+                { "otherNames.additionalNames.otherLastName": { $regex: new RegExp(`${lastName}`, 'i') } },
+                { "otherAdults.adults.adultLName": { $regex: new RegExp(`${lastName}`, 'i') } }, // New condition
             ]});
     }
     if (nameConditions.length > 0) {
@@ -48,6 +49,7 @@ export default async function updateApplicantRecord(req, res) {
     // Find applicants based on the built condition
     if (retrieveAll === "yes" || condition.$and.length > 0) {
         const query = retrieveAll === "yes" ? {} : condition;
+        console.log('Query: ', JSON.stringify(query, regexReplacer, 2));
         const retrievedRecords = await Applicant.find(query).exec();
         retrievedRecords.sort((a, b) => {
 
