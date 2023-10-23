@@ -27,16 +27,25 @@ function Accordion(props) {
                 body: JSON.stringify(editedItem)
             });
             if (response.ok) {
-                toast.success(` ${editedItem.fName + ' ' + editedItem.lName} \'s Application updated successfully!`)
+                toast.success(` ${editedItem.fName + ' ' + editedItem.lName}\'s Application updated successfully!`, {
+                    hideProgressBar: true,
+                    autoClose: 5000
+                });
                 return await response.json();
             } else {
                 console.error(`Error updating item for object id#: ${editedItem._id } `, response.status);
-                toast.error(`Error updating ${editedItem.fName + ' ' + editedItem.lName + '\'s application \n Object ID: ' + editedItem._id}`)
+                toast.error(`Error updating ${editedItem.fName + ' ' + editedItem.lName + '\'s application \n Object ID: ' + editedItem._id}`, {
+                    hideProgressBar: true,
+                    autoClose: 5000
+                });
             }
 
         } catch (e) {
             console.error(`Error updating item for object id#: ${editedItem._id } `, e);
-            toast.error(`Error updating ${editedItem.fName + ' ' + editedItem.lName + '\'s application \n Object ID: ' + editedItem._id}`)
+            toast.error(`Error updating ${editedItem.fName + ' ' + editedItem.lName + '\'s application \n Object ID: ' + editedItem._id}`, {
+                hideProgressBar: true,
+                autoClose: 5000
+            });
             return null;
         }
     }
