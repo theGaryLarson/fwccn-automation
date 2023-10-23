@@ -1,6 +1,7 @@
 import React, {useEffect, useMemo, useState} from "react";
 import Accordion from "./Accordion";
 import Legend from "./Legend";
+import { toast } from 'react-toastify';
 
 export default function QueryComponent(props) {
     const {  queryObject  } = props;
@@ -9,6 +10,11 @@ export default function QueryComponent(props) {
     const [ focusedItem, setFocusedItem ] = useState({})
 
     useEffect(() => {
+        // Notify user that data is loading
+        const toastId = toast.info('Loading applications...', {
+            autoClose: false,
+            hideProgressBar: true
+        });
         async function fetchRequirementsCheckData() {
             try {
                 const response = await fetch(`api/searchQuery`, {
@@ -19,13 +25,18 @@ export default function QueryComponent(props) {
                     body: JSON.stringify(queryObject),
                 });
                 if (response.ok) {
+                    toast.dismiss(toastId);
                     return await response.json();
                 } else {
                     console.error("Error retrieving requirements check responseData: ", response.status);
+                    toast.dismiss(toastId);
+                    toast.error('Error retrieving data');
                 }
 
             } catch (e) {
                 console.error("Error retrieving requirements check responseData: ", e);
+                toast.dismiss(toastId);
+                toast.error('Error retrieving data');
                 return null;
             }
         }
