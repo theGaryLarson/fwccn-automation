@@ -102,14 +102,23 @@ function Accordion(props) {
                 }),
             });
             if (response.ok) {
-                toast.success(`Successfully deleted the record for ${item.fName} ${item.lName}.`);
+                toast.success(`Successfully deleted the record for ${item.fName} ${item.lName}.`, {
+                    hideProgressBar: true,
+                    autoClose: 5000
+                });
                 removeDeletedItem(item._id);
             } else {
-                toast.error(`Failed to delete the record for ${item.fName} ${item.lName}.`);
+                toast.error(`Failed to delete the record for ${item.fName} ${item.lName}.`, {
+                    hideProgressBar: true,
+                    autoClose: 5000
+                });
             }
         } catch (error) {
             console.error(`Error deleting record: ${error}`);
-            toast.error(`An error occurred while deleting the record for ${item.fName} ${item.lName}.`);
+            toast.error(`An error occurred while deleting the record for ${item.fName} ${item.lName}.`, {
+                hideProgressBar: true,
+                autoClose: 5000
+            });
         }
     };
 
