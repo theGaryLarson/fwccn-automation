@@ -81,16 +81,25 @@ function ApplicantForm(props) {
             .then((data) => {
                 // Check if application was created successfully
                 if (data && data._id) {
-                    toast.success('Application created successfully!')
+                    toast.success('Application created successfully!', {
+                        hideProgressBar: true,
+                        autoClose: 5000
+                    });
                     setHasUnsavedChanges(false);
                 } else {
                     // If data is not valid, display a toast error
-                    toast.error('Error creating client\'s application');
+                    toast.error('Error creating client\'s application', {
+                        hideProgressBar: true,
+                        autoClose: 5000
+                    });
                 }
             })
             .catch((error) => {
                 console.error("Error creating application. Error: ", error);
-                toast.error('Error creating client\'s application');
+                toast.error('Error creating client\'s application', {
+                    hideProgressBar: true,
+                    autoClose: 5000
+                });
             });
     }
 
