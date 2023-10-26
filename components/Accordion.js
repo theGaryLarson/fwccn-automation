@@ -16,7 +16,7 @@ function Accordion(props) {
     useEffect(() => {
         setItem(initialItem)
     }, [initialItem])
-
+//second change
     const  updateApplicant = async (editedItem) => {
         try {
             const response = await fetch(`api/getAndUpdateOneRecord`, {
