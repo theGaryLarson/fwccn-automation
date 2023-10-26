@@ -4,12 +4,23 @@ import {fileURLToPath} from 'url'
 import fs from 'fs';
 import templateRecord, {adjustForTimeZone} from "./templateRecord.mjs";
 
+/*
+REMEMBER THIS WAS ALTERED FOR CATCH UP DATA AFTER 9/5/2023
 
+TIMESTAMP WAS REPLACED WITH ACTUAL DATE OF ENTRY
+
+STATUS WAS TRANSFERRED OVER RATHER THAN INFERRED FROM DATA
+
+DATE OF SERVICE IS LEFT EMPTY SO IT DOES NOT GET POPULATED WITH 10-12-1492 FILLER DATE INSTEAD IT SAYS
+AWAITING SERVICE IN THE UI.
+
+FILE THAT IS SAVED HAS DIFFERENT NAMING CONVENTION
+ */
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-readAndTransformData('FWCCN', '2023')
+readAndTransformData('CATCHUPFWCCN', '2023')
 function readAndTransformData(filename, year) {
     const filePath = path.resolve(__dirname, `${year}-Data-${filename}.xlsx`);
     const workbook = xlsx.readFile(filePath, {cellDates: true});
@@ -20,7 +31,7 @@ function readAndTransformData(filename, year) {
     const transformedData = data.map((clientRecord) => {
         let dateOfService = clientRecord['DATE OF SERVICE'] ?
             adjustForTimeZone(clientRecord['DATE OF SERVICE'])
-            : new Date('1492-10-12').toISOString().replace(/T\d{2}/, 'T12');
+            : ""; //new Date('1492-10-12').toISOString().replace(/T\d{2}/, 'T12');
 
         // if (!dateOfService && index > 0) {
         //     dateOfService = null; // previousDateOfService
@@ -30,7 +41,7 @@ function readAndTransformData(filename, year) {
         previousDateOfService = null; // transformedRecord.dateOfService
         return transformedRecord;
     });
-    fs.writeFileSync(`transformedData${year}.json`, JSON.stringify(transformedData, null, 2))
+    fs.writeFileSync(`CatchUpData${year}.json`, JSON.stringify(transformedData, null, 2))
 
     function transformRecord(r, dateOfService) {
         const otherAdultsList = [];
@@ -40,14 +51,14 @@ function readAndTransformData(filename, year) {
         buildAdultJsonList(r['OTHER ADULTS 4'], otherAdultsList);
         return {
             ...templateRecord,
-            timestamp: createTimeStamp(),
+            timestamp: createTimeStampFromExcel(r['DATE OF ENTRY']),
             // DO NOT HAVE ENOUGH INFO TO DETERMINE DENIED/NO-RETURN OPTED FOR NO-RETURN LESS NEGATIVE CONNOTATION
-            status: (r['RENT'] && r['CHECK #'] && r['AMT RENT PAID'] > 0)
+            status: r['STATUS'],/*(r['RENT'] && r['CHECK #'] && r['AMT RENT PAID'] > 0)
             || (r['GAS'] && r['AMT GAS'] > 0)
             || (r['MOTEL'] && r['AMT MOTEL'] > 0)
             || (r['BUS'] && r['AMT BUS'] > 0)
                 ? 'APPROVED'
-                : 'NO-RETURN',
+                : 'NO-RETURN',*/
             dateOfService: dateOfService,
             serviceDate: {
                 $date: dateOfService
@@ -182,6 +193,13 @@ function readAndTransformData(filename, year) {
     function createTimeStamp() {
         const pacificTimeDiff = 7 * 60 * 60 * 1000;
         return new Date(Date.now() - pacificTimeDiff)
+            .toISOString().slice(0, 19)
+            .replace('T', ' ');
+    }
+
+    function createTimeStampFromExcel(dateOfEntry) {
+        const pacificTimeDiff = 7 * 60 * 60 * 1000;
+        return new Date(dateOfEntry - pacificTimeDiff)
             .toISOString().slice(0, 19)
             .replace('T', ' ');
     }
