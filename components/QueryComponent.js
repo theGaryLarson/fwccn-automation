@@ -12,11 +12,14 @@ export default function QueryComponent(props) {
 
 
     useEffect(() => {
+        let toastId;
         // Notify user that data is loading
-        const toastId = toast.info('Loading applications...', {
-            autoClose: false,
-            hideProgressBar: true
-        });
+        if (!isFirstLoad) {
+            toastId = toast.info('Loading applications...', {
+                autoClose: false,
+                hideProgressBar: true
+            });
+        }
         async function fetchRequirementsCheckData() {
             try {
                 const response = await fetch(`api/searchQuery`, {
