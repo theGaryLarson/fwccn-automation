@@ -24,7 +24,7 @@ export default function Home() {
                 <nav className="flex justify-end gap-x-1 mt-4 ">
                     <button
                         id={'look-up'}
-                        name={'look-up'} /*todo: adjust so styling works right with correct value for isLookUp*/
+                        name={'look-up'}
                         type={'button'}
                         className={`'text-black px-4 border-2 rounded hover:bg-gray-300 hover:text-black' ${!isLookUp ? 'border-gray-700 bg-black text-white hover:border-black hover:text-black': 'border-gray-300'}`}
                         onClick={handleOnClick}
