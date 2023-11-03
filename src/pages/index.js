@@ -9,9 +9,9 @@ export default function Home() {
     function handleOnClick(event) {
         const {name} = event.target
         if (name === 'new-form') {
-            setIsLookUp(true)
+            setIsLookUp(true);
         } else {
-            setIsLookUp(false)
+            setIsLookUp(false);
         }
     }
     return (
