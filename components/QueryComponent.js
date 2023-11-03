@@ -56,7 +56,7 @@ export default function QueryComponent(props) {
         if (responseData?.length > 0) {
             setFirstItem(responseData[0]);
         }
-    }, [records]);
+    }, [records, responseData]);
 
     const removeDeletedItem = (deletedItemId) => {
         const updatedData = responseData.filter(item => item._id !== deletedItemId);
