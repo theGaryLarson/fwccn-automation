@@ -6,8 +6,10 @@ import { toast } from 'react-toastify';
 export default function QueryComponent(props) {
     const {  queryObject  } = props;
     const [responseData, setResponseData] = useState({});
-    const [firstItem, setFirstItem] = useState(undefined)
-    const [ focusedItem, setFocusedItem ] = useState({})
+    const [firstItem, setFirstItem] = useState(undefined);
+    const [ focusedItem, setFocusedItem ] = useState({});
+    const [isFirstLoad, setIsFirstLoad] = useState(true);  // Add this state variable
+
 
     useEffect(() => {
         // Notify user that data is loading
@@ -40,10 +42,14 @@ export default function QueryComponent(props) {
                 return null;
             }
         }
-        fetchRequirementsCheckData().then( r => {
+        if (!isFirstLoad) {
+            fetchRequirementsCheckData().then( r => {
                 setResponseData(r)
-            // setFirstItem(responseData[0])
-        });
+                // setFirstItem(responseData[0])
+            });
+        }
+        setIsFirstLoad(false);
+
     }, [queryObject]);
     const records = useMemo(() =>  responseData, [responseData]);
     useEffect(() => {
