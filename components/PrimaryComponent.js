@@ -91,8 +91,9 @@ export default function PrimaryComponent(props) {
                     className={'pl-1'}
                     required
                 >
-                    <option value="Female">Female</option>
-                    <option value="Male">Male</option>
+                    <option value="Undisclosed">undisclosed</option>
+                    <option value="Female">female</option>
+                    <option value="Male">male</option>
                 </select>
             </div>
 
