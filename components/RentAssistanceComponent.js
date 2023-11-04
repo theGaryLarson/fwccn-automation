@@ -201,6 +201,29 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
                     Add Additional Assistance
                 </button>
             </div>)}
+            <div className={styles.componentWrapper}>
+                <label htmlFor={'amountPromised'}>Amount Promised</label>
+                <input
+                    type={"text"}
+                    id={'amountPromised'}
+                    name={'amountPromised'}
+                    value={formData?.actionTaken?.amountPromised ?? ''}
+                    placeholder={'$0.00'}
+                    onChange={(event) => handleInputChange(event)}
+                    className={`pl-1`}
+                /></div>
+            <div className={styles.componentWrapper}>
+                <label htmlFor={'rentBalanceOwed'}>Rent Balance Owed Receipt</label>
+                <input
+                    type={"text"}
+                    id={'rentBalanceOwed'}
+                    name={'rentBalanceOwed'}
+                    value={formData?.actionTaken?.rentBalanceOwed}
+                    placeholder={'$0.00'}
+                    onChange={(event) => handleInputChange(event)}
+                    className={` pl-1`}
+                />
+            </div>
         </div>
     );
 }
