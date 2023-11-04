@@ -145,7 +145,7 @@ const currentApplicantEntries = {
         totalHouseholdIncome: '',
         houseHoldIncomePastYear: '',
         totalSupportMembers: '',
-        singleHeadOfHouseHold: 'No', // states: 'No', 'Yes-male', 'Yes-female'
+        singleHeadOfHouseHold: 'NO-DATA', // states: 'No', 'Yes-male', 'Yes-female'
         incomeLevel: '',
         percentOfAnnualAmi: '',
         incomeSituation: '',
