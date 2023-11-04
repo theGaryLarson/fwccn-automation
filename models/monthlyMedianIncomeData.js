@@ -1,12 +1,3 @@
-export const getIncomeCategory = (year, monthlyHouseholdIncome, familySize) => {
-    if (Number.isNaN(year) || Number.isNaN(monthlyHouseholdIncome) || Number.isNaN(familySize)) {
-        throw new Error('Requires a valid year, family size and totalHouseholdIncome')
-    }
-    const medianIncome = getMedianIncome(year, familySize);
-    const percentage = getPercentOfMedianIncome(monthlyHouseholdIncome, medianIncome);
-    return categorizeByPercentOfMedianIncome(percentage);
-};
-
 export const getKingAnnualIncomeCategory = (year, annualHouseholdIncome, familySize) => {
     if (Number.isNaN(year) || Number.isNaN(annualHouseholdIncome) || Number.isNaN(familySize)) {
         throw new Error('Requires a valid year, family size and totalHouseholdIncome')
@@ -14,26 +5,6 @@ export const getKingAnnualIncomeCategory = (year, annualHouseholdIncome, familyS
     const percentage = getPercentOfKingAMI(year, familySize, annualHouseholdIncome);
     return categorizeByPercentOfMedianIncome(percentage);
 };
-
-function getMedianIncome(year, familySize) {
-    if(year < 2016) {
-        throw new Error('Year must be 2016 or later.')
-    }
-    if (familySize > 10) {
-        const additionalFamilyMembers = familySize - 10;
-        const costPerAdditionalMember = monthlyMedianIncomeData[year]['additional'];
-        return costPerAdditionalMember * additionalFamilyMembers + monthlyMedianIncomeData[year][10];
-    } else {
-        return monthlyMedianIncomeData[year][familySize];
-    }
-}
-
-function getKingCountyMedianIncome(year, familySize) {
-    if( familySize > 10 || year < 2023) {
-        throw new Error('Year must be 2023 and family size must be less than 11.')
-    }
-    return monthlyMedianIncomeData[year][familySize];
-}
 
 function categorizeByPercentOfMedianIncome(percentage) {
     if (!percentage || Number.isNaN(percentage)) {
@@ -55,12 +26,20 @@ export const getPercentOfKingAMI = (year, familySize, annualHouseholdIncome) => 
     return annualHouseholdIncome / annualMedianIncome * 100;
 }
 
-function getPercentOfMedianIncome(monthlyHouseholdIncome, monthlyMedianIncome) {
-    return monthlyHouseholdIncome / monthlyMedianIncome * 100;
-}
-
 // https://communities-rise.org/king-county-hud-income-eligibility/
 const kingAnnualAMI = {
+    '2024': {
+        "1": "10000000",
+        "2": "10000000",
+        "3": "10000000",
+        "4": "10000000",
+        "5": "10000000",
+        "6": "10000000",
+        "7": "10000000",
+        "8": "10000000",
+        "9": "10000000",
+        "10": "10000000"
+    },
     '2023': {
         "1": "88312.50",
         "2": "100937.50",
@@ -74,7 +53,7 @@ const kingAnnualAMI = {
         "10": "186687.50"
     }
 }
-
+// unused but a good reference for how we will add future years.
 // https://www.dshs.wa.gov/esa/eligibility-z-manual-ea-z/state-median-income-chart
 export const monthlyMedianIncomeData = {
     "2023": {
