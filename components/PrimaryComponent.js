@@ -82,7 +82,7 @@ export default function PrimaryComponent(props) {
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor={"applicantGender"}>Gender assigned at Birth:</label>
+                <label htmlFor={"applicantGender"}>Gender Assigned at Birth:</label>
                 <select
                     id={"applicantGender"}
                     name="applicantGender"

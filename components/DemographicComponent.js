@@ -12,7 +12,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
             <h1 className={'mb-8 text-lg'}>Demographic Information</h1>
             <h1 className={'mb-4'}>Age Ranges</h1>
             <div className={'flex h-10 justify-between mb-4'}>
-                <div className='flex flex-col'><label className={'font-bold'} htmlFor="totalMales">Total Males In Household</label>
+                <div className='flex flex-col'><label className={'font-bold'} htmlFor="totalMales">Total Males In Household:</label>
                     <input
                         type="number"
                         id="totalMales"
@@ -22,7 +22,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                         className={'pl-1'}
                         required
                     /></div>
-                <div className='flex flex-col '><label className={'font-bold'} htmlFor="totalFemales">Total Females In Household</label>
+                <div className='flex flex-col '><label className={'font-bold'} htmlFor="totalFemales">Total Females In Household:</label>
                     <input
                         type="number"
                         id="totalFemales"
@@ -54,7 +54,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
             </div>
             <h1 className={'mb-4 mt-4'}>Ethnicity</h1>
             <div className={styles.componentWrapper}>
-                <label htmlFor="whiteOrCaucasian">White/Caucasian</label>
+                <label htmlFor="whiteOrCaucasian">White/Caucasian:</label>
                 <input
                     type="number"
                     id="whiteOrCaucasian"
@@ -66,7 +66,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="blackAfricanAmerican">Black/African American</label>
+                <label htmlFor="blackAfricanAmerican">Black/African American:</label>
                 <input
                     type="number"
                     id="blackAfricanAmerican"
@@ -78,7 +78,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="asianAsianAmerican">Asian/Asian American</label>
+                <label htmlFor="asianAsianAmerican">Asian/Asian American:</label>
                 <input
                     type="number"
                     id="asianAsianAmerican"
@@ -90,7 +90,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="americanIndianOrAlaskaNative">American Indian/Alaska Native</label>
+                <label htmlFor="americanIndianOrAlaskaNative">American Indian/Alaska Native:</label>
                 <input
                     type="number"
                     id="americanIndianOrAlaskaNative"
@@ -102,7 +102,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="nativeHawaiianPacificIslander">Native Hawaiian/Pacific Islander</label>
+                <label htmlFor="nativeHawaiianPacificIslander">Native Hawaiian/Pacific Islander:</label>
                 <input
                     type="number"
                     id="nativeHawaiianPacificIslander"
@@ -114,7 +114,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="latinoAmericanHispanic">Latinx/Hispanic</label>
+                <label htmlFor="latinoAmericanHispanic">Latinx/Hispanic:</label>
                 <input
                     type="number"
                     id="latinoAmericanHispanic"
@@ -126,7 +126,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="americanIndianOrAlaskaNativeAndWhite">American Indian/Alaska Native & White</label>
+                <label htmlFor="americanIndianOrAlaskaNativeAndWhite">American Indian/Alaska Native & White:</label>
                 <input
                     type="number"
                     id="americanIndianOrAlaskaNativeAndWhite"
@@ -138,7 +138,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="asianAsianAmericanAndWhite">Asian/Asian American & White</label>
+                <label htmlFor="asianAsianAmericanAndWhite">Asian/Asian American & White:</label>
                 <input
                     type="number"
                     id="asianAsianAmericanAndWhite"
@@ -150,7 +150,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="blackAfricanAmericanAndWhite">Black/African American & White</label>
+                <label htmlFor="blackAfricanAmericanAndWhite">Black/African American & White:</label>
                 <input
                     type="number"
                     id="blackAfricanAmericanAndWhite"
@@ -162,7 +162,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="americanIndianOrAlaskaNativeAndBlackAfricanAmerican">American Indian/Alaska Native & Black/African American</label>
+                <label htmlFor="americanIndianOrAlaskaNativeAndBlackAfricanAmerican">American Indian/Alaska Native & Black/African American:</label>
                 <input
                     type="number"
                     id="americanIndianOrAlaskaNativeAndBlackAfricanAmerican"
@@ -174,7 +174,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="otherRace">Other Race</label>
+                <label htmlFor="otherRace">Other Race:</label>
                 <input
                     type="number"
                     id="otherRace"
@@ -186,7 +186,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="multiRacial">Multi-Racial</label>
+                <label htmlFor="multiRacial">Multi-Racial:</label>
                 <input
                     type="number"
                     id="multiRacial"
@@ -198,7 +198,7 @@ export default function DemographicComponent({formData, onComponentInputChange }
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="unknown">Unknown</label>
+                <label htmlFor="unknown">Unknown:</label>
                 <input
                     type="number"
                     id="unknown"

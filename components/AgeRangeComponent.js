@@ -2,16 +2,16 @@ import React from 'react';
 
 function AgeComponent({ formData, genderRange, handleInputChange }) {
     const ageRanges = [
-        { label: '0-5', key: 'zeroToFive' },
-        { label: '6-12', key: 'sixToTwelve' },
-        { label: '13-17', key: 'thirteenToSeventeen' },
-        { label: '18-24', key: 'eighteenToTwentyFour' },
-        { label: '25-34', key: 'twentyFiveToThirtyFour' },
-        { label: '35-54', key: 'thirtyFiveToFiftyFour' },
-        { label: '55-74', key: 'fiftyFiveToSeventyFour' },
-        { label: '75-84', key: 'seventyFiveToEightyFour' },
-        { label: '85+', key: 'eightyFivePlus' },
-        { label: 'unknown', key: 'unknown' },
+        { label: '0-5:', key: 'zeroToFive' },
+        { label: '6-12:', key: 'sixToTwelve' },
+        { label: '13-17:', key: 'thirteenToSeventeen' },
+        { label: '18-24:', key: 'eighteenToTwentyFour' },
+        { label: '25-34:', key: 'twentyFiveToThirtyFour' },
+        { label: '35-54:', key: 'thirtyFiveToFiftyFour' },
+        { label: '55-74:', key: 'fiftyFiveToSeventyFour' },
+        { label: '75-84:', key: 'seventyFiveToEightyFour' },
+        { label: '85+:', key: 'eightyFivePlus' },
+        { label: 'unknown:', key: 'unknown' },
     ];
 
     const onHandleInputChange = (event) => {

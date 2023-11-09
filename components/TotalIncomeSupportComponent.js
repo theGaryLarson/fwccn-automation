@@ -73,7 +73,7 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="totalSupportMembers">Total Number of Supported Members</label>
+                <label htmlFor="totalSupportMembers">Total Number of Supported Members:</label>
                 <input
                     type="number"
                     id="totalSupportMembers"
@@ -99,7 +99,7 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
                 </select>
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor='incomeSituation'>Income Situation</label>
+                <label htmlFor='incomeSituation'>Income Situation:</label>
                 <textarea
                     id={`incomeSituation`}
                     name="incomeSituation"

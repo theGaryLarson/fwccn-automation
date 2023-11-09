@@ -202,7 +202,7 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
                 </button>
             </div>)}
             <div className={styles.componentWrapper}>
-                <label htmlFor={'amountPromised'}>Amount Promised</label>
+                <label htmlFor={'amountPromised'}>Amount Promised:</label>
                 <input
                     type={"text"}
                     id={'amountPromised'}
@@ -213,7 +213,7 @@ export default function RentAssistanceComponent({ formData, onComponentInputChan
                     className={`pl-1`}
                 /></div>
             <div className={styles.componentWrapper}>
-                <label htmlFor={'rentBalanceOwed'}>Rent Balance Owed Receipt</label>
+                <label htmlFor={'rentBalanceOwed'}>Rent Balance Owed Receipt:</label>
                 <input
                     type={"text"}
                     id={'rentBalanceOwed'}

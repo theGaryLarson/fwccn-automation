@@ -138,7 +138,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                                 </button>
                             </div>
                             <div className={styles.componentWrapper}>
-                                <label htmlFor={`adultFName-${index}`}>First name</label>
+                                <label htmlFor={`adultFName-${index}`}>First name:</label>
                                 <input
                                     type="text"
                                     id={`adultFName-${index}`}
@@ -150,7 +150,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                                 />
                             </div>
                             <div className={styles.componentWrapper}>
-                                <label htmlFor={`adultMiddleInitial-${index}`}>Middle Initial</label>
+                                <label htmlFor={`adultMiddleInitial-${index}`}>Middle Initial:</label>
                                 <input
                                     type="text"
                                     id={`adultMiddleInitial-${index}`}
@@ -161,7 +161,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                                 />
                             </div>
                             <div className={styles.componentWrapper}>
-                                <label htmlFor={`adultLName-${index}`}>Last Name</label>
+                                <label htmlFor={`adultLName-${index}`}>Last Name:</label>
                                 <input
                                     type="text"
                                     id={`adultLName-${index}`}
@@ -173,7 +173,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                                 />
                             </div>
                             <div className={styles.componentWrapper}>
-                                <label htmlFor={`adultAge-${index}`}>Age</label>
+                                <label htmlFor={`adultAge-${index}`}>Age:</label>
                                 <input
                                     type="number"
                                     id={`adultAge-${index}`}
@@ -185,7 +185,7 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                                 />
                             </div>
                             <div className={styles.componentWrapper}>
-                                <label htmlFor={`adultGender-${index}`}>Gender</label>
+                                <label htmlFor={`adultGender-${index}`}>Gender Assigned at Birth:</label>
                                 <select
                                     id={`adultGender-${index}`}
                                     name="adultGender"
