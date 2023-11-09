@@ -106,7 +106,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
 
     const handleAddKid = () => {
         const newChild = {
-            gender: "female",
+            gender: "undisclosed",
             age: 0,
             school: "",
             schoolDistrict: "",
@@ -166,15 +166,16 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                                 </button>
                         </div>
                         <div className={styles.componentWrapper}>
-                            <label htmlFor={`childGender-${index}`}>Gender assigned at Birth:</label>
+                            <label htmlFor={`childGender-${index}`}>Gender Assigned at Birth:</label>
                             <select
                                 id={`childGender-${index}`}
                                 name="gender"
-                                value={child?.gender??'female'}
+                                value={child?.gender??'undisclosed'}
                                 onChange={(event) => handleInputChange(event, index)}
                             >
-                                <option value="female">Female</option>
-                                <option value="male">Male</option>
+                                <option value="undisclosed">not disclosed</option>
+                                <option value="female">female</option>
+                                <option value="male">male</option>
                             </select>
                         </div>
                         <div className={styles.componentWrapper}>
