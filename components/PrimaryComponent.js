@@ -86,12 +86,12 @@ export default function PrimaryComponent(props) {
                 <select
                     id={"applicantGender"}
                     name="applicantGender"
-                    value={formData?.applicantGender??'Female'}
+                    value={formData?.applicantGender??'Undisclosed'}
                     onChange={handleInputChange}
                     className={'pl-1'}
                     required
                 >
-                    <option value="Undisclosed">undisclosed</option>
+                    <option value="Undisclosed">not disclosed</option>
                     <option value="Female">female</option>
                     <option value="Male">male</option>
                 </select>
