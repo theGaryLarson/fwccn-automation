@@ -9,7 +9,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
         <div>
             <h1>Landlord Information</h1>
             <div className={styles.componentWrapper}>
-                <label htmlFor="landlord-full-name">Landlord Full Name</label>
+                <label htmlFor="landlord-full-name">Landlord Full Name:</label>
                 <input
                     type="text"
                     id="landlord-full-name"
@@ -21,7 +21,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="landlord-phone">Landlord Phone Number</label>
+                <label htmlFor="landlord-phone">Landlord Phone Number:</label>
                 <input
                     type="tel"
                     id="landlord-phone"
@@ -35,7 +35,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="landlord-street1">Landlord Street Address Line 1</label>
+                <label htmlFor="landlord-street1">Landlord Street Address Line 1:</label>
                 <input
                     type="text"
                     id="landlord-street1"
@@ -47,7 +47,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="landlord-street2">Landlord Street Address Line 2</label>
+                <label htmlFor="landlord-street2">Landlord Street Address Line 2:</label>
                 <input
                     type="text"
                     id="landlord-street2"
@@ -59,7 +59,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="landlord-city">Landlord City</label>
+                <label htmlFor="landlord-city">Landlord City:</label>
                 <input
                     type="text"
                     id="landlord-city"
@@ -71,7 +71,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="landlord-state">Landlord State</label>
+                <label htmlFor="landlord-state">Landlord State:</label>
                 <input
                     type="text"
                     id="landlord-state"
@@ -83,7 +83,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
                 />
             </div>
             <div className={styles.componentWrapper}>
-                <label htmlFor="landlord-zip">Landlord Zip Code</label>
+                <label htmlFor="landlord-zip">Landlord Zip Code:</label>
                 <input
                     type="number"
                     id="landlord-zip"
