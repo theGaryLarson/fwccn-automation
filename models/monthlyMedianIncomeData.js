@@ -28,19 +28,7 @@ export const getPercentOfKingAMI = (year, familySize, annualHouseholdIncome) => 
 
 // https://communities-rise.org/king-county-hud-income-eligibility/
 const kingAnnualAMI = {
-    '2024': {
-        "1": "10000000",
-        "2": "10000000",
-        "3": "10000000",
-        "4": "10000000",
-        "5": "10000000",
-        "6": "10000000",
-        "7": "10000000",
-        "8": "10000000",
-        "9": "10000000",
-        "10": "10000000"
-    },
-    '2023': {
+        '2023': {
         "1": "88312.50",
         "2": "100937.50",
         "3": "113562.50",
