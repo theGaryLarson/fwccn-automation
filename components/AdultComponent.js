@@ -193,9 +193,9 @@ export default function AdultComponent({ formData, onComponentInputChange }) {
                                     onChange={(event) => handleInputChange(event, index)}
                                     required
                                 >
+                                    <option value={'undisclosed'}>not disclosed</option>
                                     <option value={'female'}>female</option>
                                     <option value={'male'}>male</option>
-                                    <option value={'nonbinary'}>nonbinary</option>
                                 </select>
                             </div>
                             <div className={`${styles.componentWrapper}`}>
