@@ -85,7 +85,7 @@ export default function LandLordComponent({ formData, onComponentInputChange }) 
             <div className={styles.componentWrapper}>
                 <label htmlFor="landlord-zip">Landlord Zip Code:</label>
                 <input
-                    type="number"
+                    type="text"
                     id="landlord-zip"
                     name="landLordZip"
                     placeholder="98101"
