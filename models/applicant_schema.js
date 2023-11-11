@@ -228,6 +228,7 @@ const applicantSchema = new Schema({
             },
             socialSecLastFour: {
                 type: String,
+                default: '',
                 required: false
             },
             isValidLicense: {
@@ -606,12 +607,12 @@ const applicantSchema = new Schema({
                 default: '',
             },
             landLordZip: {
-                type: Number,
-                default: undefined,
+                type: String,
+                default: '',
                 validate: [
                     {
                         validator: function (v) {
-                            if ( v != null ) return /^\d{5}(?:-\d{4})?$/.test(v.toString());
+                            return v === "" || /^\d{5}(?:-\d{4})?$/.test(v.toString());
                         },
                         message: 'Enter zip code in the following format ##### or #####-####'
                     }
