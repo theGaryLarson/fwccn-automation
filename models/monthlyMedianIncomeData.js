@@ -22,130 +22,38 @@ function categorizeByPercentOfMedianIncome(percentage) {
 }
 
 export const getPercentOfKingAMI = (year, familySize, annualHouseholdIncome) => {
-    const annualMedianIncome = kingAnnualAMI[year][familySize];
-    return annualHouseholdIncome / annualMedianIncome * 100;
-}
+    const incomeLimits = amiLimits[year][familySize];
+    // Find the first (lowest) income limit for the family size
+    const firstLimit = Math.min(...Object.keys(incomeLimits).map(Number));
+    // If the income is less than the first limit, return '30%'
+    if (annualHouseholdIncome <= firstLimit) {
+        return '30';
+    }
+    let lastPercentage = 'Not found';
 
-// https://communities-rise.org/king-county-hud-income-eligibility/
-const kingAnnualAMI = {
-        '2023': {
-        "1": "88312.50",
-        "2": "100937.50",
-        "3": "113562.50",
-        "4": "126125",
-        "5": "136250",
-        "6": "146312.50",
-        "7": "156437.50",
-        "8": "166500",
-        "9": "176625",
-        "10": "186687.50"
+    for (let [incomeLimit, percentage] of Object.entries(incomeLimits)) {
+        if (annualHouseholdIncome >= incomeLimit) {
+            lastPercentage = percentage; // Save the last percentage if income is higher than the current limit
+        } else {
+            break; // If income is less than or equal to the current limit, stop the iteration
+        }
     }
-}
-// unused but a good reference for how we will add future years.
-// https://www.dshs.wa.gov/esa/eligibility-z-manual-ea-z/state-median-income-chart
-export const monthlyMedianIncomeData = {
-    "2023": {
-        "1": 4915,
-        "2": 6428,
-        "3": 7940,
-        "4": 9453,
-        "5": 10965,
-        "6": 12478,
-        "7": 12762,
-        "8": 13046,
-        "9": 13330,
-        "10": 13614,
-        "additional": 284
-    },
-    "2022": {
-        "1": 4687,
-        "2": 6129,
-        "3": 7571,
-        "4": 9014,
-        "5": 10456,
-        "6": 11898,
-        "7": 12168,
-        "8": 12438,
-        "9": 12708,
-        "10": 12978,
-        "additional": 270
-    },
-    "2021": {
-        "1": 4460,
-        "2": 5830,
-        "3": 7200,
-        "4": 8570,
-        "5": 9940,
-        "6": 11310,
-        "7": 11574,
-        "8": 11838,
-        "9": 12102,
-        "10": 12366,
-        "additional": 264
-    },
-    "2020": {
-        "1": 4233,
-        "2": 5531,
-        "3": 6829,
-        "4": 8127,
-        "5": 9425,
-        "6": 10723,
-        "7": 10980,
-        "8": 11237,
-        "9": 11494,
-        "10": 11751,
-        "additional": 257
-    },
-    "2019": {
-        "1": 4006,
-        "2": 5232,
-        "3": 6458,
-        "4": 7684,
-        "5": 8910,
-        "6": 10136,
-        "7": 10386,
-        "8": 10636,
-        "9": 10886,
-        "10": 11136,
-        "additional": 250
-    },
-    "2018": {
-        "1": 3779,
-        "2": 4933,
-        "3": 6087,
-        "4": 7241,
-        "5": 8395,
-        "6": 9549,
-        "7": 9792,
-        "8": 10035,
-        "9": 10278,
-        "10": 10521,
-        "additional": 243
-    },
-    "2017": {
-        "1": 3552,
-        "2": 4634,
-        "3": 5716,
-        "4": 6798,
-        "5": 7880,
-        "6": 8962,
-        "7": 9198,
-        "8": 9434,
-        "9": 9670,
-        "10": 9906,
-        "additional": 236
-    },
-    "2016": {
-        "1": 3325,
-        "2": 4335,
-        "3": 5345,
-        "4": 6355,
-        "5": 7365,
-        "6": 8375,
-        "7": 8604,
-        "8": 8833,
-        "9": 9062,
-        "10": 9291,
-        "additional": 229
+
+    return lastPercentage;
+};
+
+
+// translated from the document Linda gave.
+const amiLimits = {
+    '2023': {
+        1: { 28800: '30', 33565: '35', 38360: '40', 43155: '45', 47950: '50', 57540: '60', 62335: '65', 67130: '70', 70650: '80' },
+        2: { 32900: '30', 38360: '35', 43840: '40', 49320: '45', 54800: '50', 65760: '60', 71240: '65', 76720: '70', 80750: '80' },
+        3: { 37000: '30', 43155: '35', 49320: '40', 55485: '45', 61650: '50', 73980: '60', 80145: '65', 86310: '70', 90850: '80' },
+        4: { 41100: '30', 47950: '35', 54800: '40', 61650: '45', 68500: '50', 82200: '60', 89050: '65', 95900: '70', 100900: '80' },
+        5: { 44400: '30', 51800: '35', 59200: '40', 66600: '45', 74000: '50', 88800: '60', 96200: '65', 103600: '70', 109000: '80' },
+        6: { 47700: '30', 55650: '35', 63600: '40', 71550: '45', 79500: '50', 95400: '60', 103350: '65', 111300: '70', 117050: '80' },
+        7: { 51000: '30', 59465: '35', 67960: '40', 76455: '45', 84950: '50', 101940: '60', 110435: '65', 118930: '70', 125150: '80' },
+        8: { 54300: '30', 63315: '35', 72360: '40', 81405: '45', 90450: '50', 108540: '60', 117585: '65', 126630: '70', 133200: '80' }
     }
+    // Add other years as necessary
 };
