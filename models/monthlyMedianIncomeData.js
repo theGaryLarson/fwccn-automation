@@ -57,3 +57,19 @@ const amiLimits = {
     }
     // Add other years as necessary
 };
+
+// https://communities-rise.org/king-county-hud-income-eligibility/
+// const kingAnnualAMI = {
+//         '2023': {
+//         "1": "88312.50",
+//         "2": "100937.50",
+//         "3": "113562.50",
+//         "4": "126125",
+//         "5": "136250",
+//         "6": "146312.50",
+//         "7": "156437.50",
+//         "8": "166500",
+//         "9": "176625",
+//         "10": "186687.50"
+//     }
+// };
