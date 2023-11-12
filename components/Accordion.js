@@ -301,7 +301,7 @@ function Accordion(props) {
                                             </div>
                                             <div className="whitespace-nowrap flex-1">
                                                 <p className="">
-                                                    <span className="font-bold">Percent of AMI:</span>
+                                                    <span className="font-bold">Estimated AMI:</span>
                                                     {
                                                         !isEmptyObject(item?.houseHoldIncome?.percentOfAnnualAmi) &&
                                                         !isNaN(Number(item?.houseHoldIncome?.percentOfAnnualAmi))
