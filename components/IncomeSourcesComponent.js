@@ -69,7 +69,7 @@ export default function IncomeSourcesComponent({ formData, onComponentInputChang
     return (
         <div>
             <h1 className=" mt-4">Income Sources</h1>
-            <p className='mb-4 text-center'> Enter the total dollar amount received by the combined household members.</p>
+            <p className='mb-4 text-center'> Enter the total monthly income received by all household members.</p>
             {incomeSources.map((incomeSource, index) => (
                 <div key={index} className="flex">
                     <input
