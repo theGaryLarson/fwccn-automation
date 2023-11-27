@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
 
 export default function ActionTakenComponent(props) {
@@ -10,6 +10,41 @@ export default function ActionTakenComponent(props) {
     const [isTxtAreaCollapsed, setIsTxtAreaCollapsed] = useState(true);
     const actionNotesRef = useRef(null);
     const checkAddressFields = ['checkStreet1', 'checkStreet2', 'checkCity', 'checkState', 'checkZip']
+
+    useEffect(() => {
+        // Create a deep copy of the item to avoid direct mutation
+        let updatedItem = JSON.parse(JSON.stringify(item));
+
+        // Check and update the 'checkMadeOutTo' field if necessary
+        if (!updatedItem.actionTaken.checkMadeOutTo) {
+            updatedItem.actionTaken.checkMadeOutTo = item?.landLord?.fullName ?? '';
+        }
+
+        // Check and update the address fields if necessary
+        if (!updatedItem.actionTaken.checkAddress.checkStreet1) {
+            updatedItem.actionTaken.checkAddress.checkStreet1 = item?.landLord?.landLordAddress?.landLordStreet1 ?? '';
+        }
+
+        if (!updatedItem.actionTaken.checkAddress.checkStreet2) {
+            updatedItem.actionTaken.checkAddress.checkStreet2 = item?.landLord?.landLordAddress?.landLordStreet2 ?? '';
+        }
+
+        if (!updatedItem.actionTaken.checkAddress.checkCity) {
+            updatedItem.actionTaken.checkAddress.checkCity = item?.landLord?.landLordAddress?.landLordCity ?? '';
+        }
+
+        if (!updatedItem.actionTaken.checkAddress.checkState) {
+            updatedItem.actionTaken.checkAddress.checkState = item?.landLord?.landLordAddress?.landLordState ?? '';
+        }
+
+        if (!updatedItem.actionTaken.checkAddress.checkZip) {
+            updatedItem.actionTaken.checkAddress.checkZip = item?.landLord?.landLordAddress?.landLordZip ?? '';
+        }
+
+        // Use updateItem to update the state
+        updateItem(updatedItem);
+    }, []); // Dependencies array ensures the effect runs when item or updateItem changes
+
     const handleInputChange = (event) => {
         //todo: handle editable information: check info & address license plate number
         const {name, value } = event.target;
