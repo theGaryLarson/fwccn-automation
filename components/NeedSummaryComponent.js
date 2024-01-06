@@ -50,7 +50,9 @@ export default function NeedSummaryComponent(props) {
                     <div>
                         <div className={`flex flex-col w-full `}>
                             <div className={"flex flex-col w-full items-center"}>
-                                <p className="font-bold bg-gray-700 text-white mt-2 mb-2 text-center w-full" >Need Summary</p>
+                                <p className="font-bold bg-gray-700 text-white mt-2 mb-2 text-center w-full" >
+                                    Need Summary
+                                </p>
                                 <textarea
                                     id="reasonForNeed"
                                     name="reasonForNeed"
@@ -75,7 +77,9 @@ export default function NeedSummaryComponent(props) {
                             </div>
                             <div className={"w-full"}>
                                 {/* List of children relationships */}
-                                <h2 className="w-full m-0 font-bold bg-gray-700 text-white mt-2 mb-2 text-center">{hasChildren ? 'Children In Household:' : 'No Children In Household'}</h2>
+                                <h2 className="w-full m-0 font-bold bg-gray-700 text-white mt-2 mb-2 text-center">
+                                    {hasChildren ? 'Children In Household:' : 'No Children In Household'}
+                                </h2>
                                 { hasChildren && (<table className="w-full">
                                     <thead>
                                     <tr>
@@ -102,7 +106,9 @@ export default function NeedSummaryComponent(props) {
                                 </table>)}
                             </div>
                             <div className={"w-full"}>
-                                <h2 className="w-full m-0 font-bold bg-gray-700 text-white mt-2 mb-2 text-center">{hasAdults ? ' Additional Adult\'s In Household:' : 'No Additional Adults In Household'}</h2>
+                                <h2 className="w-full m-0 font-bold bg-gray-700 text-white mt-2 mb-2 text-center">
+                                    {hasAdults ? ' Additional Adult\'s In Household:' : 'No Additional Adults In Household'}
+                                </h2>
                                 {hasAdults && (<table className="w-full">
                                     <thead>
                                     <tr>
