@@ -82,6 +82,7 @@ const currentApplicantEntries = {
             //     school: '',
             //     schoolDistrict: '',
             //     relationshipToApplicant: ''
+            //     relationDetails: ''
             // }
         ],
         boysCount: 0,
