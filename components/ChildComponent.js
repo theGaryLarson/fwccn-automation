@@ -111,6 +111,7 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
             school: "",
             schoolDistrict: "",
             relationshipToApplicant: "",
+            relationDetails: ""
         };
         const updatedChildren = [...children, newChild]
         setChildren(updatedChildren);
