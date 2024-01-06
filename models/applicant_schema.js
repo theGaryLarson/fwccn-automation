@@ -304,6 +304,9 @@ const applicantSchema = new Schema({
                     },
                     relationshipToApplicant: {
                         type: String
+                    },
+                    relationDetails: {
+                        type: String
                     }
                 }
             ]
