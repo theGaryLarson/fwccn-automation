@@ -15,6 +15,7 @@ function ApplicantForm(props) {
     const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
     const { item, updateApplicant, onUpdate } = props
     const [formData, setFormData] = useState(item??currentApplicantEntries);
+    const [isSubmitted, setIsSubmitted] = useState(false);
 
     useEffect(() => {
         const handleBeforeUnload = (event) => {
@@ -68,6 +69,12 @@ function ApplicantForm(props) {
 
     async function handleSubmit(event) {
         event.preventDefault();
+
+        if (isSubmitted) {
+            return;
+        }
+        setIsSubmitted(true);
+
         formData.timestamp = createTimeStamp();
         await fetch("/api/add", {
             method: "POST",
@@ -94,6 +101,7 @@ function ApplicantForm(props) {
                 }
             })
             .catch((error) => {
+                setIsSubmitted(false);
                 console.error("Error creating application. Error: ", error);
                 toast.error('Error creating client\'s application', {
                     hideProgressBar: true,
@@ -144,11 +152,15 @@ function ApplicantForm(props) {
                         <div>
                             <button
                                 type="submit"
-                                className={styles.submitButton}
+                                disabled={isSubmitted}
+                                className={`${styles.submitButton} ${isSubmitted && styles.submitButtonDisabled}`}
                             >
                                 SAVE RECORD
                             </button>
+                            {isSubmitted && <p className="text-sm italic">This record has been submitted. If you need to make changes. Use the Look
+                                Up button and Show Form option.</p>}
                         </div>
+
                     )
                 }
                 { item &&

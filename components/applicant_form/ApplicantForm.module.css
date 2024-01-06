@@ -50,6 +50,18 @@
     color: white;
 }
 
+.submitButtonDisabled {
+    width: 100%;
+    text-align:center;
+    border-width: 2px;
+    border-color: black;
+    border-radius: 5px;
+    background: gray;
+    margin-top: 4px;
+    font-weight:bold;
+    color: white;
+}
+
 .componentWrapper h1 {
     text-align: center;
     font-weight: bold;
