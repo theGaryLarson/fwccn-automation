@@ -89,17 +89,24 @@ export default function NeedSummaryComponent(props) {
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        {hasChildren && focusedItem.children.relationsToApplicant?.map((relationship, index) => (
+                                    {hasChildren && focusedItem.children.relationsToApplicant?.map((relationship, index) => {
+                                        const isOther = relationship.toLowerCase() === 'other';
+                                        let relationDetail = isOther ? focusedItem.children.kids[index].relationDetails : relationship;
+
+                                        return (
                                             <tr key={index}>
-                                                <td className="pl-4 border-t py-2">{relationship}</td>
+                                                <td className="pl-4 border-t py-2">{relationDetail}</td>
                                                 <td className="border-t py-2">{focusedItem.children.kids[index].age}</td>
                                                 <td className="border-t py-2">{focusedItem.children.kids[index].school}</td>
                                             </tr>
-                                        ))}
+                                        );
+                                    })}
                                         {hasChildren && (
                                             <tr>
                                                 <td className="pl-4 border-t py-2 font-medium">Total Children</td>
-                                                <td className="border-t py-2 font-medium">{focusedItem.children.relationsToApplicant?.length}</td>
+                                                <td className="border-t py-2 font-medium">
+                                                    {focusedItem.children.relationsToApplicant?.length}
+                                                </td>
                                             </tr>
                                         )}
                                     </tbody>
