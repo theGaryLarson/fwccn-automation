@@ -214,15 +214,33 @@ export default function ChildComponent({ formData, onComponentInputChange }) {
                         </div>
                         <div className={styles.componentWrapper}>
                             <label htmlFor={`kidRelationship-${index}`}>Relation to Applicant:</label>
-                            <input
-                                type="text"
+                            <select
                                 id={`kidRelationship-${index}`}
                                 name={`relationshipToApplicant`}
                                 className={'mb-4 pl-1'}
-                                value={child?.relationshipToApplicant??''}
+                                value={child?.relationshipToApplicant ?? ''}
                                 onChange={(event) => handleInputChange(event, index)}
-                            />
+                            >
+                                <option value={'undisclosed'}>not disclosed</option>
+                                <option value={'son'}>son</option>
+                                <option value={'daughter'}>daughter</option>
+                                <option value={'other'}>other</option>
+
+                            </select>
                         </div>
+                        { (child?.relationshipToApplicant === "other") && (
+                            <div className={`${styles.componentWrapper}`}>
+                                <label htmlFor={"relationDetails"}>Relationship Details</label>
+                                <textarea
+                                    id={"relationDetails"}
+                                    name={"relationDetails"}
+                                    value={child?.relationDetails}
+                                    onChange={(event) => handleInputChange(event, index)}
+                                    className={'p-2'}
+                                    required
+                                />
+                            </div> )
+                        }
                     </div>
                 ))}
 
