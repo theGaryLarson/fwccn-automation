@@ -43,7 +43,7 @@ export default function ActionTakenComponent(props) {
 
         // Use updateItem to update the state
         updateItem(updatedItem);
-    }, []); // Dependencies array ensures the effect runs when item or updateItem changes
+    }, [item, updateItem]); // TODO: fix warning: added item, updateItem. Dependencies array ensures the effect runs when item or updateItem changes
 
     const handleInputChange = (event) => {
         //todo: handle editable information: check info & address license plate number
