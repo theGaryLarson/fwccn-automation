@@ -14,7 +14,7 @@ git fetch origin main
 git reset --hard origin/main
 
 @REM Run npm commands
-call npm ci
+call npm install
 call npm run build
 call npm run start
 
