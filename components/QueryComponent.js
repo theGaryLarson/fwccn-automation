@@ -53,7 +53,7 @@ export default function QueryComponent(props) {
         }
         setIsFirstLoad(false);
 
-    }, [queryObject]);
+    }, [isFirstLoad, queryObject]); //TODO: fix: added isFirstLoad to fix warning.
     const records = useMemo(() =>  responseData, [responseData]);
     useEffect(() => {
         if (responseData?.length > 0) {
