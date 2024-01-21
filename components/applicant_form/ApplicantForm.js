@@ -157,8 +157,8 @@ function ApplicantForm(props) {
                             >
                                 SAVE RECORD
                             </button>
-                            {isSubmitted && <p className="text-sm italic">'This record has been submitted. If you need to make changes. Use the 'Look
-                                Up' button and click the 'Show Details' and then click the 'Show Form' button.'</p>}
+                            {isSubmitted && <p className="text-sm italic">This record has been submitted. If you need to make changes. Use the Look
+                                Up button and click the Show Details and then click the Show Form button.</p>}
                         </div>
 
                     )
