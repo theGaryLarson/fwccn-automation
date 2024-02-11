@@ -630,7 +630,7 @@ const applicantSchema = new Schema({
             validate: {
                 validator: function(v) {
                     if(v) {
-                        return /^\d*[0-9]\d*$/.test(v.toString());
+                        return /^\d+(\.\d{2})?$/.test(v.toString());
                     }
                     return true;
                 },
@@ -644,7 +644,7 @@ const applicantSchema = new Schema({
             validate: {
                 validator: function(v) {
                     if(v) {
-                        return /^\d*[0-9]\d*$/.test(v.toString());
+                        return /^\d+(\.\d{2})?$/.test(v.toString());
                     }
                     return true;
                 },
