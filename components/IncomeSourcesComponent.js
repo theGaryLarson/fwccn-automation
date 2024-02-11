@@ -20,7 +20,7 @@ export default function IncomeSourcesComponent({ formData, onComponentInputChang
 
     const handleIncomeAmountChange = (event, index) => {
         const updatedIncomeSources = [...incomeSources];
-        updatedIncomeSources[index].peopleCount = Number(event.target.value);
+        updatedIncomeSources[index].peopleCount = event.target.value;
         setIncomeSources(updatedIncomeSources);
         onComponentInputChange({
             target: {
@@ -80,10 +80,10 @@ export default function IncomeSourcesComponent({ formData, onComponentInputChang
                         className="mr-2 mb-2 pl-1"
                     />
                     <input
-                        type="number"
+                        type="text"
                         value={incomeSource.peopleCount}
                         onChange={(event) => handleIncomeAmountChange(event, index)}
-                        placeholder="Enter Number People"
+                        placeholder="Enter income amount"
                         className="mr-2 mb-2 pl-1"
                     />
                     <button type="button" className={`${styles.removeButton} mb-2`} onClick={() => removeIncomeSource(index)}>Remove</button>
