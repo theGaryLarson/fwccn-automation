@@ -10,7 +10,7 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
     const handleInputChange = (event) => {
         const {name, value} = event.target;
         if(name === "totalHouseholdIncome" || name === "houseHoldIncomePastYear" || name === "totalSupportMembers") {
-            onComponentInputChange({target:{name, value: Number(value)}});
+            onComponentInputChange({target:{name, value: value}});
         } else {
             onComponentInputChange(event);
         }
@@ -51,11 +51,10 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
             <div className={styles.componentWrapper}>
                 <label htmlFor="totalHouseholdIncome">Current Monthly Household Income (include all sources):</label>
                 <input
-                    type="number"
                     id="totalHouseholdIncome"
                     name="totalHouseholdIncome"
-                    placeholder="$0000.00"
-                    value={formData?.houseHoldIncome?.totalHouseholdIncome??undefined}
+                    placeholder="0000.00"
+                    value={formData?.houseHoldIncome?.totalHouseholdIncome??''}
                     onChange={handleInputChange}
                     className={'pl-1'}
                 />
@@ -63,10 +62,9 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
             <div className={styles.componentWrapper}>
                 <label htmlFor="houseHoldIncomePastYear">Annual Income (Past 12 months - regardless of current situation):</label>
                 <input
-                    type="number"
                     id="houseHoldIncomePastYear"
                     name="houseHoldIncomePastYear"
-                    placeholder="$0000.00"
+                    placeholder="00000.00"
                     value={formData?.houseHoldIncome?.houseHoldIncomePastYear??''}
                     onChange={handleInputChange}
                     className={'pl-1'}
@@ -75,10 +73,9 @@ export default function TotalIncomeSupportComponent({formData, onComponentInputC
             <div className={styles.componentWrapper}>
                 <label htmlFor="totalSupportMembers">Total Number of Supported Members:</label>
                 <input
-                    type="number"
                     id="totalSupportMembers"
                     name="totalSupportMembers"
-                    placeholder="3"
+                    placeholder="Enter number of people in household"
                     value={formData?.houseHoldIncome?.totalSupportMembers??''}
                     onChange={handleInputChange}
                     className={'pl-1'}
