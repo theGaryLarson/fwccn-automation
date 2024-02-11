@@ -630,11 +630,11 @@ const applicantSchema = new Schema({
             validate: {
                 validator: function(v) {
                     if(v) {
-                        return /^\d+(\.\d{2})?$/.test(v.toString());
+                        return /^\d+(\.?\d{2})$/.test(v.toString());
                     }
                     return true;
                 },
-                message: 'Must enter a non-negative number'
+                message: 'Must enter a valid monetary amount'
             },
             default: 0
         },
@@ -644,11 +644,11 @@ const applicantSchema = new Schema({
             validate: {
                 validator: function(v) {
                     if(v) {
-                        return /^\d+(\.\d{2})?$/.test(v.toString());
+                        return /^\d+(\.?\d{2})$/.test(v.toString());
                     }
                     return true;
                 },
-                message: 'Must enter a non-negative number'
+                message: 'Must enter a valid monetary amount'
             },
             default: 0
         },
