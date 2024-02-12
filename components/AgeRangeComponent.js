@@ -33,12 +33,13 @@ function AgeComponent({ formData, genderRange, handleInputChange }) {
                 <div key={range.key} className="flex w-full">
                     <label className={'w-20 font-bold text-right pr-1'} htmlFor={`${genderRange}${range.key}`}>{range.label}</label>
                     <input
-                        type="number"
+                        type="text"
                         id={`${genderRange}-${range.key}`}
                         name={range.key}
                         value={formData[genderRange]?.[range.key] ?? 0}
                         onChange={onHandleInputChange}
                         className={'pl-1 mb-1'}
+                        placeholder='Enter count in age group'
                     />
                 </div>
             ))}
