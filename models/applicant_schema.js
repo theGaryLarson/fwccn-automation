@@ -710,7 +710,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -720,7 +720,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null)  return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -730,7 +730,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -740,7 +740,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -750,7 +750,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -760,7 +760,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -770,7 +770,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -780,7 +780,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -790,7 +790,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -800,7 +800,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -810,7 +810,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -820,7 +820,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -830,7 +830,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -840,7 +840,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -850,7 +850,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -863,7 +863,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -873,7 +873,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -883,7 +883,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -893,7 +893,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -903,7 +903,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -913,7 +913,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -923,7 +923,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -933,7 +933,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -943,7 +943,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -953,7 +953,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -965,7 +965,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -975,7 +975,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -985,7 +985,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -995,7 +995,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -1005,7 +1005,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -1015,7 +1015,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -1025,7 +1025,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -1035,7 +1035,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
@@ -1045,7 +1045,7 @@ const applicantSchema = new Schema({
             default: 0,
             validate: {
                 validator: function(v) {
-                    return /^\d*[0-9]\d*$/.test(v.toString());
+                    if (v != null) return /^\d*[0-9]\d*$/.test(v.toString());
                 },
                 message: 'Must enter a non-negative number'
             }
