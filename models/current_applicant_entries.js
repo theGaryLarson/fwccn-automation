@@ -153,79 +153,79 @@ const currentApplicantEntries = {
         incomeSources: [
             {
                 name: "Job(s)",
-                peopleCount: 0
+                peopleCount: ''
             },
             {
                 name: "Unemployment",
-                peopleCount: 0
+                peopleCount: ''
             },
             {
                 name: "DSHS",
-                peopleCount: 0
+                peopleCount: ''
             },
             {
                 name: "Social Security",
-                peopleCount: 0
+                peopleCount: ''
             },
             {
                 name: "Pension",
-                peopleCount: 0
+                peopleCount: ''
             },
             {
                 name: "Child Support",
-                peopleCount: 0
+                peopleCount: ''
             },
             {
                 name: "Child Tax Credit Payments",
-                peopleCount: 0
+                peopleCount: ''
             },
             {
                 name: "Food Stamps",
-                peopleCount: 0
+                peopleCount: ''
             }
         ],
         isIncomeVerified: false
     },
     demographics: {
-        totalMales: 0,
-        totalFemales: 0,
-        whiteOrCaucasian: 0,
-        blackAfricanAmerican: 0,
-        asianAsianAmerican: 0,
-        americanIndianOrAlaskaNative: 0,
-        nativeHawaiianPacificIslander: 0,
-        latinoAmericanHispanic: 0,
-        americanIndianOrAlaskaNativeAndWhite: 0,
-        asianAsianAmericanAndWhite: 0,
-        blackAfricanAmericanAndWhite: 0,
-        americanIndianOrAlaskaNativeAndBlackAfricanAmerican: 0,
-        otherRace: 0,
-        multiRacial: 0,
-        unknown: 0
+        totalMales: '',
+        totalFemales: '',
+        whiteOrCaucasian: '',
+        blackAfricanAmerican: '',
+        asianAsianAmerican: '',
+        americanIndianOrAlaskaNative: '',
+        nativeHawaiianPacificIslander: '',
+        latinoAmericanHispanic: '',
+        americanIndianOrAlaskaNativeAndWhite: '',
+        asianAsianAmericanAndWhite: '',
+        blackAfricanAmericanAndWhite: '',
+        americanIndianOrAlaskaNativeAndBlackAfricanAmerican: '',
+        otherRace: '',
+        multiRacial: '',
+        unknown: ''
     },
     maleAgeRange: {
-        zeroToFive: 0,
-        sixToTwelve: 0,
-        thirteenToSeventeen: 0,
-        eighteenToTwentyFour: 0,
-        twentyFiveToThirtyFour: 0,
-        thirtyFiveToFiftyFour: 0,
-        fiftyFiveToSeventyFour: 0,
-        seventyFiveToEightyFour: 0,
-        eightyFivePlus: 0,
-        unknown: 0
+        zeroToFive: '',
+        sixToTwelve: '',
+        thirteenToSeventeen: '',
+        eighteenToTwentyFour: '',
+        twentyFiveToThirtyFour: '',
+        thirtyFiveToFiftyFour: '',
+        fiftyFiveToSeventyFour: '',
+        seventyFiveToEightyFour: '',
+        eightyFivePlus: '',
+        unknown: ''
     },
     femaleAgeRange: {
-        zeroToFive: 0,
-        sixToTwelve: 0,
-        thirteenToSeventeen: 0,
-        eighteenToTwentyFour: 0,
-        twentyFiveToThirtyFour: 0,
-        thirtyFiveToFiftyFour: 0,
-        fiftyFiveToSeventyFour: 0,
-        seventyFiveToEightyFour: 0,
-        eightyFivePlus: 0,
-        unknown: 0
+        zeroToFive: '',
+        sixToTwelve: '',
+        thirteenToSeventeen: '',
+        eighteenToTwentyFour: '',
+        twentyFiveToThirtyFour: '',
+        thirtyFiveToFiftyFour: '',
+        fiftyFiveToSeventyFour: '',
+        seventyFiveToEightyFour: '',
+        eightyFivePlus: '',
+        unknown: ''
     }
 }
 
