@@ -73,4 +73,4 @@ See file here:
 ### See demo branch deployed on Vercel here
  [FWCCN Form Automation](https://fwccn-automation.vercel.app/)
 
-> There is not environment variables set up here for the data layer. Look Up and submission does not function.
+> DO NOT ENTER ANY PERSONAL INFORMATION. THIS IS PUBLIC FACING ANYONE CAN VIEW IT.
