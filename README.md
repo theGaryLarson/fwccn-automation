@@ -38,7 +38,7 @@ If you choose to do something similar the environment variables are located in t
 
 ---
 
-### Second in ther terminal run 
+### Second in the terminal run 
 ```npm install```
 
 After the dependencies are done installing then...
