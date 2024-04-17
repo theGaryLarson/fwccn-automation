@@ -34,9 +34,9 @@ LOCAL_URI = "mongodb+srv://<username>:<password>@<cluster>/<database>?retryWrite
 
 If you choose to do something similar the environment variables are located in these two files:
 
-[./lib/connectMongo.js](https://github.com/theGaryLarson/fwccn-automation/blob/demo_branch/lib/connectMongo.js)
+[./lib/connectMongo.js](./lib/connectMongo.js)
 
-[./models/applicant_schema.js](https://github.com/theGaryLarson/fwccn-automation/blob/demo_branch/models/applicant_schema.js) (Very bottom of file)
+[./models/applicant_schema.js](./models/applicant_schema.js) (Very bottom of file)
 
 ---
 
@@ -66,11 +66,11 @@ This project currently uses API routes to insert form inputs as a document into 
 
 See file here:
 
-[./src/pages/api/add.js](https://github.com/theGaryLarson/fwccn-automation/blob/demo_branch/src/pages/api/add.js)
+[./src/pages/api/add.js](./src/pages/api/add.js)
 
 ---
 
 ### See demo branch deployed on Vercel here
- [FWCCN Form Automation](https://fwccn-automation-fr1wq3ih7-thegarylarson.vercel.app/)
+ [FWCCN Form Automation](https://fwccn-automation.vercel.app/)
 
-> Current Issue | Production build does not submit data as expected. If you try to submit on vercel will get an error.
+> There is not environment variables set up here for the data layer. Look Up and submission does not function.
