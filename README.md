@@ -20,17 +20,15 @@ _If you just want to review the form. Skip this step._
 
 Include the following environment variables:
 ```env
-LOCAL_URI = "mongodb://localhost:<port>/<database>"
+DB_URI = "mongodb://localhost:<port>/<database>"
 MONGO_DB_COL = "<collection>"
 ```
 
-If you would like to connect to MongoDB Atlas replace the ```LOCAL_URI``` string with
+If you would like to connect to MongoDB Atlas replace the ```DB_URI``` string with
 the connection string. 
 ```env
-LOCAL_URI = "mongodb+srv://<username>:<password>@<cluster>/<database>?retryWrites=true&w=majority"
+DB_URI = "mongodb+srv://<username>:<password>@<cluster>/<database>?retryWrites=true&w=majority"
 ```
-
-> For dev purposes currently there is a LOCAL_URI and MONGO_URI to easily switch back and forth in our dev teams .env.local file
 
 If you choose to do something similar the environment variables are located in these two files:
 
