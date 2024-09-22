@@ -185,21 +185,21 @@ export default function DemographicComponent({formData, onComponentInputChange }
 
                 />
             </div>
-            <div className={styles.componentWrapper}>
-                <label htmlFor="otherRace">Other Race:</label>
-                <input
-                    type="text"
-                    id="otherRace"
-                    name="otherRace"
-                    value={formData?.demographics?.otherRace??0}
-                    onChange={handleInputChange}
-                    className={'pl-1'}
-                    placeholder='Enter count of total household members in this ethnic group.'
+            {/*<div className={styles.componentWrapper}>*/}
+            {/*    <label htmlFor="otherRace">Other Race:</label>*/}
+            {/*    <input*/}
+            {/*        type="text"*/}
+            {/*        id="otherRace"*/}
+            {/*        name="otherRace"*/}
+            {/*        value={formData?.demographics?.otherRace??0}*/}
+            {/*        onChange={handleInputChange}*/}
+            {/*        className={'pl-1'}*/}
+            {/*        placeholder='Enter count of total household members in this ethnic group.'*/}
 
-                />
-            </div>
+            {/*    />*/}
+            {/*</div>*/}
             <div className={styles.componentWrapper}>
-                <label htmlFor="multiRacial">Multi-Racial:</label>
+                <label htmlFor="multiRacial">Other / Multi-Racial:</label>
                 <input
                     type="text"
                     id="multiRacial"
@@ -211,19 +211,19 @@ export default function DemographicComponent({formData, onComponentInputChange }
 
                 />
             </div>
-            <div className={styles.componentWrapper}>
-                <label htmlFor="unknown">Unknown:</label>
-                <input
-                    type="text"
-                    id="unknown"
-                    name="unknown"
-                    value={formData?.demographics?.unknown??0}
-                    onChange={handleInputChange}
-                    className={'pl-1'}
-                    placeholder='Enter count of total household members in an unknown ethnic group.'
+            {/*<div className={styles.componentWrapper}>*/}
+            {/*    <label htmlFor="unknown">Unknown:</label>*/}
+            {/*    <input*/}
+            {/*        type="text"*/}
+            {/*        id="unknown"*/}
+            {/*        name="unknown"*/}
+            {/*        value={formData?.demographics?.unknown??0}*/}
+            {/*        onChange={handleInputChange}*/}
+            {/*        className={'pl-1'}*/}
+            {/*        placeholder='Enter count of total household members in an unknown ethnic group.'*/}
 
-                />
-            </div>
+            {/*    />*/}
+            {/*</div>*/}
         </div>
     )
 }
