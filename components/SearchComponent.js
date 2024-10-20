@@ -12,6 +12,7 @@ export default function SearchComponent(props) {
     const [lastName, setLastName] = useState("");
     const [lastFour, setLastFour] = useState("");
     const [stateId, setStateId] = useState("");
+    const [aptName, setAptName] = useState("");
     const [street1, setStreet1] = useState("");
     const [street2, setStreet2] = useState("");
     const [homeZip, setHomeZip] = useState("");
@@ -35,6 +36,10 @@ export default function SearchComponent(props) {
 
     const updateStateId = (event) => {
         setStateId(event.target.value)
+    }
+
+    const updateAptName = (event) => {
+        setAptName(event.target.value)
     }
     const updateStreet1 = (event) => {
         setStreet1(event.target.value)
@@ -75,6 +80,7 @@ export default function SearchComponent(props) {
         }
         if (isAddress) {
             setParentQueryObject( {
+                apartmentName: aptName,
                 homeStreet1: street1,
                 homeStreet2: street2,
                 homeZip: homeZip
@@ -157,6 +163,16 @@ export default function SearchComponent(props) {
 
                             <input
                                 type='text'
+                                id={'aptName'}
+                                name={'aptName'}
+                                className={`mt-1 pl-1`}
+                                placeholder={' Enter Apartment Name (optional)'}
+                                onChange={updateAptName}
+                                value={aptName}
+                            />
+
+                            <input
+                                type='text'
                                 id={'street1'}
                                 name={'street1'}
                                 className={`mt-1 pl-1`}
@@ -186,7 +202,7 @@ export default function SearchComponent(props) {
                     )
                 }
                 <div>
-                    <button className={styles.submitButton} type="submit" >Search</button>
+                    <button className={styles.submitButton} type="submit">Search</button>
                 </div>
 
             </form>
