@@ -6,7 +6,7 @@ export default async function updateApplicantRecord(req, res) {
         return res.status(405).end();
     }
     await connectMongo();
-    const { retrieveAll, firstName, lastName, lastFour, driverLicenseOrId, homeStreet1, homeStreet2, homeZip } = req.body;
+    const { retrieveAll, firstName, lastName, lastFour, driverLicenseOrId, apartmentName, homeStreet1, homeStreet2, homeZip } = req.body;
 
     // Build our search condition
     const condition = { $and: []};
@@ -34,6 +34,13 @@ export default async function updateApplicantRecord(req, res) {
     }
     if (driverLicenseOrId) {
         condition.$and.push({ "idSource.driverLicenseOrId": driverLicenseOrId });
+    }
+    if (apartmentName) {
+        condition.$and.push({
+            "homeAddress.aptName": {
+                $regex: new RegExp(apartmentName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i')
+            }
+        });
     }
     if (homeStreet1) {
         condition.$and.push({ "homeAddress.homeStreet1": homeStreet1 });
