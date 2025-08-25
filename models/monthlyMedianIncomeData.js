@@ -22,29 +22,44 @@ function categorizeByPercentOfMedianIncome(percentage) {
 }
 
 export const getPercentOfKingAMI = (inputYear, familySize, annualHouseholdIncome) => {
-    let year = inputYear;
-    while (!amiLimits[year]) {
-        year = String(Number(year) - 1)
-    }
-    const incomeLimits = amiLimits[year][familySize];
-    // Find the first (lowest) income limit for the family size
-    const firstLimit = Math.min(...Object.keys(incomeLimits).map(Number));
-    // If the income is less than the first limit, return '30%'
-    if (annualHouseholdIncome <= firstLimit) {
-        return '30';
-    }
-    let lastPercentage = 'Not found';
+    let year = String(inputYear);
 
-    for (let [incomeLimit, percentage] of Object.entries(incomeLimits)) {
-        if (annualHouseholdIncome >= incomeLimit) {
-            lastPercentage = percentage; // Save the last percentage if income is higher than the current limit
-        } else {
-            break; // If income is less than or equal to the current limit, stop the iteration
+    // Walk back to most recent available year
+    while (!amiLimits[year]) {
+        const prev = Number(year) - 1;
+        if (!Number.isFinite(prev) || prev < 2000) return null;
+        year = String(prev);
+    }
+
+    const incomeLimits = amiLimits[year]?.[familySize];
+    if (!incomeLimits) return null;
+
+    // Sort brackets by income threshold ascending
+    const brackets = Object.entries(incomeLimits)
+        .map(([limit, pct]) => [Number(limit), String(pct)])
+        .sort((a, b) => a[0] - b[0]);
+
+    // If below the smallest threshold, return its %
+    if (annualHouseholdIncome < brackets[0][0]) return brackets[0][1];
+
+    // Walk through brackets and check which range the income falls into
+    for (let i = 0; i < brackets.length; i++) {
+        const [limit, pct] = brackets[i];
+        const next = brackets[i + 1];
+
+        if (!next) {
+            // No higher bracket → top bracket
+            return pct;
+        }
+
+        if (annualHouseholdIncome >= limit && annualHouseholdIncome < next[0]) {
+            return pct;
         }
     }
 
-    return lastPercentage;
+    return null; // fallback (shouldn’t hit)
 };
+
 
 
 // translated from the document Linda gave.
