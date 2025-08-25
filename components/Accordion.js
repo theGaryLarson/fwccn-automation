@@ -308,9 +308,9 @@ function Accordion(props) {
                                                             ? (
                                                                 <>
                                                                     {" " + parseFloat(item.houseHoldIncome.percentOfAnnualAmi).toFixed(1) + "%"}
-                                                                    {parseFloat(item.houseHoldIncome.percentOfAnnualAmi) >= 40
-                                                                        ? <span className="text-red-500 italic ml-1 font-bold">{'Ineligible >= 40%'}</span>
-                                                                        : <span className="text-green-500 italic ml-1 font-bold">{'Eligible < 40%'}</span>
+                                                                    {parseFloat(item.houseHoldIncome.percentOfAnnualAmi) >= 50
+                                                                        ? <span className="text-red-500 italic ml-1 font-bold">{'Ineligible >= 50%'}</span>
+                                                                        : <span className="text-green-500 italic ml-1 font-bold">{'Eligible < 50%'}</span>
                                                                     }
                                                                 </>
                                                             )
